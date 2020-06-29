@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.ComunityService;
@@ -27,5 +28,22 @@ public class ComunityController {
 		}
 		mv.setViewName("comunity/clist");
 		return mv;
+	}
+	
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
+	public ModelAndView insert(ModelAndView mv, ComunityVO vo) {
+		if(service.insert(vo)>0) {
+			mv.addObject("새 글이 등록 되었습니다");
+			mv.setViewName("comunity/clist");
+		}else {
+			mv.addObject("제목을 입력해주세요");
+			mv.setViewName("comunity/cinsert");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "/cinsert" , method = RequestMethod.GET)
+	public void insertf() {
+	
 	}
 }
