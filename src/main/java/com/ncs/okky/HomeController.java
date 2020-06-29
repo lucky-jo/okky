@@ -18,20 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-<<<<<<< HEAD
-
-	@RequestMapping(value = {"/index","/"}, method = RequestMethod.GET)
-	public String index() {
-		return "/index";
-=======
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 
 	@RequestMapping(value = {"/index","/"})
-	public void index() {
->>>>>>> master
-	}
+	public String index() {
+	return "index";
+}
 	
 }
