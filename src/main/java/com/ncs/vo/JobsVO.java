@@ -10,7 +10,9 @@ public class JobsVO {
 	private int cnt;
 	private int likecount;
 	private int exist;
+	private int category;
 	private String updatedate;
+	
 	
 	public String getId() {
 		return id;
@@ -66,6 +68,12 @@ public class JobsVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
 	}
 	
 
