@@ -9,20 +9,24 @@ import com.ncs.vo.JobsVO;
 public interface JobsService {
 	
 	    
-	int searchRowCount(SearchCriteria cri);//searchRowCount
+	/*
+	 * int searchRowCount(SearchCriteria cri);//searchRowCount
+	 * 
+	 * List<JobsVO> searchList(SearchCriteria cri);//searchList
+	 */	  
+	List<JobsVO> selectlist(); // selectList()
 	
-	List<JobsVO> searchList(SearchCriteria cri);//searchList
-	  
-	List<JobsVO> selectlist(SearchCriteria cri); // selectList()
+	int newinsert(JobsVO vo); // newinsert
 	
-	JobsVO selectOne(JobsVO vo); // selectOne
-		
-	int insert(JobsVO vo); // insert
-		
-	int update(JobsVO vo); // update
-		
-	int delete(JobsVO vo); // delete
-
+	/*
+	 * JobsVO selectOne(JobsVO vo); // selectOne
+	 * 
+	 * int insert(JobsVO vo); // insert
+	 * 
+	 * int update(JobsVO vo); // update
+	 * 
+	 * int delete(JobsVO vo); // delete
+	 */
 		
 
 		
