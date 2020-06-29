@@ -12,17 +12,5 @@ public class MemberController {
 		mv.setViewName("home");
 		return mv;
 	}
-	
-=======
 
-@RequestMapping(value = "/member")
-@Controller
-public class MemberController {
-
-    @RequestMapping(value = "/login")
-    public void login() {
-
-    }
-
->>>>>>> man
 }
