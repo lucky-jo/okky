@@ -10,5 +10,5 @@ import com.ncs.vo.ComunityVO;
 public interface ComunityMapper {
 	
 	public List<ComunityVO> selectList();
-	
+	public int insert(ComunityVO vo);
 }

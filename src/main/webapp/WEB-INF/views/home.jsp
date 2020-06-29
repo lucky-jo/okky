@@ -1,4 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<<<<<<< HEAD
+<%@ page session="false" %>
+=======
+>>>>>>> man
 <%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
