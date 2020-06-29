@@ -29,12 +29,8 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
-	<!-- 한글처리 필터 -->
-=======
 	
 		<!-- 한글처리 필터 -->
->>>>>>> man
 	<filter>
 		<filter-name>characterEncoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
