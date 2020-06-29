@@ -7,32 +7,23 @@
 
 <div>
 	<h3>칼럼</h3>
-	<div style="float: right;"><a href="/column/insert" >새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/column/detail">새 글 쓰기</a></div>
 </div><br><br>
-<div style="float: right;">
-	검색창 
-</div><br>
-<div>
-최신순  추천순  댓글순  스크랩순  조회순
-</div>
 <br>
 <table>
-	<c:forEach var="mm" items="${Banana}">
-	<tbody>
-		<tr align="center" height="30">
-			<td style="color: gray;">#${mm.seq}&nbsp;</td>
-			<td rowspan="0">댓글</td>
-			<td rowspan="0">좋아요</td>
-			<td rowspan="0">${mm.cnt}</td>
-			<td rowspan="0">image</td>
-			<td>${mm.id}</td>
-		</tr>
-		<tr align="center" height="30" bordercolor="gray">
-			<td>${mm.title}</td>
-			<td>${mm.regdate}</td>
-		</tr>
-	</tbody>
-	</c:forEach>
+	<tr height="40"><td">Seq</td>
+		<td>${Detail.seq}</td></tr>
+	<tr height="40"><td>Title</td>
+		<td>${Detail.title}</td></tr>
+	<tr height="40"><td>Id</td>
+		<td>${Detail.id}</td></tr>
+	<tr height="40"><td>Content</td>
+		<td><textarea rows="10" cols="40" readonly="readonly">${Detail.content}</textarea></td>
+	</tr>
+	<tr height="40"><td>Regdate</td>
+		<td>${Detail.regdate}</td></tr>
+	<tr height="40"><td>Count</td>
+		<td>${Detail.cnt}</td></tr>
 </table>
 
 
