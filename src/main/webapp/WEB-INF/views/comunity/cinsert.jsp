@@ -1,22 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Comunity Insert</title>
-</head>
-<body>
+         pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@include file="../includes/header.jsp"%>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="resources/jqLib/comunityCheck.js"></script>
+<script>
+var tCheck=false;
+
+$(function() {
+	$('#title').focus();
+	$('#title').focusout(function() {
+	 	tCheck=ttCheck();
+	}); // title_focusout
+}); // ready
+
+function inCheck() {
+	if (tCheck==true ) {
+		return true;
+	}else {
+		tCheck=ttCheck();
+		return false;
+	};
+} //inCheck 
+</script>
 <h2>새 글 쓰기</h2>
 
 <div>image</div>
 <div>
 	${logID}
 </div>
-	<form action="insert" method="post">
+	<form action="/comunity/insert" method="post">
 		<table>
-			<tr>
+			<tr height="60">
 				<td>
 					<select name="category" id="category">
   						<option value="default">게시판을 선택해주세요</option>
@@ -28,16 +45,15 @@
   					</select>
 				</td>
 			</tr>
-			<tr>
-				<td>제목을 입력해주세요</td>
+			<tr height="60">
+				<td><input type="text" name="title" id="title" value="제목을 입력해주세요"></td>
 			</tr>
-			<tr>
-				<td><textarea rows="10" cols="40" name="content"></textarea></td>
+			<tr height="60">
+				<td><textarea rows="20" cols="60" name="content"></textarea></td>
 			</tr>
 				<td><input type="reset" value="취소">
-					<input type="submit" value="글등록" onclick=""> </td>
-				
+					<input type="submit" value="등록" onclick="return inCheck()">
+					<input type="hidden" name="id" value="hongildong"></td>
 		</table>
 	</form>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>
