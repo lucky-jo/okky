@@ -28,5 +28,11 @@ public class ColumnController {
 		mv.setViewName("column/columnList");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/insert")
+	public ModelAndView columnInsert(ModelAndView mv) {
+		mv.setViewName("column/columnInsert");
+		return mv;
+	} // columnInsert
 
 }

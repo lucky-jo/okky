@@ -5,7 +5,7 @@
   
   <mapper namespace="com.ncs.mapper.ColumnMapper"> 
 
-  <select id="searchRowCount">
+<!--   <select id="searchRowCount">
   
   </select>
   <select id="searchList">
@@ -16,13 +16,19 @@
   </select>
   <update id="countUp">
     update column set cnt=cnt+1 where seq=#{seq}
-  </update>
-  <select id="columnList">
-  
+  </update> -->
+  <select id="selectList" resultType="com.ncs.vo.ColumnVO" >
+	select seq,title,id,regdate,cnt from columnm order by seq
   </select>
+  
   <insert id="insert">
-<!--   	((select nvl(max(seq), 0)+1 from column),#{title},#{id},
-	sysdate,0,(select nvl(max(seq), 0)+1 from column),0,0) -->
+	insert into column values 
+	 ((select nvl(max(seq), 0)+1 from column),#{title},#{id},#{content},
+	 sysdate,0,(select nvl(max(seq), 0)+1 from column),0,0)
+  </insert>
+<!--  <insert id="insert">
+   	((select nvl(max(seq), 0)+1 from column),#{title},#{id},
+	sysdate,0,(select nvl(max(seq), 0)+1 from column),0,0)
   </insert>
   <update id="update">
   	update column set title=#{title}, content=#{content} where seq=#{seq}
@@ -31,5 +37,5 @@
   	delete column
 	<if test="seq!=root">where seq=#{seq} </if>
 	<if test="seq==root">where root=#{seq}</if>
-  </delete>
+  </delete> -->
   </mapper>
