@@ -2,6 +2,8 @@ package com.ncs.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ncs.service.ComunityService;
 import com.ncs.vo.ComunityVO;
 
-@RequestMapping(value = "/comunity/*")
+@RequestMapping(value = "/comunity/")
 @Controller
 public class ComunityController {
 
@@ -45,5 +47,14 @@ public class ComunityController {
 	@RequestMapping(value = "/cinsert" , method = RequestMethod.GET)
 	public void insertf() {
 	
+	}
+	
+	@RequestMapping(value = "/detail")
+	public ModelAndView detail(ModelAndView mv, ComunityVO vo) {
+		vo = service.selectOne(vo);
+		
+			mv.addObject("detail",vo);
+			mv.setViewName("comunity/cdetail");
+			return mv;
 	}
 }

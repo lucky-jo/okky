@@ -8,4 +8,5 @@ public interface ComunityService {
 
 	List<ComunityVO> selectList();
 	int insert(ComunityVO vo);
+	ComunityVO selectOne(ComunityVO vo);
 }

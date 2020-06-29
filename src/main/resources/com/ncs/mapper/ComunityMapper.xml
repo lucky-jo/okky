@@ -17,6 +17,10 @@
   	insert into comunity(seq,id,category,title,content) values(#{seq},#{id},#{category},#{title},#{content})
   </insert>
   
+  <select id="selectOne" resultType="com.ncs.vo.ComunityVO">
+	select seq,title,id,content,regdate,updatedate,exist,cnt,category
+	 from comunity where seq=#{seq}
+  </select>
   
   
   </mapper>

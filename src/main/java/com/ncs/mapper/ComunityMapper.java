@@ -11,4 +11,5 @@ public interface ComunityMapper {
 	
 	public List<ComunityVO> selectList();
 	public int insert(ComunityVO vo);
+	public ComunityVO selectOne(ComunityVO vo);
 }
