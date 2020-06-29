@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ncs.mapper.ColumnMapper"> 
+
+  <select id="searchRowCount">
+  
+  </select>
+  <select id="searchList">
+  
+  </select>
+  <select id="totalRowCount">
+  	select count(*) from column
+  </select>
+  <update id="countUp">
+    update column set cnt=cnt+1 where seq=#{seq}
+  </update>
+  <select id="columnList">
+  
+  </select>
+  <insert id="insert">
+<!--   	((select nvl(max(seq), 0)+1 from column),#{title},#{id},
+	sysdate,0,(select nvl(max(seq), 0)+1 from column),0,0) -->
+  </insert>
+  <update id="update">
+  	update column set title=#{title}, content=#{content} where seq=#{seq}
+  </update>
+  <delete id="delete">
+  	delete column
+	<if test="seq!=root">where seq=#{seq} </if>
+	<if test="seq==root">where root=#{seq}</if>
+  </delete>
+  </mapper>
