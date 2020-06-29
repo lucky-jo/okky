@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ncs.mapper">
+    
+    
+    <select id="searchRowCount" resultType="int">
+    select count(*)from Jobs where(1=1
+     <include refid="search"></include>
+    </select>
+    
+    
+    
+    <select id="searchList" resultType="vo.JobsVO">
+    select id, title,content,regdate,count,likecount,exit,updatedate 
+    from (select j.*,ROW_NUMBER()OVER(order by id asc) rnum)
+    </select>
+    <!-- jobsnewInsert() -->
+    <insert id="newinsert">
+    insert into jobs values((select nvl(max(seq),0)+1 from jobs),#{id},#{title},
+  #{content},#{regdate},#{seq},#{cnt},#{likecount},#{exist},#{updatedate})
+    
+    </insert>
+   
+    <!-- jobsDelete() -->
+   <delete id="delete">
+   delete from jobs where id=#{id}
+   </delete> 
+   
+    <!-- jobsUpdate() -->
+   <update id="update">
+   update jobs set id=#{id},title=#{title},content=#{content},regdate=#{regdate},
+   seq=#{seq},cnt=#{cnt},likecount=#{likecount},exist=#{exist},updatedate=#{updatedate}
+   </update>  
+  
+  <!-- replyInsert() -->
+  <insert id="replyinsert">
+  insert into jobs values((select nvl(max(seq),0)+1 from jobs),#{id},#{title},
+  #{content},#{regdate},#{seq},#{cnt},#{likecount},#{exist},#{updatedate})
+  </insert>
+  
+   <update id="countUp">
+	update jobs set cnt=cnt+1 where seq=#{seq}
+   </update>
+  
+  
+  </mapper>
