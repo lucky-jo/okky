@@ -18,5 +18,9 @@ public class ComunityServiceImpl implements ComunityService{
 	public List<ComunityVO> selectList(){
 		return mapper.selectList();
 	}
+	@Override
+	public int insert(ComunityVO vo) {
+		return mapper.insert(vo);
+	}
 
 }
