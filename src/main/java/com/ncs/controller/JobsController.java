@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ncs.mapper.JobsMapper;
 import com.ncs.vo.JobsVO;
 
-@RequestMapping("/jobs/*")
+@RequestMapping("/jobs/")
 @Controller
 public class JobsController {
 	@Autowired
@@ -22,7 +22,7 @@ public class JobsController {
 	
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mv) {
-		List<JobsVO> list = mapper.selectlist(null);
+		List<JobsVO> list = mapper.selectlist();
 		if (list!=null) {
 			mv.addObject("melon",list);
 		}else {
@@ -32,57 +32,41 @@ public class JobsController {
 		return mv;
 	}//list
 	
-	@RequestMapping("/newinsert")
-	public ModelAndView newinsert(ModelAndView mv,JobsVO vo) {
-		if(mapper.insert(vo)>0) {
-			mv.setViewName("redirect:newinsertForm");
-		}else {
-			mv.addObject("FCode","Bl");
-			mv.setViewName("redirect:detail");
-		}
-		
-		return mv;
-	}//newinsert:새글 등록창
 	
-	@RequestMapping("/replyinsert")
-	public ModelAndView replyinsert(ModelAndView mv) {
-		mv.setViewName("jobs/replyinsertForm");
-		return mv;
-	}//newinsert:댓글 등록창
-	
-	
-	
-	@RequestMapping("/update")
-	public ModelAndView update(HttpServletRequest request,ModelAndView mv,
-			JobsVO vo){
-		if (mapper.update(vo)>0) {
-			mv.setViewName("redirect:/jobs/list");
-		}else {
-			mv.addObject("fCode","BU");
-			mv.setViewName("redirect:detail");//이부분이 아리 까리
-		}
-		return mv;
-	}//update
-	
-	
-	@RequestMapping("/delete")
-	public ModelAndView delete(HttpServletRequest request,ModelAndView mv,JobsVO vo) {
-		String id="";
-		HttpSession session = request.getSession(false);
-		if (session!=null && session.getAttribute("logID")!=null) {
-			id = (String)session.getAttribute("logID");
-			if( id == vo.getId() ) {		
-				mapper.delete(vo);
-			}
-		}else {
-			mv.addObject("message","~~로그인후에 하세요~~");
-			mv.setViewName("login/loginForm");
-			return mv;
-		}
-		vo.setId(id);
-		mv.setViewName("redirect:/jobs/list");
-		mv.addObject("deleteID", id);
-		return mv;
-	}//delete
-	
+	  @RequestMapping("/newinsert") 
+	  public ModelAndView newinsert(ModelAndView mv,JobsVO vo) { 
+		  if(mapper.newinsert(vo)>0) {
+	   mv.setViewName("redirect:newinsertForm"); 
+	   }else { mv.addObject("FCode","Bl");
+	   mv.setViewName("redirect:detail"); }
+	 
+	   return mv; }//newinsert:새글 등록창
+	  
+	  @RequestMapping("/jinsert")
+	  public ModelAndView jinsert(ModelAndView mv) {
+		  mv.setViewName("jobs/jinsert");
+		  return mv;
+	  }
+	  
+	 /* @RequestMapping("/replyinsert") public ModelAndView replyinsert(ModelAndView
+	 * mv) { mv.setViewName("jobs/replyinsertForm"); return mv; }//newinsert:댓글 등록창
+	 * 
+	 * 
+	 * 
+	 * @RequestMapping("/update") public ModelAndView update(HttpServletRequest
+	 * request,ModelAndView mv, JobsVO vo){ if (mapper.update(vo)>0) {
+	 * mv.setViewName("redirect:/jobs/list"); }else { mv.addObject("fCode","BU");
+	 * mv.setViewName("redirect:detail");//이부분이 아리 까리 } return mv; }//update
+	 * 
+	 * 
+	 * @RequestMapping("/delete") public ModelAndView delete(HttpServletRequest
+	 * request,ModelAndView mv,JobsVO vo) { String id=""; HttpSession session =
+	 * request.getSession(false); if (session!=null &&
+	 * session.getAttribute("logID")!=null) { id =
+	 * (String)session.getAttribute("logID"); if( id == vo.getId() ) {
+	 * mapper.delete(vo); } }else { mv.addObject("message","~~로그인후에 하세요~~");
+	 * mv.setViewName("login/loginForm"); return mv; } vo.setId(id);
+	 * mv.setViewName("redirect:/jobs/list"); mv.addObject("deleteID", id); return
+	 * mv; }//delete
+	 */	
 }//class
