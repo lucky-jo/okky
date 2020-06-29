@@ -5,6 +5,12 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
 
+<table width=800 border="1"></table>
+<tr>
+	<td>seq</td><td>title</td><td>ID</td>
+	<td>regdate</td><td>cnt</td><td>like</td>
+	<td>point</td>
+</tr>
 
 
 
@@ -20,12 +26,7 @@
 </head>
 <body>
 <h2></h2>
-<table width=800 border="1"></table>
-<tr>
-	<td>seq</td><td>title</td><td>ID</td>
-	<td>regdate</td><td>cnt</td><td>like</td>
-	<td>point</td>
-</tr>
+
 </body>
 </html>
 

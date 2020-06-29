@@ -36,8 +36,8 @@ public class ColumnServiceImpl implements ColumnService {
 	}
 
 	@Override
-	public List<ColumnVO> columnList() {
-		return mapper.columnList();
+	public List<ColumnVO> selectList() {
+		return mapper.selectList();
 	}
 
 	@Override

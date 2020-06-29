@@ -1,6 +1,6 @@
 package com.ncs.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,25 +10,22 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ncs.service.ColumnService;
 import com.ncs.vo.ColumnVO;
 
-@RequestMapping("/column/*")
+@RequestMapping(value = "/column/*")
 @Controller
 public class ColumnController {
 	
 	@Autowired
 	ColumnService service;
 	
-	
-	
-	
-	
-	@RequestMapping(value = "/insert")
-	public ModelAndView list(ModelAndView mv, ColumnVO vo) {
-		if (service.insert(vo)>0) {
-			mv.setViewName("");
+	@RequestMapping(value = "/list")
+	public ModelAndView list(ModelAndView mv) {
+		List<ColumnVO> list = service.selectList();
+		if (list != null) {
+			mv.addObject("Banana",list);
 		}else {
-			mv.addObject("");
-			mv.setViewName("");
+			mv.addObject("message","등록된 글이 없습니다.");
 		}
+		mv.setViewName("column/columnList");
 		return mv;
 	}
 

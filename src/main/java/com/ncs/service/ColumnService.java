@@ -14,7 +14,7 @@ public interface ColumnService {
 	int totalRowCount();
 	int countUp(ColumnVO vo);
 	
-	List<ColumnVO> columnList();
+	List<ColumnVO> selectList();
 	
 	int insert(ColumnVO vo);
 	
