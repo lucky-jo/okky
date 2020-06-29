@@ -4,6 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
+
+        <div class="sidebar-category-nav">
+            <h3 class="sub-title">Q&A</h3>
+            <ul class="nav">
+                <li><a href="/articles/questions" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/articles/tech-qna" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/articles/blockchain-qna" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+            </ul>
+            <div class="special-nav">
+            </div>
+        </div>
+        <div id="list-article" class="content scaffold-list" role="main">
 <div>
 	커뮤니티
 	<div style="float: right;"><a href="/comunity/cinsert" >새 글 쓰기</a></div>
