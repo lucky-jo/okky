@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>clist</title>
-</head>
-<body>
+         pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@include file="../includes/header.jsp"%>
 <div>
 	커뮤니티
-	<div style="float: right;"><a href="/comunity/insert" >새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/comunity/cinsert" >새 글 쓰기</a></div>
 </div><br><br>
 <div style="border: 10px;">
 	검색창
@@ -71,5 +67,4 @@
 	</c:otherwise>
 </c:choose>
 </div> --%>
-</body>
-</html>
+<%@include file="../includes/footer.jsp"%>
