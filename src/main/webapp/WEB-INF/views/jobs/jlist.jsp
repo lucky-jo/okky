@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div>
 	Jobs
-	<div style="float: right;"><a href="/jobs/newinsert" >새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/jobs/jinsert" >새 글 쓰기</a></div>
 </div><br><br>
 <div style="border: 10px;">
 	검색창
@@ -19,7 +19,7 @@
 	<c:forEach var="mm" items="${melon}">
 	<tbody>
 		<tr align="center" height="30">
-			<td style="color: gray;">#${mm.seq}&nbsp;${mm.category}</td>
+			<td style="color: gray;">#${mm.seq}&nbsp;</td>
 			<td rowspan="0">댓글</td>
 			<td rowspan="0">좋아요</td>
 			<td rowspan="0">${mm.cnt}</td>
