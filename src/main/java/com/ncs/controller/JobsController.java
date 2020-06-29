@@ -28,7 +28,7 @@ public class JobsController {
 		}else {
 			mv.addObject("message","~~검색된 자료가 없습니다.");
 		}
-		mv.setViewName("jobs/jobsList");
+		mv.setViewName("jobs/jlist");
 		return mv;
 	}//list
 	
