@@ -29,12 +29,12 @@ function inCheck() {
 <body>
 <form action="columnInsert" method="post">
 <table>
-<tr height="40"><td bgcolor="aqua">I D</td>
+<tr height="40"><td>I D</td>
 	<td><input type="text" name="id" value="${logID}" readonly="readonly"></td></tr>
-<tr height="40"><td bgcolor="aqua">Title</td>
+<tr height="40"><td>Title</td>
 	<td><input type="text" name="title" id="title"><br>
 		<span id="tMessage" class="eMessage"></span></td></tr>
-<tr height="40"><td bgcolor="aqua" >Content</td>
+<tr height="40"><td>Content</td>
 	<td><textarea rows="10" cols="40" name="content"></textarea>
 	</td></tr>
 <tr><td></td><td><input type="submit" value="글등록" onclick="return inCheck()">

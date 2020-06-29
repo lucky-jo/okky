@@ -17,7 +17,7 @@
   <update id="countUp">
     update column set cnt=cnt+1 where seq=#{seq}
   </update> -->
-  <select id="selectList" resultType="com.ncs.vo.ColumnVO" >
+  <select id="selectList" resultType="com.ncs.vo.ColumnVO">
 	select seq,title,id,regdate,cnt from columnm order by seq
   </select>
   
