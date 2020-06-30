@@ -36,7 +36,7 @@ public class ComunityController {
 	public ModelAndView insert(ModelAndView mv, ComunityVO vo) {
 		if(service.insert(vo)>0) {
 			mv.addObject("새 글이 등록 되었습니다");
-			mv.setViewName("comunity/clist");
+			mv.setViewName("comunity/cdetail");
 		}else {
 			mv.addObject("제목을 입력해주세요");
 			mv.setViewName("comunity/cinsert");
