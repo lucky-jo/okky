@@ -36,7 +36,7 @@ public class ComunityController {
 	public ModelAndView insert(ModelAndView mv, ComunityVO vo) {
 		if(service.insert(vo)>0) {
 			mv.addObject("새 글이 등록 되었습니다");
-			mv.setViewName("comunity/clist");
+			mv.setViewName("comunity/cdetail");
 		}else {
 			mv.addObject("제목을 입력해주세요");
 			mv.setViewName("comunity/cinsert");
@@ -56,5 +56,32 @@ public class ComunityController {
 			mv.addObject("detail",vo);
 			mv.setViewName("comunity/cdetail");
 			return mv;
+	}
+	
+	
+	
+	@RequestMapping(value = "/update")
+	public ModelAndView update(ModelAndView mv, ComunityVO vo) {
+		if(service.update(vo) >0) {
+			mv.setViewName("redirect:/comunity/detail");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "/updatef")
+	public ModelAndView updatef(ModelAndView mv, ComunityVO vo) {
+	
+		mv.addObject("detail", service.selectOne(vo));
+		mv.setViewName("comunity/cupdate");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete(ModelAndView mv, ComunityVO vo) {
+		if(service.delete(vo) > 0) {
+			mv.setViewName("comunity/clist");
+		}
+		return mv;
 	}
 }

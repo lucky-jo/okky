@@ -43,7 +43,7 @@
 			<td>${mm.id}</td>
 		</tr>
 		<tr align="center" height="30" bordercolor="gray">
-			<td>${mm.title}</td>
+			<td><a href="detail?seq=${mm.seq}">${mm.title}</a></td>
 			<td>${mm.regdate}</td>
 		</tr>
 	</tbody>

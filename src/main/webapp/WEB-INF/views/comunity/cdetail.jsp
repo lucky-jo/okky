@@ -4,27 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
-<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-<script src="resources/jqLib/comunityCheck.js"></script>
-<script>
-var tCheck=false;
-
-$(function() {
-	$('#title').focus();
-	$('#title').focusout(function() {
-	 	tCheck=ttCheck();
-	}); // title_focusout
-}); // ready
-
-function inCheck() {
-	if (tCheck==true ) {
-		return true;
-	}else {
-		tCheck=ttCheck();
-		return false;
-	};
-} //inCheck 
-</script>
+<script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="/resources/jqLib/comunityCheck.js"></script>
 <div class="sidebar-category-nav">
             <h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
@@ -41,26 +22,32 @@ function inCheck() {
         </div>
         <div id="list-article" class="content scaffold-list" role="main">
 
-${category}
+${detail.category}
 <div style="float: right;"><a href="/comunity/cinsert" >새 글 쓰기</a></div>
-<form action="/comunity/detail" method="post">
 		<table>
 			<tbody>
 				<tr align="center" height="30">
-					<td rowspan="0">image</td>
-					<td>${id}</td>
+					<td rowspan="1">image</td>
+					<td>${detail.id}</td>
 				</tr>
 				<tr>
-					<td>${regdate}</td>
+					<td>${detail.regdate}</td>
 				</tr>
 				<tr align="center" height="30">
-					<td style="color: gray;">#${seq}&nbsp;${category}</td>
+					<td style="color: gray;">#${detail.seq}&nbsp;${detail.category}</td>
 				</tr>
 				<tr>
-					<td>${title}</td>
+					<td>${detail.title}</td>
+				</tr>
+				<tr>
+					<td><textarea rows="10" cols="40" readonly="readonly">${detail.content}</textarea></td>
 				</tr>
 				<tr align="center" height="30" bordercolor="gray">
-					<td>${regdate}</td>
+					<td>${detail.regdate}</td>
+				</tr>
+				<tr>
+					<td><a href="/comunity/updatef?seq=${detail.seq}">수정</a>
+					<a href="/comunity/delete">삭제</a></td>
 				</tr>
 			</tbody>
 		</table><br><br><br>
@@ -69,8 +56,8 @@ ${category}
 				<td>댓글</td>
 			</tr>
 			<tr align="center" height="30">
-				<td rowspan="0">image</td>
-				<td>${id}</td>
+				<td rowspan="1">image</td>
+				<td>${detail.id}</td>
 			</tr>
 			<tr>
 				<td><textarea rows="10" cols="40" name="content"></textarea></td>
