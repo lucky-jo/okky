@@ -9,8 +9,10 @@ public class JobsVO {
 	private int seq;
 	private int cnt;
 	private int likecount;
-	private Boolean exist;
+	private int exist;
+	private int category;
 	private String updatedate;
+	
 	
 	public String getId() {
 		return id;
@@ -36,10 +38,11 @@ public class JobsVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public Boolean getExist() {
+
+	public int getExist() {
 		return exist;
 	}
-	public void setExist(Boolean exist) {
+	public void setExist(int exist) {
 		this.exist = exist;
 	}
 	public String getUpdatedate() {
@@ -65,6 +68,12 @@ public class JobsVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
 	}
 	
 
