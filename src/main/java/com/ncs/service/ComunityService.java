@@ -7,4 +7,5 @@ import com.ncs.vo.ComunityVO;
 public interface ComunityService {
 
 	List<ComunityVO> selectList();
+	int insert(ComunityVO vo);
 }

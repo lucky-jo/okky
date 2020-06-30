@@ -10,6 +10,12 @@
 	 exist, cnt, category from comunity order by seq 
   </select>
   
+  <insert id="insert">
+  <selectKey keyProperty="seq" order="BEFORE" resultType="int">
+        select IFNULL(MAX(seq),0)+1 as seq from comunity
+     </selectKey>
+  	insert into comunity(seq,id,category,title,content) values(#{seq},#{id},#{category},#{title},#{content})
+  </insert>
   
   
   
