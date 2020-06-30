@@ -26,5 +26,12 @@ public class ComunityServiceImpl implements ComunityService{
 	public ComunityVO selectOne(ComunityVO vo) {
 		return mapper.selectOne(vo);
 	}
-
+	@Override
+	public int update(ComunityVO vo) {
+		return mapper.update(vo);
+	}
+	@Override
+	public int delete(ComunityVO vo) {
+		return mapper.delete(vo);
+	}
 }
