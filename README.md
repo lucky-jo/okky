@@ -9,4 +9,4 @@ okky web site 만들기 - 팀 프로젝트
 
 6월 30일 병합 전체 merge 확인
 
-추가 merge
+추가 merge 
