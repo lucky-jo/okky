@@ -45,6 +45,10 @@ ${detail.category}
 				<tr align="center" height="30" bordercolor="gray">
 					<td>${detail.regdate}</td>
 				</tr>
+				<tr>
+					<td><a href="/comunity/updatef?seq=${detail.seq}">수정</a>
+					<a href="/comunity/delete">삭제</a></td>
+				</tr>
 			</tbody>
 		</table><br><br><br>
 		<table>
@@ -52,6 +56,7 @@ ${detail.category}
 				<td>댓글</td>
 			</tr>
 			<tr align="center" height="30">
+				<td rowspan="1">image</td>
 				<td>${detail.id}</td>
 			</tr>
 			<tr>
