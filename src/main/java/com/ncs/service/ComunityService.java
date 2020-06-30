@@ -9,4 +9,6 @@ public interface ComunityService {
 	List<ComunityVO> selectList();
 	int insert(ComunityVO vo);
 	ComunityVO selectOne(ComunityVO vo);
+	int update(ComunityVO vo);
+	int delete(ComunityVO vo);
 }
