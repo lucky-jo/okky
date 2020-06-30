@@ -2,9 +2,6 @@ package com.ncs.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,32 +30,31 @@ public class ColumnController {
 	}
 	
 	@RequestMapping(value = "/insert")
-	public ModelAndView insert(ModelAndView mv) {
-		mv.setViewName("column/columnInsert");
+	public ModelAndView insert(ModelAndView mv, ColumnVO vo) {
+		
+		if (service.insert(vo)>0) {
+			mv.setViewName("column/columnInsert");
+		}else {
+			mv.addObject("fCode","BI");
+			mv.setViewName("member/doFinish");
+		}
 		return mv;
-	} // columnInsert
+	}// insert
+	
+	@RequestMapping(value = "/insertf")
+	public ModelAndView insertf(ModelAndView mv) {
+		mv.setViewName("column/columnDetail");
+		return mv;
+	}
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, ColumnVO vo) {
-
-		HttpSession session = request.getSession(false); 
-		String logID = "";
-		if (session != null && session.getAttribute("logID") != null)  {
-			logID = (String)session.getAttribute("logID");
-		} else System.out.println("~~ session is null 또는 login ID is null ~~");
-		
-		if (!logID.equals(vo.getId())) service.countUp(vo);
+	public ModelAndView bdetail(ModelAndView mv, ColumnVO vo) {
 		
 		vo = service.selectOne(vo);
 		
 		if (vo!=null) {
-			// 4) 댓글 입력을 위한 기본값(root,step,indent) 보관
-			session.setAttribute("proot",vo.getRoot());
-			session.setAttribute("pstep",vo.getStep());
-			session.setAttribute("pindent",vo.getIndent());
-			
 			mv.addObject("Detail", vo);
-			mv.setViewName("board/boardDetail");
+			mv.setViewName("column/columnDetail");
 		}else {
 			mv.addObject("fCode","BN");
 			mv.setViewName("member/doFinish");
