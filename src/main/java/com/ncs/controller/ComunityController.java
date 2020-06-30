@@ -57,4 +57,31 @@ public class ComunityController {
 			mv.setViewName("comunity/cdetail");
 			return mv;
 	}
+	
+	
+	
+	@RequestMapping(value = "/update")
+	public ModelAndView update(ModelAndView mv, ComunityVO vo) {
+		if(service.update(vo) >0) {
+			mv.setViewName("redirect:/comunity/detail");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "/updatef")
+	public ModelAndView updatef(ModelAndView mv, ComunityVO vo) {
+	
+		mv.addObject("detail", service.selectOne(vo));
+		mv.setViewName("comunity/cupdate");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/delete")
+	public ModelAndView delete(ModelAndView mv, ComunityVO vo) {
+		if(service.delete(vo) > 0) {
+			mv.setViewName("comunity/clist");
+		}
+		return mv;
+	}
 }
