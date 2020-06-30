@@ -25,6 +25,7 @@ public class ColumnServiceImpl implements ColumnService {
 		return mapper.searchList(cri);
 	}
 
+
 	@Override
 	public int totalRowCount() {
 		return mapper.totalRowCount();
@@ -38,6 +39,11 @@ public class ColumnServiceImpl implements ColumnService {
 	@Override
 	public List<ColumnVO> selectList() {
 		return mapper.selectList();
+	}
+	
+	@Override
+	public ColumnVO selectOne(ColumnVO vo) {
+		return mapper.selectOne(vo);
 	}
 
 	@Override
