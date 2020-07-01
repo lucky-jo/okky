@@ -92,7 +92,7 @@ public class PageMaker {
  	//    파라미터가 조합된 uri를 손쉽게 만들어줌
 	// => ?currPage=8&PerPageRow=10 이것을 만들어줌
     //    ? 부터 만들어지므로 jsp Code에서 ? 포함하지 않도록 주의 
-	
+	//?currPage=currPage&PerPageRow=perPageRow
 	public String makeQuery(int currPage) {
 		UriComponents uriComponents =
 				UriComponentsBuilder.newInstance()
