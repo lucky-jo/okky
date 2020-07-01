@@ -4,6 +4,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
+
+<div class="sidebar-category-nav">
+            <h3 class="sub-title">커뮤니티</h3>
+            <ul class="nav">
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구인</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구직</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>          
+            </ul>
+            <div class="special-nav">
+            </div>
+        </div>
+        <div id="list-article" class="content scaffold-list" role="main">
+
 <div>
 	Jobs
 	<div style="float: right;"><a href="/jobs/jinsert" >새 글 쓰기</a></div>
@@ -27,7 +41,7 @@
 			<td>${mm.id}</td>
 		</tr>
 		<tr align="center" height="30" bordercolor="gray">
-			<td>${mm.title}</td>
+			<td><a href="detail?seq=${mm.seq}">${mm.title}</a></td>
 			<td>${mm.regdate}</td>
 		</tr>
 	</tbody>
