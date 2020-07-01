@@ -84,12 +84,12 @@
 	</tbody> --%>
 	</c:forEach>
 </table><br><br>
-<%-- <div align="center">
+<div align="center">
 	<c:if test="${maker.prev}">
 	<a href="list${maker.makeSearch(1)}">First&nbsp;</a>
 	<a href="list${maker.makerSearch(maker.sPageNo-1)}">&nbsp;</a>
-</c:if>
-</div> --%>
+	</c:if>
+</div>
 
 
 <%@include file="../includes/footer.jsp"%>
