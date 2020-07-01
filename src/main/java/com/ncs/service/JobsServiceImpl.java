@@ -3,15 +3,15 @@ package com.ncs.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ncs.mapper.JobsMapper;
-import com.ncs.util.SearchCriteria;
 import com.ncs.vo.JobsVO;
 
 
 
-
-public abstract class JobsServiceImpl implements JobsService {
+@Service
+public class JobsServiceImpl implements JobsService {
 	
 	
 	@Autowired
@@ -32,13 +32,25 @@ public abstract class JobsServiceImpl implements JobsService {
 	public int newinsert(JobsVO vo) { 
 		return mapper.newinsert(vo); 
 	}
+	@Override
+	public JobsVO selectOne(JobsVO vo) {
+		return mapper.selectOne(vo);
+	}
+	@Override 
+	public int update(JobsVO vo) { 
+	    return mapper.update(vo); 
+	}
+	
+	
+	
 	/*
 	 * @Override public int insert(JobsVO vo) { return mapper.insert(vo); }
 	 * 
-	 * @Override public int update(JobsVO vo) { return mapper.update(vo); }
+	 * 
 	 * 
 	 * @Override public int delete(JobsVO vo) { return mapper.delete(vo); }
 	 */
+	
 	
 	
 	
