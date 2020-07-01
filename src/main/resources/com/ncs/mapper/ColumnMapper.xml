@@ -31,6 +31,7 @@
   <select id="selectOne" resultType="com.ncs.vo.ColumnVO">
 	select seq,title,id,content,regdate,cnt from columnm where seq=#{seq}
   </select>
+  
   <update id="update">
   	update columnm set title=#{title}, content=#{content} where seq=#{seq}
   </update>

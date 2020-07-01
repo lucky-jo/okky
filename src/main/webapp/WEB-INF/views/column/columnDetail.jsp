@@ -35,9 +35,9 @@
 </table>
 <hr>
 
-<c:if test="${logID==Detail.id}">
-	<a href="columnUpdatef?seq=${Detail.seq}">[글수정]</a>&nbsp;
+<%-- <c:if test="${logID==Detail.id}"> --%>
+	<a href="/column/updatef?seq=${Detail.seq}">[글수정]</a>&nbsp;
 	<a href="columnDelete?seq=${Detail.seq}">[글삭제]</a><br>
-</c:if>
+<%-- </c:if> --%>
 
 <%@include file="../includes/footer.jsp"%>
