@@ -30,5 +30,9 @@
   	update comunity set exist = 0 where seq=#{seq}
   </update>
   
+  <select id="dcategory">
+  	select * from comunity where category = #{category}
+  </select>
+  
   </mapper>
   
