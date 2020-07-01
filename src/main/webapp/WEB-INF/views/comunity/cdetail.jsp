@@ -6,16 +6,25 @@
 <%@include file="../includes/header.jsp"%>
 <script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="/resources/jqLib/comunityCheck.js"></script>
+<script>
+function del() {
+	if(confirm("정말 삭제하시겠습니까?")==true){
+		document.remove.submit();
+	}else{
+		return;
+	}
+} // del() 
+</script>
 <div class="sidebar-category-nav">
             <h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/clist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='f'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='a'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='b'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='c'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='d'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='e'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>
@@ -46,8 +55,8 @@ ${detail.category}
 					<td>${detail.regdate}</td>
 				</tr>
 				<tr>
-					<td><a href="/comunity/updatef?seq=${detail.seq}">수정</a>
-					<a href="/comunity/delete">삭제</a></td>
+					<td><a href="/comunity/updatef?seq=${detail.seq}">수정</a><td>
+					<td><a href="/comunity/delete?seq=${detail.seq}" onclick="del()">삭제</a></td>
 				</tr>
 			</tbody>
 		</table><br><br><br>

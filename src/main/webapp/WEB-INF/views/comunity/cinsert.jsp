@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
-<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
-<script src="resources/jqLib/comunityCheck.js"></script>
+<script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="/resources/jqLib/comunityCheck.js"></script>
 <script>
 var tCheck=false;
 
@@ -37,11 +37,11 @@ function inCheck() {
 				<td>
 					<select name="category" id="category">
   						<option value="default">게시판을 선택해주세요</option>
-    					<option value="story">사는 얘기</option>
-    					<option value="forum">포럼</option>
-    					<option value="it">IT 행사</option>
-    					<option value="study">정기모임/스터디</option>
-    					<option value="school">학원/홍보</option>
+    					<option value="a">사는 얘기</option>
+    					<option value="b">포럼</option>
+    					<option value="c">IT 행사</option>
+    					<option value="d">정기모임/스터디</option>
+    					<option value="e">학원/홍보</option>
   					</select>
 				</td>
 			</tr>

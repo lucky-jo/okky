@@ -25,12 +25,19 @@ function inCheck() {
 	};
 } //inCheck 
 </script>
-<div>image</div>
-<div>
-	${logID}
-</div>
 	<form action="/comunity/update" method="post">
 		<table>
+			<thead>
+				<tr height="30">
+					<td rowspan="0">image</td>
+					<td>${detail.id}</td>
+					<td>${detail.seq}</td>
+				</tr>
+				<tr height="30">
+					<td>${detail.regdate}</td>
+					<td>${detail.cnt}</td>
+			</thead>
+			<tbody>
 			<tr height="60">
 				<td>
 					<select name="category" id="category">
@@ -49,9 +56,12 @@ function inCheck() {
 			<tr height="60">
 				<td><textarea rows="20" cols="60" name="content" >${detail.content}</textarea></td>
 			</tr>
+			</tbody>
+			<tfoot>
 				<td><input type="reset" value="취소">
 					<input type="submit" value="등록">
 					<input type="hidden" name="id" value="hongildong"></td>
+			</tfoot>	
 		</table>
 	</form>
 <%@include file="../includes/footer.jsp"%>
