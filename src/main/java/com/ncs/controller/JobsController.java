@@ -1,6 +1,5 @@
 package com.ncs.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,18 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ncs.mapper.JobsMapper;
+import com.ncs.service.JobsService;
 import com.ncs.vo.JobsVO;
+
+
+
+
+
 
 @RequestMapping("/jobs/")
 @Controller
 public class JobsController {
+	
 	@Autowired
-	JobsMapper mapper;
+	JobsService service;
 	
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mv) {
-		List<JobsVO> list = mapper.selectlist();
+		List<JobsVO> list = service.selectlist();
 		if (list!=null) {
 			mv.addObject("melon",list);
 		}else {
@@ -35,10 +40,13 @@ public class JobsController {
 	
 	  @RequestMapping("/newinsert") 
 	  public ModelAndView newinsert(ModelAndView mv,JobsVO vo) { 
-		  if(mapper.newinsert(vo)>0) {
-	   mv.setViewName("redirect:newinsertForm"); 
-	   }else { mv.addObject("FCode","Bl");
-	   mv.setViewName("redirect:detail"); }
+		  if(service.newinsert(vo)>0) {
+			  //mv.addObject("새 글이 등록 되었습니다");
+	          mv.setViewName("jobs/jlist"); 
+	   }else {
+		   mv.addObject("작성을 해주세요");
+	       mv.setViewName("jobs/jinsert"); 
+	   }
 	 
 	   return mv; }//newinsert:새글 등록창
 	  
@@ -47,26 +55,48 @@ public class JobsController {
 		  mv.setViewName("jobs/jinsert");
 		  return mv;
 	  }
+	  @RequestMapping(value = "/jdetail")
+		public ModelAndView bdetail(ModelAndView mv, JobsVO vo) {
+			
+			vo = service.selectOne(vo);
+			
+			if (vo!=null) {
+				
+				mv.addObject("Detail", vo);
+				mv.setViewName("jobs/jdetail");
+			}else {
+				mv.addObject("fCode","BN");
+				mv.setViewName("member/doFinish");
+			}
+			return mv;
+		}// bdetail 
 	  
-	 /* @RequestMapping("/replyinsert") public ModelAndView replyinsert(ModelAndView
-	 * mv) { mv.setViewName("jobs/replyinsertForm"); return mv; }//newinsert:댓글 등록창
-	 * 
-	 * 
-	 * 
-	 * @RequestMapping("/update") public ModelAndView update(HttpServletRequest
-	 * request,ModelAndView mv, JobsVO vo){ if (mapper.update(vo)>0) {
-	 * mv.setViewName("redirect:/jobs/list"); }else { mv.addObject("fCode","BU");
-	 * mv.setViewName("redirect:detail");//이부분이 아리 까리 } return mv; }//update
-	 * 
-	 * 
-	 * @RequestMapping("/delete") public ModelAndView delete(HttpServletRequest
-	 * request,ModelAndView mv,JobsVO vo) { String id=""; HttpSession session =
-	 * request.getSession(false); if (session!=null &&
-	 * session.getAttribute("logID")!=null) { id =
-	 * (String)session.getAttribute("logID"); if( id == vo.getId() ) {
-	 * mapper.delete(vo); } }else { mv.addObject("message","~~로그인후에 하세요~~");
-	 * mv.setViewName("login/loginForm"); return mv; } vo.setId(id);
-	 * mv.setViewName("redirect:/jobs/list"); mv.addObject("deleteID", id); return
-	 * mv; }//delete
-	 */	
+	  @RequestMapping(value = "/update")
+		public ModelAndView bupdatef(ModelAndView mv, JobsVO vo) {
+			// 1) selectOne
+			vo = service.selectOne(vo);
+			
+			if (vo!=null) {
+				mv.addObject("Detail", vo);
+				mv.setViewName("jobs/jupdate");
+			}else {
+				mv.addObject("fCode","BN");
+				mv.setViewName("member/doFinish");
+			}
+			return mv;
+		}// update
+		
+		@RequestMapping(value="/jupdate")
+		public ModelAndView bupdate(ModelAndView mv, JobsVO vo) {
+			
+			if (service.update(vo)>0) //성공 => 글목록 출력 (blist)
+				mv.setViewName("redirect:jlist");
+			else { // 실패 => doFinish.jsp
+				mv.addObject("fCode","BU");
+				mv.setViewName("member/doFinish");
+			}	
+			return mv ;	
+		} //bupdate
+	
+		
 }//class
