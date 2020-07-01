@@ -32,19 +32,20 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/insert" , method = RequestMethod.POST)
+	@RequestMapping(value = "/insert")
 	public ModelAndView insert(ModelAndView mv, ComunityVO vo) {
 		if(service.insert(vo)>0) {
-			mv.addObject("새 글이 등록 되었습니다");
-			mv.setViewName("comunity/cdetail");
+//			mv.addObject("detail",service.selectOne(vo));
+//			mv.setViewName("comunity/cdetail");
+			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
 		}else {
-			mv.addObject("제목을 입력해주세요");
-			mv.setViewName("comunity/cinsert");
+			mv.addObject("fCode","BI");
+			mv.setViewName("comunity/fail");
 		}
 		return mv;
 	}
 	
-	@RequestMapping(value = "/cinsert" , method = RequestMethod.GET)
+	@RequestMapping(value = "/cinsert")
 	public void insertf() {
 	
 	}
@@ -62,8 +63,11 @@ public class ComunityController {
 	
 	@RequestMapping(value = "/update")
 	public ModelAndView update(ModelAndView mv, ComunityVO vo) {
-		if(service.update(vo) >0) {
-			mv.setViewName("redirect:/comunity/detail");
+		if(service.update(vo) > 0) {
+			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
+		}else {
+			mv.addObject("fCode","BU");
+			mv.setViewName("comunity/fail");
 		}
 		return mv;
 	}
@@ -71,17 +75,28 @@ public class ComunityController {
 	@RequestMapping(value = "/updatef")
 	public ModelAndView updatef(ModelAndView mv, ComunityVO vo) {
 	
-		mv.addObject("detail", service.selectOne(vo));
-		mv.setViewName("comunity/cupdate");
+		vo = service.selectOne(vo);
+		if(vo != null) {
+			mv.addObject("detail", vo);
+			mv.setViewName("comunity/cupdate");
+		}else {
+			mv.addObject("fCode","BN");
+			mv.setViewName("comunity/fail");
+		}
 		return mv;
 	}
 	
 	
 	@RequestMapping(value = "/delete")
 	public ModelAndView delete(ModelAndView mv, ComunityVO vo) {
+		System.out.println(vo);
 		if(service.delete(vo) > 0) {
-			mv.setViewName("comunity/clist");
+			mv.setViewName("redirect:/comunity/list");
+		}else {
+			mv.addObject("fCode", "BD");
+			mv.setViewName("comunity/fail");
 		}
 		return mv;
 	}
+	
 }
