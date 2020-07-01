@@ -37,7 +37,7 @@
 
 <%-- <c:if test="${logID==Detail.id}"> --%>
 	<a href="/column/updatef?seq=${Detail.seq}">[글수정]</a>&nbsp;
-	<a href="columnDelete?seq=${Detail.seq}">[글삭제]</a><br>
+	<a href="delete?seq=${Detail.seq}">[글삭제]</a><br>
 <%-- </c:if> --%>
 
 <%@include file="../includes/footer.jsp"%>
