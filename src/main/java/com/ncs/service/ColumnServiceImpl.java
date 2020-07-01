@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ncs.mapper.ColumnMapper;
-import com.ncs.util.Criteria;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ColumnVO;
 
