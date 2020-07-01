@@ -41,10 +41,10 @@ public class ColumnServiceImpl implements ColumnService {
 		return mapper.selectList();
 	}
 	
-	@Override
-	public ColumnVO selectOne(ColumnVO vo) {
-		return mapper.selectOne(vo);
-	}
+//	@Override
+//	public ColumnVO selectOne(ColumnVO vo) {
+//		return mapper.selectOne(vo);
+//	}
 
 	@Override
 	public int insert(ColumnVO vo) {
