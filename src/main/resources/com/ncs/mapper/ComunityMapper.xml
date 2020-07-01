@@ -34,5 +34,17 @@
   	select * from comunity where category = #{category}
   </select>
   
+   <select id="totalRowCount" resultType="int">
+	select count(*) from comunity
+  </select>
+  
+  <select id="searchList" resultType="com.ncs.vo.ComunityVO">
+  <![CDATA[
+	select seq,title,id, regdate, updatedate,
+	exist, cnt, category from comunity order by seq ]]>
+	<include refid="search"></include>
+	where rnum between #{sno} and #{eno}
+  </select>			
+
   </mapper>
   
