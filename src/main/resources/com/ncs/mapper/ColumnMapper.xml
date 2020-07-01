@@ -35,9 +35,7 @@
   <update id="update">
   	update columnm set title=#{title}, content=#{content} where seq=#{seq}
   </update>
-<!--  <delete id="delete">
-  	delete column
-	<if test="seq!=root">where seq=#{seq} </if>
-	<if test="seq==root">where root=#{seq}</if>
-  </delete> -->
+  <delete id="delete">
+  	delete from columnm where seq=#{seq}
+  </delete>
   </mapper>
