@@ -16,22 +16,22 @@
 </div>
 <br>
 <table>
-	<c:forEach var="mm" items="${melon}">
+	
 	<tbody>
 		<tr align="center" height="30">
-			<td style="color: gray;">#${mm.seq}&nbsp;</td>
+			<td style="color: gray;">#${Detail.seq}&nbsp;</td>
 			<td rowspan="0">댓글</td>
-			<td rowspan="0">좋아요</td>
-			<td rowspan="0">${mm.cnt}</td>
+			<td rowspan="0">좋아요</td>&nbsp;&nbsp;&nbsp;
+			<td rowspan="0">${Detail.cnt}</td>
 			<td rowspan="0">image</td>
 			<td>${mm.id}</td>
 		</tr>
 		<tr align="center" height="30" bordercolor="gray">
-			<td>${mm.title}</td>
-			<td>${mm.regdate}</td>
+			<td>${Detail.title}</td>
+			<td>${Detail.regdate}</td>
 		</tr>
 	</tbody>
-	</c:forEach>
+
 </table>
 
 <%-- <div align="center">
