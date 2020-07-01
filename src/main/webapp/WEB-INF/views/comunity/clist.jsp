@@ -24,7 +24,7 @@
 	커뮤니티
 	<div style="float: right;"><a href="/comunity/cinsert" >새 글 쓰기</a></div>
 </div><br><br>
-<div style="border: 10px;">
+<div id="searchBar">
 	검색창
 </div><br>
 <div>
@@ -83,39 +83,13 @@
 		</tr>
 	</tbody> --%>
 	</c:forEach>
-</table>
-
+</table><br><br>
 <%-- <div align="center">
-<!-- 1) -->
-<c:choose>
-	<c:when test="${sPage>perPageNo}">
-		<a href="plist?currPage=1">First</a>&nbsp;
-		<a href="plist?currPage=${sPage-1}">Prev</a>&nbsp;&nbsp;
-	</c:when>
-	<c:otherwise>
-		<font color="gray">First&nbsp;Prev&nbsp;&nbsp;</font>
-	</c:otherwise>
-</c:choose>
-<!-- 2) -->
-<c:forEach  var="i"  begin="${sPage}" end="${ePage}">
-	<c:choose>
-		<c:when test="${i==currPage}">
-			<font size="5" color="Orange">${i}</font>
-		</c:when>
-		<c:otherwise>
-			<a href="plist?currPage=${i}">${i}</a>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-<!-- 3) -->
-<c:choose>
-	<c:when test="${ePage<totalPageNo}">
-		<a href="plist?currPage=${ePage+1}">&nbsp;&nbsp;Next</a>
-		<a href="plist?currPage=${totalPageNo}">&nbsp;Last</a>
-	</c:when>
-	<c:otherwise>
-		<font color="gray">&nbsp;&nbsp;Next&nbsp;Last</font>
-	</c:otherwise>
-</c:choose>
+	<c:if test="${maker.prev}">
+	<a href="list${maker.makeSearch(1)}">First&nbsp;</a>
+	<a href="list${maker.makerSearch(maker.sPageNo-1)}">&nbsp;</a>
+</c:if>
 </div> --%>
+
+
 <%@include file="../includes/footer.jsp"%>
