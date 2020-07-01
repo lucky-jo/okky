@@ -50,7 +50,7 @@ public class ColumnController {
 	@RequestMapping(value = "/detail")
 	public ModelAndView bdetail(ModelAndView mv, ColumnVO vo) {
 		
-		vo = service.selectOne(vo);
+//		vo = service.selectOne(vo);
 		
 		if (vo!=null) {
 			mv.addObject("Detail", vo);
