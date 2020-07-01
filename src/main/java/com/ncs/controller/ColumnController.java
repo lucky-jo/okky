@@ -33,7 +33,8 @@ public class ColumnController {
 	public ModelAndView insert(ModelAndView mv, ColumnVO vo) {
 		
 		if (service.insert(vo)>0) {
-			mv.setViewName("column/columnInsert");
+//			mv.setViewName("redirect:/column/list");
+			mv.setViewName("redirect:/column/detail?seq=" + vo.getSeq());
 		}else {
 			mv.addObject("fCode","BI");
 			mv.setViewName("member/doFinish");
@@ -43,7 +44,7 @@ public class ColumnController {
 	
 	@RequestMapping(value = "/insertf")
 	public ModelAndView insertf(ModelAndView mv) {
-		mv.setViewName("column/columnDetail");
+		mv.setViewName("column/columnInsert");
 		return mv;
 	}
 	
