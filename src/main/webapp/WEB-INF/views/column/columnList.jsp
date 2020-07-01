@@ -16,7 +16,7 @@
         <div id="list-article" class="content scaffold-list" role="main">
 <div>
 	<h3>칼럼</h3>
-	<div style="float: right;"><a href="/column/insertf" >새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/column/insertf">새 글 쓰기</a></div>
 </div><br><br>
 <div style="float: right;">
 	검색창 

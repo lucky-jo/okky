@@ -7,7 +7,7 @@
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
             <ul class="nav">
-                <li><a href="/column/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/column/detail" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>
@@ -15,7 +15,7 @@
         <div id="list-article" class="content scaffold-list" role="main">
 <div>
 	<h3>칼럼</h3>
-	<div style="float: right;"><a href="/column/insert">새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/column/insertf">새 글 쓰기</a></div>
 </div><br><br>
 <br>
 <table>
