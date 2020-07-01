@@ -2,7 +2,6 @@ package com.ncs.service;
 
 import java.util.List;
 
-import com.ncs.util.SearchCriteria;
 import com.ncs.vo.JobsVO;
 
 
@@ -18,12 +17,16 @@ public interface JobsService {
 	
 	int newinsert(JobsVO vo); // newinsert
 	
+	JobsVO selectOne(JobsVO vo); // selectOne
+	
+	int update(JobsVO vo); // update
+	
 	/*
-	 * JobsVO selectOne(JobsVO vo); // selectOne
+	 * 
 	 * 
 	 * int insert(JobsVO vo); // insert
 	 * 
-	 * int update(JobsVO vo); // update
+	 * 
 	 * 
 	 * int delete(JobsVO vo); // delete
 	 */
