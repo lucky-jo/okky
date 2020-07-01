@@ -31,17 +31,17 @@ function inCheck() {
 <div>
 	${logID}
 </div>
-	<form action="/jobs/jinsert" method="post">
+	<form action="/jobs/newinsert" method="post">
 		<table>
 			<tr height="60">
 				<td>
 					<select name="category" id="category">
-  						<option value="default">게시판을 선택해주세요</option>
-    					<option value="story">사는 얘기</option>
-    					<option value="forum">포럼</option>
-    					<option value="it">IT 행사</option>
-    					<option value="study">정기모임/스터디</option>
-    					<option value="school">학원/홍보</option>
+  						<option value="0">게시판을 선택해주세요</option>
+    					<option value="1">사는 얘기</option>
+    					<option value="2">포럼</option>
+    					<option value="3">IT 행사</option>
+    					<option value="4">정기모임/스터디</option>
+    					<option value="5">학원/홍보</option>
   					</select>
 				</td>
 			</tr>
@@ -52,7 +52,7 @@ function inCheck() {
 				<td><textarea rows="20" cols="60" name="content"></textarea></td>
 			</tr>
 				<td><input type="reset" value="취소">
-					<input type="submit" value="등록" onclick="return inCheck()">
+					<input type="submit" value="등록">
 					<input type="hidden" name="id" value="hongildong"></td>
 		</table>
 	</form>
