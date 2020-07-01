@@ -4,6 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ncs.mapper.ComunityMapper">
+    <sql id="search">
+     <choose>
+        <when test="searchType=='t'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='c'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='w'.toString()">
+           and id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tc'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='cw'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tcw'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <otherwise> ) </otherwise>
+     </choose>
+  </sql>
+  
   
   <select id="selectList" resultType="com.ncs.vo.ComunityVO">
   	select seq,title,id, regdate, updatedate,
@@ -38,13 +66,29 @@
 	select count(*) from comunity
   </select>
   
-  <select id="searchList" resultType="com.ncs.vo.ComunityVO">
-  <![CDATA[
+<!--   <select id="searchList" resultType="com.ncs.vo.ComunityVO">
+   <![CDATA[
 	select seq,title,id, regdate, updatedate,
 	exist, cnt, category from comunity order by seq ]]>
 	<include refid="search"></include>
 	where rnum between #{sno} and #{eno}
-  </select>			
+  </select> -->
+  
+  <select id="searchRowCount" resultType="int">
+  <![CDATA[
+   select count(*) from comunity where ( seq>0 ]]>
+   <include refid="search"></include>
+  </select>
+  
+  <select id="searchList" resultType="com.ncs.vo.ComunityVO">
+  <![CDATA[
+   select * 
+   from comunity where ( 1=1
+     ]]>
+     <include refid="search"></include> order by seq desc
+     limit #{sno} , #{eno}
+  </select>
+  
 
   </mapper>
   
