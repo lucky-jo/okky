@@ -63,7 +63,6 @@ public class ColumnController {
 		return mv;
 	}// detail
 	
-	// 수정 가능 화면 출력하기
 	@RequestMapping(value = "/updatef")
 	public ModelAndView updatef(ModelAndView mv, ColumnVO vo) {
 		vo = service.selectOne(vo);
@@ -86,8 +85,8 @@ public class ColumnController {
 		else { // 실패 => doFinish.jsp
 			mv.addObject("fCode","BU");
 			mv.setViewName("member/doFinish");
-		}	
-		return mv ;	
+		}
+		return mv ;
 	} //update
 	
 	@RequestMapping(value="/delete")
