@@ -33,7 +33,8 @@ public class ColumnController {
 	public ModelAndView insert(ModelAndView mv, ColumnVO vo) {
 		
 		if (service.insert(vo)>0) {
-			mv.setViewName("column/columnInsert");
+//			mv.setViewName("redirect:/column/list");
+			mv.setViewName("redirect:/column/detail?seq=" + vo.getSeq());
 		}else {
 			mv.addObject("fCode","BI");
 			mv.setViewName("member/doFinish");
@@ -43,12 +44,12 @@ public class ColumnController {
 	
 	@RequestMapping(value = "/insertf")
 	public ModelAndView insertf(ModelAndView mv) {
-		mv.setViewName("column/columnDetail");
+		mv.setViewName("column/columnInsert");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView bdetail(ModelAndView mv, ColumnVO vo) {
+	public ModelAndView detail(ModelAndView mv, ColumnVO vo) {
 		
 //		vo = service.selectOne(vo);
 		
@@ -60,5 +61,43 @@ public class ColumnController {
 			mv.setViewName("member/doFinish");
 		}
 		return mv;
-	}// bdetail
+	}// detail
+	
+	@RequestMapping(value = "/updatef")
+	public ModelAndView updatef(ModelAndView mv, ColumnVO vo) {
+		vo = service.selectOne(vo);
+		
+		if (vo!=null) {
+			mv.addObject("Detail", vo);
+			mv.setViewName("column/columnUpdate");
+		}else {
+			mv.addObject("fCode","BN");
+			mv.setViewName("member/doFinish");
+		}
+		return mv;
+	}// updatef
+	
+	@RequestMapping(value="/update")
+	public ModelAndView bupdate(ModelAndView mv, ColumnVO vo) {
+		
+		if (service.update(vo)>0)
+			mv.setViewName("redirect:/column/detail?seq=" + vo.getSeq());
+		else { // 실패 => doFinish.jsp
+			mv.addObject("fCode","BU");
+			mv.setViewName("member/doFinish");
+		}
+		return mv ;
+	} //update
+	
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(ModelAndView mv, ColumnVO vo) {
+		
+		if (service.delete(vo)>0)
+			mv.setViewName("redirect:/column/list");
+		else {
+			mv.addObject("fCode","BD");
+			mv.setViewName("member/doFinish");
+		}	
+		return mv ;	
+	} //delete
 }

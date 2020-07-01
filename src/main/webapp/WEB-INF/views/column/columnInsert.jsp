@@ -7,7 +7,7 @@
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
             <ul class="nav">
-                <li><a href="/column/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/column/insert" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>

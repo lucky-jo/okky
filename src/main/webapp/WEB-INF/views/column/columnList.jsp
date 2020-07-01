@@ -16,10 +16,10 @@
         <div id="list-article" class="content scaffold-list" role="main">
 <div>
 	<h3>칼럼</h3>
-	<div style="float: right;"><a href="/column/insertf" >새 글 쓰기</a></div>
+	<div style="float: right;"><a href="/column/insertf">새 글 쓰기</a></div>
 </div><br><br>
 <div style="float: right;">
-	검색창 
+	검색창
 </div><br>
 <div>
 최신순  추천순  댓글순  스크랩순  조회순
@@ -33,7 +33,6 @@
 <c:forEach var="mm" items="${Banana}">
 	<tr align="center" height=30>
 	<td>${mm.seq}</td>
-
 	<td><a href="detail?seq=${mm.seq}">${mm.title}</a></td>
 	<td>${mm.comment}</td>
 	<td>${mm.like}</td>
@@ -44,5 +43,6 @@
 	</tr>
 </c:forEach>
 </table>
+<hr>
 
 <%@include file="../includes/footer.jsp"%>

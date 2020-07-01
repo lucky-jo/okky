@@ -17,6 +17,7 @@ public interface ColumnMapper {
 	int countUp(ColumnVO vo);
 	
 	public List<ColumnVO> selectList();
+	public ColumnVO selectOne(ColumnVO vo);
 	
 	public int insert(ColumnVO vo);
 	public int update(ColumnVO vo);

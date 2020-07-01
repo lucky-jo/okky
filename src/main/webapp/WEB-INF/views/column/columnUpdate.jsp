@@ -7,7 +7,7 @@
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
             <ul class="nav">
-                <li><a href="/column/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/column/update" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>
@@ -18,22 +18,22 @@
 <body>
 <form action="/column/update" method="post">
 <table>
-  <tr><td bgcolor="Chartreuse">S E Q</td>
+  <tr><td>S E Q</td>
       <td><input type="text" name="seq" value="${Detail.seq}" readonly="readonly">
   </td></tr>
-  <tr><td bgcolor="Chartreuse">Title</td>
+  <tr><td>Title</td>
       <td><input type="text" name="title" value="${Detail.title}">
   </td></tr>
-  <tr><td bgcolor="Chartreuse">I  D</td>
+  <tr><td>I  D</td>
       <td><input type="text" name="id" value="${Detail.id}" readonly="readonly">
   </td></tr>
-  <tr><td bgcolor="Chartreuse">Content</td>
+  <tr><td>Content</td>
       <td><textarea name="content" rows="10" cols="40">${Detail.content}</textarea>
   </td></tr>
-  <tr><td bgcolor="Chartreuse">RegDate</td>
+  <tr><td>RegDate</td>
       <td><input type="text" name="regdate" value="${Detail.regdate}" readonly="readonly">
   </td></tr>
-  <tr><td bgcolor="Chartreuse">ViewCount</td>
+  <tr><td>ViewCount</td>
       <td><input type="text" name="cnt" value="${Detail.cnt}" readonly="readonly">
   </td></tr>
   <tr><td></td>
