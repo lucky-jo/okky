@@ -89,4 +89,16 @@ public class ColumnController {
 		}	
 		return mv ;	
 	} //update
+	
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(ModelAndView mv, ColumnVO vo) {
+		
+		if (service.delete(vo)>0)
+			mv.setViewName("redirect:/column/list");
+		else {
+			mv.addObject("fCode","BD");
+			mv.setViewName("member/doFinish");
+		}	
+		return mv ;	
+	} //delete
 }
