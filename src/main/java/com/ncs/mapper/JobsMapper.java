@@ -15,18 +15,15 @@ public interface JobsMapper {
 	
 	public List<JobsVO> selectlist();
 
-	public int newinsert(JobsVO vo);
+	public int insert(JobsVO vo);
 
 	public JobsVO selectOne(JobsVO vo);
 	
 	public int update(JobsVO vo);
-	/*
-	 * public int insert(JobsVO vo);
-	 * 
-	 * 
-	 * 
-	 * public int delete(JobsVO vo);
-	 */
+	
+	public int delete(JobsVO vo);
+	
+	
 
 	
 	
