@@ -6,7 +6,11 @@
 <%@include file="../includes/header.jsp"%>
 <div>
 	Jobs
-	<div style="float: right;"><a href="/jobs/newinsert" >새 글 쓰기</a></div>
+	<div style="float: right;">
+	<a href="/jobs/jupdate?seq=${Detail.seq}">내글 수정</a>&nbsp;&nbsp;
+	<a href="/jobs/delete?seq=${Detail.seq}">삭제</a>
+	</div>
+	
 </div><br><br>
 <div style="border: 10px;">
 	content
@@ -16,23 +20,21 @@
 </div>
 <br>
 <table>
-	
-	<tbody>
-		<tr align="center" height="30">
-			<td style="color: gray;">#${Detail.seq}&nbsp;</td>
-			<td rowspan="0">댓글</td>
-			<td rowspan="0">좋아요</td>&nbsp;&nbsp;&nbsp;
-			<td rowspan="0">${Detail.cnt}</td>
-			<td rowspan="0">image</td>
-			<td>${mm.id}</td>
-		</tr>
-		<tr align="center" height="30" bordercolor="gray">
-			<td>${Detail.title}</td>
-			<td>${Detail.regdate}</td>
-		</tr>
-	</tbody>
-
+	<tr height="40"><td">Seq</td>
+		<td>${Detail.seq}</td></tr>
+	<tr height="40"><td>Title</td>
+		<td>${Detail.title}</td></tr>
+	<tr height="40"><td>Id</td>
+		<td>${Detail.id}</td></tr>
+	<tr height="40"><td>Content</td>
+		<td><textarea rows="10" cols="40" readonly="readonly">${Detail.content}</textarea></td>
+	</tr>
+	<tr height="40"><td>Regdate</td>
+		<td>${Detail.regdate}</td></tr>
+	<tr height="40"><td>Count</td>
+		<td>${Detail.cnt}</td></tr>
 </table>
+
 
 <%-- <div align="center">
 <!-- 1) -->
