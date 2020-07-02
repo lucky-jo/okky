@@ -8,7 +8,24 @@ public class Criteria {
 	private int perPageRow; // 1페이지당 보여줄 Row(Record,튜플) 갯수
 	private int sno; // startRowNum
 	private int eno; // endRowNum
+	private int start;
 	
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+
+	public void setEno(int eno) {
+		this.eno = eno;
+	}
+
 	// 생성자로 초기화
 	public Criteria() {
 		this.currPage=1;
@@ -31,6 +48,7 @@ public class Criteria {
 		if (sno<1) sno=1;
 		sno = (currPage-1)*perPageRow+1;// startRowNum 계산
 		eno = (sno+perPageRow)-1;		// endRowNum 계산
+		this.start = this.sno-1;
 	}
  	
 	public int getCurrPage() {
