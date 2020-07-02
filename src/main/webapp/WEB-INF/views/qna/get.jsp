@@ -15,19 +15,16 @@ function del() {
 	}
 } // del() 
 </script>
-<div class="sidebar-category-nav">
-            <h3 class="sub-title">커뮤니티</h3>
+        <div class="sidebar-category-nav">
+            <h3 class="sub-title">Q&A</h3>
             <ul class="nav">
-                <li><a href="/qna/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category='f'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category='a'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category='b'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category='c'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
             </ul>
-	<div class="special-nav">
-
-	</div>
-</div>
+            <div class="special-nav">
+            </div>
+        </div>
 
 
 
@@ -86,6 +83,20 @@ function del() {
 					<a href="http://www.facebook.com/sharer/sharer.php?app_id=1451111438499030&sdk=joey&u=https%3A%2F%2Fokky.kr%2Farticle%2F734025&display=popup&ref=plugin" class="btn-facebook-share"><i class="fa fa-facebook-square fa-fw" data-toggle="tooltip" data-placement="left" title="페이스북 공유"></i></a>
 
 				</div>
+				
+				<div class="dropdown">
+                            <form action="/article/delete/734506" method="post" name="article-delete-form" id="article-delete-form" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+                                <div class="dropdown">
+                                    <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/qna/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
+                                        
+                                            <li><a href="/qna/delete" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
 
 
 			</div>
