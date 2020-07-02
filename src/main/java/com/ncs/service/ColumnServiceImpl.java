@@ -59,4 +59,10 @@ public class ColumnServiceImpl implements ColumnService {
 	public int delete(ColumnVO vo) {
 		return mapper.delete(vo);
 	}
+
+	@Override
+	public ColumnVO selectOne(ColumnVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
