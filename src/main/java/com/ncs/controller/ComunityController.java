@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.ComunityService;
+import com.ncs.service.ReplyService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ComunityVO;
+import com.ncs.vo.ReplyVO;
 
 @RequestMapping(value = "/comunity/")
 @Controller
@@ -18,6 +20,8 @@ public class ComunityController {
 
 	@Autowired
 	ComunityService service;
+	@Autowired
+	ReplyService rservice;
 	
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
@@ -51,10 +55,23 @@ public class ComunityController {
 	
 	}
 	
+	@RequestMapping(value = "/rinsert")
+	public ModelAndView rinsert(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
+		if(rservice.rinsert(rvo)>0) {
+			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
+		}else {
+			mv.addObject("fCode","BI");
+			mv.setViewName("comunity/fail");
+		}
+		return mv;
+	}
+	
 	@RequestMapping(value = "/detail")
-	public ModelAndView detail(ModelAndView mv, ComunityVO vo) {
+	public ModelAndView detail(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
 		vo = service.selectOne(vo);
+		List<ReplyVO> list = rservice.selectList(rvo);
 		
+			mv.addObject("reply",list);
 			mv.addObject("detail",vo);
 			mv.setViewName("comunity/cdetail");
 			return mv;
