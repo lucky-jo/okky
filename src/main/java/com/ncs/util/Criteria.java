@@ -12,7 +12,7 @@ public class Criteria {
 	// 생성자로 초기화
 	public Criteria() {
 		this.currPage=1;
-		this.perPageRow=5;
+		this.perPageRow=20;
 	}
 	
 	// 1) 출력할(요청받은) PageNo set  
