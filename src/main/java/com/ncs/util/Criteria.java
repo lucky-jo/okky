@@ -12,7 +12,7 @@ public class Criteria {
 	// 생성자로 초기화
 	public Criteria() {
 		this.currPage=1;
-		this.perPageRow=5;
+		this.perPageRow=20;
 	}
 	
 	// 1) 출력할(요청받은) PageNo set  
@@ -23,7 +23,7 @@ public class Criteria {
 	// 2) 1페이지당 보여줄 Row(Record,튜플) 갯수 확인
 	public void setPerPageRow(int perPageRow) {
 		if (perPageRow<1 || perPageRow>50)
-			perPageRow=5;
+			perPageRow=10;
 		this.perPageRow = perPageRow;
 	}
 	// 3) startRowNo , endRowNo 계산
