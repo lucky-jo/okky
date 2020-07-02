@@ -36,11 +36,11 @@
 							</div>
 
 							<ul class="list-sort pull-left">
-								<li><a href="/articles/community?sort=id&amp;order=desc" data-sort="id" data-order="desc" class="category-sort-link active">최신순</a></li>
-								<li><a href="/articles/community?sort=voteCount&amp;order=desc" data-sort="voteCount" data-order="desc" class="category-sort-link ">추천순</a></li>
-								<li><a href="/articles/community?sort=noteCount&amp;order=desc" data-sort="noteCount" data-order="desc" class="category-sort-link ">댓글순</a></li>
-								<li><a href="/articles/community?sort=scrapCount&amp;order=desc" data-sort="scrapCount" data-order="desc" class="category-sort-link ">스크랩순</a></li>
-								<li><a href="/articles/community?sort=viewCount&amp;order=desc" data-sort="viewCount" data-order="desc" class="category-sort-link ">조회순</a></li>
+								<li><a href="/qna/list" data-sort="id" data-order="desc" class="category-sort-link active">최신순</a></li>
+								<li><a href="/qna/list" data-sort="voteCount" data-order="desc" class="category-sort-link ">추천순</a></li>
+								<li><a href="/qna/list" data-sort="noteCount" data-order="desc" class="category-sort-link ">댓글순</a></li>
+								<li><a href="/qna/list" data-sort="scrapCount" data-order="desc" class="category-sort-link ">스크랩순</a></li>
+								<li><a href="/qna/list" data-sort="viewCount" data-order="desc" class="category-sort-link ">조회순</a></li>
 							</ul>
 
 							<input type="hidden" name="sort" id="category-sort-input" value="id"/>
@@ -98,26 +98,6 @@
 							</div>
 						</li>
 					</c:forEach>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 					</ul>
 				</div>
