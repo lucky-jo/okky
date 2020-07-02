@@ -21,5 +21,4 @@ public interface ColumnService {
 	int update(ColumnVO vo);
 	
 	int delete(ColumnVO vo);
-
 }

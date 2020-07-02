@@ -5,16 +5,51 @@
   
   <mapper namespace="com.ncs.mapper.ColumnMapper"> 
 
-<!--   <select id="searchRowCount">
-  
+  <sql id="search">
+  	<choose>
+  		<when test="searchType=='t'.toString()">
+  			and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<when test="searchType=='c'.toString()">
+  			and content like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<when test="searchType=='w'.toString()">
+  			and id like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<when test="searchType=='tc'.toString()">
+  			and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+  			or content like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<when test="searchType=='cw'.toString()">
+  			and content like CONCAT(CONCAT('%',#{keyword}),'%') 
+  			or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<when test="searchType=='tcw'.toString()">
+  			and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+  			or content like CONCAT(CONCAT('%',#{keyword}),'%') 
+  			or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+  		</when>
+  		<otherwise> ) </otherwise>
+  	</choose>
+  </sql>
+
+  <select id="searchRowCount" resultType="int">
+  <![CDATA[
+	select count(*) from columnm where ( seq>0 ]]>
+	<include refid="search"></include>
+  </select>		  
+				
+  <select id="searchList" resultType="com.ncs.vo.ColumnVO">
+  <![CDATA[
+	select * from columnm where ( 1=1 ]]>
+	  <include refid="search"></include> order by seq desc
+	  limit #{sno} , #{perPageRow}
+  </select>		
+				  
+  <select id="totalRowCount" resultType="int">
+	select count(*) from columnm
   </select>
-  <select id="searchList">
-  
-  </select>
-  <select id="totalRowCount">
-  	select count(*) from column
-  </select>
-  <update id="countUp">
+<!--  <update id="countUp">
     update column set cnt=cnt+1 where seq=#{seq}
   </update> -->
   <select id="selectList" resultType="com.ncs.vo.ColumnVO">

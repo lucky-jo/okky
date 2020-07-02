@@ -4,6 +4,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
+<script src="resources/jqLib/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	$('#searchBtn').on("click",function(){
+				self.location="/column/list"
+					+"${pageMaker.makeQuery(1)}"
+					+"&searchType="
+					+$("#searchType").val()
+					/* + $("select option:selected").val() */
+					+"&keyword="
+					+$("#keyword").val();
+	});
+});
+</script>
 
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
@@ -18,8 +32,25 @@
 	<h3>칼럼</h3>
 	<div style="float: right;"><a href="/column/insertf">새 글 쓰기</a></div>
 </div><br><br>
-<div style="float: right;">
-	검색창
+<div style="float: right;" id="searchBar">
+	<select name="searchType" id="searchType">
+		<option value="n" <c:out value="${pageMaker.cri.searchType==null ? 'selected':'' }"/>>
+		---</option>
+		<option value="t" <c:out value="${pageMaker.cri.searchType eq 't' ? 'selected':'' }"/>>
+		Title</option>
+		<option value="c" <c:out value="${pageMaker.cri.searchType eq 'c' ? 'selected':'' }"/>>
+		Content</option>
+		<option value="w" <c:out value="${pageMaker.cri.searchType eq 'w' ? 'selected':'' }"/>>
+		Writer</option>
+		<option value="tc" <c:out value="${pageMaker.cri.searchType eq 'tc' ? 'selected':'' }"/>>
+		Title or Content</option>
+		<option value="cw" <c:out value="${pageMaker.cri.searchType eq 'cw' ? 'selected':'' }"/>>
+		Content or Writer</option>
+		<option value="tcw" <c:out value="${pageMaker.cri.searchType eq 'tcw' ? 'selected':'' }"/>>
+		Title or Content or Writer</option>
+	</select>
+	<input type="text" name="keyword" id="keyword" value="${pageMaker.cri.keyword}">
+	<button style="float: right;" id="searchBtn">Search</button>
 </div><br>
 <div>
 최신순  추천순  댓글순  스크랩순  조회순
@@ -43,6 +74,35 @@
 	</tr>
 </c:forEach>
 </table>
+<hr>
+<div align="center">
+<!-- 1) -->
+<c:if test="${pageMaker.prev}">
+	<a href="list${pageMaker.makeSearch(1)}">First&nbsp;</a>
+	<a href="list${pageMaker.makeSearch(pageMaker.sPageNo-1)}">&laquo;&nbsp;</a>
+					<!-- listcri?currPage=8&PerPageRow=10 -->
+</c:if>
+
+<!--  2)  -->
+<c:forEach begin="${pageMaker.sPageNo}"
+		   end="${pageMaker.ePageNo}" var="i">
+	<c:choose>
+ 		<c:when test="${pageMaker.cri.currPage==i}">
+ 			<font size="5" color="Orange">${i}</font>&nbsp;
+ 		</c:when>
+ 		<c:otherwise>
+ 			<a href="list${pageMaker.makeSearch(i)}">${i}</a>&nbsp;
+ 		</c:otherwise>
+ 	</c:choose>	   
+	<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
+  </c:forEach>
+<!--  3) --> 
+  <c:if test="${pageMaker.next && pageMaker.ePageNo > 0}">
+	<a href="list${pageMaker.makeSearch(pageMaker.ePageNo+1)}">&nbsp;&raquo;</a>
+	<a href="list${pageMaker.makeSearch(pageMaker.lastPageNo)}">&nbsp;Last</a>
+  </c:if>
+
+</div>
 <hr>
 
 <%@include file="../includes/footer.jsp"%>

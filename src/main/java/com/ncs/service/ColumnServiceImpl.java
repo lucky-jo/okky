@@ -16,7 +16,7 @@ public class ColumnServiceImpl implements ColumnService {
 	
 	@Override
 	public int searchRowCount(SearchCriteria cri) {
-		return mapper.searchRowcount(cri);
+		return mapper.searchRowCount(cri);
 	}
 
 	@Override
@@ -24,37 +24,30 @@ public class ColumnServiceImpl implements ColumnService {
 		return mapper.searchList(cri);
 	}
 
-
 	@Override
 	public int totalRowCount() {
 		return mapper.totalRowCount();
 	}
-
 	@Override
 	public int countUp(ColumnVO vo) {
 		return mapper.countUp(vo);
 	}
-
 	@Override
 	public List<ColumnVO> selectList() {
 		return mapper.selectList();
 	}
-	
-//	@Override
-//	public ColumnVO selectOne(ColumnVO vo) {
-//		return mapper.selectOne(vo);
-//	}
-
+	@Override
+	public ColumnVO selectOne(ColumnVO vo) {
+		return mapper.selectOne(vo);
+	}
 	@Override
 	public int insert(ColumnVO vo) {
 		return mapper.insert(vo);
 	}
-
 	@Override
 	public int update(ColumnVO vo) {
 		return mapper.update(vo);
 	}
-	
 	@Override
 	public int delete(ColumnVO vo) {
 		return mapper.delete(vo);
