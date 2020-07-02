@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ncs.mapper.QnaMapper">
+    <sql id="search">
+     <choose>
+        <when test="searchType=='t'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='c'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='w'.toString()">
+           and id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tc'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='cw'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tcw'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <otherwise> ) </otherwise>
+     </choose>
+  </sql>
+  
+  
+  <select id="selectList" resultType="com.ncs.vo.QnaVO">
+  	select seq,title,id, regdate, updatedate,
+	 exist, cnt, category from qna order by seq
+  </select>
+  
+  <insert id="insert">
+  <selectKey keyProperty="seq" order="BEFORE" resultType="int">
+        select IFNULL(MAX(seq),0)+1 as seq from qna
+     </selectKey>
+  	insert into qna(seq,id,category,title,content) values(#{seq},#{id},#{category},#{title},#{content})
+  </insert>
+  
+  <select id="selectOne" resultType="com.ncs.vo.QnaVO">
+	select *
+	 from qna where seq=#{seq}
+  </select>
+  
+  <update id="update">
+  	update qna set category=#{category}, title=#{title}, content=#{content}, updatedate = now() where seq=#{seq}
+  </update>
+  
+  <update id="delete">
+  	update qna set exist = 0 where seq=#{seq}
+  </update>
+  
+  <select id="dcategory">
+  	select * from qna where category = #{category}
+  </select>
+  
+   <select id="totalRowCount" resultType="int">
+	select count(*) from qna
+  </select>
+  
+<!--   <select id="searchList" resultType="com.ncs.vo.ComunityVO">
+   <![CDATA[
+	select seq,title,id, regdate, updatedate,
+	exist, cnt, category from comunity order by seq ]]>
+	<include refid="search"></include>
+	where rnum between #{sno} and #{eno}
+  </select> -->
+  
+  <select id="searchRowCount" resultType="int">
+  <![CDATA[
+   select count(*) from qna where ( seq>0 ]]>
+   <include refid="search"></include>
+  </select>
+  
+  <select id="searchList" resultType="com.ncs.vo.QnaVO">
+  <![CDATA[
+   select * 
+   from qna where ( 1=1
+     ]]>
+     <include refid="search"></include> order by seq desc
+     limit #{sno} , #{eno}
+  </select>
+  
+
+  </mapper>
+  
