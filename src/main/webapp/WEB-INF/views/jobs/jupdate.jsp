@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
 <h2>** [글 수정] **</h2>
-<form action="jupdate" method="post">
+<form action="/jobs/update" method="post">
 <table>
   <tr><td bgcolor="Chartreuse">S E Q</td>
       <td><input type="text" name="seq" value="${Detail.seq}" readonly="readonly">

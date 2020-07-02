@@ -31,7 +31,7 @@ function inCheck() {
 <div>
 	${logID}
 </div>
-	<form action="/jobs/newinsert" method="post">
+	<form action="/jobs/insert" method="post">
 		<table>
 			<tr height="60">
 				<td>

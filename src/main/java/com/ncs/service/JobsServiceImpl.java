@@ -29,8 +29,8 @@ public class JobsServiceImpl implements JobsService {
 		return mapper.selectlist();
 	}
 	@Override 
-	public int newinsert(JobsVO vo) { 
-		return mapper.newinsert(vo); 
+	public int insert(JobsVO vo) { 
+		return mapper.insert(vo); 
 	}
 	@Override
 	public JobsVO selectOne(JobsVO vo) {
@@ -40,16 +40,12 @@ public class JobsServiceImpl implements JobsService {
 	public int update(JobsVO vo) { 
 	    return mapper.update(vo); 
 	}
+	@Override 
+	public int delete(JobsVO vo) { 
+		return mapper.delete(vo);
+    }
 	
 	
-	
-	/*
-	 * @Override public int insert(JobsVO vo) { return mapper.insert(vo); }
-	 * 
-	 * 
-	 * 
-	 * @Override public int delete(JobsVO vo) { return mapper.delete(vo); }
-	 */
 	
 	
 	
