@@ -11,7 +11,7 @@ public class PageMaker {
 	private int ePageNo;  // View에 표시할 끝 PageNo
 	private boolean prev; // 이전 Page블럭 으로
 	private boolean next; // 다음 Page블럭 으로
-	private int displayPageNo=3;  // View에 표시할 PageNo의 갯수
+	private int displayPageNo=10;  // View에 표시할 PageNo의 갯수
 	private int lastPageNo;  
 	// 출력 가능한 마지막 PageNo (totalRow, perPageRow 로 계산)
 	
