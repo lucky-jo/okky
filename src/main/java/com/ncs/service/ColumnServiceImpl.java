@@ -16,7 +16,7 @@ public class ColumnServiceImpl implements ColumnService {
 	
 	@Override
 	public int searchRowCount(SearchCriteria cri) {
-		return mapper.searchRowcount(cri);
+		return mapper.searchRowCount(cri);
 	}
 
 	@Override
