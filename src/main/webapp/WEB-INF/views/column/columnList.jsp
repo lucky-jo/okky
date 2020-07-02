@@ -18,8 +18,25 @@
 	<h3>칼럼</h3>
 	<div style="float: right;"><a href="/column/insertf">새 글 쓰기</a></div>
 </div><br><br>
-<div style="float: right;">
-	검색창
+<div style="float: right;" id="searchBar">
+	<select name="searchType" id="searchType">
+		<option value="n" <c:out value="${pageMaker.cri.searchType==null ? 'selected':'' }"/>>
+		---</option>
+		<option value="t" <c:out value="${pageMaker.cri.searchType eq 't' ? 'selected':'' }"/>>
+		Title</option>
+		<option value="c" <c:out value="${pageMaker.cri.searchType eq 'c' ? 'selected':'' }"/>>
+		Content</option>
+		<option value="w" <c:out value="${pageMaker.cri.searchType eq 'w' ? 'selected':'' }"/>>
+		Writer</option>
+		<option value="tc" <c:out value="${pageMaker.cri.searchType eq 'tc' ? 'selected':'' }"/>>
+		Title or Content</option>
+		<option value="cw" <c:out value="${pageMaker.cri.searchType eq 'cw' ? 'selected':'' }"/>>
+		Content or Writer</option>
+		<option value="tcw" <c:out value="${pageMaker.cri.searchType eq 'tcw' ? 'selected':'' }"/>>
+		Title or Content or Writer</option>
+	</select>
+	<input type="text" name="keyword" id="keyword" value="${pageMaker.cri.keyword}">
+	<button style="float: right;" id="searchBtn">Search</button>
 </div><br>
 <div>
 최신순  추천순  댓글순  스크랩순  조회순
