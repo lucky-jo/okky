@@ -33,6 +33,10 @@ public class ComunityServiceImpl implements ComunityService{
 		return mapper.update(vo);
 	}
 	@Override
+	public int countUp(ComunityVO vo) {
+		return mapper.countUp(vo);
+	}
+	@Override
 	public int delete(ComunityVO vo) {
 		return mapper.delete(vo);
 	}
