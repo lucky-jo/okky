@@ -10,7 +10,7 @@ import com.ncs.vo.ColumnVO;
 @Repository
 public interface ColumnMapper {
 	
-	int searchRowcount(SearchCriteria cri);
+	int searchRowCount(SearchCriteria cri);
 	List<ColumnVO> searchList(SearchCriteria cri);
 	
 	int totalRowCount();
