@@ -20,4 +20,5 @@ public interface ComunityMapper {
 	public List<ComunityVO> criList(Criteria cri);
 	public List<ComunityVO> searchList(SearchCriteria cri);
 	public int searchRowCount(SearchCriteria cri);
+	public int countUp(ComunityVO vo);
 }

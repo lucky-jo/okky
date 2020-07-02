@@ -37,11 +37,11 @@ function inCheck() {
 				<td>
 					<select name="category" id="category">
   						<option value="default">게시판을 선택해주세요</option>
-    					<option value="a">사는 얘기</option>
-    					<option value="b">포럼</option>
-    					<option value="c">IT 행사</option>
-    					<option value="d">정기모임/스터디</option>
-    					<option value="e">학원/홍보</option>
+    					<option value="사는얘기">사는 얘기</option>
+    					<option value="포럼">포럼</option>
+    					<option value="IT 행사">IT 행사</option>
+    					<option value="정기모임/스터디">정기모임/스터디</option>
+    					<option value="학원/홍보">학원/홍보</option>
   					</select>
 				</td>
 			</tr>
