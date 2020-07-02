@@ -10,8 +10,8 @@
     </select>
    
    
-    <!-- jobs newInsert() -->
-    <insert id="newinsert">
+    <!-- jobs insert() -->
+    <insert id="insert">
       <selectKey keyProperty="seq" order="BEFORE" resultType="int">
         select IFNULL(MAX(seq),0)+1 as seq from jobs
      </selectKey>
@@ -28,13 +28,10 @@
    	update jobs set category=#{category}, title=#{title}, content=#{content}, updatedate=now() where seq=#{seq}
     </update>
    
-   
-   
-   
-    <!-- jobsDelete() -->
-   <!-- <delete id="delete">
-   delete from jobs where id=#{id}
-   </delete>  -->
+   <!-- jobsDelete() -->
+   <delete id="delete">
+   delete from jobs where seq=#{seq}
+   </delete>
    
     
   
