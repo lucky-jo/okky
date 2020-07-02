@@ -54,6 +54,10 @@
   	update comunity set category=#{category}, title=#{title}, content=#{content}, updatedate=now() where seq=#{seq}
   </update>
   
+   <update id="countUp">
+	update comunity set cnt=cnt+1 where seq=#{seq}
+  </update>
+  
   <update id="delete">
   	update comunity set exist = 0 where seq=#{seq}
   </update>
