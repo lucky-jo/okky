@@ -62,7 +62,6 @@ public class QnaController {
             if(service.update(vo) > 0) {
                 mv.setViewName("redirect:/qna/get?seq="+vo.getSeq());
             }else {
-                mv.addObject("fCode","BU");
                 mv.setViewName("redirect:/qna/list");
             }
             return mv;

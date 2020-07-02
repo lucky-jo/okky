@@ -4,7 +4,14 @@ package com.ncs.util;
 public class SearchCriteria extends Criteria  {
 	private String searchType;
 	private String keyword;
+	private String category;
 	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public String getSearchType() {
 		return searchType;
 	}
@@ -19,6 +26,6 @@ public class SearchCriteria extends Criteria  {
 	}
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", category=" + category + "]";
 	}
 } // class
