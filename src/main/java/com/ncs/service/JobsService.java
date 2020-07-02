@@ -15,21 +15,15 @@ public interface JobsService {
 	 */	  
 	List<JobsVO> selectlist(); // selectList()
 	
-	int newinsert(JobsVO vo); // newinsert
+	int insert(JobsVO vo); // insert
 	
 	JobsVO selectOne(JobsVO vo); // selectOne
 	
 	int update(JobsVO vo); // update
 	
-	/*
-	 * 
-	 * 
-	 * int insert(JobsVO vo); // insert
-	 * 
-	 * 
-	 * 
-	 * int delete(JobsVO vo); // delete
-	 */
+	int delete(JobsVO vo); // delete
+	
+	
 		
 
 		
