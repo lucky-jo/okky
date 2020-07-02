@@ -19,12 +19,12 @@ function del() {
             <h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
                 <li><a href="/comunity/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='f'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='a'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='b'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='c'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='d'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category='e'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='공지사항'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='사는얘기'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='포럼'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='IT 행사'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='정기모임/스터디'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category='학원/홍보'" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>
@@ -60,17 +60,35 @@ ${detail.category}
 				</tr>
 			</tbody>
 		</table><br><br><br>
+
 		<table>
 			<tr>
 				<td>댓글</td>
 			</tr>
+			<c:forEach var="rr" items="${reply}">
 			<tr align="center" height="30">
-				<td rowspan="1">image</td>
-				<td>${detail.id}</td>
+				<td rowspan="0">image</td>
+				<td>${rr.rid}</td>
+			</tr>
+			<tr>
+				<td>${rr.regdate}</td>
+			</tr>
+			<tr>
+				<td>${rr.rcontent}</textarea></td>
+			</tr>
+			</c:forEach>
+		</table>
+		<form action="/comunity/rinsert" method="post">
+		<table>
+			<tr align="center" height="30">
+				<td rowspan="0">image</td>
+				<td>id</td>
 			</tr>
 			<tr>
 				<td><textarea rows="10" cols="40" name="content"></textarea></td>
-				<td><input type="submit" value="등록" onclick="inCheck()"></td>
+				<td><input type="reset" value="취소">
+				<input type="submit" value="등록">
+				<input type="hidden" name="id" value="hongildong"></td>
 			</tr>
 		</table>
 	</form>
