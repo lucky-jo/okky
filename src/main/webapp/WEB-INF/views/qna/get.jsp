@@ -91,7 +91,7 @@ function del() {
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="/qna/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
                                         
-                                            <li><a href="/qna/delete" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
+                                            <li><a href="/qna/delete?seq=${get.seq }" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
                                         
                                     </ul>
                                 </div>

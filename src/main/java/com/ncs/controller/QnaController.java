@@ -79,8 +79,7 @@ public class QnaController {
             if(service.delete(vo) > 0) {
                 mv.setViewName("redirect:/qna/list");
             }else {
-                mv.addObject("fCode", "BD");
-                mv.setViewName("qna/fail");
+                mv.setViewName("redirect:/qna/get?seq="+vo.getSeq());
             }
             return mv;
         }
