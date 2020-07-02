@@ -6,13 +6,11 @@
 <%@include file="../includes/header.jsp"%>
 
         <div class="sidebar-category-nav">
-            <h3 class="sub-title">커뮤니티</h3>
+            <h3 class="sub-title">Q&A</h3>
             <ul class="nav">
-                <%--<li><a href="/qna/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class='"'nav-indicator <c:out value="${pageMaker.category eq 'all' ? 'nav-selected':''}" '><span class="nav-selected-dot"></span></span></a></li>--%>
-                <li><a href="/qna/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category=c" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category=d" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT 행사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/qna/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
             </div>
@@ -22,9 +20,9 @@
 
 				<div class="nav" role="navigation">
 
-					<a href="/articles/community/create" class="create btn btn-success btn-wide pull-right"><i class="fa fa-pencil"></i> 새 글 쓰기</a>
+					<a href="/qna/register" class="create btn btn-success btn-wide pull-right"><i class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-					<h4>커뮤니티</h4>
+					<h4>Q&A</h4>
 					<form action="/articles/community" method="get" name="category-filter-form" id="category-filter-form" >
 						<div class="category-filter-wrapper">
 							<div class="category-filter-query pull-right">
@@ -74,7 +72,7 @@
 								</div>
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
-									<a href="/article/734210">
+									<a href="/qna/get?seq=${board.seq }">
 
 										${board.title}
 									</a>
