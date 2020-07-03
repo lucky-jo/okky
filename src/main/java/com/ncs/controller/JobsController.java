@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
 import com.ncs.vo.JobsVO;
 
 @RequestMapping("/jobs/")
@@ -21,13 +23,15 @@ public class JobsController {
 	JobsService service;
 	
 	@RequestMapping("/list")
-	public ModelAndView list(ModelAndView mv) {
-		List<JobsVO> list = service.selectlist();
-		if (list!=null) {
-			mv.addObject("melon",list);
-		}else {
-			mv.addObject("message","~~검색된 자료가 없습니다.");
-		}
+	public ModelAndView list(ModelAndView mv,SearchCriteria cri) {
+		cri.setSnoEno();
+		mv.addObject("melon",service.searchList(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		pageMaker.setTotalRow(service.searchRowCount(cri));
+		mv.addObject("pageMaker",pageMaker);
+		
 		mv.setViewName("jobs/jlist");
 		return mv;
 	}//list
@@ -37,19 +41,27 @@ public class JobsController {
 	  public ModelAndView newinsert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  //mv.addObject("새 글이 등록 되었습니다");
-	          mv.setViewName("jobs/jlist"); 
+	          mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq()); 
 	   }else {
 		   mv.addObject("작성을 해주세요");
 	       mv.setViewName("jobs/jinsert"); 
 	   }
 	 
-	   return mv; }//newinsert:새글 등록창
+	   return mv; }//insert:새글 등록창
 	  
 	  @RequestMapping("/jinsert")
 	  public ModelAndView jinsert(ModelAndView mv) {
 		  mv.setViewName("jobs/jinsert");
 		  return mv;
 	  }
+	  
+	  @RequestMapping("/rinsert")
+	  public ModelAndView rinsert(ModelAndView mv, JobsVO vo) {
+		  if(service.rinsert(vo)>0) 
+		  mv.setViewName("jobs/jdetail");
+		  return mv;
+	  }//rinsert
+
 	  @RequestMapping(value = "/jdetail")
 		public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, JobsVO vo) {
 			

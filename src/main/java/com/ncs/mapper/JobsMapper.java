@@ -7,12 +7,6 @@ import com.ncs.vo.JobsVO;
 
 public interface JobsMapper {
 
-	/*
-	 * public int searchRowCount(SearchCriteria cri);
-	 * 
-	 * public List<JobsVO> searchList(SearchCriteria cri);
-	 */
-	
 	public List<JobsVO> selectlist();
 
 	public int insert(JobsVO vo);
@@ -23,8 +17,11 @@ public interface JobsMapper {
 	
 	public int delete(JobsVO vo);
 	
-	
+	public int searchRowCount(SearchCriteria cri);
 
+	public List<JobsVO> searchList(SearchCriteria cri);
+
+	public int rinsert(JobsVO vo);
 	
 	
 }

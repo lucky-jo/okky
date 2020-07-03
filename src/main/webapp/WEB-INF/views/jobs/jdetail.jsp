@@ -20,7 +20,7 @@
 </div>
 <br>
 <table>
-	<tr height="40"><td">Seq</td>
+	<tr height="40"><td>Seq</td>
 		<td>${Detail.seq}</td></tr>
 	<tr height="40"><td>Title</td>
 		<td>${Detail.title}</td></tr>
@@ -33,7 +33,21 @@
 		<td>${Detail.regdate}</td></tr>
 	<tr height="40"><td>Count</td>
 		<td>${Detail.cnt}</td></tr>
+</table><br>
+
+
+
+
+<form action="rinsert" method="post">
+<table>
+<tr height="40"><td bgcolor="aqua" >Content</td>
+	<td><textarea rows="10" cols="40" name="content"></textarea>
+	</td></tr>
+<tr><td></td><td><input type="submit" value="댓글등록">
+                 <input type="reset" value="취소">
+                 <input type="hidden" id="id" value="melon"></td>	
 </table>
+</form>
 
 
 <%-- <div align="center">

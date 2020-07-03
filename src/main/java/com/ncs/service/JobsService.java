@@ -2,20 +2,19 @@ package com.ncs.service;
 
 import java.util.List;
 
+import com.ncs.util.SearchCriteria;
 import com.ncs.vo.JobsVO;
 
 
 public interface JobsService {
 	
 	    
-	/*
-	 * int searchRowCount(SearchCriteria cri);//searchRowCount
-	 * 
-	 * List<JobsVO> searchList(SearchCriteria cri);//searchList
-	 */	  
+	  
 	List<JobsVO> selectlist(); // selectList()
 	
 	int insert(JobsVO vo); // insert
+	
+	int rinsert(JobsVO vo); // insert
 	
 	JobsVO selectOne(JobsVO vo); // selectOne
 	
@@ -23,9 +22,9 @@ public interface JobsService {
 	
 	int delete(JobsVO vo); // delete
 	
-	
+	List<JobsVO> searchList(SearchCriteria cri);//searchList
 		
-
+	int searchRowCount(SearchCriteria cri);//searchRowCount
 		
 
 		
