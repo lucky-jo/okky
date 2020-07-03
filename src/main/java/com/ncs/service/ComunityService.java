@@ -17,5 +17,5 @@ public interface ComunityService {
 	List<ComunityVO> criList(Criteria cri); 
 	List<ComunityVO> searchList(SearchCriteria cri);
 	int searchRowCount(SearchCriteria cri);
-	int countUp(ComunityVO vo);
+	//int countUp(ComunityVO vo);
 }
