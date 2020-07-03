@@ -93,9 +93,9 @@ function del() {
                                 <div class="dropdown">
                                     <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/qna/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
+                                        <li><a href="/comunity/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
                                         
-                                            <li><a href="/qna/delete?seq=${get.seq }" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
+                                            <li><a href="/comunity/delete?seq=${get.seq }" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
                                         
                                     </ul>
                                 </div>
@@ -106,6 +106,70 @@ function del() {
 			</div>
 		</div>
 	</div>
+	
+	<div id="article-create" class="content" role="main">
+
+	<div class="content-header">
+		<h3>댓글</h3>
+		<c:forEach var="list" items="${reply }">
+		
+		
+		
+		
+		</c:forEach>
+	</div>
+	<div class="panel panel-default clearfix">
+		<div class="panel-heading clearfix">
+			<div class='avatar avatar-medium clearfix pull-left'>
+				<a href='/user/info/94647' class='avatar-photo'><img
+					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+				<div class="avatar-info">
+					<a class="nickname" href="/user/info/94647" title="Kim">kim</a>
+					<div class="activity block">
+						<span class="fa fa-flash"></span> 37
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-body">
+			<form action="/comunity/register" method="post"
+				id="article-form" class="article-form" role="form"
+				onsubmit="return postForm()">
+				<input type="hidden" name="SYNCHRONIZER_TOKEN"
+					value="e5959747-1ffb-4a10-b899-811d11569367"
+					id="SYNCHRONIZER_TOKEN" /> <input type="hidden"
+					name="SYNCHRONIZER_URI" value="/articles/questions/create"
+					id="SYNCHRONIZER_URI" />
+				<fieldset class="form">
+					
+<!-- 					<div class="form-group  has-feedback">
+						<div>
+							<input type="text" name="tagString" value="" placeholder="Tags,"
+								data-role="tagsinput" class="form-control" id="tagString" />
+						</div>
+					</div> -->
+
+					<div class="form-group  has-feedback">
+
+						<textarea name="content" id="summernote" rows="20"
+							class="form-control input-block-level"></textarea>
+					</div>
+					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
+					
+					<div class="nav" role="navigation">
+                                <fieldset class="buttons">
+                                    <a href="/comunity/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
+                                    <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
+                                    <input type="hidden" name="id" value="Kim">
+                                </fieldset>
+                            </div>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 	<div class="main-banner-wrapper">
