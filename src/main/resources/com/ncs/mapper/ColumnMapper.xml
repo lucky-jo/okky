@@ -37,14 +37,16 @@
   <![CDATA[
 	select count(*) from columnm where ( seq>0 ]]>
 	<include refid="search"></include>
-  </select>		  
-				
-  <select id="searchList" resultType="com.ncs.vo.ColumnVO">
-  <![CDATA[
-	select * from columnm where ( 1=1 ]]>
-	  <include refid="search"></include> order by seq desc
-	  limit #{sno} , #{perPageRow}
-  </select>		
+  </select>
+
+	<select id="searchList" resultType="com.ncs.vo.ColumnVO">
+		<![CDATA[
+   select *
+   from columnm where ( 1=1
+     ]]>
+		<include refid="search"></include> order by seq desc
+		limit #{start} , #{perPageRow}
+	</select>
 				  
   <select id="totalRowCount" resultType="int">
 	select count(*) from columnm
