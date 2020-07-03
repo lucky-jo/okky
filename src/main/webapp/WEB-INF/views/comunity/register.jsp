@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@include file="../includes/header.jsp"%>
+<script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
+<script src="/resources/jqLib/comunityCheck.js"></script>
+<script>
+	function del() {
+		if (confirm("정말 삭제하시겠습니까?") == true) {
+			document.remove.submit();
+		} else {
+			return;
+		}
+	} // del()
+</script>
+        <div class="sidebar-category-nav">
+            <h3 class="sub-title">커뮤니티</h3>
+            <ul class="nav">
+                <li><a href="/comunity/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=c" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=d" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">IT행사</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'd' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=e" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/comunity/list?category=f" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+            </ul>
+            <div class="special-nav">
+            </div>
+        </div>
+
+
+
+<div id="article-create" class="content" role="main">
+
+	<div class="content-header">
+		<h3>새 글 쓰기</h3>
+	</div>
+	<div class="panel panel-default clearfix">
+		<div class="panel-heading clearfix">
+			<div class='avatar avatar-medium clearfix pull-left'>
+				<a href='/user/info/94647' class='avatar-photo'><img
+					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+				<div class="avatar-info">
+					<a class="nickname" href="/user/info/94647" title="Kim">kim</a>
+					<div class="activity block">
+						<span class="fa fa-flash"></span> 37
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-body">
+			<form action="/comunity/register" method="post"
+				id="article-form" class="article-form" role="form"
+				onsubmit="return postForm()">
+				<input type="hidden" name="SYNCHRONIZER_TOKEN"
+					value="e5959747-1ffb-4a10-b899-811d11569367"
+					id="SYNCHRONIZER_TOKEN" /> <input type="hidden"
+					name="SYNCHRONIZER_URI" value="/articles/questions/create"
+					id="SYNCHRONIZER_URI" />
+				<fieldset class="form">
+					<div class="form-group  has-feedback">
+						<div>
+							<select id="category" name="category" class="form-control"
+								required="">
+								<option value="">게시판을 선택해 주세요.</option>
+
+								<option value="b" data-external="" 
+									data-anonymity="false">사는얘기</option>
+								<option value="c" data-external=""
+									data-anonymity="false">포럼</option>
+								<option value="d" data-external=""
+									data-anonymity="false">IT행사</option>
+								<option value="e" data-external=""
+									data-anonymity="false">정기모임/스터디</option>
+								<option value="f" data-external=""
+									data-anonymity="false">학원/홍보</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group  has-feedback">
+						<div>
+							<input type="text" name="title" required="" value=""
+								placeholder="제목을 입력해 주세요." class="form-control" id="title" />
+						</div>
+					</div>
+
+<!-- 					<div class="form-group  has-feedback">
+						<div>
+							<input type="text" name="tagString" value="" placeholder="Tags,"
+								data-role="tagsinput" class="form-control" id="tagString" />
+						</div>
+					</div> -->
+
+					<div class="form-group  has-feedback">
+
+						<textarea name="content" id="summernote" rows="20"
+							class="form-control input-block-level"></textarea>
+					</div>
+					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
+					
+					<div class="nav" role="navigation">
+                                <fieldset class="buttons">
+                                    <a href="/comunity/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
+                                    <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
+                                    <input type="hidden" name="id" value="Kim">
+                                </fieldset>
+                            </div>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+
+<%@include file="../includes/footer.jsp"%>

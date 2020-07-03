@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ncs.mapper.ComunityMapper;
 import com.ncs.util.Criteria;
@@ -24,17 +25,19 @@ public class ComunityServiceImpl implements ComunityService{
 	public int insert(ComunityVO vo) {
 		return mapper.insert(vo);
 	}
+	//@Transactional (두 가지 기능중 하나라도 fail시 작동X)
 	@Override
 	public ComunityVO selectOne(ComunityVO vo) {
+		mapper.countUp(vo);
 		return mapper.selectOne(vo);
 	}
+//	@Override
+//	public int countUp(ComunityVO vo) {
+//		return mapper.countUp(vo);
+//	}
 	@Override
 	public int update(ComunityVO vo) {
 		return mapper.update(vo);
-	}
-	@Override
-	public int countUp(ComunityVO vo) {
-		return mapper.countUp(vo);
 	}
 	@Override
 	public int delete(ComunityVO vo) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.ComunityService;
@@ -26,23 +27,23 @@ public class ComunityController {
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
 		cri.setSnoEno();
-		mv.addObject("Banana",service.searchList(cri));
+		mv.addObject("board",service.searchList(cri));
 		
 		PageMaker maker = new PageMaker();
 		maker.setCri(cri);
 		maker.setTotalRow(service.searchRowCount(cri));
 		
 		mv.addObject("maker",maker);
-		mv.setViewName("comunity/clist");
+		mv.setViewName("comunity/list");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/insert")
-	public ModelAndView insert(ModelAndView mv, ComunityVO vo) {
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView postInsert(ModelAndView mv, ComunityVO vo) {
 		if(service.insert(vo)>0) {
 //			mv.addObject("detail",service.selectOne(vo));
 //			mv.setViewName("comunity/cdetail");
-			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
+			mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());
 		}else {
 			mv.addObject("fCode","BI");
 			mv.setViewName("comunity/fail");
@@ -50,8 +51,8 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/cinsert")
-	public void insertf() {
+	@RequestMapping(value = "/register")
+	public void getInsert() {
 	
 	}
 	
@@ -66,23 +67,26 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/detail")
-	public ModelAndView detail(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
+	@RequestMapping(value = "/get")
+	public ModelAndView get(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
+		
+		
+		//service.countUp(vo); 굳이 서비스에 추가하지 않고 selectOne에 기능만 추가해서 사용
+		//update에서 중복 사용 되도 조건을 주면 상관 없음
 		vo = service.selectOne(vo);
 		List<ReplyVO> list = rservice.selectList(rvo);
 		
 			mv.addObject("reply",list);
-			mv.addObject("detail",vo);
-			mv.setViewName("comunity/cdetail");
+			mv.addObject("get",vo);
+			mv.setViewName("comunity/get");
 			return mv;
 	}
 	
 	
-	
-	@RequestMapping(value = "/update")
-	public ModelAndView update(ModelAndView mv, ComunityVO vo) {
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelAndView postUpdate(ModelAndView mv, ComunityVO vo) {
 		if(service.update(vo) > 0) {
-			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
+			mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());
 		}else {
 			mv.addObject("fCode","BU");
 			mv.setViewName("comunity/fail");
@@ -90,17 +94,11 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/updatef")
-	public ModelAndView updatef(ModelAndView mv, ComunityVO vo) {
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView getUpdate(ModelAndView mv, ComunityVO vo) {
 	
 		vo = service.selectOne(vo);
-		if(vo != null) {
-			mv.addObject("detail", vo);
-			mv.setViewName("comunity/cupdate");
-		}else {
-			mv.addObject("fCode","BN");
-			mv.setViewName("comunity/fail");
-		}
+			mv.addObject("get", vo);
 		return mv;
 	}
 	

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.ncs.vo.ReplyVO;
 
 @Repository
-public interface ReplyMapper {
+public interface ComReplyMapper {
 
 	
 	public List<ReplyVO> selectList(ReplyVO rvo);
