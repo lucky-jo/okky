@@ -53,7 +53,7 @@
 
 		</div>
 		<div class="panel-body">
-			<form action="/qna/register" method="post"
+			<form action="/comunity/register" method="post"
 				id="article-form" class="article-form" role="form"
 				onsubmit="return postForm()">
 				<input type="hidden" name="SYNCHRONIZER_TOKEN"
