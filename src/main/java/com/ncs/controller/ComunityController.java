@@ -69,6 +69,10 @@ public class ComunityController {
 	
 	@RequestMapping(value = "/get")
 	public ModelAndView get(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
+		
+		
+		//service.countUp(vo); 굳이 서비스에 추가하지 않고 selectOne에 기능만 추가해서 사용
+		//update에서 중복 사용 되도 조건을 주면 상관 없음
 		vo = service.selectOne(vo);
 		List<ReplyVO> list = rservice.selectList(rvo);
 		
@@ -77,7 +81,6 @@ public class ComunityController {
 			mv.setViewName("comunity/get");
 			return mv;
 	}
-	
 	
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
