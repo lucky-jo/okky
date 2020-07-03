@@ -39,8 +39,9 @@ public class Criteria {
 	}
 	// 2) 1페이지당 보여줄 Row(Record,튜플) 갯수 확인
 	public void setPerPageRow(int perPageRow) {
-		if (perPageRow<1 || perPageRow>50)
+		if (perPageRow<1 || perPageRow>50) {
 			perPageRow=10;
+		}
 		this.perPageRow = perPageRow;
 	}
 	// 3) startRowNo , endRowNo 계산
