@@ -3,22 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.ncs.mapper.ReplyMapper">
+  <mapper namespace="com.ncs.mapper.ComReplyMapper">
   	<select id="selectList" resultType="com.ncs.vo.ReplyVO">
   	select rseq, rid, regdate, rupdatedate,
-	 rexist, rlikecount,seq from reply order by seq 
+	 rexist, rlikecount,seq from comreply order by seq 
   </select>
   
   <select id="selectOne" resultType="com.ncs.vo.ReplyVO">
 	select rseq,rid,rcontent,regdate,rupdatedate,rexist,rlikecount,seq
-	 from reply where seq=#{seq}
+	 from comreply where seq=#{seq}
   </select>
   
   <insert id="rinsert">
   <selectKey keyProperty="rseq" order="BEFORE" resultType="int">
-        select IFNULL(MAX(rseq),0)+1 as rseq from reply
+        select IFNULL(MAX(rseq),0)+1 as rseq from comreply
      </selectKey>
-  	insert into reply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
+  	insert into comreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
   </insert>
   
   </mapper>
