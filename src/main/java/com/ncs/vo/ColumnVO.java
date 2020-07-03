@@ -10,6 +10,13 @@ public class ColumnVO {
 	private int like;
 	private int comment;
 	private int point;
+	private String category;
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public int getSeq() {
 		return seq;
 	}
