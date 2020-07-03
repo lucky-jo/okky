@@ -15,6 +15,26 @@ function del() {
 	}
 } // del() 
 </script>
+
+
+<ul class="nav nav-sidebar nav-main">
+
+	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+
+</ul>
+
+<ul class="nav nav-sidebar nav-bottom">
+	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
+</ul>
+</div>
         <div class="sidebar-category-nav">
             <h3 class="sub-title">Q&A</h3>
             <ul class="nav">
@@ -85,35 +105,138 @@ function del() {
 				</div>
 				
 				<div class="dropdown">
-                            <form action="/article/delete/734506" method="post" name="article-delete-form" id="article-delete-form" ><input type="hidden" name="_method" value="DELETE" id="_method" />
-                                <div class="dropdown">
-                                    <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="/qna/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
+					<form method="post" name="article-delete-form" id="article-delete-form" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+						<div class="dropdown">
+							<a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/qna/update?seq=${get.seq}" class="edit"><i class="fa fa-edit fa-fw" ></i> 수정 </a></li>
                                         
-                                            <li><a href="/qna/delete?seq=${get.seq }" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
+								<li><a href="/qna/delete?seq=${get.seq }" id="article-delete-btn"><i class="fa fa-trash-o fa-fw" onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
                                         
-                                    </ul>
-                                </div>
-                            </form>
-                        </div>
-
-
+							</ul>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 
+	<div class="panel panel-default clearfix">
+		<!-- List group -->
+		<ul class="list-group">
 
-	<div class="main-banner-wrapper">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- 728-90_Ressponsive -->
-		<ins class="adsbygoogle"
-			 style="display:inline-block;width:728px;height:90px"
-			 data-ad-client="ca-pub-8103607814406874"
-			 data-ad-slot="8622179990"></ins>
-		<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
+			<li id="note-title" class="list-group-item note-title">
+				<h3 class="panel-title">답변 <span id="note-count">리플갯수</span></h3>
+			</li>
+
+			<li class="list-group-item note-item clearfix" id="note-2015116">
+				<form action="/content/update/2015116" method="post" data-id="2015116" class="note-update-form" ><input type="hidden" name="_method" value="PUT" id="_method" />
+					<div class="content-body panel-body pull-left">
+
+
+
+
+						<div class="note-select-indicator note-selected">
+							<i class="fa fa-check"></i>
+						</div>
+
+
+
+
+						<div class='avatar avatar-medium clearfix '><a href='/user/info/94672' class='avatar-photo'><img src='//www.gravatar.com/avatar/bd61deea96013981955dcb445d4a7399?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94672"  title="정교니">정교니</a> <div class="activity"><span class="fa fa-flash"></span> 404</div><div class="date-created"><span class="timeago" title="2020-07-03 16:24:44.0">2020-07-03 16:24:44</span> </div> </div></div>
+						<fieldset class="form">
+							<article id="note-text-2015116" class="list-group-item-text note-text">
+
+								<pre class=" language-java" style="line-height:1.42857"><code class=" language-java">if(name.equals(&#34;SELECT * FROM SCHEDULE WHERE NAME &#61; &#39;&#34; &#43; name &#43; &#34;&#39;&#34;))</code></pre><p>이 부분은</p><p>입력한 name이라는 변수와 </p><pre class=" language-java" style="line-height:1.42857"><code class=" language-java">&#34;SELECT * FROM SCHEDULE WHERE NAME &#61; &#39;&#34; &#43; name &#43; &#34;&#39;&#34;)</code></pre><p>이라는 하나의 문자열을 비교하는 구문이 되네요.</p><p>Select 해서 나온 결과 값을 name.equals(    ) 안에 넣어주는게 맞을것 같아요.</p>
+
+							</article>
+						</fieldset>
+					</div>
+
+					<div class="content-function pull-right text-center">
+						<div class="content-function-group">
+							<div class="note-evaluate-wrapper"><a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2015116"><i id="note-evaluate-assent-2015116" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천"></i></a><div id="content-vote-count-2015116" class="content-eval-count">0</div><a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="2015116"><i id="note-evaluate-dissent-2015116" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="반대"></i></a></div>
+						</div>
+					</div>
+
+				</form>
+
+				<form action="/content/delete/2015116" method="post" id="note-delete-form-2015116" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+				</form>
+			</li>
+
+			<li class="list-group-item note-item clearfix" id="note-2015129">
+				<form action="/content/update/2015129" method="post" data-id="2015129" class="note-update-form" ><input type="hidden" name="_method" value="PUT" id="_method" />
+					<div class="content-body panel-body pull-left">
+
+
+
+
+						<div class="note-select-indicator note-deselected">
+							<i class="fa fa-comment"></i>
+						</div>
+
+
+
+
+						<div class='avatar avatar-medium clearfix '><a href='/user/info/103851' class='avatar-photo'><img src='//graph.facebook.com/1959001237566188/picture?width=40&height=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/103851"  title="이름은포기한다">이름은포기한다</a> <div class="activity"><span class="fa fa-flash"></span> 20</div><div class="date-created"><span class="timeago" title="2020-07-03 16:35:56.0">2020-07-03 16:35:56</span> </div> </div></div>
+						<fieldset class="form">
+							<article id="note-text-2015129" class="list-group-item-text note-text">
+
+								<p>그럼 name.equals(   )안에 어떤 내용이 들어가야 하나요?</p><p>잘 모르겠습니다ㅠㅠ</p>
+
+							</article>
+						</fieldset>
+					</div>
+
+					<div class="content-function pull-right text-center">
+						<div class="content-function-group">
+							<div class="note-evaluate-wrapper"><a href="javascript://" class="note-vote-btn" role="button" data-type="assent" data-eval="true" data-id="2015129"><i id="note-evaluate-assent-2015129" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천"></i></a><div id="content-vote-count-2015129" class="content-eval-count">0</div><a href="javascript://" class="note-vote-btn" role="button" data-type="dissent" data-eval="true" data-id="2015129"><i id="note-evaluate-dissent-2015129" class="fa fa-angle-down note-evaluate-dissent-dissent" data-placement="left" data-toggle="tooltip" title="반대"></i></a></div>
+						</div>
+					</div>
+
+
+				</form>
+
+				<form action="/content/delete/2015129" method="post" id="note-delete-form-2015129" ><input type="hidden" name="_method" value="DELETE" id="_method" />
+				</form>
+			</li>
+
+			<li class="list-group-item note-form clearfix">
+
+
+				<div class="panel-body">
+					<form action="/article/addNote/734943" method="post" class="note-create-form" >
+
+						<div class="content-body panel-body pull-left">
+							<div style="margin-left: 5px;">
+
+								<div class="note-select-indicator note-deselected">
+									<i class="fa fa-edit"></i>
+								</div>
+
+
+								<div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="일당백">일당백</a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
+
+							</div>
+							<fieldset class="form">
+								<input type="hidden" name="note.textType" value="HTML" id="note.textType" />
+								<textarea name="note.text" id="note-create" placeholder="댓글 쓰기" class="form-control" ></textarea>
+							</fieldset>
+						</div>
+						<div class="content-function-cog note-submit-buttons clearfix">
+							<p><a href="javascript://" id="note-create-cancel-btn" class="btn btn-default btn-wide" style="display: none;">취소</a></p>
+							<input type="submit" name="create" id="btn-create-btn" class="btn btn-success btn-wide" value=" 등록" disabled="disabled" />
+						</div>
+					</form>
+
+				</div>
+				<div class="panel-body">
+					<h5 class="text-center"><a href="/login/auth?redirectUrl=%2Farticle%2F734930" class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.</h5>
+				</div>
+
+			</li>
+		</ul>
 	</div>
 
 </div>
