@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ncs.mapper.ColumnCommentMapper">
+  	<select id="selectList" resultType="com.ncs.vo.ColumnCommentVO">
+  	select comment_seq, comment_id, comment_point, commment_content, comment_regdate, comment_like
+	 from columnc order by comment_seq 
+  </select>
+  
+  <select id="selectOne" resultType="com.ncs.vo.ColumnCommentVO">
+	select comment_seq,comment_id,comment_point,comment_content,comment_regdate,comment_like
+	 from columnc where comment_seq=#{comment_seq}
+  </select>
+  
+  <insert id="cinsert">
+	<selectKey keyProperty="comment_seq" order="BEFORE" resultType="int">
+	select IFNULL(MAX(comment_seq),0)+1 as comment_seq from columnc
+	</selectKey>
+  	insert into columnc(comment_seq,comment_id,comment_content)
+  	values(#{comment_seq},#{comment_id},#{comment_content})
+  </insert>  
+  
+  </mapper>

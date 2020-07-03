@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ncs.service.ColumnCommentService;
 import com.ncs.service.ColumnService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.ColumnCommentVO;
 import com.ncs.vo.ColumnVO;
 
 @RequestMapping(value = "/column")
@@ -16,6 +18,9 @@ public class ColumnController {
 	
 	@Autowired
 	ColumnService service;
+	
+	@Autowired
+	ColumnCommentService cservice;
 	
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
@@ -31,6 +36,18 @@ public class ColumnController {
 		mv.setViewName("column/columnList");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/cinsert")
+	public ModelAndView rinsert(ModelAndView mv, ColumnCommentVO cvo) {
+		
+		if (cservice.cinsert(cvo)>0) {
+			mv.setViewName("redirect:/column/detail?seq=" + cvo.getComment_seq() );
+		}else {
+			mv.addObject("fCode","BR");
+			mv.setViewName("member/doFinish");
+		}
+		return mv;
+	}// cinsert
 	
 	@RequestMapping(value = "/insert")
 	public ModelAndView insert(ModelAndView mv, ColumnVO vo) {
@@ -54,7 +71,7 @@ public class ColumnController {
 	@RequestMapping(value = "/detail")
 	public ModelAndView detail(ModelAndView mv, ColumnVO vo) {
 		
-//		vo = service.selectOne(vo);
+		vo = service.selectOne(vo);
 		
 		if (vo!=null) {
 			mv.addObject("Detail", vo);

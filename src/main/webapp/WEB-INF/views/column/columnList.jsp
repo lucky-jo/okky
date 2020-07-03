@@ -8,15 +8,15 @@
 <script>
 $(function(){
 	$('#searchBtn').on("click",function(){
-				self.location="/column/list"
-					+"${pageMaker.makeQuery(1)}"
-					+"&searchType="
-					+$("#searchType").val()
-					/* + $("select option:selected").val() */
-					+"&keyword="
-					+$("#keyword").val();
-	});
-});
+		self.location="/column/list"
+			+"${pageMaker.makeQuery(1)}"
+			+"&searchType="
+			+$("searchType=").val()
+			/* + $("select option:selected").val() */
+			+"&keyword="
+			+$("#keyword").val();
+	})
+})
 </script>
 
         <div class="sidebar-category-nav">

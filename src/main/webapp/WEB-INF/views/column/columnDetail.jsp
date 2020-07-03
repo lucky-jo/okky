@@ -34,10 +34,46 @@
 		<td>${Detail.cnt}</td></tr>
 </table>
 <hr>
-
 <%-- <c:if test="${logID==Detail.id}"> --%>
 	<a href="/column/updatef?seq=${Detail.seq}">[글수정]</a>&nbsp;
 	<a href="delete?seq=${Detail.seq}">[글삭제]</a><br>
 <%-- </c:if> --%>
-
+<hr>
+<table>
+	<tr>
+		<td>댓글</td>
+	</tr>
+	<c:forEach var="cc" items="${comment}">
+	<tr align="center" height="30">
+		<td rowspan="0">image</td>
+		<td>${cc.comment_id}</td>
+	</tr>
+		<tr>
+		<td>${cc.comment_point}</td>
+	</tr>
+	<tr>
+		<td>${cc.comment_content}</textarea></td>
+	</tr>
+	<tr>
+		<td>${cc.comment_regdate}</td>
+	</tr>
+	<tr>
+		<td>${cc.comment_like}</td>
+	</tr>
+	</c:forEach>
+	</table>
+	<form action="/column/cinsert" method="post">
+	<table>
+		<tr align="center" height="30">
+			<td rowspan="0">image</td>
+			<td>id</td>
+		</tr>
+		<tr>
+			<td><textarea rows="10" cols="40" name="content"></textarea></td>
+			<td><input type="reset" value="취소">
+			<input type="submit" value="등록">
+			<input type="hidden" name="id" value="honggildong"></td>
+		</tr>
+	</table>
+	</form>
 <%@include file="../includes/footer.jsp"%>
