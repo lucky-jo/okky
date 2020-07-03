@@ -43,7 +43,7 @@
   <![CDATA[
 	select * from columnm where ( 1=1 ]]>
 	  <include refid="search"></include> order by seq desc
-	  limit #{sno} , #{perPageRow}
+	  limit #{sno} , #{eno}
   </select>		
 				  
   <select id="totalRowCount" resultType="int">
@@ -55,7 +55,6 @@
   <select id="selectList" resultType="com.ncs.vo.ColumnVO">
 	select seq,title,id,regdate,cnt from columnm order by seq
   </select>
-  
   <insert id="insert">
 	<selectKey keyProperty="seq" order="BEFORE" resultType="int">
 	select IFNULL(MAX(seq),0)+1 as seq from columnm
