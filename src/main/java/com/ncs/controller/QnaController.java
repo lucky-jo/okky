@@ -22,11 +22,11 @@ public class QnaController {
             cri.setSnoEno();
             mv.addObject("board",service.searchList(cri));
 
-            PageMaker maker = new PageMaker();
-            maker.setCri(cri);
-            maker.setTotalRow(service.searchRowCount(cri));
+            PageMaker pageMaker = new PageMaker();
+            pageMaker.setCri(cri);
+            pageMaker.setTotalRow(service.searchRowCount(cri));
 
-            mv.addObject("maker",maker);
+            mv.addObject("pageMaker",pageMaker);
             mv.setViewName("qna/list");
             return mv;
         }
