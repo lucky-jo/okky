@@ -12,6 +12,24 @@ public class QnaVO {
 	private int exist ;
 	private int cnt;
 	private String category;
+	private int replycount;
+	private String board;
+
+	public String getBoard() {
+		return board;
+	}
+
+	public void setBoard(String board) {
+		this.board = board;
+	}
+
+	public int getReplycount() {
+		return replycount;
+	}
+
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
 
 	public int getLikecount() {
 		return likecount;
