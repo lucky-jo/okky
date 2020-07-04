@@ -1,14 +1,19 @@
 package com.ncs.controller;
 
-import com.ncs.service.QnaService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.QnaVO;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ncs.service.QnaReplyService;
+import com.ncs.service.QnaService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.QnaVO;
+import com.ncs.vo.ReplyVO;
 
 @RequestMapping(value = "/qna/")
 @Controller
@@ -16,6 +21,9 @@ public class QnaController {
 
         @Autowired
         QnaService service;
+        
+        @Autowired
+        QnaReplyService rservice;
 
         @RequestMapping(value = "/list")
         public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
@@ -28,6 +36,7 @@ public class QnaController {
 
             mv.addObject("pageMaker",pageMaker);
             mv.setViewName("qna/list");
+            System.out.println(pageMaker.toString());
             return mv;
         }
 
@@ -48,9 +57,14 @@ public class QnaController {
         }
 
         @RequestMapping(value = "/get")
-        public ModelAndView get(ModelAndView mv, QnaVO vo) {
-            vo = service.selectOne(vo);
-
+        public ModelAndView get(ModelAndView mv, QnaVO vo, ReplyVO rvo) {
+        	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
+        	for (ReplyVO replyVO : list) {
+				System.out.println(replyVO.toString());
+			}
+        	vo = service.selectOne(vo);
+        	System.out.println(vo.toString());
+        	mv.addObject("replylist", list);
             mv.addObject("get",vo);
             mv.setViewName("qna/get");
             return mv;
