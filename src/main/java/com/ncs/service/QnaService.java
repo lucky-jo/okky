@@ -1,9 +1,9 @@
 package com.ncs.service;
 
+import java.util.List;
+
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.QnaVO;
-
-import java.util.List;
 
 public interface QnaService {
 

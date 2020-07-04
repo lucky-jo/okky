@@ -2,10 +2,13 @@ package com.ncs.service;
 
 import com.ncs.mapper.QnaMapper;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.GetCountDTO;
 import com.ncs.vo.QnaVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,6 +27,15 @@ public class QnaServiceImpl implements QnaService{
 	}
 	@Override
 	public QnaVO selectOne(QnaVO vo) {
+		GetCountDTO dto = new GetCountDTO();
+		dto.setId("jo");
+		dto.setBoard(vo.getBoard());
+		dto.setToday(getFolder());
+		dto.setSeq(vo.getSeq());
+		if (mapper.getcount(dto) == 0 ) {
+			mapper.registercount(dto);
+			mapper.countUp(vo.getSeq());
+		}
 		return mapper.selectOne(vo);
 	}
 	@Override
@@ -46,4 +58,11 @@ public class QnaServiceImpl implements QnaService{
 	public int searchRowCount(SearchCriteria cri) {
 		return mapper.searchRowCount(cri);
 	}
+   	
+	private String getFolder() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		return sdf.format(date);
+	}
+
 }
