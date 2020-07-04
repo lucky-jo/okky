@@ -131,8 +131,8 @@ function del() {
 
 
 					<pre>${get.content}</pre>
-					
-					</article>
+
+				</article>
 
 			</div>
 
@@ -183,8 +183,9 @@ function del() {
 										class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
 								<li><a href="/qna/delete?seq=${get.seq }"
-									id="article-delete-btn"><i class="fa fa-trash-o fa-fw"
-										onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"></i> 삭제 </a></li>
+									id="article-delete-btn"
+									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
+										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
 
 							</ul>
 						</div>
@@ -205,80 +206,95 @@ function del() {
 			</li>
 			<c:forEach var="list" items="${replylist }">
 				<c:if test="${list.rexist ==1 }">
-			<li class="list-group-item note-item clearfix" id="note-2015714">
-				<form action="/content/update/2015714" method="post"
-						data-id="2015714" class="note-update-form">
-					<input type="hidden" name="_method" value="PUT" id="_method" />
-						<div class="content-body panel-body pull-left">
+					<li class="list-group-item note-item clearfix" id="note-2015714">
+						<form action="/content/update/2015714" method="post"
+							data-id="2015714" class="note-update-form">
+							<input type="hidden" name="_method" value="PUT" id="_method" />
+							<div class="content-body panel-body pull-left">
 
-							<div class="note-select-indicator note-deselected">
-								<i class="fa fa-comment"></i>
+								<div class="note-select-indicator note-deselected">
+									<i class="fa fa-comment"></i>
+								</div>
+
+								<div class='avatar avatar-medium clearfix '>
+									<a href='/user/info/43814' class='avatar-photo'><img
+										src='//www.gravatar.com/avatar/eaa518caadea3ddd84540984e68cc0b6?d=identicon&s=40' /></a>
+									<div class="avatar-info">
+										<a class="nickname" href="/user/info/43814" title="defult">${list.rid }</a>
+										<div class="activity">
+											<span class="fa fa-flash"></span> 활동
+										</div>
+										<div class="date-created">
+											<span class="timeago" title="${list.regdate }">${list.regdate }
+											</span> 작성 <span class="date-saperate">∙ ${list.rupdatedate }</span>
+											수정됨
+
+										</div>
+									</div>
+								</div>
+								<fieldset class="form">
+									<article id="note-text-2015714"
+										class="list-group-item-text note-text">
+										<pre>${list.rcontent }</pre>
+									</article>
+								</fieldset>
 							</div>
 
-							<div class='avatar avatar-medium clearfix '>
-								<a href='/user/info/43814' class='avatar-photo'><img
-									src='//www.gravatar.com/avatar/eaa518caadea3ddd84540984e68cc0b6?d=identicon&s=40' /></a>
-								<div class="avatar-info">
-									<a class="nickname" href="/user/info/43814" title="defult">${list.rid }</a>
-									<div class="activity">
-										<span class="fa fa-flash"></span> 활동
-									</div>
-									<div class="date-created">
-										<span class="timeago" title="${list.regdate }">${list.regdate }
-											</span> 작성 <span class="date-saperate">∙ ${list.rupdatedate }</span> 수정됨
-										
+							<div class="content-function pull-right text-center">
+								<div class="content-function-group">
+									<div class="note-evaluate-wrapper">
+										<a href="javascript://" class="note-vote-btn" role="button"
+											data-type="assent" data-eval="true" data-id="2015714"><i
+											id="note-evaluate-assent-2015714"
+											class="fa fa-angle-up note-evaluate-assent-assent"
+											data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+										<div id="content-vote-count-2015714"
+											class="content-eval-count">0</div>
+										<a href="javascript://" class="note-vote-btn" role="button"
+											data-type="dissent" data-eval="true" data-id="2015714"><i
+											id="note-evaluate-dissent-2015714"
+											class="fa fa-angle-down note-evaluate-dissent-dissent"
+											data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 									</div>
 								</div>
 							</div>
-							<fieldset class="form">
-								<article id="note-text-2015714"
-									class="list-group-item-text note-text">
-									<pre>${list.rcontent }</pre>
-								</article>
-							</fieldset>
-						</div>
-
-						<div class="content-function pull-right text-center">
-							<div class="content-function-group">
-								<div class="note-evaluate-wrapper">
-									<a href="javascript://" class="note-vote-btn" role="button"
-										data-type="assent" data-eval="true" data-id="2015714"><i
-										id="note-evaluate-assent-2015714"
-										class="fa fa-angle-up note-evaluate-assent-assent"
-										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
-									<div id="content-vote-count-2015714" class="content-eval-count">0</div>
-									<a href="javascript://" class="note-vote-btn" role="button"
-										data-type="dissent" data-eval="true" data-id="2015714"><i
-										id="note-evaluate-dissent-2015714"
-										class="fa fa-angle-down note-evaluate-dissent-dissent"
-										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							<!-- 로그인 및 아이디 확인 후 출력 -->
+							<div id="content-function-cog-2014246"
+								class="content-function-cog">
+								<div class="dropdown">
+									<a href="javascript://" data-toggle="dropdown"><i
+										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+										title="게시물 설정"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="javascript://" class="note-edit-btn"
+											data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
+										<li><a
+											href="/qnareply/delete?rseq=${list.rseq }&seq=${list.seq}"
+											class="note-delete-btn" data-id="2014246"><i
+												class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
+									</ul>
+								</div>
+								<div class="buttons" style="display: none;">
+									<p>
+										<a href="javascript://"
+											class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
+									</p>
+									<p>
+										<input type="submit" name="create"
+											class="btn btn-success btn-wide" value="저장" id="create" />
+									</p>
 								</div>
 							</div>
-						</div>
-						<!-- 로그인 및 아이디 확인 후 출력 -->
-						<div id="content-function-cog-2014246" class="content-function-cog">
-                                    <div class="dropdown">
-                                        <a href="javascript://" data-toggle="dropdown"><i class="fa fa-cog" data-toggle="tooltip" data-placement="left" title="게시물 설정"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="javascript://" class="note-edit-btn" data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
-                                            <li><a href="/qnareply/delete?rseq=${list.rseq }&seq=${list.seq}" class="note-delete-btn" data-id="2014246"><i class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="buttons" style="display: none;">
-                                        <p><a href="javascript://" class="btn btn-default btn-wide note-edit-cancel-btn">취소</a></p>
-                                        <p><input type="submit" name="create" class="btn btn-success btn-wide" value="저장" id="create" /></p>
-                                    </div>
-                                </div>
 
 
-					</form>
+						</form>
 
-					<form action="/content/delete/2015714" method="post"
-						id="note-delete-form-2015714">
-						<input type="hidden" name="_method" value="DELETE" id="_method" />
-					</form>
+						<form action="/content/delete/2015714" method="post"
+							id="note-delete-form-2015714">
+							<input type="hidden" name="_method" value="DELETE" id="_method" />
+						</form>
 
-				</li>
+					</li>
 				</c:if>
 			</c:forEach>
 			<li class="list-group-item note-item clearfix" id="note-2015129">
