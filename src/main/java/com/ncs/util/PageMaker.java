@@ -110,6 +110,7 @@ public class PageMaker {
 				.queryParam("PerPageRow", cri.getPerPageRow())
 				.queryParam("searchType", cri.getSearchType())
 				.queryParam("keyword", cri.getKeyword())
+				.queryParam("category", cri.getCategory())
 				.build();
 		return uriComponents.toUriString();
 	} // makeSearch()
