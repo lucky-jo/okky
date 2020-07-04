@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ncs.mapper.TechMapper">
+    <sql id="search">
+    <if test="category != null and !category.equals('')">
+    	and category = #{category}
+    </if>
+     <choose>
+        <when test="searchType=='t'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='c'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='w'.toString()">
+           and id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tc'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='cw'.toString()">
+           and content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <when test="searchType=='tcw'.toString()">
+           and title like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or content like CONCAT(CONCAT('%',#{keyword}),'%') 
+           or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+        </when>
+        <otherwise> ) </otherwise>
+     </choose>
+  </sql>
+  
+  
+  <select id="selectList" resultType="com.ncs.vo.TechVO">
+  	select seq,title,id, regdate, updatedate,
+	 exist, cnt, category from tech order by seq
+  </select>
+  
+  <insert id="insert">
+  <selectKey keyProperty="seq" order="BEFORE" resultType="int">
+        select IFNULL(MAX(seq),0)+1 as seq from tech
+     </selectKey>
+  	insert into tech(seq,id,category,title,content) values(#{seq},#{id},#{category},#{title},#{content})
+  </insert>
+  
+  <select id="selectOne" resultType="com.ncs.vo.TechVO">
+	select *
+	 from tech where seq=#{seq}
+  </select>
+  
+  <update id="update">
+  	update tech set category=#{category}, title=#{title}, content=#{content}, updatedate = now() where seq=#{seq}
+  </update>
+  
+  <update id="delete">
+  	update tech set exist = 0 where seq=#{seq}
+  </update>
+  
+  <select id="dcategory">
+  	select * from tech where category = #{category}
+  </select>
+  
+   <select id="totalRowCount" resultType="int">
+	select count(*) from tech
+  </select>
+  
+<!--   <select id="searchList" resultType="com.ncs.vo.ComunityVO">
+   <![CDATA[
+	select seq,title,id, regdate, updatedate,
+	exist, cnt, category from comunity order by seq ]]>
+	<include refid="search"></include>
+	where rnum between #{sno} and #{eno}
+  </select> -->
+  
+  <select id="searchRowCount" resultType="int">
+  <![CDATA[
+   select count(*) from tech where ( seq>0 ]]>
+   <include refid="search"></include>
+  </select>
+  
+  <select id="searchList" resultType="com.ncs.vo.TechVO">
+  <![CDATA[
+   select * 
+   from tech where ( 1=1
+     ]]>
+     <include refid="search"></include> order by seq desc
+     limit #{start} , #{perPageRow}
+  </select>
+  
+
+  </mapper>
+  
