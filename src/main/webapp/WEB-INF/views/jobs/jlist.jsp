@@ -82,7 +82,7 @@ $(function(){
 </div>
 <br>
 <table>
-	<c:forEach var="mm" items="${board}">
+	<c:forEach var="mm" items="${melon}">
 	<tbody>
 		<tr align="center" height="30">
 			<td style="color: gray;">#${mm.seq}&nbsp;</td>

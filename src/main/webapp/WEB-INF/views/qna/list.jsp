@@ -8,20 +8,40 @@
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+	<li class="active" data-toggle="tooltip" data-placement="right"
+		data-container="body" title="Q&A"><a href="/qna/list"
+		class="link"><i class="nav-icon fa fa-database"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
+		title="Tech"><a href="/tech/list" class="link"><i
+			class="nav-icon fa fa-code"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
+		title="커뮤니티"><a href="/comunity/list" class="link"><i
+			class="nav-icon fa fa-comments"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
+		title="칼럼"><a href="/column/list" class="link"><i
+			class="nav-icon fa fa-quote-left"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
+		title="Jobs"><a href="/jobs/list" class="link"><i
+			class="nav-icon fa fa-group"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
 </ul>
 
 <ul class="nav nav-sidebar nav-bottom">
-	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
+		title="Github Issues"><a
+		href="https://github.com/okjsp/okky/issues" class="link"
+		target="_blank"><i class="fa fa-github"></i> <span
+			class="nav-sidebar-label nav-sidebar-category-label">Github
+				Issues</span></a></li>
 </ul>
 </div>
 
@@ -30,15 +50,20 @@
 	<ul class="nav">
 		<li><a href="/qna/list" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/qna/list?category=a" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'a' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/qna/list?category=b" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'b' ? 'nav-selected':''}" />'><span
+					class="nav-selected-dot"></span></span></a></li>
+		<li><a href="/qna/list?category=Tech%20Q%26A" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span>
+				<span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'TechQ&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
@@ -214,21 +239,32 @@
 <div class="text-center">
 
 	<ul class="pagination pagination-sm">
+		<c:if test="${pageMaker.prev}">
+			<li><a href="list${pageMaker.makeSearch(1)}">First&nbsp;</a></li>
+			<li><a href="list${pageMaker.makeSearch(pageMaker.sPageNo-1)}">&laquo;&nbsp;</a></li>
+			<!-- listcri?currPage=8&PerPageRow=10 -->
+		</c:if>
+
 		<c:forEach begin="${pageMaker.sPageNo}" end="${pageMaker.ePageNo}"
 			var="i">
 			<c:choose>
 				<c:when test="${pageMaker.cri.currPage==i}">
 					<li class="active"><span>${i}</span></li>
- 				</c:when>
+				</c:when>
 				<c:otherwise>
 					<li><a href="/qna/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
- 				</c:otherwise>
+				</c:otherwise>
 			</c:choose>
 			<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
-<!-- 		<li class="disabled"><span>...</span></li>
+			<!--  		<li class="disabled"><span>...</span></li>
 		<li><a href="/qna/list?" class="step">8013</a></li>
 		<li class="next"><a href="/qna/list?" class="step">&raquo;</a></li> -->
 		</c:forEach>
+
+		<c:if test="${pageMaker.next && pageMaker.ePageNo > 0}">
+			<li><a href="list${pageMaker.makeSearch(pageMaker.ePageNo+1)}">&nbsp;&raquo;</a></li>
+			<li><a href="list${pageMaker.makeSearch(pageMaker.lastPageNo)}">&nbsp;Last</a></li>
+		</c:if>
 	</ul>
 
 </div>
