@@ -5,6 +5,9 @@
   
   <mapper namespace="com.ncs.mapper.QnaMapper">
     <sql id="search">
+    <if test="category != null and !category.equals('')">
+    	and category = #{category}
+    </if>
      <choose>
         <when test="searchType=='t'.toString()">
            and title like CONCAT(CONCAT('%',#{keyword}),'%'))
