@@ -172,7 +172,7 @@ function del() {
 
 					<div class="form-group  has-feedback">
 
-						<textarea name="content" id="summernote" rows="20"
+						<textarea name="rcontent" id="summernote" rows="20"
 							class="form-control input-block-level"></textarea>
 					</div>
 					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
