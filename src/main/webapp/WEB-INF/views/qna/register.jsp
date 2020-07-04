@@ -83,7 +83,7 @@
 								required="">
 								<option value="">게시판을 선택해 주세요.</option>
 
-								<option value="a" data-external="" data-anonymity="false">
+								<option value="Tech Q&A" data-external="" data-anonymity="false">
 									Tech Q&A</option>
 								<option value="b" data-external=""
 									data-anonymity="false">Blockchain Q&A</option>
