@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsService;
@@ -23,34 +22,33 @@ public class JobsController {
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mv,SearchCriteria cri) {
 		cri.setSnoEno();
-		mv.addObject("board",service.searchList(cri));
+		mv.addObject("melon",service.searchList(cri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		mv.addObject("pageMaker",pageMaker);
 		
-		mv.setViewName("jobs/list");
+		mv.setViewName("jobs/jlist");
 		return mv;
 	}//list
 	
 	
-	  @RequestMapping(value = "/register", method = RequestMethod.POST ) 
+	  @RequestMapping("/insert") 
 	  public ModelAndView newinsert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  //mv.addObject("새 글이 등록 되었습니다");
 	          mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq()); 
-		  }else {
+	   }else {
 		   mv.addObject("작성을 해주세요");
 	       mv.setViewName("jobs/jinsert"); 
-		  }
-	 
-		  return mv;
 	   }
+	 
+	   return mv; }//insert:새글 등록창
 	  
-	  @RequestMapping(value = "/register", method = RequestMethod.GET )
+	  @RequestMapping("/jinsert")
 	  public ModelAndView jinsert(ModelAndView mv) {
-		  mv.setViewName("jobs/register");
+		  mv.setViewName("jobs/jinsert");
 		  return mv;
 	  }
 	  
