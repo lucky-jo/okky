@@ -86,12 +86,26 @@
   <select id="searchList" resultType="com.ncs.vo.QnaVO">
   <![CDATA[
    select * 
-   from qna where ( 1=1
+   from qna where ( exist = 1
      ]]>
      <include refid="search"></include> order by seq desc
      limit #{start} , #{perPageRow}
   </select>
   
-
+  <update id="countUp">
+  	update qna set cnt = cnt+1 where seq = #{seq}
+  </update>
+  
+  <update id="replycountUp">
+  	update qna set replycount = replycount+1 where seq = #{seq}
+  </update>
+  
+  <select id="getcount" resultType="int">
+  	select count(*) from getcount where id = #{id} and board = #{board} and today = #{today} and seq = #{seq}
+  	</select>
+  	
+  <insert id="registercount">
+  	insert into getcount values(#{id},#{board},#{today},#{seq})
+  </insert>
   </mapper>
   
