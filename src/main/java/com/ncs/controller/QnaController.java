@@ -1,13 +1,6 @@
 package com.ncs.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
+import com.ncs.service.LikeCountService;
 import com.ncs.service.QnaReplyService;
 import com.ncs.service.QnaService;
 import com.ncs.util.PageMaker;
@@ -15,6 +8,13 @@ import com.ncs.util.SearchCriteria;
 import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RequestMapping(value = "/qna/")
 @Controller
@@ -25,6 +25,9 @@ public class QnaController {
         
         @Autowired
         QnaReplyService rservice;
+
+        @Autowired
+        LikeCountService likeCountService;
 
         @RequestMapping(value = "/list")
         public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
@@ -66,8 +69,8 @@ public class QnaController {
 //			}
         	vo = service.selectOne(vo);
         	if( vo != null ) {
-        		dto.setBoard(vo.getBoard());
-        		dto.setLikeid("jo");
+        		dto.setBoard("qna");
+        		dto.setLikeid("ildang100");
         		int cnt = service.like(dto);
             	System.out.println(cnt);
             	mv.addObject("liketype", cnt);
@@ -105,12 +108,6 @@ public class QnaController {
                 mv.setViewName("redirect:/qna/get?seq="+vo.getSeq());
             }
             return mv;
-        }
-        
-        @RequestMapping(value = "/like")
-        public String like(QnaVO vo, LikeDTO dto) {
-        	
-        	return "redirect:/qna/get?seq="+vo.getSeq();
         }
 
     }
