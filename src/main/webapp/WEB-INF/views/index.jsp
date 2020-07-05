@@ -73,8 +73,8 @@
 
                 <%--회원가입 로그인--%>
                 <ul class="nav nav-sidebar">
-                    <li ><a href="/login/auth?redirectUrl=%2F" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
-                    <li ><a href="/user/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
+                    <li ><a href="/member/login" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
+                    <li ><a href="/member/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
                 </ul>
 
             </div>
