@@ -12,6 +12,7 @@ import com.ncs.service.QnaReplyService;
 import com.ncs.service.QnaService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyVO;
 
@@ -57,12 +58,20 @@ public class QnaController {
         }
 
         @RequestMapping(value = "/get")
-        public ModelAndView get(ModelAndView mv, QnaVO vo, ReplyVO rvo) {
+        public ModelAndView get(ModelAndView mv, QnaVO vo, ReplyVO rvo, LikeDTO dto) {
         	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
-        	for (ReplyVO replyVO : list) {
-				System.out.println(replyVO.toString());
-			}
+//        	for (ReplyVO replyVO : list) {
+//        		
+//				service.like(dto);
+//			}
         	vo = service.selectOne(vo);
+        	if( vo != null ) {
+        		dto.setBoard(vo.getBoard());
+        		dto.setLikeid("jo");
+        		int cnt = service.like(dto);
+            	System.out.println(cnt);
+            	mv.addObject("liketype", cnt);
+        	}
         	System.out.println(vo.toString());
         	mv.addObject("replylist", list);
             mv.addObject("get",vo);
@@ -96,6 +105,12 @@ public class QnaController {
                 mv.setViewName("redirect:/qna/get?seq="+vo.getSeq());
             }
             return mv;
+        }
+        
+        @RequestMapping(value = "/like")
+        public String like(QnaVO vo, LikeDTO dto) {
+        	
+        	return "redirect:/qna/get?seq="+vo.getSeq();
         }
 
     }
