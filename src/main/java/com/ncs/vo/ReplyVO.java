@@ -10,8 +10,14 @@ public class ReplyVO {
 	private int rexist;
 	private int rlikecount;
 	private int seq;
+	private int liketype;
 	
-	
+	public int getLiketype() {
+		return liketype;
+	}
+	public void setLiketype(int liketype) {
+		this.liketype = liketype;
+	}
 	public int getSeq() {
 		return seq;
 	}
@@ -64,7 +70,7 @@ public class ReplyVO {
 	public String toString() {
 		return "ReplyVO [rseq=" + rseq + ", rid=" + rid + ", rcontent=" + rcontent + ", regdate=" + regdate
 				+ ", rupdatedate=" + rupdatedate + ", rexist=" + rexist + ", rlikecount=" + rlikecount + ", seq=" + seq
-				+ "]";
+				+ ", liketype=" + liketype + "]";
 	}
 	
 	

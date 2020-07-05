@@ -140,12 +140,12 @@ function del() {
 				class="content-function pull-right text-center">
 				<div class="content-function-group">
 					<div class="note-evaluate-wrapper">
-						<a href="javascript://" class="note-vote-btn" role="button"
+						<a href="/qna/like?seq=${get.seq}&id=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
 							data-type="assent" data-eval="true" data-id="2013409"><i
 							id="note-evaluate-assent-2013409"
 							class="fa fa-angle-up note-evaluate-assent-assent"
 							data-placement="left" data-toggle="tooltip" title="추천"></i></a>
-						<div id="content-vote-count-2013409" class="content-eval-count">좋아요횟수</div>
+						<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
 						<a href="javascript://" class="note-vote-btn" role="button"
 							data-type="dissent" data-eval="true" data-id="2013409"><i
 							id="note-evaluate-dissent-2013409"
