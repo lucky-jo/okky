@@ -1,15 +1,17 @@
 package com.ncs.service;
 
-import com.ncs.mapper.QnaMapper;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.GetCountDTO;
-import com.ncs.vo.QnaVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ncs.mapper.QnaMapper;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.GetCountDTO;
+import com.ncs.vo.LikeDTO;
+import com.ncs.vo.QnaVO;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -63,6 +65,10 @@ public class QnaServiceImpl implements QnaService{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		return sdf.format(date);
+	}
+	@Override
+	public int like(LikeDTO dto) {
+		return mapper.like(dto);
 	}
 
 }
