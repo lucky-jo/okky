@@ -1,10 +1,9 @@
 package com.ncs.service;
 
-import java.util.List;
-
 import com.ncs.util.SearchCriteria;
-import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
+
+import java.util.List;
 
 public interface QnaService {
 
@@ -16,5 +15,4 @@ public interface QnaService {
 	int totalRowCount();
 	List<QnaVO> searchList(SearchCriteria cri);
 	int searchRowCount(SearchCriteria cri);
-	int like(LikeDTO dto);
 }

@@ -2,7 +2,6 @@ package com.ncs.mapper;
 
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.GetCountDTO;
-import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +22,4 @@ public interface QnaMapper {
 	int replycountUp(int seq);
 	int getcount(GetCountDTO dto);
 	int registercount(GetCountDTO dto);
-	int like(LikeDTO dto);
 }

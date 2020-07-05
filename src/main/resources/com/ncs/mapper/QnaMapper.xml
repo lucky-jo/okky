@@ -108,9 +108,6 @@
 	<insert id="registercount">
 		insert into getcount values(#{id},#{board},#{today},#{seq})
 	</insert>
-	
-	<select id="like" resultType="int">
-		select liketype from likecount where likeid = #{likeid} and board = #{board} and seq = #{seq}
-	</select>
+
 </mapper>
   

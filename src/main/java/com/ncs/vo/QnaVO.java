@@ -8,7 +8,7 @@ public class QnaVO {
 	private String content ;
 	private String regdate ;
 	private String updatedate ;
-	private  int likecount;
+	private int likecount;
 	private int exist ;
 	private int cnt;
 	private String category;
