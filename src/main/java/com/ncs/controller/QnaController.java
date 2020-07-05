@@ -7,6 +7,7 @@ import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
+import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,17 +62,22 @@ public class QnaController {
         }
 
         @RequestMapping(value = "/get")
-        public ModelAndView get(ModelAndView mv, QnaVO vo, ReplyVO rvo, LikeDTO dto) {
+        public ModelAndView get(ModelAndView mv, QnaVO vo, LikeDTO dto, ReplyLikeDTO rdto) {
         	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
-//        	for (ReplyVO replyVO : list) {
-//        		
-//				service.like(dto);
-//			}
+        	for (ReplyVO replyVO : list) {
+        	    rdto.setBoard(replyVO.getBoard());
+        	    rdto.setLikerid("ildang100");
+        	    rdto.setRseq(replyVO.getRseq());
+				replyVO.setLiketype(likeCountService.replyLikeExist(rdto));
+				System.out.println(replyVO.getLiketype());
+				System.out.println(replyVO.toString());
+			}
         	vo = service.selectOne(vo);
         	if( vo != null ) {
+        	    dto.setSeq(vo.getSeq());
         		dto.setBoard("qna");
         		dto.setLikeid("ildang100");
-        		int cnt = service.like(dto);
+        		int cnt = likeCountService.likeExist(dto);
             	System.out.println(cnt);
             	mv.addObject("liketype", cnt);
         	}
