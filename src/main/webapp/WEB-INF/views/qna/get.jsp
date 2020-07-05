@@ -140,7 +140,50 @@ function del() {
 				class="content-function pull-right text-center">
 				<div class="content-function-group">
 					<div class="note-evaluate-wrapper">
-						<a href="/qna/like?seq=${get.seq}&id=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
+						<c:choose>
+							<c:when test="${liketype == 1 }">
+								<a href="/like/delete?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
+								   data-type="assent" data-eval="true" data-id="2010634" ><i
+										id="note-evaluate-assent-2010634"
+										class="fa fa-angle-up note-evaluate-assent-unvote "
+										data-placement="left" data-toggle="tooltip" title="추천" onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
+								<a href="javascript://" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2010634"><i
+										id="note-evaluate-dissent-2010634"
+										class="fa fa-angle-down note-evaluate-dissent-disabled"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
+							<c:when test="${liketype == 0 }">
+								<a href="/like/like?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
+								   data-type="assent" data-eval="true" data-id="2013409"><i
+										id="note-evaluate-assent-2013409"
+										class="fa fa-angle-up note-evaluate-assent-assent"
+										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
+								<a href="/like/like?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2013409"><i
+										id="note-evaluate-dissent-2013409"
+										class="fa fa-angle-down note-evaluate-dissent-dissent"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+							<c:when test="${liketype == -1 }">
+								<a href="javascript://" class="note-vote-btn" role="button"
+								   data-type="assent" data-eval="true" data-id="2010634" ><i
+										id="note-evaluate-assent-2010634"
+										class="fa fa-angle-up note-evaluate-assent-disabled "
+										data-placement="left" data-toggle="tooltip" title="추천" ></i></a>
+								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
+								<a href="/like/delete?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2010634" onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
+										id="note-evaluate-dissent-2010634"
+										class="fa fa-angle-down note-evaluate-dissent-unvote"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+
+						</c:choose>
+						<%--<a href="/qna/like?seq=${get.seq}&id=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
 							data-type="assent" data-eval="true" data-id="2013409"><i
 							id="note-evaluate-assent-2013409"
 							class="fa fa-angle-up note-evaluate-assent-assent"
@@ -150,7 +193,7 @@ function del() {
 							data-type="dissent" data-eval="true" data-id="2013409"><i
 							id="note-evaluate-dissent-2013409"
 							class="fa fa-angle-down note-evaluate-dissent-dissent"
-							data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							data-placement="left" data-toggle="tooltip" title="반대"></i></a>--%>
 					</div>
 				</div>
 				<div class="content-function-group article-scrap-wrapper">
@@ -243,18 +286,49 @@ function del() {
 							<div class="content-function pull-right text-center">
 								<div class="content-function-group">
 									<div class="note-evaluate-wrapper">
-										<a href="javascript://" class="note-vote-btn" role="button"
-											data-type="assent" data-eval="true" data-id="2015714"><i
-											id="note-evaluate-assent-2015714"
-											class="fa fa-angle-up note-evaluate-assent-assent"
-											data-placement="left" data-toggle="tooltip" title="추천"></i></a>
-										<div id="content-vote-count-2015714"
-											class="content-eval-count">0</div>
-										<a href="javascript://" class="note-vote-btn" role="button"
-											data-type="dissent" data-eval="true" data-id="2015714"><i
-											id="note-evaluate-dissent-2015714"
-											class="fa fa-angle-down note-evaluate-dissent-dissent"
-											data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+										<c:choose>
+											<c:when test="${list.liketype == 1 }">
+												<a href="/like/replydelete?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1" class="note-vote-btn" role="button"
+												   data-type="assent" data-eval="true" data-id="2010634" ><i
+														id="note-evaluate-assent-2010634"
+														class="fa fa-angle-up note-evaluate-assent-unvote "
+														data-placement="left" data-toggle="tooltip" title="추천" onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+												<div id="content-vote-count-2010634" class="content-eval-count">${list.rlikecount}</div>
+												<a href="javascript://" class="note-vote-btn" role="button"
+												   data-type="dissent" data-eval="true" data-id="2010634"><i
+														id="note-evaluate-dissent-2010634"
+														class="fa fa-angle-down note-evaluate-dissent-disabled"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
+											<c:when test="${list.liketype == 0 }">
+												<a href="/like/replylike?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1" class="note-vote-btn" role="button"
+												   data-type="assent" data-eval="true" data-id="2013409"><i
+														id="note-evaluate-assent-2013409"
+														class="fa fa-angle-up note-evaluate-assent-assent"
+														data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+												<div id="content-vote-count-2013409" class="content-eval-count">${list.rlikecount }</div>
+												<a href="/like/replylike?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1" class="note-vote-btn" role="button"
+												   data-type="dissent" data-eval="true" data-id="2013409"><i
+														id="note-evaluate-dissent-2013409"
+														class="fa fa-angle-down note-evaluate-dissent-dissent"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+											<c:when test="${list.liketype == -1 }">
+												<a href="javascript://" class="note-vote-btn" role="button"
+												   data-type="assent" data-eval="true" data-id="2010634" ><i
+														id="note-evaluate-assent-2010634"
+														class="fa fa-angle-up note-evaluate-assent-disabled "
+														data-placement="left" data-toggle="tooltip" title="추천" ></i></a>
+												<div id="content-vote-count-2010634" class="content-eval-count">${list.rlikecount}</div>
+												<a href="/like/replydelete?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1" class="note-vote-btn" role="button"
+												   data-type="dissent" data-eval="true" data-id="2010634" onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
+														id="note-evaluate-dissent-2010634"
+														class="fa fa-angle-down note-evaluate-dissent-unvote"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+
+										</c:choose>
 									</div>
 								</div>
 							</div>
@@ -344,7 +418,7 @@ function del() {
 							<input type="submit" name="create" id="btn-create-btn"
 								class="btn btn-success btn-wide" value=" 등록" />
 							<!-- disabled="disabled"  -->
-							<input type="hidden" name="rid" value="jo" /> <input
+							<input type="hidden" name="rid" value="ildang100" /> <input
 								type="hidden" name="seq" value="${get.seq }" />
 						</div>
 					</form>
