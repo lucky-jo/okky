@@ -11,7 +11,16 @@ public class ReplyVO {
 	private int rlikecount;
 	private int seq;
 	private int liketype;
-	
+	private String board;
+
+	public String getBoard() {
+		return board;
+	}
+
+	public void setBoard(String board) {
+		this.board = board;
+	}
+
 	public int getLiketype() {
 		return liketype;
 	}
@@ -60,18 +69,30 @@ public class ReplyVO {
 	public void setRexist(int rexist) {
 		this.rexist = rexist;
 	}
+
 	public int getRlikecount() {
 		return rlikecount;
 	}
+
+	@Override
+	public String toString() {
+		return "ReplyVO{" +
+				"rseq=" + rseq +
+				", rid='" + rid + '\'' +
+				", rcontent='" + rcontent + '\'' +
+				", regdate='" + regdate + '\'' +
+				", rupdatedate='" + rupdatedate + '\'' +
+				", rexist=" + rexist +
+				", rlikecount=" + rlikecount +
+				", seq=" + seq +
+				", liketype=" + liketype +
+				", board='" + board + '\'' +
+				'}';
+	}
+
 	public void setRlikecount(int rlikecount) {
 		this.rlikecount = rlikecount;
 	}
-	@Override
-	public String toString() {
-		return "ReplyVO [rseq=" + rseq + ", rid=" + rid + ", rcontent=" + rcontent + ", regdate=" + regdate
-				+ ", rupdatedate=" + rupdatedate + ", rexist=" + rexist + ", rlikecount=" + rlikecount + ", seq=" + seq
-				+ ", liketype=" + liketype + "]";
-	}
-	
-	
+
+
 }
