@@ -5,7 +5,26 @@ public class SearchCriteria extends Criteria  {
 	private String searchType;
 	private String keyword;
 	private String category;
-	
+	private String sorted;
+
+	public String getSorted() {
+		return sorted;
+	}
+
+	@Override
+	public String toString() {
+		return "SearchCriteria{" +
+				"searchType='" + searchType + '\'' +
+				", keyword='" + keyword + '\'' +
+				", category='" + category + '\'' +
+				", sorted='" + sorted + '\'' +
+				'}';
+	}
+
+	public void setSorted(String sorted) {
+		this.sorted = sorted;
+	}
+
 	public String getCategory() {
 		return category;
 	}
@@ -23,9 +42,5 @@ public class SearchCriteria extends Criteria  {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
-	}
-	@Override
-	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", category=" + category + "]";
 	}
 } // class
