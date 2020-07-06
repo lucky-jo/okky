@@ -93,6 +93,7 @@
 	</table>
 	<form action="/column/cinsert" method="post">
 		<input type="hidden" name="comment_id" value="kimgildong"/>
+		<input type="hidden" name="seq" value="${get.seq}"/>
 	<table>
 		<tr align="center" height="30">
 			<td rowspan="0">image</td>

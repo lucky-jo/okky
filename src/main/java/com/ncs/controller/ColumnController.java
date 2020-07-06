@@ -45,7 +45,7 @@ public class ColumnController {
 	public String cinsert(ColumnCommentVO cvo) {
 		
 		cservice.cinsert(cvo); 
-		return ("redirect:/column/detail?seq=" + cvo.getComment_seq());
+		return ("redirect:/column/detail?comment_seq=" + cvo.getComment_seq());
 	}// cinsert
 	
 	@RequestMapping(value = "/insert")
