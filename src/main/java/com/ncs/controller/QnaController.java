@@ -10,6 +10,7 @@ import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +46,7 @@ public class QnaController {
             return mv;
         }
 
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/register", method = RequestMethod.POST )
         public ModelAndView postInsert(ModelAndView mv, QnaVO vo) {
             if(service.insert(vo)>0) {
@@ -56,11 +58,13 @@ public class QnaController {
             return mv;
         }
 
+        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/register", method = RequestMethod.GET )
         public void getInsert() {
 
         }
 
+        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/get")
         public ModelAndView get(ModelAndView mv, QnaVO vo, LikeDTO dto, ReplyLikeDTO rdto) {
         	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
@@ -88,6 +92,8 @@ public class QnaController {
             return mv;
         }
 
+
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/update", method = RequestMethod.POST )
         public ModelAndView update(ModelAndView mv,QnaVO vo) {
             System.out.println("업데이트 요청 = " + vo);
@@ -99,12 +105,14 @@ public class QnaController {
             return mv;
         }
 
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
         public ModelAndView getUpdate(ModelAndView mv, QnaVO vo) {
             System.out.println("업데이트폼 요청 = " + vo);
             return mv.addObject("get",service.selectOne(vo));
         }
 
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/delete")
         public ModelAndView delete(ModelAndView mv, QnaVO vo) {
             System.out.println("삭제요청 = " + vo);
