@@ -48,19 +48,19 @@
 <div class="sidebar-category-nav">
 	<h3 class="sub-title">Q&A</h3>
 	<ul class="nav">
-		<li><a href="/qna/list" class="link"><span
+		<li><a href="/qna/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=a" class="link"><span
+		<li><a href="/qna/list?category=a&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'a' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=b" class="link"><span
+		<li><a href="/qna/list?category=b&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'b' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=Tech%20Q%26A" class="link"><span
+		<li><a href="/qna/list?category=Tech%20Q%26A&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span>
 				<span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'TechQ&A' ? 'nav-selected':''}" />'><span
@@ -95,16 +95,12 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/qna/list" data-sort="id" data-order="desc"
-							class="category-sort-link active">최신순</a></li>
-						<li><a href="/qna/list" data-sort="voteCount"
-							data-order="desc" class="category-sort-link ">추천순</a></li>
-						<li><a href="/qna/list" data-sort="noteCount"
-							data-order="desc" class="category-sort-link ">댓글순</a></li>
-						<li><a href="/qna/list" data-sort="scrapCount"
-							data-order="desc" class="category-sort-link ">스크랩순</a></li>
-						<li><a href="/qna/list" data-sort="viewCount"
-							data-order="desc" class="category-sort-link ">조회순</a></li>
+						<li><a href="/qna/list" data-sort="id" class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
+																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
+						<li><a href="/qna/list?sorted=like" class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />" >추천순</a></li>
+						<li><a href="/qna/list?sorted=reply" class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />" ">댓글순</a></li>
+						<%--<li><a href="/qna/list" class="category-sort-link ">스크랩순</a></li>--%>
+						<li><a href="/qna/list?sorted=view" class=" <c:out value="${pageMaker.cri.sorted eq 'active' ? 'active':''}" />" ">조회순</a></li>
 					</ul>
 
 					<input type="hidden" name="sort" id="category-sort-input"
