@@ -16,9 +16,9 @@ public class LikeController {
     LikeCountService likeCountService;
 
     @RequestMapping(value = "/like")
-    public String like(QnaVO vo, LikeDTO dto) {
+    public String like(LikeDTO dto) {
         likeCountService.likeRegister(dto);
-        return "redirect:/"+dto.getBoard()+"/get?seq="+vo.getSeq();
+        return "redirect:/"+dto.getBoard()+"/get?seq="+dto.getSeq();
     }
 
     @RequestMapping(value = "/replylike")
@@ -35,6 +35,6 @@ public class LikeController {
     @RequestMapping(value = "/delete")
     public String delete(LikeDTO dto) {
         likeCountService.likeDelete(dto);
-        return "redirect:/qna/get?seq="+dto.getSeq();
+        return "redirect:/"+dto.getBoard()+"/get?seq="+dto.getSeq();
     }
 }

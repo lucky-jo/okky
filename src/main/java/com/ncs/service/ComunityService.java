@@ -14,7 +14,6 @@ public interface ComunityService {
 	int update(ComunityVO vo);
 	int delete(ComunityVO vo);
 	int totalRowCount();
-	List<ComunityVO> criList(Criteria cri); 
 	List<ComunityVO> searchList(SearchCriteria cri);
 	int searchRowCount(SearchCriteria cri);
 	//int countUp(ComunityVO vo);

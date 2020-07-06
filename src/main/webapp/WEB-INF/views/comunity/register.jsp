@@ -87,15 +87,15 @@
 								required="">
 								<option value="">게시판을 선택해 주세요.</option>
 
-								<option value="b" data-external="" 
+								<option value="사는얘기" data-external="" 
 									data-anonymity="false">사는얘기</option>
-								<option value="c" data-external=""
+								<option value="포럼" data-external=""
 									data-anonymity="false">포럼</option>
-								<option value="d" data-external=""
+								<option value="IT행사" data-external=""
 									data-anonymity="false">IT행사</option>
-								<option value="e" data-external=""
+								<option value="정기모임/스터디" data-external=""
 									data-anonymity="false">정기모임/스터디</option>
-								<option value="f" data-external=""
+								<option value="학원/홍보" data-external=""
 									data-anonymity="false">학원/홍보</option>
 							</select>
 						</div>

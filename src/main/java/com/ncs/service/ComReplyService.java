@@ -1,16 +1,13 @@
-package com.ncs.mapper;
+package com.ncs.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.ncs.vo.ReplyVO;
 
-@Repository
-public interface QnaReplyMapper {
+public interface ComReplyService {
 	
 	int register(ReplyVO rvo);
-	List<ReplyVO> selectlist(int seq);
+	List<ReplyVO> selectList(int seq);
 	int update(ReplyVO rvo);
 	int delete(ReplyVO rvo);
 	int replyCount();

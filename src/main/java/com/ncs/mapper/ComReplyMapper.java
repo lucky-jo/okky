@@ -6,10 +6,12 @@ import org.springframework.stereotype.Repository;
 
 import com.ncs.vo.ReplyVO;
 
-@Repository
 public interface ComReplyMapper {
 
+	int register(ReplyVO rvo);
+	List<ReplyVO> selectList(int seq);
+	int update(ReplyVO rvo);
+	int delete(ReplyVO rvo);
+	int replyCount();
 	
-	public List<ReplyVO> selectList(ReplyVO rvo);
-	public int rinsert(ReplyVO rvo);
 }
