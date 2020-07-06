@@ -37,11 +37,20 @@
 </div>
         <div class="sidebar-category-nav">
             <h3 class="sub-title">Q&A</h3>
-            <ul class="nav">
-                <li><a href="/qna/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/qna/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
-            </ul>
+            	<ul class="nav">
+		<li><a href="/qna/list?sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
+					class="nav-selected-dot"></span></span></a></li>
+		<li><a href="/qna/list?category=Tech%20Q%26A&sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Tech Q&A' ? 'nav-selected':''}" />'><span
+					class="nav-selected-dot"></span></span></a></li>
+		<li><a href="/qna/list?category=Blockchain%20Q%26A&sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Blockchain Q&A' ? 'nav-selected':''}" />'><span
+					class="nav-selected-dot"></span></span></a></li>
+	</ul>
             <div class="special-nav">
             </div>
         </div>
@@ -81,11 +90,11 @@
 						<div>
 							<select id="category" name="category" class="form-control"
 								required="">
-								<option value="">게시판을 선택해 주세요.</option>
+								<option value="default">게시판을 선택해 주세요.</option>
 
 								<option value="Tech Q&A" data-external="" data-anonymity="false">
 									Tech Q&A</option>
-								<option value="b" data-external=""
+								<option value="Blockchain Q&A" data-external=""
 									data-anonymity="false">Blockchain Q&A</option>
 							</select>
 						</div>

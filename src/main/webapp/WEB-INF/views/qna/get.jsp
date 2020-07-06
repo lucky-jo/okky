@@ -57,18 +57,18 @@ function del() {
 </div>
 <div class="sidebar-category-nav">
 	<h3 class="sub-title">Q&A</h3>
-	<ul class="nav">
-		<li><a href="/qna/list" class="link"><span
+		<ul class="nav">
+		<li><a href="/qna/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=a" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span
-				class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span
+		<li><a href="/qna/list?category=Tech%20Q%26A&sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Tech Q&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=b" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span
-				class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span
+		<li><a href="/qna/list?category=Blockchain%20Q%26A&sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Blockchain Q&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
@@ -134,7 +134,7 @@ function del() {
 						<c:choose>
 							<c:when test="${liketype == 1 }">
 								<a
-									href="/like/delete?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=1"
+									href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1"
 									class="note-vote-btn" role="button" data-type="assent"
 									data-eval="true" data-id="2010634"><i
 									id="note-evaluate-assent-2010634"
@@ -151,7 +151,7 @@ function del() {
 							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
 							<c:when test="${liketype == 0 }">
 								<a
-									href="/like/like?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=1"
+									href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1"
 									class="note-vote-btn" role="button" data-type="assent"
 									data-eval="true" data-id="2013409"><i
 									id="note-evaluate-assent-2013409"
@@ -159,7 +159,7 @@ function del() {
 									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
 								<a
-									href="/like/like?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=-1"
+									href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1"
 									class="note-vote-btn" role="button" data-type="dissent"
 									data-eval="true" data-id="2013409"><i
 									id="note-evaluate-dissent-2013409"
@@ -174,7 +174,7 @@ function del() {
 									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
 								<a
-									href="/like/delete?seq=${get.seq}&likeid=${get.id}&board=${get.board}&liketype=-1"
+									href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1"
 									class="note-vote-btn" role="button" data-type="dissent"
 									data-eval="true" data-id="2010634"
 									onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
@@ -213,8 +213,8 @@ function del() {
 						data-placement="left" title="페이스북 공유"></i></a>
 
 				</div>
-				<sec:authentication property="principal" var="pinfo"/>
 				<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal" var="pinfo"/>
 				<c:if test="${pinfo.username eq get.id }">
 				<div class="dropdown">
 					<form method="post" name="article-delete-form"
@@ -294,7 +294,7 @@ function del() {
 										<c:choose>
 											<c:when test="${list.liketype == 1 }">
 												<a
-													href="/like/replydelete?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
+													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2010634"><i
 													id="note-evaluate-assent-2010634"
@@ -312,7 +312,7 @@ function del() {
 											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
 											<c:when test="${list.liketype == 0 }">
 												<a
-													href="/like/replylike?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
+													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2013409"><i
 													id="note-evaluate-assent-2013409"
@@ -321,7 +321,7 @@ function del() {
 												<div id="content-vote-count-2013409"
 													class="content-eval-count">${list.rlikecount }</div>
 												<a
-													href="/like/replylike?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
+													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2013409"><i
 													id="note-evaluate-dissent-2013409"
@@ -337,7 +337,7 @@ function del() {
 												<div id="content-vote-count-2010634"
 													class="content-eval-count">${list.rlikecount}</div>
 												<a
-													href="/like/replydelete?rseq=${list.rseq}&likerid=${list.rid}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
+													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2010634"
 													onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
