@@ -21,7 +21,7 @@
   </insert>
   
   <update id="delete">
-  	update comreply set rexist = 1 where rseq = #{rseq}
+  	update comreply set rexist = 0 where rseq = #{rseq}
   </update>
   
   </mapper>
