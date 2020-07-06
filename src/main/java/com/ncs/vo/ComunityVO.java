@@ -12,8 +12,21 @@ public class ComunityVO {
 	private int cnt;
 	private int likecount;
 	private String category;
-	
+	private int replycount;
+	private String board;
 
+	public int getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
+	public String getBoard() {
+		return board;
+	}
+	public void setBoard(String board) {
+		this.board = board;
+	}
 	public int getLikecount() {
 		return likecount;
 	}
