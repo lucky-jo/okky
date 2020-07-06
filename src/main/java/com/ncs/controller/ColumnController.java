@@ -70,11 +70,12 @@ public class ColumnController {
 	@RequestMapping(value = "/detail")
 	public ModelAndView detail(ModelAndView mv, ColumnVO vo, ColumnCommentVO cvo) {
 		
+		
 		vo = service.selectOne(vo);
 		List<ColumnCommentVO> list = cservice.selectList(cvo);
-		
-			mv.addObject("detail",vo);
+
 			mv.addObject("comment", list);
+			mv.addObject("Detail",vo);
 			mv.setViewName("column/columnDetail");
 			return mv;
 	}// detail
