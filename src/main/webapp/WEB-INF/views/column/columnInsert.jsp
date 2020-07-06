@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
+<script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
             <ul class="nav">
