@@ -1,8 +1,11 @@
 package com.ncs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.ColumnCommentService;
@@ -11,6 +14,8 @@ import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ColumnCommentVO;
 import com.ncs.vo.ColumnVO;
+import com.ncs.vo.ComunityVO;
+import com.ncs.vo.ReplyVO;
 
 @RequestMapping(value = "/column")
 @Controller
@@ -29,7 +34,6 @@ public class ColumnController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		
 		mv.addObject("pageMaker",pageMaker);
@@ -37,16 +41,11 @@ public class ColumnController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/cinsert")
-	public ModelAndView rinsert(ModelAndView mv, ColumnCommentVO cvo) {
+	@RequestMapping(value = "/cinsert", method = RequestMethod.POST)
+	public String cinsert(ColumnCommentVO cvo) {
 		
-		if (cservice.cinsert(cvo)>0) {
-			mv.setViewName("redirect:/column/detail?seq=" + cvo.getComment_seq() );
-		}else {
-			mv.addObject("fCode","BR");
-			mv.setViewName("member/doFinish");
-		}
-		return mv;
+		cservice.cinsert(cvo); 
+		return ("redirect:/column/detail?seq=" + cvo.getComment_seq());
 	}// cinsert
 	
 	@RequestMapping(value = "/insert")
@@ -69,18 +68,15 @@ public class ColumnController {
 	}
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView detail(ModelAndView mv, ColumnVO vo) {
+	public ModelAndView detail(ModelAndView mv, ColumnVO vo, ColumnCommentVO cvo) {
 		
 		vo = service.selectOne(vo);
+		List<ColumnCommentVO> list = cservice.selectList(cvo);
 		
-		if (vo!=null) {
-			mv.addObject("Detail", vo);
+			mv.addObject("detail",vo);
+			mv.addObject("comment", list);
 			mv.setViewName("column/columnDetail");
-		}else {
-			mv.addObject("fCode","BN");
-			mv.setViewName("member/doFinish");
-		}
-		return mv;
+			return mv;
 	}// detail
 	
 	@RequestMapping(value = "/updatef")

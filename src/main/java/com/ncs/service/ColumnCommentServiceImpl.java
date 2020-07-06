@@ -12,13 +12,19 @@ import com.ncs.vo.ColumnCommentVO;
 public class ColumnCommentServiceImpl implements ColumnCommentService {
 
 	@Autowired
-	ColumnCommentMapper mapper;
+	ColumnCommentMapper cmapper;
 	
 	@Override
 	public List<ColumnCommentVO> selectList(ColumnCommentVO cvo){
-		return mapper.selectList(cvo);
+		return cmapper.selectList();
 	}
+	
+	public ColumnCommentVO selectOne(ColumnCommentVO cvo) {
+		return cmapper.selectOne(cvo);
+	}
+	
+	@Override
 	public int cinsert(ColumnCommentVO cvo) {
-		return mapper.cinsert(cvo);
+		return cmapper.cinsert(cvo);
 	}
 }

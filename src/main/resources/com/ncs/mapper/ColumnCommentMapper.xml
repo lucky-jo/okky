@@ -5,12 +5,12 @@
   
   <mapper namespace="com.ncs.mapper.ColumnCommentMapper">
   	<select id="selectList" resultType="com.ncs.vo.ColumnCommentVO">
-  	select comment_seq, comment_id, comment_point, commment_content, comment_regdate, comment_like
+  	select comment_seq, comment_id, comment_point, comment_content, comment_regdate
 	 from columnc order by comment_seq 
   </select>
   
   <select id="selectOne" resultType="com.ncs.vo.ColumnCommentVO">
-	select comment_seq,comment_id,comment_point,comment_content,comment_regdate,comment_like
+	select comment_seq,comment_id,comment_point,comment_content,comment_regdate
 	 from columnc where comment_seq=#{comment_seq}
   </select>
   
