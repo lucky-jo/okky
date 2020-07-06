@@ -1,13 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: last2
-  Date: 2020-06-28
-  Time: 오후 2:10
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"
+         isELIgnored="false"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="ko" class="no-js ie6"> <![endif]-->
@@ -72,10 +66,45 @@
 
 
                 <%--회원가입 로그인--%>
-                <ul class="nav nav-sidebar">
-                    <li ><a href="/member/login" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
+                    <sec:authorize access="isAuthenticated()">
+                        <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='/resources/user/1.jpg' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="">user01</a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
+
+                        <div class="nav-user-action">
+                            <div class="nav-user-func">
+                                <a href="javascript://" id="user-func" data-toggle="popover" data-trigger="click" tabindex="0">
+                                    <i id="user-func-icon" class="fa fa-cog"></i>
+                                </a>
+                            </div>
+                            <div class="nav-user-func">
+                                <a href="javascript://" id="user-notification" data-toggle="popover" data-trigger="click" tabindex="0">
+                                    <i id="user-notification-icon" class="fa fa-bell" ></i>
+                                    <span id="user-notification-count" class="badge notification" style="display:none;">0</span>
+                                </a>
+                            </div>
+                        </div>
+                        <form action="/member/customLogout" method="post" style="display:none;" ><input type="submit" name="logoutButton" value="logoutButton" id="logoutButton" /></form>
+
+                        <script id="setting-template" type="text/template">
+                            <div class="popover popover-fixed" role="tooltip"><div class="arrow"></div>
+                                <h3 class="popover-title"></h3>
+                                <div class="popover-footer clearfix" id="user-func-popover">
+                                    <label href="/member/costomLogout" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
+                                    <a href="/user/edit" class="popover-btn"><i class="fa fa-user"></i> 정보수정</a>
+                                </div>
+                            </div>
+                        </script>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()">
+                        <ul class="nav nav-sidebar">
+                            <li ><a href="/member/customLogin" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
+                            <li ><a href="/member/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
+                        </ul>
+                        </sec:authorize>
+
+ <%--               <ul class="nav nav-sidebar">
+                    <li ><a href="/member/customLogin" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
                     <li ><a href="/member/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
-                </ul>
+                </ul>--%>
 
             </div>
             <%--왼쪽 사이드 바 메뉴--%>
