@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ncs.service.JobsService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
 
 @RequestMapping("/jobs12/")
@@ -54,13 +55,11 @@ public class JobsController_Jo {
 		  return mv;
 	  }
 	  
-	  @RequestMapping("/rinsert")
-	  public ModelAndView rinsert(ModelAndView mv, JobsVO vo) {
-		  if(service.rinsert(vo)>0) 
-		  mv.setViewName("jobs/jdetail");
-		  return mv;
-	  }//rinsert
-
+	/*
+	 * @RequestMapping("/rinsert") public ModelAndView rinsert(ModelAndView mv,
+	 * JobsReplyVO rvo) { if(service.rinsert(rvo)>0) mv.setViewName("jobs/jdetail");
+	 * return mv; }//rinsert
+	 */
 	  @RequestMapping(value = "/get")
 		public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, JobsVO vo) {
 			
