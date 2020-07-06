@@ -1,5 +1,17 @@
 package com.ncs.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.ncs.service.LikeCountService;
 import com.ncs.service.QnaReplyService;
 import com.ncs.service.QnaService;
@@ -9,14 +21,6 @@ import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @RequestMapping(value = "/qna/")
 @Controller
@@ -66,11 +70,11 @@ public class QnaController {
 
         @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/get")
-        public ModelAndView get(ModelAndView mv, QnaVO vo, LikeDTO dto, ReplyLikeDTO rdto) {
+        public ModelAndView get(ModelAndView mv, QnaVO vo, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
         	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
         	for (ReplyVO replyVO : list) {
         	    rdto.setBoard(replyVO.getBoard());
-        	    rdto.setLikerid("ildang100");
+        	    rdto.setLikerid(request.getRemoteUser());
         	    rdto.setRseq(replyVO.getRseq());
 				replyVO.setLiketype(likeCountService.replyLikeExist(rdto));
 				System.out.println(replyVO.getLiketype());
@@ -80,8 +84,9 @@ public class QnaController {
         	if( vo != null ) {
         	    dto.setSeq(vo.getSeq());
         		dto.setBoard("qna");
-        		dto.setLikeid("ildang100");
+        		dto.setLikeid(request.getRemoteUser());
         		int cnt = likeCountService.likeExist(dto);
+        		System.out.println(request.getRemoteUser());
             	System.out.println(cnt);
             	mv.addObject("liketype", cnt);
         	}
