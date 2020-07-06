@@ -5,6 +5,9 @@
   
   <mapper namespace="com.ncs.mapper.ComunityMapper">
     <sql id="search">
+   	<if test="category != null and !category.equals('')">
+			and category = #{category}
+	</if>
      <choose>
         <when test="searchType=='t'.toString()">
            and title like CONCAT(CONCAT('%',#{keyword}),'%'))
@@ -42,16 +45,18 @@
   <selectKey keyProperty="seq" order="BEFORE" resultType="int">
         select IFNULL(MAX(seq),0)+1 as seq from comunity
      </selectKey>
-  	insert into comunity(seq,id,category,title,content) values(#{seq},#{id},#{category},#{title},#{content})
+  	insert into comunity(seq,id,category,title,content) 
+  	values(#{seq},#{id},#{category},#{title},#{content})
   </insert>
   
   <select id="selectOne" resultType="com.ncs.vo.ComunityVO">
-	select seq,title,id,content,regdate,updatedate,exist,cnt,category
+	select *
 	 from comunity where seq=#{seq}
   </select>
   
   <update id="update">
-  	update comunity set category=#{category}, title=#{title}, content=#{content}, updatedate=now() where seq=#{seq}
+  	update comunity set category=#{category}, title=#{title}, content=#{content}, 
+  	updatedate=now() where seq=#{seq}
   </update>
   
    <update id="countUp">
@@ -93,6 +98,17 @@
      limit #{start} , #{perPageRow}
   </select>
   
+  <update id="replycountUp">
+		update comunity set replycount = replycount+1 where seq = #{seq}
+  </update>
 
+  <select id="getcount" resultType="int">
+		select count(*) from getcount where id = #{id} and board = #{board} and
+		today = #{today} and seq = #{seq}
+  </select>
+  
+  <insert id="registercount">
+		insert into getcount values(#{id},#{board},#{today},#{seq})
+  </insert>
   </mapper>
   

@@ -5,20 +5,23 @@
   
   <mapper namespace="com.ncs.mapper.ComReplyMapper">
   	<select id="selectList" resultType="com.ncs.vo.ReplyVO">
-  	select rseq, rid, regdate, rupdatedate,
-	 rexist, rlikecount,seq from comreply order by seq 
+  	select * from comreply where seq = #{seq} order by rseq desc
   </select>
   
-  <select id="selectOne" resultType="com.ncs.vo.ReplyVO">
+<!--   <select id="selectOne" resultType="com.ncs.vo.ReplyVO">
 	select rseq,rid,rcontent,regdate,rupdatedate,rexist,rlikecount,seq
 	 from comreply where seq=#{seq}
-  </select>
+  </select> -->
   
-  <insert id="rinsert">
+  <insert id="register">
   <selectKey keyProperty="rseq" order="BEFORE" resultType="int">
         select IFNULL(MAX(rseq),0)+1 as rseq from comreply
      </selectKey>
   	insert into comreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
   </insert>
+  
+  <update id="delete">
+  	update comreply set rexist = 1 where rseq = #{rseq}
+  </update>
   
   </mapper>
