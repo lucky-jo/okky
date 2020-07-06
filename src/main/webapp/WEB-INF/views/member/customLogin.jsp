@@ -11,7 +11,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="ko" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="ko" class="no-js ie7"> <![endif]-->
@@ -48,9 +47,6 @@
 <div class="layout-container">
     <div class="main ">
 
-
-
-
         <div class="sidebar ">
 
             <a href="javascript://" class="sidebar-header">
@@ -75,11 +71,9 @@
 
             <div class="nav-user nav-sidebar">
 
-
-
                 <ul class="nav nav-sidebar">
-                    <li ><a href="/login/auth?redirectUrl=%2Flogin%2Fauth%3FredirectUrl%3D%252Flogin%252Fauth%253FredirectUrl%253D%25252Flogin%25252Fauth%25253FredirectUrl%25253D%2525252F" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
-                    <li ><a href="/user/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
+                    <li ><a href="#" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
+                    <li ><a href="/member/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
                 </ul>
 
             </div>
@@ -103,8 +97,6 @@
             </ul>
         </div>
 
-
-
         <div id="edit-user" class="content" role="main">
             <h3 class="content-header">로그인</h3>
             <div class="col-md-6 main-block-left">
@@ -113,70 +105,28 @@
                         <h5 class="panel-header">아이디 로그인</h5>
                     </div>
 
-                    <form action='/j_spring_security_check' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
+                    <form action='/login' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
 
-
-                        <input type="hidden" name="redirectUrl" value="/login/auth?redirectUrl=%2Flogin%2Fauth%3FredirectUrl%3D%252F" />
-
-
-                        <input type="text" name="j_username" autocorrect="off" autocapitalize="off" id="username" class="username form-control input-sm" placeholder="아이디" required autofocus>
-                        <input type="password" name='j_password' class="password form-control input-sm" placeholder="비밀번호" required>
+                        <input type="text" name="username" autocorrect="off" autocapitalize="off" id="username" class="username form-control input-sm" placeholder="아이디" required autofocus>
+                        <input type="password" name='password' class="password form-control input-sm" placeholder="비밀번호" required>
                         <!-- AutoPassword 추가 -->
-                        <div class="AutoPassword-bar" id="otp_login" style="display: none;">
-                            <div class="pwBar">
-                                <div class="aplogo"></div>
-                                <input type="hidden" id="user_otp" name="user_otp"/>
-                                <!-- progress bar 실행 -->
-                                <div id="AutoPassword">
-                                    <div class="aplogo"></div>
-                                </div>
-                                <div class="otpNum" style="display:none">
-                                    <ul>
-                                        <li>
-                                            <img id="otpNum0" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                        <li>
-                                            <img id="otpNum1" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                        <li>
-                                            <img id="otpNum2" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                        <li class="Right">
-                                            <img id="otpNum3" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                        <li>
-                                            <img id="otpNum4" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                        <li>
-                                            <img id="otpNum5" src="/images/AutoPassword/num_00.png" alt="Number0">
-                                            <span class="ir">0</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name='remember_me' id='remember_me' > 로그인 유지
                             </label>
                         </div>
                         <!-- AutoPassword 추가 -->
-                        <div class="APW-login">
+                        <%--<div class="APW-login">
                             <span>AutoPassword&trade;</span>
                             <label class="switch">
                                 <input type="checkbox" id="btnAutoPW">
                                 <span class="slider round"></span>
                             </label>
-                        </div>
+                        </div>--%>
 
-                        <!--button class="btn btn-primary btn-block" type="submit">로그인</button-->
+                        <button class="btn btn-primary btn-block" type="submit">로그인</button
 
-                        <div id="divUserLogin">
+                        <%--<div id="divUserLogin">
                             <button class="btn btn-primary btn-block" type="submit" id="btnUserLogin">로그인</button>
                         </div>
                         <div id="divOTPLogin">
@@ -187,12 +137,12 @@
                         </div>
                         <div class="signup-block">
                             <a href="/find/user/index">계정 찾기</a>
-                            <span class="inline-saperator">/</span>
+                            <span class="inline-saperator">/</span>--%>
                             <!-- AutoPassword 추가 -->
-                            <a href="/autoPassword/reset">AutoPassword™ 재설정</a>
+                            <%--<a href="/autoPassword/reset">AutoPassword™ 재설정</a>
                             <span class="inline-saperator">/</span>
                             <a href="/user/register">회원 가입</a>
-                        </div>
+                        </div>--%>
                     </form>
                 </div>
             </div>
@@ -210,9 +160,6 @@
             </div>
 
         </div>
-
-
-
 
         <div class="right-banner-wrapper">
 
