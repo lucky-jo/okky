@@ -42,7 +42,7 @@
 	</delete>
 
 	<delete id="replyLikeDelete">
-		delete from replylikecount where likeid = #{likerid} and board = #{board} and seq = #{rseq}
+		delete from replylikecount where likerid = #{likerid} and board = #{board} and rseq = #{rseq}
 	</delete>
 
 	<update id="replyLikecountUp">
