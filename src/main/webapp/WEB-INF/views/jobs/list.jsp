@@ -1,241 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+         pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="../includes/header.jsp"%>
-
+<script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+   $('#searchBtn').on("click",function(){
+            self.location="/jobs/list"
+               +"${pageMaker.makeQuery(1)}"
+               +"&searchType="
+               +$("#searchType").val()
+               /* + $("select option:selected").val() */
+               +"&keyword="
+               +$("#keyword").val();
+   });
+});
+</script>
 <ul class="nav nav-sidebar nav-main">
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+   <li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+   <li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+   <li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
-	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+   <li class="active"  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
 </ul>
 
 <ul class="nav nav-sidebar nav-bottom">
-	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
+   <li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
 </div>
-
 <div class="sidebar-category-nav">
-	<h3 class="sub-title">Jobs</h3>
-	<ul class="nav">
-		<li><a href="/qna/list" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span
-					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=a" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span
-					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=b" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">구인</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span
-					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/qna/list?category=b" class="link"><span
-				class="nav-sidebar-label nav-sidebar-category-label">구직</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span
-					class="nav-selected-dot"></span></span></a></li>
-	</ul>
-	<div class="special-nav"></div>
+            <h3 class="sub-title">Jobs</h3>
+            <ul class="nav">
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator nav-selected"><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구인</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/jlist" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구직</span> <span class="nav-indicator "><span class="nav-selected-dot"></span></span></a></li>          
+            </ul>
+            <div class="special-nav">
+            </div>
+        </div>
+        <div id="list-article" class="content scaffold-list" role="main">
+
+<div>
+   Jobs
+   <div style="float: right;"><a href="/jobs/jinsert" >새 글 쓰기</a></div>
+</div><br><br>
+<div style="border: 10px;">
+   검색창
+</div><br>
+<div style="float: right;" id="searchBar">
+   <select name="searchType" id="searchType">
+      <option value="n" <c:out value="${pageMaker.cri.searchType==null ? 'selected':'' }"/>>
+      ---</option>
+      <option value="t" <c:out value="${pageMaker.cri.searchType eq 't' ? 'selected':'' }"/>>
+      Title</option>
+      <option value="c" <c:out value="${pageMaker.cri.searchType eq 'c' ? 'selected':'' }"/>>
+      Content</option>
+      <option value="w" <c:out value="${pageMaker.cri.searchType eq 'w' ? 'selected':'' }"/>>
+      Writer</option>
+      <option value="tc" <c:out value="${pageMaker.cri.searchType eq 'tc' ? 'selected':'' }"/>>
+      Title or Content</option>
+      <option value="cw" <c:out value="${pageMaker.cri.searchType eq 'cw' ? 'selected':'' }"/>>
+      Content or Writer</option>
+      <option value="tcw" <c:out value="${pageMaker.cri.searchType eq 'tcw' ? 'selected':'' }"/>>
+      Title or Content or Writer</option>
+   </select>
+   <input type="text" name="keyword" id="keyword" value="${pageMaker.cri.keyword}">
+   <button style="float: right;" id="searchBtn">Search</button>
+</div><br>
+
+<div>
+최신순  추천순  댓글순  스크랩순  조회순
 </div>
-<div id="list-article" class="content scaffold-list" role="main">
-	<div id="list-article" class="content scaffold-list" role="main">
+<br>
+<table>
+   <c:forEach var="mm" items="${melon}">
+   <tbody>
+      <tr align="center" height="30">
+         <td style="color: gray;">#${mm.seq}&nbsp;</td>
+         <td rowspan="0">댓글</td>
+         <td rowspan="0">좋아요</td>
+         <td rowspan="0">${mm.cnt}</td>
+         <td rowspan="0">image</td>
+         <td>${mm.id}</td>
+      </tr>
+      <tr align="center" height="30" bordercolor="gray">
+         <td><a href="/jobs/jdetail?seq=${mm.seq}">${mm.title}</a></td>
+         <td>${mm.regdate}</td>
+      </tr>
+   </tbody>
+   </c:forEach>
+</table>
 
-		<div class="nav" role="navigation">
+<div align="center">
+<!-- 1) -->
+<c:if test="${pageMaker.prev}">
+   <a href="list${pageMaker.makeSearch(1)}">First&nbsp;</a>
+   <a href="list${pageMaker.makeSearch(pageMaker.sPageNo-1)}">&laquo;&nbsp;</a>
+               <!-- listcri?currPage=8&PerPageRow=10 -->
+</c:if>
 
-			<a href="/jobs/register"
-				class="create btn btn-success btn-wide pull-right"><i
-				class="fa fa-pencil"></i> 새 글 쓰기</a>
-
-			<h4>Jobs</h4>
-			<form action="/articles/community" method="get"
-				name="category-filter-form" id="category-filter-form">
-				<div class="category-filter-wrapper">
-					<div class="category-filter-query pull-right">
-						<div class="input-group input-group-sm">
-							<input type="search" name="query" id="search-field"
-								class="form-control" placeholder="검색어" value="" /> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-default">
-									<i class="fa fa-search"></i>
-								</button>
-
-							</span>
-						</div>
-					</div>
-
-					<ul class="list-sort pull-left">
-						<li><a href="/qna/list" data-sort="id" data-order="desc"
-							class="category-sort-link active">최신순</a></li>
-						<li><a href="/qna/list" data-sort="voteCount"
-							data-order="desc" class="category-sort-link ">추천순</a></li>
-						<li><a href="/qna/list" data-sort="noteCount"
-							data-order="desc" class="category-sort-link ">댓글순</a></li>
-						<li><a href="/qna/list" data-sort="scrapCount"
-							data-order="desc" class="category-sort-link ">스크랩순</a></li>
-						<li><a href="/qna/list" data-sort="viewCount"
-							data-order="desc" class="category-sort-link ">조회순</a></li>
-					</ul>
-
-					<input type="hidden" name="sort" id="category-sort-input"
-						value="id" /> <input type="hidden" name="order"
-						id="category-order-input" value="desc" />
-				</div>
-
-
-			</form>
-
-		</div>
-
-		<div class="panel panel-default">
-
-			<!-- Table -->
-
-			<ul class="list-group">
-
-
-
-				<c:forEach var="board" items="${board}">
-					<c:if test="${board.exist ==1 }">
-
-						<li
-							class="list-group-item list-group-item-question list-group-no-note clearfix">
-
-							<div class="list-title-wrapper clearfix">
-								<div class="list-tag clearfix">
-									<span class="list-group-item-text article-id">${board.seq}</span>
-									<a href="#"
-										class="list-group-item-text item-tag label label-info"><i
-										class="fa fa-comments"></i> ${board.category}</a>
-
-								</div>
-
-								<h5 class="list-group-item-heading list-group-item-evaluate">
-									<a href="/jobs/get?seq=${board.seq }"> ${board.title} </a>
-								</h5>
-							</div>
-
-							<div class="list-summary-wrapper clearfix">
-
-								<div class="list-group-item-summary clearfix">
-									<ul>
-										<li class="item-icon-disabled"><i
-											class="item-icon fa fa-comment "></i> 리플</li>
-										<li class="item-icon-disabled"><i
-											class="item-icon fa fa-thumbs-up"></i> 좋아</li>
-										<li class=""><i class="item-icon fa fa-eye"></i>
-											${board.cnt}</li>
-									</ul>
-								</div>
-
-							</div>
-
-							<div class="list-group-item-author clearfix">
-								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
-										src='//www.gravatar.com/avatar/7fa2d4d22e174192ba72a9d91acf2eb0?d=identicon&s=30' /></a>
-									<div class="avatar-info">
-										<a class="nickname" href="#" title="${board.id}">${board.id}</a>
-										<div class="activity">
-											<span class="fa fa-flash"></span>활동
-										</div>
-										<div class="date-created">
-											<span class="timeago" title="${board.regdate}">${board.regdate}</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</c:if>
-					<c:if test="${board.exist == 0 }">
-						<li
-							class="list-group-item list-group-item-question list-group-no-note clearfix">
-
-							<div class="list-title-wrapper clearfix">
-								<div class="list-tag clearfix">
-									<span class="list-group-item-text article-id">${board.seq}</span>
-									<a href="#"
-										class="list-group-item-text item-tag label label-info"><i
-										class="fa fa-comments"></i> ${board.category}</a>
-
-								</div>
-
-								<h5 class="list-group-item-heading list-group-item-evaluate">
-
-
-									삭제 된 게시글 입니다.</h5>
-							</div>
-
-							<div class="list-summary-wrapper clearfix">
-
-								<div class="list-group-item-summary clearfix">
-									<ul>
-										<li class="item-icon-disabled"><i
-											class="item-icon fa fa-comment "></i> 리플</li>
-										<li class="item-icon-disabled"><i
-											class="item-icon fa fa-thumbs-up"></i> 좋아</li>
-										<li class=""><i class="item-icon fa fa-eye"></i>
-											${board.cnt}</li>
-									</ul>
-								</div>
-
-							</div>
-
-							<div class="list-group-item-author clearfix">
-								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
-										src='//www.gravatar.com/avatar/7fa2d4d22e174192ba72a9d91acf2eb0?d=identicon&s=30' /></a>
-									<div class="avatar-info">
-										<a class="nickname" href="#" title="${board.id}">${board.id}</a>
-										<div class="activity">
-											<span class="fa fa-flash"></span>활동
-										</div>
-										<div class="date-created">
-											<span class="timeago" title="${board.regdate}">${board.regdate}</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-
-					</c:if>
-				</c:forEach>
-
-			</ul>
-		</div>
-	</div>
-</div>
-
-<div class="text-center">
-
-	<ul class="pagination pagination-sm">
-		<c:forEach begin="${pageMaker.sPageNo}" end="${pageMaker.ePageNo}"
-			var="i">
-			<c:choose>
-				<c:when test="${pageMaker.cri.currPage==i}">
-					<li class="active"><span>${i}</span></li>
- 				</c:when>
-				<c:otherwise>
-					<li><a href="/qna/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
- 				</c:otherwise>
-			</c:choose>
-			<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
-<!-- 		<li class="disabled"><span>...</span></li>
-		<li><a href="/qna/list?" class="step">8013</a></li>
-		<li class="next"><a href="/qna/list?" class="step">&raquo;</a></li> -->
-		</c:forEach>
-	</ul>
+<!--  2)  -->
+<c:forEach begin="${pageMaker.sPageNo}"
+         end="${pageMaker.ePageNo}" var="i">
+   <c:choose>
+       <c:when test="${pageMaker.cri.currPage==i}">
+          <font size="5" color="Orange">${i}</font>&nbsp;
+       </c:when>
+       <c:otherwise>
+          <a href="list${pageMaker.makeSearch(i)}">${i}</a>&nbsp;
+       </c:otherwise>
+    </c:choose>      
+   <%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
+  </c:forEach>
+<!--  3) --> 
+  <c:if test="${pageMaker.next && pageMaker.ePageNo > 0}">
+   <a href="list${pageMaker.makeSearch(pageMaker.ePageNo+1)}">&nbsp;&raquo;</a>
+   <a href="list${pageMaker.makeSearch(pageMaker.lastPageNo)}">&nbsp;Last</a>
+  </c:if>
 
 </div>
-</div>
-
 <%@include file="../includes/footer.jsp"%>
