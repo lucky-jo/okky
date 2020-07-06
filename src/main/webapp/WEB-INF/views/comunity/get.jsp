@@ -262,7 +262,7 @@ function del() {
 				</h3>
 			</li>
 			<c:forEach var="list" items="${reply}">
-				<c:if test="${list.rexist ==1 }">
+				<c:if test="${list.rexist == 1}">
 					<li class="list-group-item note-item clearfix" id="note-2015714">
 						<form action="/content/update/2015714" method="post"
 							data-id="2015714" class="note-update-form">
