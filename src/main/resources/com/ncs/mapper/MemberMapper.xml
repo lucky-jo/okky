@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ncs.mapper.MemberMapper">
+	<resultMap id="memberMap" type="com.ncs.vo.MemberVO">
+		<result property="userid" column="userid" />
+		<result property="userpw" column="userpw" />
+		<result property="username" column="username" />
+		<result property="enabled" column="enabled" />
+		<result property="email" column="email" />
+		<result property="nickname" column="nickname" />
+		<result property="joindate" column="joindate" />
+		<result property="outdate" column="outdate" />
+		<result property="exist" column="exist" />
+		<result property="image" column="image" />
+		<result property="apoint" column="apoint" />
+		<result property="wpoint" column="wpoint" />
+		<result property="follow" column="follow" />
+		<result property="following" column="following" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+	<resultMap type="com.ncs.vo.AuthVO" id="authMap">
+		<result property="userid" column="userid" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+	<insert id="register">
+		insert into member(userid,userpw,email,username,nickname,image) values(#{userid},#{userpw},#{email},#{username},#{nickname},#{image})
+	</insert>
+
+	<insert id="auth">
+		insert into member_auth(userid) values(#{userid})
+	</insert>
+
+	<select id="read" resultMap="memberMap">
+		SELECT
+		mem.userid, userpw, username,email,nickname,image,apoint,
+		enabled, auth
+		FROM
+		member mem LEFT OUTER JOIN
+		member_auth auth on mem.userid = auth.userid
+		WHERE mem.userid =
+		#{userid}
+	</select>
+
+</mapper>
+  
