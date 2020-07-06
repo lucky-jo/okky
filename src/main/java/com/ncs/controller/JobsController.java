@@ -1,5 +1,7 @@
 package com.ncs.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ncs.service.JobsReplyService;
 import com.ncs.service.JobsService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
 
 @RequestMapping("/jobs/")
@@ -18,6 +22,9 @@ public class JobsController {
 	
 	@Autowired
 	JobsService service;
+	
+	@Autowired
+	JobsReplyService jservice;
 	
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mv,SearchCriteria cri) {
@@ -51,31 +58,31 @@ public class JobsController {
 		  mv.setViewName("jobs/jinsert");
 		  return mv;
 	  }
-	  
 	  @RequestMapping("/rinsert")
-	  public ModelAndView rinsert(ModelAndView mv, JobsVO vo) {
-		  if(service.rinsert(vo)>0) 
-		  mv.setViewName("jobs/jdetail");
-		  return mv;
-	  }//rinsert
-
+	  public ModelAndView rinsert(ModelAndView mv, JobsReplyVO rvo) { 
+	      if(jservice.rinsert(rvo)>0) 
+		  mv.setViewName("redirect:/jobs/jdetail?seq="+rvo.getSeq());
+	      return mv; 
+	   }//rinsert
+	 
 	  @RequestMapping(value = "/jdetail")
-		public ModelAndView bdetail(HttpServletRequest request, ModelAndView mv, JobsVO vo) {
+		public ModelAndView bdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
 			
 		    vo = service.selectOne(vo);
 			mv.addObject("Detail", vo);
+			List<JobsReplyVO> rlist = jservice.selectlist(rvo.getSeq());
+			mv.addObject("Detailr",rlist);
 
-			// 4) 결과 ( Detail or Update 인지 )
+			// 4) 결과 ( Detail or Update 인지 ) 
 			// => request.getParameter("code") 가 U 인지 확인
-			mv.setViewName("jobs/jdetail");
-			if ("U".equals(request.getParameter("code"))) {
-				// 내정보 수정화면으로
-				mv.setViewName("jobs/jupdate");
-			} else if ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
-				mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~");
-			}
+		/*
+		 * mv.setViewName("jobs/jdetail"); if ("U".equals(request.getParameter("code")))
+		 * { // 내정보 수정화면으로 mv.setViewName("jobs/jupdate"); } else if
+		 * ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
+		 * mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~"); }
+		 */
 			return mv;
-		}// bdetail 
+		}// jdetail 
 	  
 	  @RequestMapping(value = "/update")
 		public ModelAndView update(ModelAndView mv, JobsVO vo) {

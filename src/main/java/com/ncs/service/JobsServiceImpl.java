@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ncs.mapper.JobsMapper;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
 
 
@@ -25,10 +26,6 @@ public class JobsServiceImpl implements JobsService {
 	@Override 
 	public int insert(JobsVO vo) { 
 		return mapper.insert(vo); 
-	}
-	@Override 
-	public int rinsert(JobsVO vo) { 
-		return mapper.rinsert(vo); 
 	}
 	@Override
 	public JobsVO selectOne(JobsVO vo) {
