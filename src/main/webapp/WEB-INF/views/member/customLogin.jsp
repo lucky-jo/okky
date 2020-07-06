@@ -35,9 +35,7 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript" ></script>
     <![endif]-->
 
-
     <meta name="layout" content="main">
-
 
     <link rel="stylesheet" href="//okky.kr/assets/style.css"/>
     <link rel="stylesheet" href="//okky.kr/assets/APW-style-4cc590ebaca176a1481738f6db45886f.css"/>
@@ -107,8 +105,8 @@
 
                     <form action='/login' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
 
-                        <input type="text" name="username" autocorrect="off" autocapitalize="off" id="username" class="username form-control input-sm" placeholder="아이디" required autofocus>
-                        <input type="password" name='password' class="password form-control input-sm" placeholder="비밀번호" required>
+                        <input type="text" value="user01" name="username" autocorrect="off" autocapitalize="off" id="username" class="username form-control input-sm" placeholder="아이디" required autofocus>
+                        <input type="password" value="user01" name='password' class="password form-control input-sm" placeholder="비밀번호" required>
                         <!-- AutoPassword 추가 -->
                         <div class="checkbox">
                             <label>
@@ -124,7 +122,7 @@
                             </label>
                         </div>--%>
 
-                        <button class="btn btn-primary btn-block" type="submit">로그인</button
+                        <button class="btn btn-primary btn-block" type="submit">로그인</button>
 
                         <%--<div id="divUserLogin">
                             <button class="btn btn-primary btn-block" type="submit" id="btnUserLogin">로그인</button>

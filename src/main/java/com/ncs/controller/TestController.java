@@ -83,14 +83,14 @@ public class TestController {
 				vo.setTitle("관리자가 작성하는 글 select key"+j);
 				vo.setContent("관리자가 작성하는 내용 select key"+j);
 				vo.setId("admin9"+j);
-				vo.setCategory("a");
+				vo.setCategory("Tech Q&A");
 				qnamapper.insert(vo);
 			}
 			for(int k = 0; k < 7 ; k++ ) {
 				vo.setTitle("새로 작성하는 글 select key"+k);
 				vo.setContent("새로 작성하는 내용 select key"+k);
 				vo.setId("user5"+k);
-				vo.setCategory("b");
+				vo.setCategory("Blockchain Q&A");
 				qnamapper.insert(vo);
 			}
 		}
