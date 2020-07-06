@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +67,7 @@ public class QnaController {
 
         }
 
-        @PreAuthorize("isAuthenticated()")
+//        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/get")
         public ModelAndView get(ModelAndView mv, QnaVO vo, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
         	List<ReplyVO> list = rservice.selectlist(vo.getSeq());
@@ -110,16 +109,16 @@ public class QnaController {
             return mv;
         }
 
-        @PreAuthorize("principal.username == #vo.id")
+        @PreAuthorize("principal.username == #request.getRemoteUser()")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
         public ModelAndView getUpdate(ModelAndView mv, QnaVO vo) {
             System.out.println("업데이트폼 요청 = " + vo);
             return mv.addObject("get",service.selectOne(vo));
         }
 
-        @PreAuthorize("principal.username == #vo.id")
+        @PreAuthorize("principal.username == #request.getRemoteUser()")
         @RequestMapping(value = "/delete")
-        public ModelAndView delete(ModelAndView mv, QnaVO vo) {
+        public ModelAndView delete(ModelAndView mv, QnaVO vo,HttpServletRequest request) {
             System.out.println("삭제요청 = " + vo);
             if(service.delete(vo) > 0) {
                 mv.setViewName("redirect:/qna/list");
