@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ncs.service.ComReplyService;
 import com.ncs.service.ComunityService;
-import com.ncs.service.ReplyService;
+import com.ncs.service.LikeCountService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ComunityVO;
+import com.ncs.vo.LikeDTO;
+import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
 
 @RequestMapping(value = "/comunity/")
@@ -22,19 +25,22 @@ public class ComunityController {
 	@Autowired
 	ComunityService service;
 	@Autowired
-	ReplyService rservice;
+	ComReplyService rservice;
+	@Autowired
+	LikeCountService likeCountService;
 	
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
 		cri.setSnoEno();
 		mv.addObject("board",service.searchList(cri));
 		
-		PageMaker maker = new PageMaker();
-		maker.setCri(cri);
-		maker.setTotalRow(service.searchRowCount(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalRow(service.searchRowCount(cri));
 		
-		mv.addObject("maker",maker);
+		mv.addObject("pageMaker",pageMaker);
 		mv.setViewName("comunity/list");
+		System.out.println(pageMaker.toString());
 		return mv;
 	}
 	
@@ -51,35 +57,39 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/register")
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getInsert() {
 	
 	}
 	
-	@RequestMapping(value = "/rinsert")
-	public ModelAndView rinsert(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
-		if(rservice.rinsert(rvo)>0) {
-			mv.setViewName("redirect:/comunity/detail?seq="+vo.getSeq());
-		}else {
-			mv.addObject("fCode","BI");
-			mv.setViewName("comunity/fail");
-		}
-		return mv;
-	}
 	
 	@RequestMapping(value = "/get")
-	public ModelAndView get(ModelAndView mv, ComunityVO vo, ReplyVO rvo) {
+	public ModelAndView get(ModelAndView mv, ComunityVO vo, LikeDTO dto, ReplyLikeDTO rdto) {
 		
-		
+		List<ReplyVO> list = rservice.selectList(vo.getSeq());
+	   	for (ReplyVO replyVO : list) {
+    	    rdto.setBoard(replyVO.getBoard());
+    	    rdto.setLikerid("kim");
+    	    rdto.setRseq(replyVO.getRseq());
+			replyVO.setLiketype(likeCountService.replyLikeExist(rdto));
+			System.out.println(replyVO.getLiketype());
+			System.out.println(replyVO.toString());
+		}
 		//service.countUp(vo); 굳이 서비스에 추가하지 않고 selectOne에 기능만 추가해서 사용
 		//update에서 중복 사용 되도 조건을 주면 상관 없음
 		vo = service.selectOne(vo);
-		List<ReplyVO> list = rservice.selectList(rvo);
-		
+		if( vo != null ) {
+    	    dto.setSeq(vo.getSeq());
+    		dto.setBoard("comunity");
+    		dto.setLikeid("Kim");
+    		int cnt = likeCountService.likeExist(dto);
+        	System.out.println(cnt);
+        	mv.addObject("liketype", cnt);
+    	}
 			mv.addObject("reply",list);
 			mv.addObject("get",vo);
 			mv.setViewName("comunity/get");
-			return mv;
+		return mv;
 	}
 	
 	
@@ -97,9 +107,7 @@ public class ComunityController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getUpdate(ModelAndView mv, ComunityVO vo) {
 	
-		vo = service.selectOne(vo);
-			mv.addObject("get", vo);
-		return mv;
+		 return mv.addObject("get",service.selectOne(vo));
 	}
 	
 	
