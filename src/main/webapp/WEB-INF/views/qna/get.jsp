@@ -225,7 +225,7 @@ function del() {
 								class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 								title="게시물 설정"></i></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/qna/update?seq=${get.seq}" class="edit"><i
+								<li><a href="/qna/update?seq=${get.seq}&id=${get.id}" class="edit"><i
 										class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
 								<li><a href="/qna/delete?seq=${get.seq }"
