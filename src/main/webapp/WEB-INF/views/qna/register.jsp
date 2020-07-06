@@ -116,7 +116,7 @@
                                 <fieldset class="buttons">
                                     <a href="/qna/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
                                     <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
-                                    <input type="hidden" name="id" value="ildang100">
+                                    <input type="hidden" name="id" value="<sec:authentication property="principal.username"/>">
                                 </fieldset>
                             </div>
 					

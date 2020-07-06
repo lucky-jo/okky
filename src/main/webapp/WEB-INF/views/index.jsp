@@ -65,9 +65,12 @@
             <div class="nav-user nav-sidebar">
 
 
-                <%--회원가입 로그인--%>
-                    <sec:authorize access="isAuthenticated()">
-                        <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='/resources/user/1.jpg' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="">user01</a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
+                <%--회원가입 로그인--%><sec:authentication var="user" property="principal" />
+                   <sec:authorize access="isAuthenticated()">
+                    
+                    
+                    
+                        <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='/resources/user/1.jpg' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
 
                         <div class="nav-user-action">
                             <div class="nav-user-func">
@@ -93,6 +96,7 @@
                                 </div>
                             </div>
                         </script>
+                        
                     </sec:authorize>
                     <sec:authorize access="isAnonymous()">
                         <ul class="nav nav-sidebar">

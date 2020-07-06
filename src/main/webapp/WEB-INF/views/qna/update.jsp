@@ -59,7 +59,7 @@
 				<a href='/user/info/94647' class='avatar-photo'><img
 					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/94647" title="일당백">${get.id }</a>
+					<a class="nickname" href="/user/info/94647" title="${get.id }">${get.id }</a>
 					<div class="activity block">
 						<span class="fa fa-flash"></span> 활동
 					</div>
