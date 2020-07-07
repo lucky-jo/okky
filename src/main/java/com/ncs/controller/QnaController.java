@@ -1,14 +1,10 @@
 package com.ncs.controller;
 
-import com.ncs.service.LikeCountService;
-import com.ncs.service.QnaReplyService;
-import com.ncs.service.QnaService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.LikeDTO;
-import com.ncs.vo.QnaVO;
-import com.ncs.vo.ReplyLikeDTO;
-import com.ncs.vo.ReplyVO;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,8 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
+import com.ncs.service.QnaReplyService;
+import com.ncs.service.QnaService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.LikeDTO;
+import com.ncs.vo.MemberVO;
+import com.ncs.vo.MergeDTO;
+import com.ncs.vo.QnaVO;
+import com.ncs.vo.ReplyLikeDTO;
+import com.ncs.vo.ReplyVO;
 
 @RequestMapping(value = "/qna/")
 @Controller
@@ -31,12 +37,25 @@ public class QnaController {
 
         @Autowired
         LikeCountService likeCountService;
+        
+        @Autowired
+        MemberService memberService;
 
         @RequestMapping(value = "/list")
         public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
             cri.setSnoEno();
-            mv.addObject("board",service.searchList(cri));
-
+            List<QnaVO> list = service.searchList(cri);
+            List<MergeDTO<QnaVO,MemberVO>> mergelist = new ArrayList<>();
+            for (QnaVO qnaVO : list) {
+            	MemberVO membervo = memberService.get(qnaVO.getId());
+            	if( membervo != null ) {
+            		System.out.println(membervo.toString());
+    				mergelist.add(new MergeDTO<QnaVO,MemberVO>(qnaVO, membervo));
+            	}	
+			}
+            if( mergelist != null ) {
+            	mv.addObject("board",mergelist);
+            }
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCri(cri);
             pageMaker.setTotalRow(service.searchRowCount(cri));
