@@ -2,6 +2,9 @@ package com.ncs.vo;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class MemberVO {
     private String userid;
     private String userpw;
