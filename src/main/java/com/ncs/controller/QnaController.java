@@ -1,16 +1,5 @@
 package com.ncs.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.ncs.service.LikeCountService;
 import com.ncs.service.QnaReplyService;
 import com.ncs.service.QnaService;
@@ -20,6 +9,15 @@ import com.ncs.vo.LikeDTO;
 import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RequestMapping(value = "/qna/")
 @Controller
@@ -79,6 +77,7 @@ public class QnaController {
 				System.out.println(replyVO.getLiketype());
 				System.out.println(replyVO.toString());
 			}
+        	vo.setId(request.getRemoteUser());
         	vo = service.selectOne(vo);
         	if( vo != null ) {
         	    dto.setSeq(vo.getSeq());
