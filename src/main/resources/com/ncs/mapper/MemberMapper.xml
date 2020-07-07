@@ -44,6 +44,10 @@
 		WHERE mem.userid =
 		#{userid}
 	</select>
+	
+	<select id="get" resultType="com.ncs.vo.MemberVO">
+		select * from member where userid = #{userid}
+	</select>
 
 </mapper>
   
