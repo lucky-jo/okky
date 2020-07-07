@@ -133,8 +133,7 @@ function del() {
 					<div class="note-evaluate-wrapper">
 						<c:choose>
 							<c:when test="${liketype == 1 }">
-								<a
-									href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1"
+								<a  href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="assent"
 									data-eval="true" data-id="2010634"><i
 									id="note-evaluate-assent-2010634"
@@ -150,16 +149,14 @@ function del() {
 							</c:when>
 							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
 							<c:when test="${liketype == 0 }">
-								<a
-									href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1"
+								<a	href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="assent"
 									data-eval="true" data-id="2013409"><i
 									id="note-evaluate-assent-2013409"
 									class="fa fa-angle-up note-evaluate-assent-assent"
 									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
-								<a
-									href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1"
+								<a	href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="dissent"
 									data-eval="true" data-id="2013409"><i
 									id="note-evaluate-dissent-2013409"
@@ -167,14 +164,13 @@ function del() {
 									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 							</c:when>
 							<c:when test="${liketype == -1 }">
-								<a href="javascript://" class="note-vote-btn" role="button"
+								<a  href="javascript://" class="note-vote-btn" role="button"
 									data-type="assent" data-eval="true" data-id="2010634"><i
 									id="note-evaluate-assent-2010634"
 									class="fa fa-angle-up note-evaluate-assent-disabled "
 									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
-								<a
-									href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1"
+								<a  href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="dissent"
 									data-eval="true" data-id="2010634"
 									onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
@@ -293,8 +289,7 @@ function del() {
 									<div class="note-evaluate-wrapper">
 										<c:choose>
 											<c:when test="${list.liketype == 1 }">
-												<a
-													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
+												<a  href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2010634"><i
 													id="note-evaluate-assent-2010634"
@@ -303,7 +298,7 @@ function del() {
 													onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
 												<div id="content-vote-count-2010634"
 													class="content-eval-count">${list.rlikecount}</div>
-												<a href="javascript://" class="note-vote-btn" role="button"
+												<a  href="javascript://" class="note-vote-btn" role="button"
 													data-type="dissent" data-eval="true" data-id="2010634"><i
 													id="note-evaluate-dissent-2010634"
 													class="fa fa-angle-down note-evaluate-dissent-disabled"
@@ -311,8 +306,7 @@ function del() {
 											</c:when>
 											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
 											<c:when test="${list.liketype == 0 }">
-												<a
-													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1"
+												<a  href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2013409"><i
 													id="note-evaluate-assent-2013409"
@@ -320,8 +314,7 @@ function del() {
 													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2013409"
 													class="content-eval-count">${list.rlikecount }</div>
-												<a
-													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
+												<a  href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2013409"><i
 													id="note-evaluate-dissent-2013409"
@@ -329,15 +322,14 @@ function del() {
 													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 											</c:when>
 											<c:when test="${list.liketype == -1 }">
-												<a href="javascript://" class="note-vote-btn" role="button"
+												<a  href="javascript://" class="note-vote-btn" role="button"
 													data-type="assent" data-eval="true" data-id="2010634"><i
 													id="note-evaluate-assent-2010634"
 													class="fa fa-angle-up note-evaluate-assent-disabled "
 													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2010634"
 													class="content-eval-count">${list.rlikecount}</div>
-												<a
-													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1"
+												<a  href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2010634"
 													onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
