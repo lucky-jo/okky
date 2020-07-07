@@ -28,7 +28,6 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript" ></script>
     <![endif]-->
 
-
     <meta name="layout" content="main_with_banner"/>
 
     <meta name="google-site-verification" content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0"/>
@@ -37,9 +36,6 @@
 <body>
 <div class="layout-container">
     <div class="main index">
-
-
-
 
         <div class="sidebar ">
 
@@ -64,7 +60,6 @@
             </form>
 
             <div class="nav-user nav-sidebar">
-
 
                 <%--회원가입 로그인--%>
                    <sec:authorize access="isAuthenticated()">

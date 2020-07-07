@@ -120,15 +120,15 @@
 
 						<div class="list-title-wrapper clearfix">
 							<div class="list-tag clearfix">
-								<span class="list-group-item-text article-id">${board.seq}</span>
+								<span class="list-group-item-text article-id">${board.board.seq}</span>
 								<a href="#"
 									class="list-group-item-text item-tag label label-info"><i
-									class="fa fa-comments"></i> ${board.category}</a>
+									class="fa fa-comments"></i> ${board.board.category}</a>
 
 							</div>
 
 							<h5 class="list-group-item-heading list-group-item-evaluate">
-								<a href="/qna/get?seq=${board.seq }&board=${board.board}"> ${board.title} </a>
+								<a href="/qna/get?seq=${board.board.seq }&board=${board.board.board}"> ${board.board.title} </a>
 							</h5>
 						</div>
 
@@ -136,23 +136,23 @@
 
 							<div class="list-group-item-summary clearfix">
 								<ul>
-									<c:if test="${board.replycount > 0 }">
-										<i class="item-icon fa fa-comment "></i> ${board.replycount}
+									<c:if test="${board.board.replycount > 0 }">
+										<i class="item-icon fa fa-comment "></i> ${board.board.replycount}
 					
 					</li>
 					</c:if>
-					<c:if test="${board.replycount < 1 }">
+					<c:if test="${board.board.replycount < 1 }">
 						<li class="item-icon-disabled"><i
-							class="item-icon fa fa-comment "></i> ${board.replycount}</li>
+							class="item-icon fa fa-comment "></i> ${board.board.replycount}</li>
 					</c:if>
-					<c:if test="${board.likecount > 0 }">
-						<li class="item-icon fa fa-thumbs-up">${board.likecount }</li>
+					<c:if test="${board.board.likecount > 0 }">
+						<li class="item-icon fa fa-thumbs-up">${board.board.likecount }</li>
 					</c:if>
-					<c:if test="${board.likecount < 1 }">
+					<c:if test="${board.board.likecount < 1 }">
 						<li class="item-icon-disabled"><i
-							class="item-icon fa fa-thumbs-up"></i>${board.likecount }</li>
+							class="item-icon fa fa-thumbs-up"></i>${board.board.likecount }</li>
 					</c:if>
-					<li class=""><i class="item-icon fa fa-eye"></i> ${board.cnt}</li>
+					<li class=""><i class="item-icon fa fa-eye"></i> ${board.board.cnt}</li>
 			</ul>
 		</div>
 
@@ -161,14 +161,14 @@
 	<div class="list-group-item-author clearfix">
 		<div class='avatar avatar-list clearfix '>
 			<a href='#' class='avatar-photo'><img
-				src='//www.gravatar.com/avatar/7fa2d4d22e174192ba72a9d91acf2eb0?d=identicon&s=30' /></a>
+				src='/resources/user/${board.member.image }' /></a>
 			<div class="avatar-info">
-				<a class="nickname" href="#" title="${board.id}">${board.id}</a>
+				<a class="nickname" href="#" title="${board.member.userid}">${board.member.userid}</a>
 				<div class="activity">
-					<span class="fa fa-flash"></span>활동
+					<span class="fa fa-flash"></span>${board.member.apoint }
 				</div>
 				<div class="date-created">
-					<span class="timeago" title="${board.regdate}">${board.regdate}</span>
+					<span class="timeago" title="${board.board.regdate}">${board.board.regdate}</span>
 				</div>
 			</div>
 		</div>
