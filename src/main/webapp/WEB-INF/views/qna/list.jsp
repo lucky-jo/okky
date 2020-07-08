@@ -50,7 +50,8 @@
 	<ul class="nav">
 		<li><a href="/qna/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
+					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/qna/list?category=Tech%20Q%26A&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
@@ -73,13 +74,15 @@
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
 			<h4>Q&A</h4>
-			<form action="/articles/community" method="get"
+			<form action="/qna/list" method="get"
 				name="category-filter-form" id="category-filter-form">
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
 						<div class="input-group input-group-sm">
-							<input type="search" name="query" id="search-field"
-								class="form-control" placeholder="검색어" value="" /> <span
+							<input type="hidden" name="categoty" value="${pageMaker.cri.category }">
+							<input type="hidden" name="searchType" value="tcw">
+							<input type="search" name="keyword" id="search-field"
+								class="form-control" placeholder="검색어" value="${pageMaker.cri.keyword}" /> <span
 								class="input-group-btn">
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-search"></i>

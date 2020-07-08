@@ -66,7 +66,7 @@
                        <sec:authentication var="user" property="principal" />
                     
                     
-                        <div class='avatar avatar-medium clearfix '><a href='/user/info' class='avatar-photo'><img src='/resources/user/${user.member.image}' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/user/info"  title="${user.member.userid}">${user.member.nickname}</a> <div class="activity block"><span class="fa fa-flash"></span> ${user.member.apoint}</div></div></div>
+                        <div class='avatar avatar-medium clearfix '><a href='/member/info?userid=${user.member.userid }' class='avatar-photo'><img src='/resources/user/${user.member.image}' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/member/info?userid=${user.member.userid }"  title="${user.member.nickname}">${user.member.nickname}</a> <div class="activity block"><span class="fa fa-flash"></span> ${user.member.apoint}</div></div></div>
 
                         <div class="nav-user-action">
                             <div class="nav-user-func">
