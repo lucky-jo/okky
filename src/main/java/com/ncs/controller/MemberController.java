@@ -48,12 +48,9 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/info")
-    public ModelAndView info(ModelAndView mv){
+    public ModelAndView info(ModelAndView mv,MemberVO memberVO){
+        memberService.get()
 
         return mv;
     }
-
-
-
-
 }
