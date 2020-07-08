@@ -48,9 +48,22 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/info")
-    public ModelAndView info(ModelAndView mv,MemberVO memberVO){
-        memberService.get()
-
+    public ModelAndView info( ModelAndView mv, MemberVO memberVO ){
+    	memberVO = memberService.get(memberVO.getUserid());
+        mv.addObject("member", memberVO);
+        System.out.println(memberVO);
         return mv;
+    }
+    
+    @PreAuthorize("principal.username == #memberVO.userid")
+    @RequestMapping(value = "/edit")
+    public ModelAndView edit(ModelAndView mv, MemberVO memberVO ) {
+    	return mv;
+    }
+    
+    @PreAuthorize("principal.username == #memberVO.userid")
+    @RequestMapping(value = "/passwordChange")
+    public ModelAndView passwordChange(ModelAndView mv, MemberVO memberVO ) {
+    	return mv;
     }
 }
