@@ -42,7 +42,7 @@ public class JobsController {
 	
 	
 	  @RequestMapping("/insert") 
-	  public ModelAndView newinsert(ModelAndView mv,JobsVO vo) { 
+	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  //mv.addObject("새 글이 등록 되었습니다");
 	          mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq()); 
@@ -66,7 +66,7 @@ public class JobsController {
 	   }//rinsert
 	 
 	  @RequestMapping(value = "/jdetail")
-		public ModelAndView bdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
+		public ModelAndView jdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
 			
 		    vo = service.selectOne(vo);
 			mv.addObject("Detail", vo);
