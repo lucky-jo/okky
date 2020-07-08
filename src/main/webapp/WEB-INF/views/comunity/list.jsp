@@ -104,16 +104,12 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/comunity/list" data-sort="id" data-order="desc"
-							class="category-sort-link active">최신순</a></li>
-						<li><a href="/comunity/list" data-sort="voteCount"
-							data-order="desc" class="category-sort-link ">추천순</a></li>
-						<li><a href="/comunity/list" data-sort="noteCount"
-							data-order="desc" class="category-sort-link ">댓글순</a></li>
-						<li><a href="/comunity/list" data-sort="scrapCount"
-							data-order="desc" class="category-sort-link ">스크랩순</a></li>
-						<li><a href="/comunity/list" data-sort="viewCount"
-							data-order="desc" class="category-sort-link ">조회순</a></li>
+						<li><a href="/comunity/list" data-sort="id" class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
+																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
+						<li><a href="/comunity/list?sorted=like" class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />" >추천순</a></li>
+						<li><a href="/comunity/list?sorted=reply" class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />" ">댓글순</a></li>
+						<%--<li><a href="/qna/list" class="category-sort-link ">스크랩순</a></li>--%>
+						<li><a href="/comunity/list?sorted=view" class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />" ">조회순</a></li>
 					</ul>
 
 					<input type="hidden" name="sort" id="category-sort-input"
@@ -135,6 +131,7 @@
 
 
 				<c:forEach var="board" items="${board}">
+						<c:if test="${board.exist == 1}">
 						<li
 							class="list-group-item list-group-item-question list-group-no-note clearfix">
 
@@ -158,7 +155,6 @@
 									<ul>
 									<c:if test="${board.replycount > 0 }">
 										<i class="item-icon fa fa-comment "></i> ${board.replycount}
-					
 									</c:if>
 									<c:if test="${board.replycount < 1 }">
 										<li class="item-icon-disabled"><i
@@ -192,6 +188,7 @@
 								</div>
 							</div>
 						</li>
+						</c:if>
 				</c:forEach>
 
 			</ul>

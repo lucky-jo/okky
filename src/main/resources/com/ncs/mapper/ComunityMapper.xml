@@ -94,7 +94,21 @@
    select * 
    from comunity where ( 1=1
      ]]>
-     <include refid="search"></include> order by seq desc
+     <include refid="search"></include>
+     <choose>
+     	<when test="sorted == null or sorted.equals('')">
+			order by seq desc
+		</when>
+		 <when test="sorted=='like'.toString()">
+			 order by likecount desc, seq desc
+		 </when>
+		 <when test="sorted=='reply'.toString()">
+			 order by replycount desc, seq desc
+		 </when>
+		 <when test="sorted=='view'.toString()">
+			 order by cnt desc, seq desc
+		 </when>
+	 </choose>
      limit #{start} , #{perPageRow}
   </select>
   

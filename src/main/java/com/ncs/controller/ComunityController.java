@@ -1,6 +1,11 @@
 package com.ncs.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,12 +69,12 @@ public class ComunityController {
 	
 	
 	@RequestMapping(value = "/get")
-	public ModelAndView get(ModelAndView mv, ComunityVO vo, LikeDTO dto, ReplyLikeDTO rdto) {
+	public ModelAndView get(ModelAndView mv, ComunityVO vo, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
 		
 		List<ReplyVO> list = rservice.selectList(vo.getSeq());
 	   	for (ReplyVO replyVO : list) {
     	    rdto.setBoard(replyVO.getBoard());
-    	    rdto.setLikerid("kim");
+    	    rdto.setLikerid(request.getRemoteUser());
     	    rdto.setRseq(replyVO.getRseq());
 			replyVO.setLiketype(likeCountService.replyLikeExist(rdto));
 			System.out.println(replyVO.getLiketype());
@@ -81,12 +86,12 @@ public class ComunityController {
 		if( vo != null ) {
     	    dto.setSeq(vo.getSeq());
     		dto.setBoard("comunity");
-    		dto.setLikeid("Kim");
+    		dto.setLikeid(request.getRemoteUser());
     		int cnt = likeCountService.likeExist(dto);
         	System.out.println(cnt);
         	mv.addObject("liketype", cnt);
     	}
-			mv.addObject("reply",list);
+			mv.addObject("replylist",list);
 			mv.addObject("get",vo);
 			mv.setViewName("comunity/get");
 		return mv;
@@ -112,15 +117,11 @@ public class ComunityController {
 	
 	
 	@RequestMapping(value = "/delete")
-	public ModelAndView delete(ModelAndView mv, ComunityVO vo) {
+	public String delete( ComunityVO vo) {
 		System.out.println(vo);
-		if(service.delete(vo) > 0) {
-			mv.setViewName("redirect:/comunity/list");
-		}else {
-			mv.addObject("fCode", "BD");
-			mv.setViewName("comunity/fail");
-		}
-		return mv;
+		service.delete(vo) ;
+		System.out.println(vo);
+		return "redirect:/comunity/list?seq="+vo.getSeq();
 	}
 	
 }
