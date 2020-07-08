@@ -114,21 +114,21 @@
 
 			<ul class="list-group">
 
-				<c:forEach var="board" items="${board}">
+				<c:forEach var="merge" items="${mergelist}">
 					<li
 						class="list-group-item list-group-item-question list-group-no-note clearfix">
 
 						<div class="list-title-wrapper clearfix">
 							<div class="list-tag clearfix">
-								<span class="list-group-item-text article-id">${board.board.seq}</span>
+								<span class="list-group-item-text article-id">${merge.board.seq}</span>
 								<a href="#"
 									class="list-group-item-text item-tag label label-info"><i
-									class="fa fa-comments"></i> ${board.board.category}</a>
+									class="fa fa-comments"></i> ${merge.board.category}</a>
 
 							</div>
 
 							<h5 class="list-group-item-heading list-group-item-evaluate">
-								<a href="/qna/get?seq=${board.board.seq }&board=${board.board.board}"> ${board.board.title} </a>
+								<a href="/qna/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}"> ${merge.board.title} </a>
 							</h5>
 						</div>
 
@@ -136,23 +136,23 @@
 
 							<div class="list-group-item-summary clearfix">
 								<ul>
-									<c:if test="${board.board.replycount > 0 }">
-										<i class="item-icon fa fa-comment "></i> ${board.board.replycount}
+									<c:if test="${merge.board.replycount > 0 }">
+										<i class="item-icon fa fa-comment "></i> ${merge.board.replycount}
 					
 					</li>
 					</c:if>
-					<c:if test="${board.board.replycount < 1 }">
+					<c:if test="${merge.board.replycount < 1 }">
 						<li class="item-icon-disabled"><i
-							class="item-icon fa fa-comment "></i> ${board.board.replycount}</li>
+							class="item-icon fa fa-comment "></i> ${merge.board.replycount}</li>
 					</c:if>
-					<c:if test="${board.board.likecount > 0 }">
-						<li class="item-icon fa fa-thumbs-up">${board.board.likecount }</li>
+					<c:if test="${merge.board.likecount > 0 }">
+						<li class="item-icon fa fa-thumbs-up">${merge.board.likecount }</li>
 					</c:if>
-					<c:if test="${board.board.likecount < 1 }">
+					<c:if test="${merge.board.likecount < 1 }">
 						<li class="item-icon-disabled"><i
-							class="item-icon fa fa-thumbs-up"></i>${board.board.likecount }</li>
+							class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
 					</c:if>
-					<li class=""><i class="item-icon fa fa-eye"></i> ${board.board.cnt}</li>
+					<li class=""><i class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
 			</ul>
 		</div>
 
@@ -161,14 +161,14 @@
 	<div class="list-group-item-author clearfix">
 		<div class='avatar avatar-list clearfix '>
 			<a href='#' class='avatar-photo'><img
-				src='/resources/user/${board.member.image }' /></a>
+				src='/resources/user/${merge.member.image }' /></a>
 			<div class="avatar-info">
-				<a class="nickname" href="#" title="${board.member.userid}">${board.member.userid}</a>
+				<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
 				<div class="activity">
-					<span class="fa fa-flash"></span>${board.member.apoint }
+					<span class="fa fa-flash"></span>${merge.member.apoint }
 				</div>
 				<div class="date-created">
-					<span class="timeago" title="${board.board.regdate}">${board.board.regdate}</span>
+					<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
 				</div>
 			</div>
 		</div>
