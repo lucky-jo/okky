@@ -22,7 +22,7 @@ import java.util.List;
 public class QnaServiceImpl implements QnaService{
 
 	@Autowired
-	QnaMapper mapper;
+	QnaMapper qnaMapper;
 
 	@Autowired
 	LikeCountMapper likeCountMapper;
@@ -35,7 +35,7 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Override
 	public List<QnaVO> selectList(){
-		return mapper.selectList();
+		return qnaMapper.selectList();
 	}
 	
 	@Transactional
@@ -45,7 +45,7 @@ public class QnaServiceImpl implements QnaService{
 		memberVO.setUserid(request.getRemoteUser());
 		memberVO.setApoint(30);
 		memberMapper.pointUp(memberVO);
-		return mapper.insert(vo);
+		return qnaMapper.insert(vo);
 	}
 
 	@Transactional
@@ -58,9 +58,9 @@ public class QnaServiceImpl implements QnaService{
 			dto.setBoard("qna");
 			dto.setToday(getFolder());
 			dto.setSeq(vo.getSeq());
-			if (mapper.getcount(dto) == 0 ) {
-				mapper.registercount(dto);
-				mapper.countUp(vo.getSeq());
+			if (qnaMapper.getcount(dto) == 0 ) {
+				qnaMapper.registercount(dto);
+				qnaMapper.countUp(vo.getSeq());
 			}
 			memberVO.setUserid(request.getRemoteUser());
 			memberVO.setApoint(1);
@@ -68,27 +68,27 @@ public class QnaServiceImpl implements QnaService{
 		}
 		
 
-		return mapper.selectOne(vo);
+		return qnaMapper.selectOne(vo);
 	}
 	@Override
 	public int update(QnaVO vo) {
-		return mapper.update(vo);
+		return qnaMapper.update(vo);
 	}
 	@Override
 	public int delete(QnaVO vo) {
-		return mapper.delete(vo);
+		return qnaMapper.delete(vo);
 	}
 	@Override
 	public int totalRowCount() {
-		return mapper.totalRowCount();
+		return qnaMapper.totalRowCount();
 	}
 	@Override
 	public List<QnaVO> searchList(SearchCriteria cri){
-		return mapper.searchList(cri);
+		return qnaMapper.searchList(cri);
 	}
 	@Override
 	public int searchRowCount(SearchCriteria cri) {
-		return mapper.searchRowCount(cri);
+		return qnaMapper.searchRowCount(cri);
 	}
    	
 	private String getFolder() {
