@@ -20,6 +20,11 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 
 	@Override
 	public int register(ReplyVO rvo) {
+		
+		/* 댓글 남긴 사람들에게 업데이트 될 때마다 메시지 전송
+		 * for (iterable_type iterable_element : iterable) {
+		 * messageMapper.delevery(element); }
+		 */
 		mapper.replycountUp(rvo.getSeq());
 		return rmapper.register(rvo);
 	}

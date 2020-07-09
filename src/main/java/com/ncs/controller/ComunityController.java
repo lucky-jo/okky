@@ -1,13 +1,13 @@
 package com.ncs.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ncs.service.ComReplyService;
 import com.ncs.service.ComunityService;
 import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ComunityVO;
 import com.ncs.vo.LikeDTO;
+import com.ncs.vo.MemberVO;
+import com.ncs.vo.MergeDTO;
+import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
 
@@ -33,12 +37,26 @@ public class ComunityController {
 	ComReplyService rservice;
 	@Autowired
 	LikeCountService likeCountService;
+	@Autowired
+	MemberService memberService;
+	@Autowired
+	MemberVO memberVO;
 	
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
 		cri.setSnoEno();
-		mv.addObject("board",service.searchList(cri));
-		
+		List<ComunityVO> list = service.searchList(cri);
+		List<MergeDTO<ComunityVO,MemberVO>> mergelist = new ArrayList<>();
+		for(ComunityVO comunityVO : list) {
+			MemberVO membervo = memberService.get(comunityVO.getId());
+			if(membervo != null) {
+				System.out.println(membervo.toString());
+				mergelist.add(new MergeDTO<>(comunityVO,membervo));
+			}
+		}
+		if(mergelist != null) {
+		mv.addObject("mergelist",mergelist);
+		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalRow(service.searchRowCount(cri));
@@ -49,6 +67,7 @@ public class ComunityController {
 		return mv;
 	}
 	
+	@PreAuthorize("principal.username == #vo.id")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView postInsert(ModelAndView mv, ComunityVO vo) {
 		if(service.insert(vo)>0) {
@@ -62,6 +81,7 @@ public class ComunityController {
 		return mv;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getInsert() {
 	
@@ -71,8 +91,10 @@ public class ComunityController {
 	@RequestMapping(value = "/get")
 	public ModelAndView get(ModelAndView mv, ComunityVO vo, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
 		
-		List<ReplyVO> list = rservice.selectList(vo.getSeq());
-	   	for (ReplyVO replyVO : list) {
+		List<ReplyVO> list = rservice.selectList(vo.getSeq()); // comunity에서 seq 가져와서 댓글에 들어갈 데이터 리스트 정의
+		List<MergeDTO<ReplyVO,MemberVO>> mergelist = new ArrayList<>(); // MergeDTO(제네릭T,E)를 리스트로 정의
+	   	for (ReplyVO replyVO : list) { // 댓글에 들어갈 데이터가 list(List<ReplyVO>)가 될때까지 
+	   		mergelist.add(new MergeDTO<>(replyVO,memberService.get(vo.getId()))); //mergelist에 replyVO와 memberservice에서 받은 id를 추가한다
     	    rdto.setBoard(replyVO.getBoard());
     	    rdto.setLikerid(request.getRemoteUser());
     	    rdto.setRseq(replyVO.getRseq());
@@ -91,13 +113,15 @@ public class ComunityController {
         	System.out.println(cnt);
         	mv.addObject("liketype", cnt);
     	}
-			mv.addObject("replylist",list);
+		assert vo != null;
+			mv.addObject("mergeReplylist",mergelist);
 			mv.addObject("get",vo);
+			mv.addObject("writer",memberService.get(vo.getId()));
 			mv.setViewName("comunity/get");
 		return mv;
 	}
 	
-	
+	@PreAuthorize("principal.username == #vo.id")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView postUpdate(ModelAndView mv, ComunityVO vo) {
 		if(service.update(vo) > 0) {
@@ -109,19 +133,23 @@ public class ComunityController {
 		return mv;
 	}
 	
+	@PreAuthorize("principal.username == #vo.id")
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getUpdate(ModelAndView mv, ComunityVO vo) {
 	
 		 return mv.addObject("get",service.selectOne(vo));
 	}
 	
-	
-	@RequestMapping(value = "/delete")
-	public String delete( ComunityVO vo) {
-		System.out.println(vo);
-		service.delete(vo) ;
-		System.out.println(vo);
-		return "redirect:/comunity/list?seq="+vo.getSeq();
-	}
+    @PreAuthorize("principal.username == #request.getRemoteUser()")
+    @RequestMapping(value = "/delete")
+    public ModelAndView delete(ModelAndView mv, ComunityVO vo,HttpServletRequest request) {
+        System.out.println("삭제요청 = " + vo);
+        if(service.delete(vo) > 0) {
+            mv.setViewName("redirect:/comunity/list");
+        }else {
+            mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());
+        }
+        return mv;
+    }
 	
 }

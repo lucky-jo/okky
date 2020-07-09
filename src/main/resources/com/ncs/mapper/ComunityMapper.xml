@@ -59,10 +59,6 @@
   	updatedate=now() where seq=#{seq}
   </update>
   
-   <update id="countUp">
-	update comunity set cnt=cnt+1 where seq=#{seq}
-  </update>
-  
   <update id="delete">
   	update comunity set exist = 0 where seq=#{seq}
   </update>
@@ -92,7 +88,7 @@
   <select id="searchList" resultType="com.ncs.vo.ComunityVO">
   <![CDATA[
    select * 
-   from comunity where ( 1=1
+   from comunity where ( exist = 1
      ]]>
      <include refid="search"></include>
      <choose>
@@ -111,6 +107,10 @@
 	 </choose>
      limit #{start} , #{perPageRow}
   </select>
+    
+  <update id="countUp">
+	update comunity set cnt=cnt+1 where seq=#{seq}
+  </update>
   
   <update id="replycountUp">
 		update comunity set replycount = replycount+1 where seq = #{seq}
