@@ -66,7 +66,7 @@
 
             <div class="nav-user nav-sidebar">
 
-                <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="일당백">일당백</a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
+                <div class='avatar avatar-medium clearfix '><a href='/member/info/${member.userid }' class='avatar-photo'><img src='/resources/user/${member.image }'/></a> <div class="avatar-info"><a class="nickname" href="/member/info/${member.userid }"  title="${member.nickname }">${member.nickname }</a> <div class="activity block"><span class="fa fa-flash"></span> ${member.apoint }</div></div></div>
 
                 <div class="nav-user-action">
                     <div class="nav-user-func">
@@ -117,8 +117,6 @@
                     </div>
                 </script>
 
-
-
             </div>
 
             <ul class="nav nav-sidebar nav-main">
@@ -147,21 +145,21 @@
                     <div class='avatar avatar-big clearfix col-sm-3 text-center'><a href='/user/info/94647' class='avatar-photo'><img src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=150'/></a> </div>
                     <div class="user-info col-sm-9">
                         <div class="clearfix">
-                            <h2 class="pull-left">일당백</h2>
+                            <h2 class="pull-left">${member.nickname }</h2>
                             <button class="btn btn-success pull-right btn-wide disabled"><i class="fa fa-plus"></i> 팔로우</button>
                         </div>
                         <div class="user-points">
                             <div class="user-point">
                                 <div class="user-point-label"><i class="fa fa-flash"></i> 활동점수</div>
-                                <div class="user-point-num"><a href="/user/info/94647/activity">37</a></div>
+                                <div class="user-point-num"><a href="/user/info/94647/activity">${member.apoint }</a></div>
                             </div>
                             <div class="user-point">
                                 <div class="user-point-label"><i class="fa fa-user"></i> 팔로잉</div>
-                                <div class="user-point-num"><a href="#">0</a></div>
+                                <div class="user-point-num"><a href="#">${member.follow }</a></div>
                             </div>
                             <div class="user-point">
                                 <div class="user-point-label"><i class="fa fa-users"></i> 팔로워</div>
-                                <div class="user-point-num"><a href="#">0</a></div>
+                                <div class="user-point-num"><a href="#">${member.following }</a></div>
                             </div>
                         </div>
                     </div>
@@ -169,10 +167,10 @@
             </div>
             <div class="col-sm-2 user-info-nav pull-right">
                 <ul class="nav">
-                    <li class="active"><a href="/user/info/94647/activity">최근 활동</a> </li>
-                    <li class=""><a href="/user/info/94647/articles">게시물 </a></li>
+                    <li class="active"><a href="/member/info/${member.userid }">최근 활동</a> </li>
+                    <li class=""><a href="#">게시물 </a></li>
 
-                    <li class=""><a href="/user/info/94647/scrapped">스크랩 </a></li>
+                    <li class=""><a href="#">스크랩 </a></li>
                 </ul>
             </div>
 
@@ -272,9 +270,6 @@
 
 <script src="//okky.kr/assets/apps/notification-6b08014e71e33528f46d161042f6e463.js" type="text/javascript" ></script>
 
-
-
-
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -285,7 +280,6 @@
     ga('send', 'pageview');
 
 </script>
-
 
 <div id="userPrivacy" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog">

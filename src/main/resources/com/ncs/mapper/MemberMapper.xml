@@ -27,8 +27,8 @@
 	</resultMap>
 
 	<insert id="register">
-		insert into member(userid,userpw,email,username,nickname,image) 
-		values(#{userid},#{userpw},#{email},#{username},#{nickname},#{image})
+		insert into member(userid,userpw,email,username,nickname,image,allowed) 
+		values(#{userid},#{userpw},#{email},#{username},#{nickname},#{image},#{allowed})
 	</insert>
 
 	<insert id="auth">

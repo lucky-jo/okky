@@ -111,6 +111,7 @@ public class PageMaker {
 				.queryParam("searchType", cri.getSearchType())
 				.queryParam("keyword", cri.getKeyword())
 				.queryParam("category", cri.getCategory())
+				.queryParam("sorted", cri.getSorted())
 				.build();
 		return uriComponents.toUriString();
 	} // makeSearch()
