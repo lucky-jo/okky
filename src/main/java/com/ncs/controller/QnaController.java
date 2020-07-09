@@ -64,7 +64,7 @@ public class QnaController {
 
         @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/register", method = RequestMethod.POST )
-        public ModelAndView postInsert(ModelAndView mv, QnaVO vo) {
+        public ModelAndView postInsert(ModelAndView mv, QnaVO vo ) {
             if(qnaService.insert(vo)>0) {
                 mv.setViewName("redirect:/qna/get?seq="+vo.getSeq());
             }else {
