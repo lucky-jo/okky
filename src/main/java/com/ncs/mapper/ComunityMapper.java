@@ -18,7 +18,6 @@ public interface ComunityMapper {
 	public int update(ComunityVO vo);
 	public int delete(ComunityVO vo);
 	public int totalRowCount();
-	public List<ComunityVO> criList(Criteria cri);
 	public List<ComunityVO> searchList(SearchCriteria cri);
 	public int searchRowCount(SearchCriteria cri);
 	public int countUp(int seq);
