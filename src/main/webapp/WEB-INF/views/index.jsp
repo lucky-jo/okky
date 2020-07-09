@@ -62,9 +62,9 @@
                 <sec:authentication var="user" property="principal"/>
                 <div class="nav-user nav-sidebar">
                     <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img
-                            src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40'/></a>
-                        <div class="avatar-info"><a class="nickname" href="/user/info/94647" title="일당백">일당백</a>
-                            <div class="activity block"><span class="fa fa-flash"></span> 37</div>
+                            src='resources/user/${user.member.image }'/></a>
+                        <div class="avatar-info"><a class="nickname" href="/member/info?userid=${user.member.userid }" title="${user.member.nickname }">${user.member.nickname }</a>
+                            <div class="activity block"><span class="fa fa-flash"></span> ${user.member.apoint }</div>
                         </div>
                     </div>
                     <div class="nav-user-action">
@@ -220,13 +220,13 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/article/735291">별 건 아니고, 한국에서 </a>
+                                            <a href="/column/detail?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/user/info/21442'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/ab4c2d1dead2e8b4383f40a0b6222b25?d=identicon&s=10'/></a>
                                                     <div class="avatar-info"><a class="nickname" href="/user/info/21442"
-                                                                                title="samchon">samchon</a>
+                                                                                title="${list.id}">${list.id}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span> 457</div>
                                                         <div class="date-created"><span class="timeago"
                                                                                         title="2020-07-04 20:08:31.0">2020-07-04 20:08:31</span>
@@ -259,13 +259,13 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/article/738081">이렇게 결과가 나오려면 쿼리를 어떻게 짜야 할까요?</a>
+                                            <a href="/qna/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/user/info/49491'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/06abbd8dc732da5bfd24567f2125a7d0?d=identicon&s=10'/></a>
                                                     <div class="avatar-info"><a class="nickname" href="/user/info/49491"
-                                                                                title="gg맨">gg맨</a>
+                                                                                title="${list.id}">${list.id}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span> 1k</div>
                                                         <div class="date-created"><span class="timeago"
                                                                                         title="2020-07-09 17:08:35.0">2020-07-09 17:08:35</span>
@@ -295,13 +295,13 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/article/738082">파일질라로 FTP 접속이 되지 않습니다</a>
+                                            <a href="/comunity/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/user/info/80511'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/0007d053068c17303825e04128234c3c?d=identicon&s=10'/></a>
                                                     <div class="avatar-info"><a class="nickname" href="/user/info/80511"
-                                                                                title="으헿으헿">으헿으헿</a>
+                                                                                title="${list.id}">${list.id}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span> 338</div>
                                                         <div class="date-created"><span class="timeago"
                                                                                         title="2020-07-09 17:08:53.0">2020-07-09 17:08:53</span>

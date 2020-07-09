@@ -86,9 +86,9 @@ public class QnaController {
         	List<ReplyVO> list = qnaReplyService.selectlist(qnaVO.getSeq());
             List<MergeDTO<ReplyVO,MemberVO>> mergelist = new ArrayList<>();
         	for (ReplyVO replyVO : list) {
-//        	    memberVO = memberService.get(qnaVO.getId());
+//        	    memberVO = memberService.get(replyVO.getRid());
 //        	    System.out.println(memberVO);
-        	    mergelist.add(new MergeDTO<>(replyVO,memberService.get(qnaVO.getId())));
+        	    mergelist.add(new MergeDTO<>(replyVO,memberService.get(replyVO.getRid())));
         	    rdto.setBoard(replyVO.getBoard());
         	    rdto.setLikerid(request.getRemoteUser());
         	    rdto.setRseq(replyVO.getRseq());
