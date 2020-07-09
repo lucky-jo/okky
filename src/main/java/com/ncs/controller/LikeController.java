@@ -14,16 +14,14 @@ import com.ncs.vo.ReplyLikeDTO;
 @RequestMapping(value = "/like")
 @Controller
 public class LikeController {
-	
-	
 
     @Autowired
     LikeCountService likeCountService;
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()") // 컨트롤러에서 직접 하지 않고 어노테이션을 이용해 로그인 여부 확인 
     @RequestMapping(value = "/like")
     public String like(LikeDTO dto, HttpServletRequest request) {
-    	dto.setLikeid(request.getRemoteUser());
+    	dto.setLikeid(request.getRemoteUser()); //getRemoteUser() : 현재 로그인한 유저의 ID
         likeCountService.likeRegister(dto);
         return "redirect:/"+dto.getBoard()+"/get?seq="+dto.getSeq();
     }

@@ -28,7 +28,6 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript" ></script>
     <![endif]-->
 
-
     <meta name="layout" content="main_with_banner"/>
 
     <meta name="google-site-verification" content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0"/>
@@ -37,9 +36,6 @@
 <body>
 <div class="layout-container">
     <div class="main index">
-
-
-
 
         <div class="sidebar ">
 
@@ -65,13 +61,12 @@
 
             <div class="nav-user nav-sidebar">
 
-
-                <%--회원가입 로그인--%><sec:authentication var="user" property="principal" />
+                <%--회원가입 로그인--%>
                    <sec:authorize access="isAuthenticated()">
+                       <sec:authentication var="user" property="principal" />
                     
                     
-                    
-                        <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='/resources/user/1.jpg' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
+                        <div class='avatar avatar-medium clearfix '><a href='/member/info?userid=${user.member.userid }' class='avatar-photo'><img src='/resources/user/${user.member.image}' width="30" height="30"/></a> <div class="avatar-info"><a class="nickname" href="/member/info?userid=${user.member.userid }"  title="${user.member.nickname}">${user.member.nickname}</a> <div class="activity block"><span class="fa fa-flash"></span> ${user.member.apoint}</div></div></div>
 
                         <div class="nav-user-action">
                             <div class="nav-user-func">
@@ -128,7 +123,7 @@
             </ul>
 
             <ul class="nav nav-sidebar nav-bottom">
-                <li ><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
+                <li ><a href="https://github.com/ildang100/okky" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
             </ul>
         </div>
         <%--사이드 메뉴 종료--%>
@@ -149,13 +144,6 @@
 
                         <ul class="list-group">
 
-
-
-
-
-
-
-
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
@@ -166,12 +154,6 @@
                                     </h5>
                                 </div>
                             </li>
-
-
-
-
-
-
 
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                 <div class="list-title-wrapper">
@@ -184,12 +166,6 @@
                                 </div>
                             </li>
 
-
-
-
-
-
-
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
@@ -201,12 +177,6 @@
                                 </div>
                             </li>
 
-
-
-
-
-
-
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
@@ -217,12 +187,6 @@
                                     </h5>
                                 </div>
                             </li>
-
-
-
-
-
-
 
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                 <div class="list-title-wrapper">
@@ -250,9 +214,6 @@
 
                         <ul class="list-group">
 
-
-
-
                             <c:forEach var="list" items="${best}">
                                     <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                         <div class="list-title-wrapper">
@@ -267,7 +228,6 @@
                             </c:forEach>
                         </ul>
                     </div>
-
                 </div>
             </div>
 
@@ -320,7 +280,6 @@
                         <!-- Table -->
 
                         <ul class="list-group">
-
 
                             <c:forEach var="list" items="${communitylist}">
                                 <c:if test="${list.exist == 1}">
@@ -423,11 +382,6 @@
 
                         <ul class="list-group">
 
-
-
-
-
-
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
@@ -438,10 +392,6 @@
                                     </h5>
                                 </div>
                             </li>
-
-
-
-
 
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
@@ -454,10 +404,6 @@
                                 </div>
                             </li>
 
-
-
-
-
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
@@ -468,17 +414,13 @@
                                     </h5>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
         <div class="right-banner-wrapper">
-
 
             <div class="google-ad">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -519,7 +461,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -530,14 +471,11 @@
 <script src="//okky.kr/assets/application-857e72d372e881813d8d698bad484d96.js" type="text/javascript" ></script>
 <script src="//okky.kr/assets/apps/search-a672360634f56105585df31fcdb69705.js" type="text/javascript" ></script>
 
-
 <script>
     $(function () {
         $('.timeago').timeago();
     });
 </script>
-
-
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

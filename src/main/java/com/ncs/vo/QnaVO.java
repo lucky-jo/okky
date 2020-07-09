@@ -1,5 +1,8 @@
 package com.ncs.vo;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class QnaVO {
 
 	private int seq ;

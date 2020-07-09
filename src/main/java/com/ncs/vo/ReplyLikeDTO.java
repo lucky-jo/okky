@@ -8,6 +8,15 @@ public class ReplyLikeDTO {
 	private int liketype;
 	private String parentBoard;
 	private int parentSeq;
+	private String writer;
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 
 	public String getLikerid() {
 		return likerid;
@@ -27,14 +36,8 @@ public class ReplyLikeDTO {
 
 	@Override
 	public String toString() {
-		return "ReplyLikeDTO{" +
-				"likerid='" + likerid + '\'' +
-				", board='" + board + '\'' +
-				", rseq=" + rseq +
-				", liketype=" + liketype +
-				", parentBoard='" + parentBoard + '\'' +
-				", parentSeq=" + parentSeq +
-				'}';
+		return "ReplyLikeDTO [likerid=" + likerid + ", board=" + board + ", rseq=" + rseq + ", liketype=" + liketype
+				+ ", parentBoard=" + parentBoard + ", parentSeq=" + parentSeq + ", writer=" + writer + "]";
 	}
 
 	public int getRseq() {

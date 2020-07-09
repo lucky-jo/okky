@@ -106,7 +106,7 @@
                     <form action='/login' class="form-signin form-user panel-body panel-margin" method='POST' id='loginForm' autocomplete='off'>
 
                         <input type="text" value="user01" name="username" autocorrect="off" autocapitalize="off" id="username" class="username form-control input-sm" placeholder="아이디" required autofocus>
-                        <input type="password" value="user01" name='password' class="password form-control input-sm" placeholder="비밀번호" required>
+                        <input type="password" value="" name='password' class="password form-control input-sm" placeholder="비밀번호" required>
                         <!-- AutoPassword 추가 -->
                         <div class="checkbox">
                             <label>

@@ -27,7 +27,8 @@
 	</resultMap>
 
 	<insert id="register">
-		insert into member(userid,userpw,email,username,nickname,image) values(#{userid},#{userpw},#{email},#{username},#{nickname},#{image})
+		insert into member(userid,userpw,email,username,nickname,image,allowed) 
+		values(#{userid},#{userpw},#{email},#{username},#{nickname},#{image},#{allowed})
 	</insert>
 
 	<insert id="auth">
@@ -41,9 +42,26 @@
 		FROM
 		member mem LEFT OUTER JOIN
 		member_auth auth on mem.userid = auth.userid
-		WHERE mem.userid =
-		#{userid}
+		WHERE mem.userid = #{userid}
 	</select>
+	
+	<select id="get" resultType="com.ncs.vo.MemberVO">
+		select userid, username, nickname, image, apoint 
+		from member 
+		where userid = #{userid}
+	</select>
+	
+	<update id="pointUp">
+		update member set 
+		apoint = apoint + #{apoint} 
+		where userid = #{userid}
+	</update>
+		
+	<update id="pointDown">
+		update member set 
+		apoint = apoint - #{apoint}
+		where userid = #{userid}
+	</update>
 
 </mapper>
   
