@@ -66,4 +66,12 @@ public class MemberController {
     public ModelAndView passwordChange(ModelAndView mv, MemberVO memberVO ) {
     	return mv;
     }
+
+//    @RequestMapping(value = "/customLogout", method = RequestMethod.POST)
+//    public ModelAndView pass
+
+/*    @RequestMapping(value = "/customLogout", method = RequestMethod.GET)
+    public void getCustomLogout() {
+    }*/
+
 }
