@@ -84,7 +84,7 @@
                     <h3 class="popover-title"></h3>
                     <div class="popover-footer clearfix" id="user-func-popover">
                         <label href="" for="logoutButton" class="popover-btn"><i class="fa fa-sign-out"></i> 로그아웃</label>
-                        <a href="/user/edit" class="popover-btn"><i class="fa fa-user"></i> 정보수정</a>
+                        <a href="/member/edit?userid=${user.member.userid}" class="popover-btn"><i class="fa fa-user"></i> 정보수정</a>
                     </div>
                 </div>
             </script>
