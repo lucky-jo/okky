@@ -45,27 +45,24 @@ public class JobsController {
 	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  //mv.addObject("새 글이 등록 되었습니다");
-	          mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq()); 
-	   }else {
-		   mv.addObject("작성을 해주세요");
-	       mv.setViewName("jobs/jinsert"); 
-	   }
-	 
-	   return mv; }//insert:새글 등록창
+	          mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq()); 
+	    }
+		  return mv;
+	    }//insert:새글 등록창
 	  
-	  @RequestMapping("/jinsert")
+	  @RequestMapping("/insertForm")
 	  public ModelAndView jinsert(ModelAndView mv) {
-		  mv.setViewName("jobs/jinsert");
+		  mv.setViewName("jobs/insertForm");
 		  return mv;
 	  }
 	  @RequestMapping("/rinsert")
 	  public ModelAndView rinsert(ModelAndView mv, JobsReplyVO rvo) { 
 	      if(jservice.rinsert(rvo)>0) 
-		  mv.setViewName("redirect:/jobs/jdetail?seq="+rvo.getSeq());
+		  mv.setViewName("redirect:/jobs/detailForm?seq="+rvo.getSeq());
 	      return mv; 
 	   }//rinsert
 	 
-	  @RequestMapping(value = "/jdetail")
+	  @RequestMapping(value = "/detailForm")
 		public ModelAndView jdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
 			
 		    vo = service.selectOne(vo);
@@ -91,7 +88,7 @@ public class JobsController {
 			
 			if (cnt>0) {
 				mv.addObject("message", "성공");
-				mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq());
+				mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq());
 			}else {
 				mv.addObject("fCode","BN");
 				mv.setViewName("member/doFinish");
@@ -99,10 +96,10 @@ public class JobsController {
 			return mv;
 		}// update
 		
-		@RequestMapping(value="/jupdate")
+		@RequestMapping(value="/updateForm")
 		public ModelAndView jupdate(ModelAndView mv, JobsVO vo) {
 			mv.addObject("Detail",service.selectOne(vo));	
-			mv.setViewName("jobs/jupdate");
+			mv.setViewName("jobs/updateForm");
 			return mv ;	
 		} //bupdate
 		
