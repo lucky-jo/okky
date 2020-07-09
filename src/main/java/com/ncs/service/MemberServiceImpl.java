@@ -14,7 +14,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberVO read(String userid) {
-        return null;
+        return memberMapper.read(userid);
     }
 
     @Transactional
@@ -23,5 +23,10 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.register(vo);
         return memberMapper.auth(vo.getUserid());
     }
+
+	@Override
+	public MemberVO get(String userid) {
+		return memberMapper.get(userid);
+	}
 
 }

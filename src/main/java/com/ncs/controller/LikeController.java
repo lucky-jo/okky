@@ -14,8 +14,6 @@ import com.ncs.vo.ReplyLikeDTO;
 @RequestMapping(value = "/like")
 @Controller
 public class LikeController {
-	
-	
 
     @Autowired
     LikeCountService likeCountService;

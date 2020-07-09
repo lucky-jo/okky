@@ -7,4 +7,6 @@ public interface MemberService {
     MemberVO read(String userid);
 
     int register(MemberVO vo);
+    
+    MemberVO get(String userid);
 }

@@ -6,7 +6,14 @@ public class LikeDTO {
 	private String board;
 	private int seq;
 	private int liketype;
+	private String writer;
 	
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 	public int getLiketype() {
 		return liketype;
 	}
@@ -35,7 +42,8 @@ public class LikeDTO {
 	
 	@Override
 	public String toString() {
-		return "LikeDTO [likeid=" + likeid + ", board=" + board + ", seq=" + seq + ", liketype=" + liketype + "]";
+		return "LikeDTO [likeid=" + likeid + ", board=" + board + ", seq=" + seq + ", liketype=" + liketype
+				+ ", writer=" + writer + "]";
 	}
 	
 	

@@ -1,8 +1,11 @@
 package com.ncs.mapper;
 
+import org.springframework.stereotype.Repository;
+
 import com.ncs.vo.LikeDTO;
 import com.ncs.vo.ReplyLikeDTO;
 
+@Repository
 public interface LikeCountMapper {
 
     int likeExist(LikeDTO dto);
