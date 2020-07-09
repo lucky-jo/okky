@@ -25,7 +25,7 @@
 <div>
 	Jobs
 	<div style="float: right;">
-	<a href="/jobs/updateForm?seq=${Detail.seq}">내글 수정</a>&nbsp;&nbsp;
+	<a href="/jobs/jupdate?seq=${Detail.seq}">내글 수정</a>&nbsp;&nbsp;
 	<a href="/jobs/delete?seq=${Detail.seq}">삭제</a>
 	</div>
 	
