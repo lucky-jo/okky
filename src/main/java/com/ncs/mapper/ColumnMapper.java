@@ -6,21 +6,21 @@ import org.springframework.stereotype.Repository;
 
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ColumnVO;
+import com.ncs.vo.GetCountDTO;
 
 @Repository
 public interface ColumnMapper {
 	
-	int searchRowCount(SearchCriteria cri);
-	List<ColumnVO> searchList(SearchCriteria cri);
-	
+	List<ColumnVO> selectList();
+	int insert(ColumnVO vo);
+	ColumnVO selectOne(ColumnVO vo);
+	int update(ColumnVO vo);
+	int delete(ColumnVO vo);
 	int totalRowCount();
-	int countUp(ColumnVO vo);
-	
-	public List<ColumnVO> selectList();
-	public ColumnVO selectOne(ColumnVO vo);
-	
-	public int insert(ColumnVO vo);
-	public int update(ColumnVO vo);
-	public int delete(ColumnVO vo);
-
+	List<ColumnVO> searchList(SearchCriteria cri);
+	int searchRowCount(SearchCriteria cri);
+	int countUp(int seq);
+	int replycountUp(int seq);
+	int getcount(GetCountDTO dto);
+	int registercount(GetCountDTO dto);
 }

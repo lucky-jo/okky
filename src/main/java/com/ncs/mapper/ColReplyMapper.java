@@ -1,10 +1,13 @@
-package com.ncs.service;
+package com.ncs.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.ncs.vo.ReplyVO;
 
-public interface JobsReplyService {
+@Repository
+public interface ColReplyMapper {
 	
 	int register(ReplyVO rvo);
 	List<ReplyVO> selectlist(int seq);

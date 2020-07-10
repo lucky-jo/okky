@@ -2,14 +2,17 @@ package com.ncs.mapper;
 
 import java.util.List;
 
-import com.ncs.vo.JobsReplyVO;
+import org.springframework.stereotype.Repository;
 
+import com.ncs.vo.ReplyVO;
+
+@Repository
 public interface JobsReplyMapper {
 	
-	int jdetail(JobsReplyVO rvo);
-	List<JobsReplyVO>selectlist(int seq);
-	int update(JobsReplyVO rvo);
-	int delete(JobsReplyVO rvo);
-	int rinsert(JobsReplyVO rvo);
+	int register(ReplyVO rvo);
+	List<ReplyVO> selectlist(int seq);
+	int update(ReplyVO rvo);
+	int delete(ReplyVO rvo);
+	int replyCount();
 
 }

@@ -19,13 +19,13 @@
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li class="active"  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+	<li  class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+	<li   data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
@@ -37,14 +37,17 @@
 </div>
         <div class="sidebar-category-nav">
             <h3 class="sub-title">Tech</h3>
-            <ul class="nav">
-                <li><a href="/tech/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/tech/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/tech/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
-            </ul>
+            	<ul class="nav">
+		<li><a href="/tech/list?sorted=" class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
+					class="nav-selected-dot"></span></span></a></li>
+	</ul>
             <div class="special-nav">
             </div>
         </div>
+
+
 
 <div id="article-create" class="content" role="main">
 
@@ -57,7 +60,7 @@
 				<a href='/user/info/94647' class='avatar-photo'><img
 					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/94647" title="일당백">${get.id }</a>
+					<a class="nickname" href="/user/info/94647" title="${get.id }">${get.id }</a>
 					<div class="activity block">
 						<span class="fa fa-flash"></span> 활동
 					</div>
@@ -74,7 +77,7 @@
 					name="SYNCHRONIZER_URI" value="/articles/questions/create"
 					id="SYNCHRONIZER_URI" />
 				<fieldset class="form">
-					<div class="form-group  has-feedback">
+					<!-- <div class="form-group  has-feedback">
 						<div>
 							<select id="category" name="category" class="form-control"
 								required="">
@@ -86,7 +89,7 @@
 									data-anonymity="false">Blockchain Q&A</option>
 							</select>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="form-group  has-feedback">
 						<div>
@@ -113,7 +116,7 @@
                                 <fieldset class="buttons">
                                     <a href="/tech/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
                                     <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
-                                    <input type="hidden" name="id" value="ildang100">
+                                    <input type="hidden" name="id" value="${get.id }">
                                     <input type="hidden" name="seq" value="${get.seq }">
                                 </fieldset>
                             </div>

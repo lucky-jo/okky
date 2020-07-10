@@ -2,77 +2,125 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.ncs.mapper.ColumnMapper"> 
 
-  <sql id="search">
-  	<choose>
-  		<when test="searchType=='t'.toString()">
-  			and title like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='c'.toString()">
-  			and content like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='w'.toString()">
-  			and id like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='tc'.toString()">
-  			and title like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or content like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='cw'.toString()">
-  			and content like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or id like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<when test="searchType=='tcw'.toString()">
-  			and title like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or content like CONCAT(CONCAT('%',#{keyword}),'%') 
-  			or id like CONCAT(CONCAT('%',#{keyword}),'%'))
-  		</when>
-  		<otherwise> ) </otherwise>
-  	</choose>
-  </sql>
+<mapper namespace="com.ncs.mapper.ColumnMapper">
+	<sql id="search">
+		<if test="category != null and !category.equals('')">
+			and category = #{category}
+		</if>
+		<choose>
+			<when test="searchType=='t'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<when test="searchType=='c'.toString()">
+				and content like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<when test="searchType=='w'.toString()">
+				and id like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<when test="searchType=='tc'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
+				or content like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<when test="searchType=='cw'.toString()">
+				and content like CONCAT(CONCAT('%',#{keyword}),'%')
+				or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<when test="searchType=='tcw'.toString()">
+				and title like CONCAT(CONCAT('%',#{keyword}),'%')
+				or content like CONCAT(CONCAT('%',#{keyword}),'%')
+				or id like CONCAT(CONCAT('%',#{keyword}),'%'))
+			</when>
+			<otherwise> ) </otherwise>
+		</choose>
+	</sql>
 
-  <select id="searchRowCount" resultType="int">
+
+	<select id="selectList" resultType="com.ncs.vo.ColumnVO">
+		select seq,title,id, regdate, updatedate,
+		exist, cnt, category from columnm order by seq
+	</select>
+
+	<insert id="insert">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="int">
+			select IFNULL(MAX(seq),0)+1 as seq from columnm
+		</selectKey>
+		insert into columnm(seq,id,category,title,content)
+		values(#{seq},#{id},#{category},#{title},#{content})
+	</insert>
+
+	<select id="selectOne" resultType="com.ncs.vo.ColumnVO">
+		select *
+		from columnm where seq=#{seq}
+	</select>
+
+	<update id="update">
+		update columnm set category=#{category}, title=#{title}, content=#{content},
+		updatedate = now() where seq=#{seq}
+	</update>
+
+	<update id="delete">
+		update columnm set exist = 0 where seq=#{seq}
+	</update>
+
+	<select id="dcategory">
+		select * from columnm where category = #{category}
+	</select>
+
+	<select id="totalRowCount" resultType="int">
+		select count(*) from columnm
+	</select>
+
+	<!-- <select id="searchList" resultType="com.ncs.vo.ComunityVO"> <![CDATA[ 
+		select seq,title,id, regdate, updatedate, exist, cnt, category from comunity 
+		order by seq ]]> <include refid="search"></include> where rnum between #{sno} 
+		and #{eno} </select> -->
+
+	<select id="searchRowCount" resultType="int">
   <![CDATA[
-	select count(*) from columnm where ( seq>0 ]]>
-	<include refid="search"></include>
-  </select>
+   select count(*) from columnm where ( seq>0 ]]>
+		<include refid="search"></include>
+	</select>
 
 	<select id="searchList" resultType="com.ncs.vo.ColumnVO">
-		<![CDATA[
-   select *
-   from columnm where ( 1=1
+  <![CDATA[
+   select * 
+   from columnm where ( exist = 1
      ]]>
-		<include refid="search"></include> order by seq desc
+		<include refid="search"></include>
+     <choose>
+     	<when test="sorted == null or sorted.equals('')">
+			order by seq desc
+		</when>
+		 <when test="sorted=='like'.toString()">
+			 order by likecount desc, seq desc
+		 </when>
+		 <when test="sorted=='reply'.toString()">
+			 order by replycount desc, seq desc
+		 </when>
+		 <when test="sorted=='view'.toString()">
+			 order by cnt desc, seq desc
+		 </when>
+	 </choose>
 		limit #{start} , #{perPageRow}
 	</select>
-				  
-  <select id="totalRowCount" resultType="int">
-	select count(*) from columnm
-  </select>
-<!--  <update id="countUp">
-    update column set cnt=cnt+1 where seq=#{seq}
-  </update> -->
-  <select id="selectList" resultType="com.ncs.vo.ColumnVO">
-	select seq,title,id,regdate,cnt from columnm order by seq
-  </select>
+
+	<update id="countUp">
+		update columnm set cnt = cnt+1 where seq = #{seq}
+	</update>
+
+	<update id="replycountUp">
+		update columnm set replycount = replycount+1 where seq = #{seq}
+	</update>
+
+	<select id="getcount" resultType="int">
+		select count(*) from getcount where id = #{id} and board = #{board} and
+		today = #{today} and seq = #{seq}
+	</select>
+
+	<insert id="registercount">
+		insert into getcount values(#{id},#{board},#{today},#{seq})
+	</insert>
+
+</mapper>
   
-  <insert id="insert">
-	<selectKey keyProperty="seq" order="BEFORE" resultType="int">
-	select IFNULL(MAX(seq),0)+1 as seq from columnm
-	</selectKey>
-  	insert into columnm(seq,id,title,content) values(#{seq},#{id},#{title},#{content})
-  </insert>
-  
-  <select id="selectOne" resultType="com.ncs.vo.ColumnVO">
-	select seq,title,id,content,regdate,cnt from columnm where seq=#{seq}
-  </select>
-  
-  <update id="update">
-  	update columnm set title=#{title}, content=#{content} where seq=#{seq}
-  </update>
-  <delete id="delete">
-  	delete from columnm where seq=#{seq}
-  </delete>
-  </mapper>

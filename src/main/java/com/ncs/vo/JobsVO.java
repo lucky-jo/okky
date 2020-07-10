@@ -1,83 +1,144 @@
 package com.ncs.vo;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class JobsVO {
-	
-	private String id;
-	private String title;
-	private String content;
-	private String regdate;
-	private int seq;
-	private int cnt;
+
+	private int seq ;
+	private String title ;
+	private String id ;
+	private String content ;
+	private String regdate ;
+	private String updatedate ;
 	private int likecount;
-	private int exist;
+	private int exist ;
+	private int cnt;
 	private String category;
-	private String updatedate;
-	
-	
-	public String getCategory() {
-		return category;
+	private int replycount;
+	private String board;
+
+	public String getBoard() {
+		return board;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+
+	public void setBoard(String board) {
+		this.board = board;
 	}
-	public String getId() {
-		return id;
+
+	public int getReplycount() {
+		return replycount;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
 	}
+
+	public int getLikecount() {
+		return likecount;
+	}
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	public String getContent() {
 		return content;
 	}
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+
 	public String getRegdate() {
 		return regdate;
 	}
+
+
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 
-	public int getExist() {
-		return exist;
-	}
-	public void setExist(int exist) {
-		this.exist = exist;
-	}
+
 	public String getUpdatedate() {
 		return updatedate;
 	}
+
+
 	public void setUpdatedate(String updatedate) {
 		this.updatedate = updatedate;
 	}
-	public int getLikecount() {
-		return likecount;
+
+
+	public int getExist() {
+		return exist;
 	}
-	public void setLikecount(int likecount) {
-		this.likecount = likecount;
+
+
+	public void setExist(int exist) {
+		this.exist = exist;
 	}
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
+
+
 	public int getCnt() {
 		return cnt;
 	}
+
+
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
 
-	
 
-	
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	@Override
+	public String toString() {
+		return "JobsVO [seq=" + seq + ", title=" + title + ", id=" + id + ", content=" + content + ", regdate="
+				+ regdate + ", updatedate=" + updatedate + ", exist=" + exist + ", cnt=" + cnt + ", category="
+				+ category + "]";
+	}
+
+
 
 }

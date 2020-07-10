@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ncs.vo.ReplyVO;
 
-public interface JobsReplyService {
+public interface ColReplyService {
 	
 	int register(ReplyVO rvo);
 	List<ReplyVO> selectlist(int seq);

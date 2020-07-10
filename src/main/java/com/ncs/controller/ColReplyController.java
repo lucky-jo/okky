@@ -6,35 +6,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ncs.service.TechReplyService;
+import com.ncs.service.ColReplyService;
+import com.ncs.vo.ColumnVO;
 import com.ncs.vo.ReplyVO;
-import com.ncs.vo.TechVO;
 
-@RequestMapping("/techreply")
+@RequestMapping("/colreply")
 @Controller
-public class TechReplyController {
+public class ColReplyController {
 	
 	@Autowired
-	TechReplyService rservice;
+	ColReplyService rservice;
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
 		rservice.register(rvo);
-		return ("redirect:/tech/get?seq=" + rvo.getSeq());
+		return ("redirect:/column/get?seq=" + rvo.getSeq());
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.GET )
-	public String getRegister(TechVO techVO) {
-		return ("redirect:/tech/get?seq=" + techVO.getSeq());
+	public String getRegister(ColumnVO columnVO) {
+		return ("redirect:/column/get?seq=" + columnVO.getSeq());
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
 		rservice.delete(rvo);
-		return "redirect:/tech/get?seq=" + rvo.getSeq();
+		return "redirect:/column/get?seq=" + rvo.getSeq();
 	}
 
 

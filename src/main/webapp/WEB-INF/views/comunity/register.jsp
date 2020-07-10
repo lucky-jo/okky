@@ -19,11 +19,11 @@
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+	<li  class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
@@ -39,33 +39,6 @@
             <ul class="nav">
                 <li><a href="/comunity/list" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">All</span><span 
-<<<<<<< HEAD
-                		class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=a" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=b" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=c" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=d" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">IT행사</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'd' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=e" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=f" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span 
-=======
                 		class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span 
                 		class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/comunity/list?category=a" class="link"><span 
@@ -91,7 +64,6 @@
                 <li><a href="/comunity/list?category=f" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span 
                 		class='nav-indicator <c:out value="${pageMaker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span 
->>>>>>> origin/kim
                 		class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">
