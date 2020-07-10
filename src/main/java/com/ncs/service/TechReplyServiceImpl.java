@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ncs.mapper.TechMapper;
 import com.ncs.mapper.TechReplyMapper;
 import com.ncs.vo.ReplyVO;
 
@@ -13,9 +14,18 @@ public class TechReplyServiceImpl implements TechReplyService {
 	
 	@Autowired
 	TechReplyMapper rmapper;
+	
+	@Autowired
+	TechMapper mapper;
 
 	@Override
 	public int register(ReplyVO rvo) {
+		
+		/* 댓글 남긴 사람들에게 업데이트 될 때마다 메시지 전송
+		 * for (iterable_type iterable_element : iterable) {
+		 * messageMapper.delevery(element); }
+		 */
+		mapper.replycountUp(rvo.getSeq());
 		return rmapper.register(rvo);
 	}
 

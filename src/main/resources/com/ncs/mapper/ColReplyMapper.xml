@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.ncs.mapper.JobsReplyMapper">
+  <mapper namespace="com.ncs.mapper.ColReplyMapper">
   	<select id="selectlist" resultType="com.ncs.vo.ReplyVO">
-  	select * from jobsreply where seq = #{seq} order by rseq desc
+  	select * from colreply where seq = #{seq} order by rseq desc
   </select>
   
 <!--   <select id="selectOne" resultType="com.ncs.vo.ReplyVO">
@@ -15,13 +15,13 @@
   
   <insert id="register">
   <selectKey keyProperty="rseq" order="BEFORE" resultType="int">
-        select IFNULL(MAX(rseq),0)+1 as rseq from jobsreply
+        select IFNULL(MAX(rseq),0)+1 as rseq from colreply
      </selectKey>
-  	insert into jobsreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
+  	insert into colreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
   </insert>
   
   <update id="delete">
-  	update jobsreply set rexist = 0 where rseq = #{rseq}
+  	update colreply set rexist = 0 where rseq = #{rseq}
   </update>
   
   </mapper>

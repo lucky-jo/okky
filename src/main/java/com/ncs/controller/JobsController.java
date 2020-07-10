@@ -1,126 +1,158 @@
 package com.ncs.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsReplyService;
 import com.ncs.service.JobsService;
+import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
-import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
+import com.ncs.vo.LikeDTO;
+import com.ncs.vo.MemberVO;
+import com.ncs.vo.MergeDTO;
+import com.ncs.vo.QnaVO;
+import com.ncs.vo.ReplyLikeDTO;
+import com.ncs.vo.ReplyVO;
 
-@RequestMapping("/jobs/")
+@RequestMapping(value = "/jobs/")
 @Controller
 public class JobsController {
-	
-	@Autowired
-	JobsService service;
-	
-	@Autowired
-	JobsReplyService jservice;
-	
-	@RequestMapping("/list")
-	public ModelAndView list(ModelAndView mv,SearchCriteria cri) {
-		cri.setSnoEno();
-		mv.addObject("melon",service.searchList(cri));
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		
-		pageMaker.setTotalRow(service.searchRowCount(cri));
-		mv.addObject("pageMaker",pageMaker);
-		
-		mv.setViewName("jobs/jlist");
-		return mv;
-	}//list
-	
-	
-	  @RequestMapping("/insert") 
-	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
-		  if(service.insert(vo)>0) {
-			  //mv.addObject("새 글이 등록 되었습니다");
-	          mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq()); 
-	   }else {
-		   mv.addObject("작성을 해주세요");
-	       mv.setViewName("jobs/jinsert"); 
-	   }
-	 
-	   return mv; }//insert:새글 등록창
-	  
-	  @RequestMapping("/jinsert")
-	  public ModelAndView jinsert(ModelAndView mv) {
-		  mv.setViewName("jobs/jinsert");
-		  return mv;
-	  }
-	  @RequestMapping("/rinsert")
-	  public ModelAndView rinsert(ModelAndView mv, JobsReplyVO rvo) { 
-	      if(jservice.rinsert(rvo)>0) 
-		  mv.setViewName("redirect:/jobs/jdetail?seq="+rvo.getSeq());
-	      return mv; 
-	   }//rinsert
-	 
-	  @RequestMapping(value = "/jdetail")
-		public ModelAndView jdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
-			
-		    vo = service.selectOne(vo);
-			mv.addObject("Detail", vo);
-			List<JobsReplyVO> rlist = jservice.selectlist(rvo.getSeq());
-			mv.addObject("Detailr",rlist);
 
-			// 4) 결과 ( Detail or Update 인지 ) 
-			// => request.getParameter("code") 가 U 인지 확인
-		/*
-		 * mv.setViewName("jobs/jdetail"); if ("U".equals(request.getParameter("code")))
-		 * { // 내정보 수정화면으로 mv.setViewName("jobs/jupdate"); } else if
-		 * ("E".equals(request.getParameter("code"))) { // 내정보 수정에서 오류 상황
-		 * mv.addObject("message", "~~ 내정보 수정 오류  !!! 다시 하세요 ~~"); }
-		 */
-			return mv;
-		}// jdetail 
-	  
-	  @RequestMapping(value = "/update")
-		public ModelAndView update(ModelAndView mv, JobsVO vo) {
-			// 1) selectOne
-			int cnt = service.update(vo);
-			
-			if (cnt>0) {
-				mv.addObject("message", "성공");
-				mv.setViewName("redirect:/jobs/jdetail?seq="+vo.getSeq());
-			}else {
-				mv.addObject("fCode","BN");
-				mv.setViewName("member/doFinish");
+        @Autowired
+        JobsService jobsService;
+        
+        @Autowired
+        JobsReplyService jobsReplyService;
+
+        @Autowired
+        LikeCountService likeCountService;
+        
+        @Autowired
+        MemberService memberService;
+
+        @Autowired
+        MemberVO memberVO;
+
+        @RequestMapping(value = "/list")
+        public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
+            cri.setSnoEno();
+            List<JobsVO> list = jobsService.searchList(cri);
+            List<MergeDTO<JobsVO,MemberVO>> mergelist = new ArrayList<>();
+            for (JobsVO jobsVO : list) {
+            	MemberVO membervo = memberService.get(jobsVO.getId());
+            	if( membervo != null ) {
+            		System.out.println(membervo.toString());
+    				mergelist.add(new MergeDTO<>(jobsVO, membervo));
+            	}	
 			}
-			return mv;
-		}// update
-		
-		@RequestMapping(value="/jupdate")
-		public ModelAndView jupdate(ModelAndView mv, JobsVO vo) {
-			mv.addObject("Detail",service.selectOne(vo));	
-			mv.setViewName("jobs/jupdate");
-			return mv ;	
-		} //bupdate
-		
-		@RequestMapping(value="/delete")
-		public ModelAndView bdelete(ModelAndView mv, JobsVO vo) {
-			
-			if (service.delete(vo)>0) {//성공 => 글목록 출력 (blist)
-				mv.addObject("message", "삭제되었습니다");	
-				mv.addObject("melon",service.selectlist());
-				mv.setViewName("jobs/jlist");
-			}	
-			else { // 실패 => doFinish.jsp
-				mv.addObject("fCode","BD");
-				mv.setViewName("jobs/fail");
-			}	
-			return mv ;	
-		} //delete
-		
-	
-		
-}//class
+            if( mergelist != null ) {
+            	mv.addObject("mergelist",mergelist);
+            }
+            PageMaker pageMaker = new PageMaker();
+            pageMaker.setCri(cri);
+            pageMaker.setTotalRow(jobsService.searchRowCount(cri));
+
+            mv.addObject("pageMaker",pageMaker);
+            mv.setViewName("jobs/list");
+            System.out.println(pageMaker.toString());
+            return mv;
+        }
+
+        @PreAuthorize("principal.username == #vo.id")
+        @RequestMapping(value = "/register", method = RequestMethod.POST )
+        public ModelAndView postInsert(ModelAndView mv, JobsVO vo ) {
+            if(jobsService.insert(vo)>0) {
+                mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq());
+            }else {
+                mv.addObject("fCode","BI");
+                mv.setViewName("jobs/fail");
+            }
+            return mv;
+        }
+
+        @PreAuthorize("isAuthenticated()")
+        @RequestMapping(value = "/register", method = RequestMethod.GET )
+        public void getInsert() {
+
+        }
+
+//        @PreAuthorize("isAuthenticated()")
+        @RequestMapping(value = "/get")
+        public ModelAndView get(ModelAndView mv, JobsVO jobsVO, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
+        	List<ReplyVO> list = jobsReplyService.selectlist(jobsVO.getSeq());
+            List<MergeDTO<ReplyVO,MemberVO>> mergelist = new ArrayList<>();
+        	for (ReplyVO replyVO : list) {
+//        	    memberVO = memberService.get(qnaVO.getId());
+//        	    System.out.println(memberVO);
+        	    mergelist.add(new MergeDTO<>(replyVO,memberService.get(jobsVO.getId())));
+        	    rdto.setBoard(replyVO.getBoard());
+        	    rdto.setLikerid(request.getRemoteUser());
+        	    rdto.setRseq(replyVO.getRseq());
+				replyVO.setLiketype(likeCountService.replyLikeExist(rdto));
+				System.out.println(replyVO.getLiketype());
+				System.out.println(replyVO.toString());
+			}
+            jobsVO.setId(request.getRemoteUser());
+            jobsVO = jobsService.selectOne(jobsVO);
+        	if( jobsVO != null ) {
+        	    dto.setSeq(jobsVO.getSeq());
+        		dto.setBoard("qna");
+        		dto.setLikeid(request.getRemoteUser());
+        		int cnt = likeCountService.likeExist(dto);
+        		System.out.println(request.getRemoteUser());
+            	System.out.println(cnt);
+            	mv.addObject("liketype", cnt);
+        	}
+            assert jobsVO != null;
+            System.out.println(jobsVO.toString());
+        	mv.addObject("mergeReplylist", mergelist);
+            mv.addObject("get",jobsVO);
+            mv.addObject("writer",memberService.get(jobsVO.getId()));
+            mv.setViewName("jobs/get");
+            return mv;
+        }
+
+        @PreAuthorize("principal.username == #vo.id")
+        @RequestMapping(value = "/update", method = RequestMethod.POST )
+        public ModelAndView update(ModelAndView mv,JobsVO vo) {
+            System.out.println("업데이트 요청 = " + vo);
+            if(jobsService.update(vo) > 0) {
+                mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq());
+            }else {
+                mv.setViewName("redirect:/jobs/list");
+            }
+            return mv;
+        }
+
+        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @RequestMapping(value = "/update", method = RequestMethod.GET )
+        public ModelAndView getUpdate(ModelAndView mv, JobsVO vo) {
+            System.out.println("업데이트폼 요청 = " + vo);
+            return mv.addObject("get",jobsService.selectOne(vo));
+        }
+
+        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @RequestMapping(value = "/delete")
+        public ModelAndView delete(ModelAndView mv, JobsVO vo,HttpServletRequest request) {
+            System.out.println("삭제요청 = " + vo);
+            if(jobsService.delete(vo) > 0) {
+                mv.setViewName("redirect:/jobs/list");
+            }else {
+                mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq());
+            }
+            return mv;
+        }
+    }
+

@@ -23,7 +23,7 @@ function del() {
 		class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
 		title="Tech"><a href="/tech/list" class="link"><i
 			class="nav-icon fa fa-code"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
@@ -33,7 +33,7 @@ function del() {
 			class="nav-icon fa fa-comments"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li data-toggle="tooltip" data-placement="right" data-container="body"
+	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
 		title="칼럼"><a href="/column/list" class="link"><i
 			class="nav-icon fa fa-quote-left"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
@@ -54,9 +54,9 @@ function del() {
 </ul>
 </div>
 <div class="sidebar-category-nav">
-	<h3 class="sub-title">Tech</h3>
+	<h3 class="sub-title">칼럼</h3>
 		<ul class="nav">
-		<li><a href="/tech/list?sorted=" class="link"><span
+		<li><a href="/column/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
@@ -67,7 +67,7 @@ function del() {
 <div id="article" class="content" role="main">
 
 	<div class="nav" role="navigation">
-		<a href="/tech/register"
+		<a href="/column/register"
 			class="create btn btn-success btn-wide pull-right"><i
 			class="fa fa-pencil"></i> 새 글 쓰기</a>
 
@@ -210,10 +210,10 @@ function del() {
 								class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 								title="게시물 설정"></i></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/tech/update?seq=${get.seq}&id=${get.id}" class="edit"><i
+								<li><a href="/column/update?seq=${get.seq}&id=${get.id}" class="edit"><i
 										class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
-								<li><a href="/tech/delete?seq=${get.seq }"
+								<li><a href="/column/delete?seq=${get.seq }"
 									id="article-delete-btn"
 									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
 										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>

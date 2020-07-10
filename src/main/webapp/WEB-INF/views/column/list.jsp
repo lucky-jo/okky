@@ -13,7 +13,7 @@
 		class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
 		title="Tech"><a href="/tech/list" class="link"><i
 			class="nav-icon fa fa-code"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
@@ -23,12 +23,12 @@
 			class="nav-icon fa fa-comments"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li data-toggle="tooltip" data-placement="right" data-container="body"
+	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
 		title="칼럼"><a href="/column/list" class="link"><i
 			class="nav-icon fa fa-quote-left"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body"
+	<li data-toggle="tooltip" data-placement="right" data-container="body"
 		title="Jobs"><a href="/jobs/list" class="link"><i
 			class="nav-icon fa fa-group"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
@@ -46,9 +46,9 @@
 </div>
 
 <div class="sidebar-category-nav">
-	<h3 class="sub-title">Tech</h3>
+	<h3 class="sub-title">Q&A</h3>
 	<ul class="nav">
-		<li><a href="/tech/list?sorted=" class="link"><span
+		<li><a href="/column/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
@@ -73,12 +73,12 @@
 
 		<div class="nav" role="navigation">
 
-			<a href="/tech/register"
+			<a href="/column/register"
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<h4>Tech</h4>
-			<form action="/tech/list" method="get" name="category-filter-form"
+			<h4>칼럼</h4>
+			<form action="/column/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
@@ -98,15 +98,15 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/tech/list" data-sort="id"
+						<li><a href="/column/list" data-sort="id"
 							class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
 																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
-						<li><a href="/tech/list?sorted=like"
+						<li><a href="/column/list?sorted=like"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
-						<li><a href="/tech/list?sorted=reply"
+						<li><a href="/column/list?sorted=reply"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
 						<%--<li><a href="/qna/list" class="category-sort-link ">스크랩순</a></li>--%>
-						<li><a href="/tech/list?sorted=view"
+						<li><a href="/column/list?sorted=view"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
 
@@ -141,7 +141,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-										href="/tech/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+										href="/column/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 										${merge.board.title} </a>
 								</h5>
 							</div>
@@ -196,7 +196,7 @@
 
 							<h5 class="list-group-item-heading list-group-item-evaluate">
 								<a
-									href="/tech/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+									href="/column/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 									${merge.board.title} </a>
 							</h5>
 						</div>
@@ -260,7 +260,7 @@
 					<li class="active"><span>${i}</span></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="/tech/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
+					<li><a href="/column/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
 				</c:otherwise>
 			</c:choose>
 			<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>

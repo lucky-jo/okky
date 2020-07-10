@@ -1,5 +1,8 @@
 package com.ncs.vo;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class TechVO {
 
 	private int seq ;
@@ -8,10 +11,28 @@ public class TechVO {
 	private String content ;
 	private String regdate ;
 	private String updatedate ;
-	private  int likecount;
+	private int likecount;
 	private int exist ;
 	private int cnt;
 	private String category;
+	private int replycount;
+	private String board;
+
+	public String getBoard() {
+		return board;
+	}
+
+	public void setBoard(String board) {
+		this.board = board;
+	}
+
+	public int getReplycount() {
+		return replycount;
+	}
+
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
 
 	public int getLikecount() {
 		return likecount;
@@ -113,7 +134,7 @@ public class TechVO {
 
 	@Override
 	public String toString() {
-		return "QnaVO [seq=" + seq + ", title=" + title + ", id=" + id + ", content=" + content + ", regdate="
+		return "TechVO [seq=" + seq + ", title=" + title + ", id=" + id + ", content=" + content + ", regdate="
 				+ regdate + ", updatedate=" + updatedate + ", exist=" + exist + ", cnt=" + cnt + ", category="
 				+ category + "]";
 	}

@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ncs.mapper.JobsMapper;
-import com.ncs.mapper.JobsReplyMapper;
+import com.ncs.mapper.ColReplyMapper;
+import com.ncs.mapper.ColumnMapper;
 import com.ncs.vo.ReplyVO;
 
 @Service
-public class JobsReplyServiceImpl implements JobsReplyService {
+public class ColReplyServiceImpl implements ColReplyService {
 	
 	@Autowired
-	JobsReplyMapper rmapper;
+	ColReplyMapper rmapper;
 	
 	@Autowired
-	JobsMapper mapper;
+	ColumnMapper mapper;
 
 	@Override
 	public int register(ReplyVO rvo) {
