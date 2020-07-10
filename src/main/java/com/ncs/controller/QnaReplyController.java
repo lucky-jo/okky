@@ -8,18 +8,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping("/qnareply")
 @Controller
 public class QnaReplyController {
 	
 	@Autowired
-	QnaReplyService rservice;
+	QnaReplyService qnaReplyService;
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
-		rservice.register(rvo);
+		qnaReplyService.register(rvo);
 		return ("redirect:/qna/get?seq=" + rvo.getSeq());
 	}
 
@@ -32,8 +33,15 @@ public class QnaReplyController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
-		rservice.delete(rvo);
+		qnaReplyService.delete(rvo);
 		return "redirect:/qna/get?seq=" + rvo.getSeq();
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET )
+	public ModelAndView getModigy(ModelAndView mv, ReplyVO replyVO) {
+		mv.addObject("get",qnaReplyService.get(replyVO));
+		mv.setViewName("jsonView");
+		return mv;
 	}
 
 
