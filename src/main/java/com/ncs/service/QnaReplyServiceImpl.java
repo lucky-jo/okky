@@ -1,22 +1,21 @@
 package com.ncs.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ncs.mapper.QnaMapper;
 import com.ncs.mapper.QnaReplyMapper;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class QnaReplyServiceImpl implements QnaReplyService {
 	
 	@Autowired
-	QnaReplyMapper rmapper;
+	QnaReplyMapper qnaReplyMapper;
 	
 	@Autowired
-	QnaMapper mapper;
+	QnaMapper qnaMapper;
 
 	@Override
 	public int register(ReplyVO rvo) {
@@ -25,30 +24,34 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 		 * for (iterable_type iterable_element : iterable) {
 		 * messageMapper.delevery(element); }
 		 */
-		mapper.replycountUp(rvo.getSeq());
-		return rmapper.register(rvo);
+		qnaMapper.replycountUp(rvo.getSeq());
+		return qnaReplyMapper.register(rvo);
 	}
 
 	@Override
 	public List<ReplyVO> selectlist(int seq) {
-		return rmapper.selectlist(seq);
+		return qnaReplyMapper.selectlist(seq);
 	}
 
 	@Override
 	public int update(ReplyVO rvo) {
-		return rmapper.update(rvo);
+		return qnaReplyMapper.update(rvo);
 	}
 
 	@Override
 	public int delete(ReplyVO rvo) {
-		return rmapper.delete(rvo);
+		return qnaReplyMapper.delete(rvo);
 	}
 
 	@Override
 	public int replyCount() {
-		return rmapper.replyCount();
+		return qnaReplyMapper.replyCount();
 	}
-	
-	
+
+	@Override
+	public ReplyVO get(ReplyVO replyVO) {
+		return qnaReplyMapper.get(replyVO);
+	}
+
 
 }

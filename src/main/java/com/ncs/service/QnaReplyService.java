@@ -1,8 +1,8 @@
 package com.ncs.service;
 
-import java.util.List;
-
 import com.ncs.vo.ReplyVO;
+
+import java.util.List;
 
 public interface QnaReplyService {
 	
@@ -11,5 +11,6 @@ public interface QnaReplyService {
 	int update(ReplyVO rvo);
 	int delete(ReplyVO rvo);
 	int replyCount();
+	ReplyVO get(ReplyVO replyVO);
 
 }

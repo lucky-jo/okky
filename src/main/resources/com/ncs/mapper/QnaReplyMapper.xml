@@ -23,5 +23,9 @@
   <update id="delete">
   	update qnareply set rexist = 0 where rseq = #{rseq}
   </update>
+
+    <select id="get" resultType="com.ncs.vo.ReplyVO">
+        select * from qnareply where rseq = #{rseq}
+    </select>
   
   </mapper>

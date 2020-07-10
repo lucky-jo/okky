@@ -1,10 +1,9 @@
 package com.ncs.mapper;
 
-import java.util.List;
-
+import com.ncs.vo.ReplyVO;
 import org.springframework.stereotype.Repository;
 
-import com.ncs.vo.ReplyVO;
+import java.util.List;
 
 @Repository
 public interface QnaReplyMapper {
@@ -14,5 +13,6 @@ public interface QnaReplyMapper {
 	int update(ReplyVO rvo);
 	int delete(ReplyVO rvo);
 	int replyCount();
+	ReplyVO get(ReplyVO replyVO);
 
 }
