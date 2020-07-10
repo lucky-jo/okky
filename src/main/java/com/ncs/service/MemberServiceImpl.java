@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.get(userid);
 	}
 
+    @Override
+    public int edit(MemberVO memberVO) {
+        return memberMapper.edit(memberVO);
+    }
+
 }

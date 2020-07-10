@@ -9,4 +9,6 @@ public interface MemberService {
     int register(MemberVO vo);
     
     MemberVO get(String userid);
+
+    int edit(MemberVO memberVO);
 }

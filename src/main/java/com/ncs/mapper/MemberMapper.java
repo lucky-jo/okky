@@ -18,4 +18,6 @@ public interface MemberMapper {
     
     int pointDown(MemberVO vo);
 
+    int edit(MemberVO memberVO);
+
 }

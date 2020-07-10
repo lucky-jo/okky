@@ -1,6 +1,6 @@
 package com.ncs.controller;
 
-import com.ncs.security.domain.CustomUser;
+import com.ncs.security.CustomUserDetailsService;
 import com.ncs.service.MemberService;
 import com.ncs.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,9 @@ public class MemberController {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
 
     @RequestMapping(value = "/customLogin",method = RequestMethod.GET)
     public void getLogin() {
@@ -61,8 +64,10 @@ public class MemberController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView postEdit(MemberVO memberVO, ModelAndView mv){
         memberService.edit(memberVO);
-        new CustomUser(memberService.read(memberVO.getUserid()));
+        customUserDetailsService.loadUserByUsername(memberVO.getUserid());
+//        new CustomUser(memberService.read(memberVO.getUserid()));
         mv.setViewName("member/edit");
+
         return mv;
     }
     
