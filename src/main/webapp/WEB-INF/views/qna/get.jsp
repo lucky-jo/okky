@@ -13,7 +13,23 @@ function del() {
 	}else{
 		return;
 	}
-} // del() 
+} // del()
+	var replyModify = function (rseq) {
+	var updatedata = "<div id=\"content-function-cog-2021030\" class=\"content-function-cog\">"
+		$.ajax({
+			type:'Get',
+			url:'/qnareply/modify',
+			data: {
+				rseq:rseq
+			},
+			success:function(data){
+				$('#note-text-'+data.get.rseq).html("<pre>"+data.get.rcontent+"</pre>");
+				$('.buttons2').attr("style","display: none;");
+				$('.buttons').attr("style","");
+			}
+		});
+
+	}
 </script>
 
 <ul class="nav nav-sidebar nav-main">
@@ -274,7 +290,7 @@ function del() {
 									</div>
 								</div>
 								<fieldset class="form">
-									<article id="note-text-2015714"
+									<article id="note-text-${merge.board.rseq}"
 										class="list-group-item-text note-text">
 										<pre>${merge.board.rcontent }</pre>
 									</article>
@@ -342,21 +358,22 @@ function del() {
 							<!-- 로그인 및 아이디 확인 후 출력 -->
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAuthenticated()">
-							<c:if test="${pinfo.username eq list.rid }">
-							<div id="content-function-cog-2014246"
+							<c:if test="${pinfo.username eq merge.board.rid }">
+							<div id="content-function-cog-${merge.board.rseq}"
 								class="content-function-cog">
-								<div class="dropdown">
+								<div class="dropdown button2">
 									<a href="javascript://" data-toggle="dropdown"><i
 										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 										title="게시물 설정"></i></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="javascript://" class="note-edit-btn"
-											data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
+											data-id="2014246" onclick="replyModify('${merge.board.rseq}')"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
 										<li><a
 											href="/qnareply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
 											class="note-delete-btn" data-id="2014246"><i
 												class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
 									</ul>
+
 								</div>
 								<div class="buttons" style="display: none;">
 									<p>
@@ -371,7 +388,6 @@ function del() {
 							</div>
 							</c:if>
 							</sec:authorize>
-
 
 						</form>
 
