@@ -9,7 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping(value = "/member")
 @Controller
@@ -64,10 +69,7 @@ public class MemberController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView postEdit(MemberVO memberVO, ModelAndView mv){
         memberService.edit(memberVO);
-        customUserDetailsService.loadUserByUsername(memberVO.getUserid());
-//        new CustomUser(memberService.read(memberVO.getUserid()));
         mv.setViewName("member/edit");
-
         return mv;
     }
     
@@ -77,19 +79,26 @@ public class MemberController {
     public ModelAndView edit(ModelAndView mv, MemberVO memberVO ) {
     	return mv;
     }
+
+    @RequestMapping(value = "/passwordChage", method = RequestMethod.POST )
+    public String postPasswordChange(@RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm , MemberVO memberVO) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        if (bCryptPasswordEncoder.matches(memberVO.getUserpw(),memberService.get(request.getRemoteUser()).getUserpw()) && password.equals(passwordConfirm) ) {
+            memberVO.setUserid(request.getRemoteUser());
+            memberVO.setUserpw(bCryptPasswordEncoder.encode(password));
+            memberService.passwordChange(memberVO);
+        }
+        return "redirect:/index";
+    }
     
 //    @PreAuthorize("principal.username == #memberVO.userid")
 @PreAuthorize("isAuthenticated()")
-    @RequestMapping(value = "/passwordChange")
-    public ModelAndView passwordChange(ModelAndView mv, MemberVO memberVO ) {
-    	return mv;
+    @RequestMapping(value = "/passwordChange" ,method = RequestMethod.GET )
+    public void getPasswordChange(ModelAndView mv, MemberVO memberVO ) {
     }
 
-//    @RequestMapping(value = "/customLogout", method = RequestMethod.POST)
-//    public ModelAndView pass
-
-/*    @RequestMapping(value = "/customLogout", method = RequestMethod.GET)
+    @RequestMapping(value = "/customLogout", method = RequestMethod.GET )
     public void getCustomLogout() {
-    }*/
+    }
 
 }
