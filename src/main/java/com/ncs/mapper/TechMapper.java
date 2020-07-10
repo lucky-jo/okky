@@ -13,7 +13,7 @@ public interface TechMapper {
 	
 	List<TechVO> selectList();
 	int insert(TechVO vo);
-	TechVO selectOne(TechVO vo);
+	TechVO selectOne(TechVO techVO);
 	int update(TechVO vo);
 	int delete(TechVO vo);
 	int totalRowCount();

@@ -19,7 +19,7 @@ function del() {
 <ul class="nav nav-sidebar nav-main">
 
 	<li data-toggle="tooltip" data-placement="right"
-		data-container="body" title="Q&A"><a href="/col/list"
+		data-container="body" title="Q&A"><a href="/qna/list"
 		class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 

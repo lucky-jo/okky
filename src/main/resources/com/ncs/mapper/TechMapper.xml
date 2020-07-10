@@ -49,7 +49,7 @@
 		values(#{seq},#{id},#{category},#{title},#{content})
 	</insert>
 
-	<select id="selectOne" resultType="com.ncs.vo.QnaVO">
+	<select id="selectOne" resultType="com.ncs.vo.TechVO">
 		select *
 		from tech where seq=#{seq}
 	</select>
