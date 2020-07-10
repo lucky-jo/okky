@@ -78,19 +78,6 @@
 					name="SYNCHRONIZER_URI" value="/articles/questions/create"
 					id="SYNCHRONIZER_URI" />
 				<fieldset class="form">
-<!-- 					<div class="form-group  has-feedback">
-						<div>
-							<select id="category" name="category" class="form-control"
-								required="">
-								<option value="default">게시판을 선택해 주세요.</option>
-
-								<option value="Tech Q&A" data-external="" data-anonymity="false">
-									Tech Q&A</option>
-								<option value="Blockchain Q&A" data-external=""
-									data-anonymity="false">Blockchain Q&A</option>
-							</select>
-						</div>
-					</div> -->
 
 					<div class="form-group  has-feedback">
 						<div>

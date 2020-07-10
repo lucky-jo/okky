@@ -237,7 +237,7 @@ function del() {
 								<li><a href="/qna/update?seq=${get.seq}&id=${get.id}" class="edit"><i
 										class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
-								<li><a href="/qna/delete?seq=${get.seq }"
+								<li><a href="/qna/delete?seq=${get.seq}&id=${get.id}"
 									id="article-delete-btn"
 									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
 										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
@@ -302,7 +302,7 @@ function del() {
 									<div class="note-evaluate-wrapper">
 										<c:choose>
 											<c:when test="${merge.board.liketype == 1 }">
-												<a  href="/like/replydelete?rseq=${list.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2010634"><i
 													id="note-evaluate-assent-2010634"
@@ -318,7 +318,7 @@ function del() {
 													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 											</c:when>
 											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
-											<c:when test="${list.liketype == 0 }">
+											<c:when test="${merge.board.liketype == 0 }">
 												<a  href="/like/replylike?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2013409"><i
@@ -342,7 +342,7 @@ function del() {
 													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2010634"
 													class="content-eval-count">${merge.board.rlikecount}</div>
-												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2010634"
 													onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i

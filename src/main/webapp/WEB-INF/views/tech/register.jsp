@@ -27,7 +27,7 @@
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
-	<li   data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
 </ul>
 
@@ -78,19 +78,19 @@
 					name="SYNCHRONIZER_URI" value="/articles/questions/create"
 					id="SYNCHRONIZER_URI" />
 				<fieldset class="form">
-<!-- 					<div class="form-group  has-feedback">
+ 					<div class="form-group  has-feedback">
 						<div>
 							<select id="category" name="category" class="form-control"
 								required="">
 								<option value="default">게시판을 선택해 주세요.</option>
 
-								<option value="Tech Q&A" data-external="" data-anonymity="false">
-									Tech Q&A</option>
-								<option value="Blockchain Q&A" data-external=""
-									data-anonymity="false">Blockchain Q&A</option>
+								<option value="IT News & 정보" data-external="" data-anonymity="false">
+									IT News & 정보</option>
+								<option value="Tips & 강좌" data-external=""
+									data-anonymity="false">Tips & 강좌</option>
 							</select>
 						</div>
-					</div> -->
+					</div>
 
 					<div class="form-group  has-feedback">
 						<div>
