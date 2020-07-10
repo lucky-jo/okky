@@ -1,11 +1,13 @@
 package com.ncs.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ncs.service.ComReplyService;
+import com.ncs.service.ComunityService;
+import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,28 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ncs.service.ComReplyService;
-import com.ncs.service.ComunityService;
-import com.ncs.service.LikeCountService;
-import com.ncs.service.MemberService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.ComunityVO;
-import com.ncs.vo.LikeDTO;
-import com.ncs.vo.MemberVO;
-import com.ncs.vo.MergeDTO;
-import com.ncs.vo.QnaVO;
-import com.ncs.vo.ReplyLikeDTO;
-import com.ncs.vo.ReplyVO;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping(value = "/comunity/")
 @Controller
 public class ComunityController {
 
 	@Autowired
-	ComunityService service;
+	ComunityService comunityService;
 	@Autowired
-	ComReplyService rservice;
+	ComReplyService comReplyService;
 	@Autowired
 	LikeCountService likeCountService;
 	@Autowired
@@ -45,7 +37,7 @@ public class ComunityController {
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
 		cri.setSnoEno();
-		List<ComunityVO> list = service.searchList(cri);
+		List<ComunityVO> list = comunityService.searchList(cri);
 		List<MergeDTO<ComunityVO,MemberVO>> mergelist = new ArrayList<>();
 		for(ComunityVO comunityVO : list) {
 			MemberVO membervo = memberService.get(comunityVO.getId());
@@ -59,7 +51,7 @@ public class ComunityController {
 		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalRow(service.searchRowCount(cri));
+		pageMaker.setTotalRow(comunityService.searchRowCount(cri));
 		
 		mv.addObject("pageMaker",pageMaker);
 		mv.setViewName("comunity/list");
@@ -70,7 +62,7 @@ public class ComunityController {
 	@PreAuthorize("principal.username == #vo.id")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView postInsert(ModelAndView mv, ComunityVO vo) {
-		if(service.insert(vo)>0) {
+		if(comunityService.insert(vo)>0) {
 //			mv.addObject("detail",service.selectOne(vo));
 //			mv.setViewName("comunity/cdetail");
 			mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());
@@ -91,7 +83,7 @@ public class ComunityController {
 	@RequestMapping(value = "/get")
 	public ModelAndView get(ModelAndView mv, ComunityVO vo, LikeDTO dto, ReplyLikeDTO rdto, HttpServletRequest request) {
 		
-		List<ReplyVO> list = rservice.selectList(vo.getSeq()); // comunity에서 seq 가져와서 댓글에 들어갈 데이터 리스트 정의
+		List<ReplyVO> list = comReplyService.selectList(vo.getSeq()); // comunity에서 seq 가져와서 댓글에 들어갈 데이터 리스트 정의
 		List<MergeDTO<ReplyVO,MemberVO>> mergelist = new ArrayList<>(); // MergeDTO(제네릭T,E)를 리스트로 정의
 	   	for (ReplyVO replyVO : list) { // 댓글에 들어갈 데이터가 list(List<ReplyVO>)가 될때까지 
 	   		mergelist.add(new MergeDTO<>(replyVO,memberService.get(vo.getId()))); //mergelist에 replyVO와 memberservice에서 받은 id를 추가한다
@@ -104,7 +96,7 @@ public class ComunityController {
 		}
 		//service.countUp(vo); 굳이 서비스에 추가하지 않고 selectOne에 기능만 추가해서 사용
 		//update에서 중복 사용 되도 조건을 주면 상관 없음
-		vo = service.selectOne(vo);
+		vo = comunityService.selectOne(vo);
 		if( vo != null ) {
     	    dto.setSeq(vo.getSeq());
     		dto.setBoard("comunity");
@@ -124,7 +116,7 @@ public class ComunityController {
 	@PreAuthorize("principal.username == #vo.id")
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView postUpdate(ModelAndView mv, ComunityVO vo) {
-		if(service.update(vo) > 0) {
+		if(comunityService.update(vo) > 0) {
 			mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());
 		}else {
 			mv.addObject("fCode","BU");
@@ -137,14 +129,14 @@ public class ComunityController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getUpdate(ModelAndView mv, ComunityVO vo) {
 	
-		 return mv.addObject("get",service.selectOne(vo));
+		 return mv.addObject("get",comunityService.selectOne(vo));
 	}
 	
     @PreAuthorize("principal.username == #request.getRemoteUser()")
     @RequestMapping(value = "/delete")
     public ModelAndView delete(ModelAndView mv, ComunityVO vo,HttpServletRequest request) {
         System.out.println("삭제요청 = " + vo);
-        if(service.delete(vo) > 0) {
+        if(comunityService.delete(vo) > 0) {
             mv.setViewName("redirect:/comunity/list");
         }else {
             mv.setViewName("redirect:/comunity/get?seq="+vo.getSeq());

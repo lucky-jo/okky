@@ -15,12 +15,12 @@ import com.ncs.vo.ReplyVO;
 public class ColReplyController {
 	
 	@Autowired
-	ColReplyService rservice;
+	ColReplyService colReplyService;
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
-		rservice.register(rvo);
+		colReplyService.register(rvo);
 		return ("redirect:/column/get?seq=" + rvo.getSeq());
 	}
 
@@ -33,7 +33,7 @@ public class ColReplyController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
-		rservice.delete(rvo);
+		colReplyService.delete(rvo);
 		return "redirect:/column/get?seq=" + rvo.getSeq();
 	}
 

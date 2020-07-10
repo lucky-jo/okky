@@ -15,12 +15,12 @@ import com.ncs.vo.ReplyVO;
 public class JobsReplyController {
 	
 	@Autowired
-	JobsReplyService rservice;
+	JobsReplyService jobsReplyService;
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
-		rservice.register(rvo);
+		jobsReplyService.register(rvo);
 		return ("redirect:/jobs/get?seq=" + rvo.getSeq());
 	}
 
@@ -33,7 +33,7 @@ public class JobsReplyController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
-		rservice.delete(rvo);
+		jobsReplyService.delete(rvo);
 		return "redirect:/qna/get?seq=" + rvo.getSeq();
 	}
 

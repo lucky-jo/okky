@@ -15,12 +15,12 @@ import com.ncs.vo.TechVO;
 public class TechReplyController {
 	
 	@Autowired
-	TechReplyService rservice;
+	TechReplyService techReplyService;
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
-		rservice.register(rvo);
+		techReplyService.register(rvo);
 		return ("redirect:/tech/get?seq=" + rvo.getSeq());
 	}
 
@@ -33,7 +33,7 @@ public class TechReplyController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
-		rservice.delete(rvo);
+		techReplyService.delete(rvo);
 		return "redirect:/tech/get?seq=" + rvo.getSeq();
 	}
 

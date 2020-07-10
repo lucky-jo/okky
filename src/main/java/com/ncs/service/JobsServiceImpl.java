@@ -1,17 +1,5 @@
 package com.ncs.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
 import com.ncs.mapper.JobsMapper;
 import com.ncs.mapper.LikeCountMapper;
 import com.ncs.mapper.MemberMapper;
@@ -19,6 +7,16 @@ import com.ncs.util.SearchCriteria;
 import com.ncs.vo.GetCountDTO;
 import com.ncs.vo.JobsVO;
 import com.ncs.vo.MemberVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class JobsServiceImpl implements JobsService{
@@ -42,27 +40,27 @@ public class JobsServiceImpl implements JobsService{
 	
 	@Transactional
 	@Override
-	public int insert(JobsVO vo) {
+	public int insert(JobsVO jobsVO) {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		memberVO.setUserid(request.getRemoteUser());
 		memberVO.setApoint(30);
 		memberMapper.pointUp(memberVO);
-		return jobsMapper.insert(vo);
+		return jobsMapper.insert(jobsVO);
 	}
 
 	@Transactional
 	@Override
-	public JobsVO selectOne(JobsVO vo) {
+	public JobsVO selectOne(JobsVO jobsVO) {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		if( request.getRemoteUser() != null ) {
 			GetCountDTO dto = new GetCountDTO();
 			dto.setId(request.getRemoteUser());
 			dto.setBoard("jobs");
 			dto.setToday(getFolder());
-			dto.setSeq(vo.getSeq());
+			dto.setSeq(jobsVO.getSeq());
 			if (jobsMapper.getcount(dto) == 0 ) {
 				jobsMapper.registercount(dto);
-				jobsMapper.countUp(vo.getSeq());
+				jobsMapper.countUp(jobsVO.getSeq());
 			}
 			memberVO.setUserid(request.getRemoteUser());
 			memberVO.setApoint(1);
@@ -70,27 +68,27 @@ public class JobsServiceImpl implements JobsService{
 		}
 		
 
-		return jobsMapper.selectOne(vo);
+		return jobsMapper.selectOne(jobsVO);
 	}
 	@Override
-	public int update(JobsVO vo) {
-		return jobsMapper.update(vo);
+	public int update(JobsVO jobsVO) {
+		return jobsMapper.update(jobsVO);
 	}
 	@Override
-	public int delete(JobsVO vo) {
-		return jobsMapper.delete(vo);
+	public int delete(JobsVO jobsVO) {
+		return jobsMapper.delete(jobsVO);
 	}
 	@Override
 	public int totalRowCount() {
 		return jobsMapper.totalRowCount();
 	}
 	@Override
-	public List<JobsVO> searchList(SearchCriteria cri){
-		return jobsMapper.searchList(cri);
+	public List<JobsVO> searchList(SearchCriteria searchCriteria){
+		return jobsMapper.searchList(searchCriteria);
 	}
 	@Override
-	public int searchRowCount(SearchCriteria cri) {
-		return jobsMapper.searchRowCount(cri);
+	public int searchRowCount(SearchCriteria searchCriteria) {
+		return jobsMapper.searchRowCount(searchCriteria);
 	}
    	
 	private String getFolder() {

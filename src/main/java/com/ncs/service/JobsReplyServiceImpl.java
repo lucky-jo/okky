@@ -1,52 +1,50 @@
 package com.ncs.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ncs.mapper.JobsMapper;
 import com.ncs.mapper.JobsReplyMapper;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class JobsReplyServiceImpl implements JobsReplyService {
 	
 	@Autowired
-	JobsReplyMapper rmapper;
-	
+	JobsReplyMapper jobsReplyMapper;
 	@Autowired
-	JobsMapper mapper;
+	JobsMapper jobsMapper;
 
 	@Override
-	public int register(ReplyVO rvo) {
+	public int register(ReplyVO replyVO) {
 		
 		/* 댓글 남긴 사람들에게 업데이트 될 때마다 메시지 전송
 		 * for (iterable_type iterable_element : iterable) {
 		 * messageMapper.delevery(element); }
 		 */
-		mapper.replycountUp(rvo.getSeq());
-		return rmapper.register(rvo);
+		jobsMapper.replycountUp(replyVO.getSeq());
+		return jobsReplyMapper.register(replyVO);
 	}
 
 	@Override
 	public List<ReplyVO> selectlist(int seq) {
-		return rmapper.selectlist(seq);
+		return jobsReplyMapper.selectlist(seq);
 	}
 
 	@Override
-	public int update(ReplyVO rvo) {
-		return rmapper.update(rvo);
+	public int update(ReplyVO replyVO) {
+		return jobsReplyMapper.update(replyVO);
 	}
 
 	@Override
-	public int delete(ReplyVO rvo) {
-		return rmapper.delete(rvo);
+	public int delete(ReplyVO replyVO) {
+		return jobsReplyMapper.delete(replyVO);
 	}
 
 	@Override
 	public int replyCount() {
-		return rmapper.replyCount();
+		return jobsReplyMapper.replyCount();
 	}
 	
 	

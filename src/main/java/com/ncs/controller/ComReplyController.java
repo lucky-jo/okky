@@ -13,17 +13,17 @@ import com.ncs.vo.ReplyVO;
 public class ComReplyController {
 
 	@Autowired
-	ComReplyService rservice;
+	ComReplyService comReplyService;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(ReplyVO rvo) {
-		rservice.register(rvo);
+		comReplyService.register(rvo);
 		return ("redirect:/comunity/get?seq="+rvo.getSeq());
 	}
 	
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
-		rservice.delete(rvo);
+		comReplyService.delete(rvo);
 		return "redirect:/comunity/get?seq="+rvo.getSeq();
 	}
 }

@@ -18,16 +18,16 @@ import com.ncs.vo.QnaVO;
 public class TestController {
 	
 	@Autowired
-	ColumnMapper colmapper;
+	ColumnMapper columnMapper;
 	
 	@Autowired
-	ComunityMapper commapper;
+	ComunityMapper comunityMapper;
 	
 	@Autowired
-	JobsMapper jobsmapper;
+	JobsMapper jobsMapper;
 	
 	@Autowired
-	QnaMapper qnamapper;
+	QnaMapper qnaMapper;
 	
 	@RequestMapping("/test2")
 	public ModelAndView test2(ModelAndView mv) {
@@ -39,14 +39,14 @@ public class TestController {
 				vo.setContent("관리자가 작성하는 내용 select key"+j);
 				vo.setId("admin9"+j);
 				vo.setCategory("a");
-				colmapper.insert(vo);
+				columnMapper.insert(vo);
 			}
 			for(int k = 0; k < 7 ; k++ ) {
 				vo.setTitle("새로 작성하는 글 select key"+k);
 				vo.setContent("새로 작성하는 내용 select key"+k);
 				vo.setId("user5"+k);
 				vo.setCategory("b");
-				colmapper.insert(vo);
+				columnMapper.insert(vo);
 			}
 		}
 		mv.setViewName("redirect:/index");
@@ -62,14 +62,14 @@ public class TestController {
 				vo.setContent("관리자가 작성하는 내용 select key"+j);
 				vo.setId("admin9"+j);
 				vo.setCategory("a");
-				commapper.insert(vo);
+				comunityMapper.insert(vo);
 			}
 			for(int k = 0; k < 7 ; k++ ) {
 				vo.setTitle("새로 작성하는 글 select key"+k);
 				vo.setContent("새로 작성하는 내용 select key"+k);
 				vo.setId("user5"+k);
 				vo.setCategory("b");
-				commapper.insert(vo);
+				comunityMapper.insert(vo);
 			}
 		}
 		mv.setViewName("redirect:/index");
@@ -84,14 +84,14 @@ public class TestController {
 				vo.setContent("관리자가 작성하는 내용 select key"+j);
 				vo.setId("admin9"+j);
 				vo.setCategory("Tech Q&A");
-				qnamapper.insert(vo);
+				qnaMapper.insert(vo);
 			}
 			for(int k = 0; k < 7 ; k++ ) {
 				vo.setTitle("새로 작성하는 글 select key"+k);
 				vo.setContent("새로 작성하는 내용 select key"+k);
 				vo.setId("user5"+k);
 				vo.setCategory("Blockchain Q&A");
-				qnamapper.insert(vo);
+				qnaMapper.insert(vo);
 			}
 		}
 		mv.setViewName("redirect:/index");
@@ -107,14 +107,14 @@ public class TestController {
 				vo.setContent("관리자가 작성하는 내용 select key"+j);
 				vo.setId("admin9"+j);
 				vo.setCategory("a");
-				jobsmapper.insert(vo);
+				jobsMapper.insert(vo);
 			}
 			for(int k = 0; k < 7 ; k++ ) {
 				vo.setTitle("새로 작성하는 글 select key"+k);
 				vo.setContent("새로 작성하는 내용 select key"+k);
 				vo.setId("user5"+k);
 				vo.setCategory("b");
-				jobsmapper.insert(vo);
+				jobsMapper.insert(vo);
 			}
 		}
 		mv.setViewName("redirect:/index");

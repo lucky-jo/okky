@@ -1,10 +1,12 @@
 package com.ncs.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ncs.service.ColReplyService;
+import com.ncs.service.ColumnService;
+import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,25 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ncs.service.ColReplyService;
-import com.ncs.service.ColumnService;
-import com.ncs.service.LikeCountService;
-import com.ncs.service.MemberService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.ColumnVO;
-import com.ncs.vo.LikeDTO;
-import com.ncs.vo.MemberVO;
-import com.ncs.vo.MergeDTO;
-import com.ncs.vo.ReplyLikeDTO;
-import com.ncs.vo.ReplyVO;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping(value = "/column/")
 @Controller
 public class ColumnController {
 
         @Autowired
-        ColumnService colService;
+        ColumnService columnService;
         
         @Autowired
         ColReplyService colReplyService;
@@ -47,7 +40,7 @@ public class ColumnController {
         @RequestMapping(value = "/list")
         public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
             cri.setSnoEno();
-            List<ColumnVO> list = colService.searchList(cri);
+            List<ColumnVO> list = columnService.searchList(cri);
             List<MergeDTO<ColumnVO,MemberVO>> mergelist = new ArrayList<>();
             for (ColumnVO columnVO : list) {
             	MemberVO membervo = memberService.get(columnVO.getId());
@@ -56,12 +49,12 @@ public class ColumnController {
     				mergelist.add(new MergeDTO<>(columnVO, membervo));
             	}	
 			}
-            if( mergelist != null ) {
-            	mv.addObject("mergelist",mergelist);
-            }
+
+            mv.addObject("mergelist",mergelist);
+
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCri(cri);
-            pageMaker.setTotalRow(colService.searchRowCount(cri));
+            pageMaker.setTotalRow(columnService.searchRowCount(cri));
 
             mv.addObject("pageMaker",pageMaker);
             mv.setViewName("column/list");
@@ -72,11 +65,8 @@ public class ColumnController {
         @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/register", method = RequestMethod.POST )
         public ModelAndView postInsert(ModelAndView mv, ColumnVO vo ) {
-            if(colService.insert(vo)>0) {
+            if(columnService.insert(vo)>0) {
                 mv.setViewName("redirect:/column/get?seq="+vo.getSeq());
-            }else {
-                mv.addObject("fCode","BI");
-                mv.setViewName("column/fail");
             }
             return mv;
         }
@@ -104,7 +94,7 @@ public class ColumnController {
 				System.out.println(replyVO.toString());
 			}
             columnVO.setId(request.getRemoteUser());
-            columnVO = colService.selectOne(columnVO);
+            columnVO = columnService.selectOne(columnVO);
         	if( columnVO != null ) {
         	    dto.setSeq(columnVO.getSeq());
         		dto.setBoard("column");
@@ -127,7 +117,7 @@ public class ColumnController {
         @RequestMapping(value = "/update", method = RequestMethod.POST )
         public ModelAndView update(ModelAndView mv,ColumnVO vo) {
             System.out.println("업데이트 요청 = " + vo);
-            if(colService.update(vo) > 0) {
+            if(columnService.update(vo) > 0) {
                 mv.setViewName("redirect:/column/get?seq="+vo.getSeq());
             }else {
                 mv.setViewName("redirect:/column/list");
@@ -137,16 +127,16 @@ public class ColumnController {
 
         @PreAuthorize("principal.username == #request.getRemoteUser()")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
-        public ModelAndView getUpdate(ModelAndView mv, ColumnVO vo) {
+        public ModelAndView getUpdate(ModelAndView mv, ColumnVO vo,HttpServletRequest request) {
             System.out.println("업데이트폼 요청 = " + vo);
-            return mv.addObject("get",colService.selectOne(vo));
+            return mv.addObject("get",columnService.selectOne(vo));
         }
 
         @PreAuthorize("principal.username == #request.getRemoteUser()")
         @RequestMapping(value = "/delete")
         public ModelAndView delete(ModelAndView mv, ColumnVO vo,HttpServletRequest request) {
             System.out.println("삭제요청 = " + vo);
-            if(colService.delete(vo) > 0) {
+            if(columnService.delete(vo) > 0) {
                 mv.setViewName("redirect:/column/list");
             }else {
                 mv.setViewName("redirect:/column/get?seq="+vo.getSeq());

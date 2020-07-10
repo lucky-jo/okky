@@ -24,80 +24,80 @@ public class LikeCountServiceImpl implements LikeCountService {
 
     @Transactional
     @Override
-    public int likeRegister(LikeDTO dto) {
-        if(dto.getLiketype() == 1 ) {
-            likeCountMapper.likecountUp(dto);
-        } else if(dto.getLiketype() == -1 ) {
-            likeCountMapper.likecountDown(dto);
+    public int likeRegister(LikeDTO likeDTO) {
+        if(likeDTO.getLiketype() == 1 ) {
+            likeCountMapper.likecountUp(likeDTO);
+        } else if(likeDTO.getLiketype() == -1 ) {
+            likeCountMapper.likecountDown(likeDTO);
         }
-        memberVO.setUserid(dto.getLikeid());
+        memberVO.setUserid(likeDTO.getLikeid());
 		memberVO.setApoint(2);
 		memberMapper.pointUp(memberVO);
-		memberVO.setUserid(dto.getWriter());
+		memberVO.setUserid(likeDTO.getWriter());
 		memberVO.setApoint(15);
 		memberMapper.pointUp(memberVO);
-        return likeCountMapper.likeRegister(dto);
+        return likeCountMapper.likeRegister(likeDTO);
     }
 
     @Transactional
     @Override
-    public int likeDelete(LikeDTO dto) {
-        if(dto.getLiketype() == 1) {
-            likeCountMapper.likecountDown(dto);
-        } else if(dto.getLiketype() == -1 ) {
-            likeCountMapper.likecountUp(dto);
+    public int likeDelete(LikeDTO likeDTO) {
+        if(likeDTO.getLiketype() == 1) {
+            likeCountMapper.likecountDown(likeDTO);
+        } else if(likeDTO.getLiketype() == -1 ) {
+            likeCountMapper.likecountUp(likeDTO);
         }
-        memberVO.setUserid(dto.getLikeid());
+        memberVO.setUserid(likeDTO.getLikeid());
  		memberVO.setApoint(2);
  		memberMapper.pointDown(memberVO);
- 		memberVO.setUserid(dto.getWriter());
+ 		memberVO.setUserid(likeDTO.getWriter());
  		memberVO.setApoint(15);
  		memberMapper.pointDown(memberVO);
-        return likeCountMapper.likeDelete(dto);
+        return likeCountMapper.likeDelete(likeDTO);
     }
 
     @Transactional
     @Override
-    public int replyLikeRegister(ReplyLikeDTO dto) {
-        if(dto.getLiketype() == 1 ) {
-            likeCountMapper.replyLikecountUp(dto);
-        } else if(dto.getLiketype() == -1 ) {
-            likeCountMapper.replyLikecountDown(dto);
+    public int replyLikeRegister(ReplyLikeDTO replyLikeDTO) {
+        if(replyLikeDTO.getLiketype() == 1 ) {
+            likeCountMapper.replyLikecountUp(replyLikeDTO);
+        } else if(replyLikeDTO.getLiketype() == -1 ) {
+            likeCountMapper.replyLikecountDown(replyLikeDTO);
         }
-        memberVO.setUserid(dto.getLikerid());
+        memberVO.setUserid(replyLikeDTO.getLikerid());
  		memberVO.setApoint(2);
  		memberMapper.pointUp(memberVO);
- 		memberVO.setUserid(dto.getWriter());
+ 		memberVO.setUserid(replyLikeDTO.getWriter());
  		memberVO.setApoint(15);
  		memberMapper.pointUp(memberVO);
-        return likeCountMapper.replyLikeRegister(dto);
+        return likeCountMapper.replyLikeRegister(replyLikeDTO);
     }
 
     @Transactional
     @Override
-    public int replyLikeDelete(ReplyLikeDTO dto) {
-        if(dto.getLiketype() == 1) {
-            likeCountMapper.replyLikecountDown(dto);
-        } else if(dto.getLiketype() == -1 ) {
-            likeCountMapper.replyLikecountUp(dto);
+    public int replyLikeDelete(ReplyLikeDTO replyLikeDTO) {
+        if(replyLikeDTO.getLiketype() == 1) {
+            likeCountMapper.replyLikecountDown(replyLikeDTO);
+        } else if(replyLikeDTO.getLiketype() == -1 ) {
+            likeCountMapper.replyLikecountUp(replyLikeDTO);
         }
-        memberVO.setUserid(dto.getLikerid());
+        memberVO.setUserid(replyLikeDTO.getLikerid());
  		memberVO.setApoint(2);
  		memberMapper.pointDown(memberVO);
- 		memberVO.setUserid(dto.getWriter());
+ 		memberVO.setUserid(replyLikeDTO.getWriter());
  		memberVO.setApoint(15);
  		memberMapper.pointDown(memberVO);
-        return likeCountMapper.replyLikeDelete(dto);
+        return likeCountMapper.replyLikeDelete(replyLikeDTO);
     }
 
     @Override
-    public int likeExist(LikeDTO dto) {
-        return likeCountMapper.likeExist(dto);
+    public int likeExist(LikeDTO likeDTO) {
+        return likeCountMapper.likeExist(likeDTO);
     }
 
     @Override
-    public int replyLikeExist(ReplyLikeDTO dto) {
-        return likeCountMapper.replyLikeExist(dto);
+    public int replyLikeExist(ReplyLikeDTO replyLikeDTO) {
+        return likeCountMapper.replyLikeExist(replyLikeDTO);
     }
 
 }

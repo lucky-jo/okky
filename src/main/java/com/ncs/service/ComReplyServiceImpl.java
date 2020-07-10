@@ -1,47 +1,46 @@
 package com.ncs.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ncs.mapper.ComReplyMapper;
 import com.ncs.mapper.QnaMapper;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ComReplyServiceImpl implements ComReplyService {
 	
 	@Autowired
-	ComReplyMapper rmapper;
+	ComReplyMapper comReplyMapper;
 	
 	@Autowired
-	QnaMapper mapper;
+	QnaMapper qnaMapper;
 
 	@Override
-	public int register(ReplyVO rvo) {
-		mapper.replycountUp(rvo.getSeq());
-		return rmapper.register(rvo);
+	public int register(ReplyVO replyVO) {
+		qnaMapper.replycountUp(replyVO.getSeq());
+		return comReplyMapper.register(replyVO);
 	}
 
 	@Override
 	public List<ReplyVO> selectList(int seq) {
-		return rmapper.selectList(seq);
+		return comReplyMapper.selectList(seq);
 	}
 
 	@Override
-	public int update(ReplyVO rvo) {
-		return rmapper.update(rvo);
+	public int update(ReplyVO replyVO) {
+		return comReplyMapper.update(replyVO);
 	}
 
 	@Override
-	public int delete(ReplyVO rvo) {
-		return rmapper.delete(rvo);
+	public int delete(ReplyVO replyVO) {
+		return comReplyMapper.delete(replyVO);
 	}
 
 	@Override
 	public int replyCount() {
-		return rmapper.replyCount();
+		return comReplyMapper.replyCount();
 	}
 	
 	
