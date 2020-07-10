@@ -141,14 +141,14 @@
 
 <div id="create-user" class="content" role="main">
     <h3 class="content-header">비밀번호 변경</h3>
-    <form action="/user/updatePasswordChange" method="post" >
+    <form action="/member/passwordChage" method="post" >
     <div class="col-sm-8 col-sm-offset-2">
         <div class="panel panel-default panel-margin-10">
             <div class="panel-body panel-body-content text-center">
                 <p class="lead">변경하실 비밀번호를 입력해 주세요.</p>
                 
                 <div class="form-group">
-                    <input type="password" name="oldPassword" class="form-control form-control-inline text-center" placeholder="현재 비밀번호" />
+                    <input type="password" name="userpw" class="form-control form-control-inline text-center" placeholder="현재 비밀번호" />
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="form-control form-control-inline text-center" placeholder="새 비밀번호" />

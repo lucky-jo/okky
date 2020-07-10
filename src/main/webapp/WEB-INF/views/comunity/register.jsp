@@ -38,34 +38,7 @@
             <h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
                 <li><a href="/comunity/list" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">All</span><span 
-<<<<<<< HEAD
-                		class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=a" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=b" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=c" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=d" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">IT행사</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'd' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=e" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span 
-                		class="nav-selected-dot"></span></span></a></li>
-                <li><a href="/comunity/list?category=f" class="link"><span 
-                		class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span 
-=======
+                		class="nav-sidebar-label nav-sidebar-category-label">All</span><span
                 		class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span 
                 		class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/comunity/list?category=a" class="link"><span 
@@ -90,8 +63,7 @@
                 		class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/comunity/list?category=f" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span 
-                		class='nav-indicator <c:out value="${pageMaker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span 
->>>>>>> origin/kim
+                		class='nav-indicator <c:out value="${pageMaker.cri.category eq 'f' ? 'nav-selected':''}"/>'><span
                 		class="nav-selected-dot"></span></span></a></li>
             </ul>
             <div class="special-nav">

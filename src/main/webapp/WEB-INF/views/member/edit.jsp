@@ -141,24 +141,26 @@
             <div class="panel-heading">
                 <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40'/></a> <div class="avatar-info"><a class="nickname" href="/user/info/94647"  title="일당백">일당백</a> <div class="activity block"><span class="fa fa-flash"></span> 37</div></div></div>
             </div>
-            <form action="/member/update?userid=${user.member.userid }" method="post" class="form-signup form-user panel-body" id="loginForm" autocomplete="off" ><input type="hidden" name="_method" value="PUT" id="_method" />
+            <form action="/member/edit" method="post" class="form-signup form-user panel-body" id="loginForm" autocomplete="off" >
                 
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label" for="person.email">이메일 주소</label>
-                        <input type="text" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${user.member.email }" id="person.email" />
+                        <label class="control-label" >이메일 주소</label>
+                        <input type="text" name="email" class="form-control input-sm" placeholder="이메일" required="" value="${user.member.email }" />
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="person.fullName">이름</label>
-                        <input type="text" name="username" class="form-control input-sm" placeholder="이름" required="" value="${user.member.username }" id="person.fullName" />
+                        <label class="control-label" >이름</label>
+                        <input type="text" name="username" class="form-control input-sm" placeholder="이름" required="" value="${user.member.username }"  />
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="avatar.nickname">닉네임</label>
-                        <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${user.member.nickname }" id="avatar.nickname" />
+                        <label class="control-label" >닉네임</label>
+                        <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임" required="" value="${user.member.nickname }" />
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="allowed" checked="checked" id="person.dmAllowed"  /> 이메일 수신 동의
+                            <input type="hidden" name="userid" value="${user.member.userid}" />
+                            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }"/>
                         </label>
                     </div>
                 </fieldset>
@@ -178,6 +180,12 @@
     </div>
      <!-- 미구현하기로 함 -->
      <div class="col-md-6 main-block-right">
+
+         <%--<form action="/member/edit" method="post" >--%>
+
+
+
+         </form>
         <!-- <div class="panel panel-default">
             <div class="panel-heading">
                 <h5 class="panel-header">SNS 연결</h5>
