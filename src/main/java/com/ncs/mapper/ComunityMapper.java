@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.ncs.util.Criteria;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.ComunityVO;
 import com.ncs.vo.GetCountDTO;

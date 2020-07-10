@@ -2,8 +2,6 @@ package com.ncs.mapper;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.ncs.vo.ReplyVO;
 
 public interface ComReplyMapper {

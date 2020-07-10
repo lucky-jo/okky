@@ -22,7 +22,6 @@ import com.ncs.vo.JobsVO;
 import com.ncs.vo.LikeDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.MergeDTO;
-import com.ncs.vo.QnaVO;
 import com.ncs.vo.ReplyLikeDTO;
 import com.ncs.vo.ReplyVO;
 
