@@ -128,16 +128,16 @@ public class QnaController {
             return mv;
         }
 
-        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
         public ModelAndView getUpdate(ModelAndView mv, QnaVO vo) {
             System.out.println("업데이트폼 요청 = " + vo);
             return mv.addObject("get",qnaService.selectOne(vo));
         }
 
-        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/delete")
-        public ModelAndView delete(ModelAndView mv, QnaVO vo,HttpServletRequest request) {
+        public ModelAndView delete(ModelAndView mv, QnaVO vo) {
             System.out.println("삭제요청 = " + vo);
             if(qnaService.delete(vo) > 0) {
                 mv.setViewName("redirect:/qna/list");
