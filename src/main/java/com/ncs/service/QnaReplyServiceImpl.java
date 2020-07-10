@@ -18,14 +18,14 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 	QnaMapper qnaMapper;
 
 	@Override
-	public int register(ReplyVO rvo) {
+	public int register(ReplyVO replyVO) {
 		
 		/* 댓글 남긴 사람들에게 업데이트 될 때마다 메시지 전송
 		 * for (iterable_type iterable_element : iterable) {
 		 * messageMapper.delevery(element); }
 		 */
-		qnaMapper.replycountUp(rvo.getSeq());
-		return qnaReplyMapper.register(rvo);
+		qnaMapper.replycountUp(replyVO.getSeq());
+		return qnaReplyMapper.register(replyVO);
 	}
 
 	@Override
@@ -34,13 +34,13 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 	}
 
 	@Override
-	public int update(ReplyVO rvo) {
-		return qnaReplyMapper.update(rvo);
+	public int update(ReplyVO replyVO) {
+		return qnaReplyMapper.update(replyVO);
 	}
 
 	@Override
-	public int delete(ReplyVO rvo) {
-		return qnaReplyMapper.delete(rvo);
+	public int delete(ReplyVO replyVO) {
+		return qnaReplyMapper.delete(replyVO);
 	}
 
 	@Override

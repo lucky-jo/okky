@@ -19,9 +19,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public int register(MemberVO vo) {
-        memberMapper.register(vo);
-        return memberMapper.auth(vo.getUserid());
+    public int register(MemberVO memberVO) {
+        memberMapper.register(memberVO);
+        return memberMapper.auth(memberVO.getUserid());
     }
 
 	@Override

@@ -1,15 +1,15 @@
 package com.ncs.service;
 
-import java.util.List;
-
 import com.ncs.vo.ReplyVO;
+
+import java.util.List;
 
 public interface TechReplyService {
 	
-	int register(ReplyVO rvo);
+	int register(ReplyVO replyVO);
 	List<ReplyVO> selectlist(int seq);
-	int update(ReplyVO rvo);
-	int delete(ReplyVO rvo);
+	int update(ReplyVO replyVO);
+	int delete(ReplyVO replyVO);
 	int replyCount();
 
 }

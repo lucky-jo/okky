@@ -40,27 +40,27 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Transactional
 	@Override
-	public int insert(QnaVO vo) {
+	public int insert(QnaVO qnaVO) {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		memberVO.setUserid(request.getRemoteUser());
 		memberVO.setApoint(30);
 		memberMapper.pointUp(memberVO);
-		return qnaMapper.insert(vo);
+		return qnaMapper.insert(qnaVO);
 	}
 
 	@Transactional
 	@Override
-	public QnaVO selectOne(QnaVO vo) {
+	public QnaVO selectOne(QnaVO qnaVO) {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		if( request.getRemoteUser() != null ) {
 			GetCountDTO dto = new GetCountDTO();
 			dto.setId(request.getRemoteUser());
 			dto.setBoard("qna");
 			dto.setToday(getFolder());
-			dto.setSeq(vo.getSeq());
+			dto.setSeq(qnaVO.getSeq());
 			if (qnaMapper.getcount(dto) == 0 ) {
 				qnaMapper.registercount(dto);
-				qnaMapper.countUp(vo.getSeq());
+				qnaMapper.countUp(qnaVO.getSeq());
 			}
 			memberVO.setUserid(request.getRemoteUser());
 			memberVO.setApoint(1);
@@ -68,27 +68,27 @@ public class QnaServiceImpl implements QnaService{
 		}
 		
 
-		return qnaMapper.selectOne(vo);
+		return qnaMapper.selectOne(qnaVO);
 	}
 	@Override
-	public int update(QnaVO vo) {
-		return qnaMapper.update(vo);
+	public int update(QnaVO qnaVO) {
+		return qnaMapper.update(qnaVO);
 	}
 	@Override
-	public int delete(QnaVO vo) {
-		return qnaMapper.delete(vo);
+	public int delete(QnaVO qnaVO) {
+		return qnaMapper.delete(qnaVO);
 	}
 	@Override
 	public int totalRowCount() {
 		return qnaMapper.totalRowCount();
 	}
 	@Override
-	public List<QnaVO> searchList(SearchCriteria cri){
-		return qnaMapper.searchList(cri);
+	public List<QnaVO> searchList(SearchCriteria searchCriteria){
+		return qnaMapper.searchList(searchCriteria);
 	}
 	@Override
-	public int searchRowCount(SearchCriteria cri) {
-		return qnaMapper.searchRowCount(cri);
+	public int searchRowCount(SearchCriteria searchCriteria) {
+		return qnaMapper.searchRowCount(searchCriteria);
 	}
    	
 	private String getFolder() {

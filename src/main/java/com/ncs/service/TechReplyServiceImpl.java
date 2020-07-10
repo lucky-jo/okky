@@ -1,52 +1,51 @@
 package com.ncs.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ncs.mapper.TechMapper;
 import com.ncs.mapper.TechReplyMapper;
 import com.ncs.vo.ReplyVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TechReplyServiceImpl implements TechReplyService {
 	
 	@Autowired
-	TechReplyMapper rmapper;
+	TechReplyMapper techReplyMapper;
 	
 	@Autowired
-	TechMapper mapper;
+	TechMapper techMapper;
 
 	@Override
-	public int register(ReplyVO rvo) {
+	public int register(ReplyVO replyVO) {
 		
 		/* 댓글 남긴 사람들에게 업데이트 될 때마다 메시지 전송
 		 * for (iterable_type iterable_element : iterable) {
 		 * messageMapper.delevery(element); }
 		 */
-		mapper.replycountUp(rvo.getSeq());
-		return rmapper.register(rvo);
+		techMapper.replycountUp(replyVO.getSeq());
+		return techReplyMapper.register(replyVO);
 	}
 
 	@Override
 	public List<ReplyVO> selectlist(int seq) {
-		return rmapper.selectlist(seq);
+		return techReplyMapper.selectlist(seq);
 	}
 
 	@Override
-	public int update(ReplyVO rvo) {
-		return rmapper.update(rvo);
+	public int update(ReplyVO replyVO) {
+		return techReplyMapper.update(replyVO);
 	}
 
 	@Override
-	public int delete(ReplyVO rvo) {
-		return rmapper.delete(rvo);
+	public int delete(ReplyVO replyVO) {
+		return techReplyMapper.delete(replyVO);
 	}
 
 	@Override
 	public int replyCount() {
-		return rmapper.replyCount();
+		return techReplyMapper.replyCount();
 	}
 	
 	

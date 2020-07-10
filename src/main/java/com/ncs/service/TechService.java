@@ -1,18 +1,18 @@
 package com.ncs.service;
 
-import java.util.List;
-
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.TechVO;
+
+import java.util.List;
 
 public interface TechService {
 
 	List<TechVO> selectList();
-	int insert(TechVO vo);
-	TechVO selectOne(TechVO vo);
-	int update(TechVO vo);
-	int delete(TechVO vo);
+	int insert(TechVO techVO);
+	TechVO selectOne(TechVO techVO);
+	int update(TechVO techVO);
+	int delete(TechVO techVO);
 	int totalRowCount();
-	List<TechVO> searchList(SearchCriteria cri);
-	int searchRowCount(SearchCriteria cri);
+	List<TechVO> searchList(SearchCriteria searchCriteria);
+	int searchRowCount(SearchCriteria searchCriteria);
 }

@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface QnaReplyService {
 	
-	int register(ReplyVO rvo);
+	int register(ReplyVO replyVO);
 	List<ReplyVO> selectlist(int seq);
-	int update(ReplyVO rvo);
-	int delete(ReplyVO rvo);
+	int update(ReplyVO replyVO);
+	int delete(ReplyVO replyVO);
 	int replyCount();
 	ReplyVO get(ReplyVO replyVO);
 
