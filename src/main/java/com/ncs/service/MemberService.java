@@ -11,4 +11,6 @@ public interface MemberService {
     MemberVO get(String userid);
 
     int edit(MemberVO memberVO);
+
+    int passwordChange(MemberVO memberVO);
 }

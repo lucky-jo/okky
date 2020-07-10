@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="get" resultType="com.ncs.vo.MemberVO">
-		select userid, username, nickname, image, apoint 
+		select userid, userpw, username, nickname, image, apoint
 		from member 
 		where userid = #{userid}
 	</select>
@@ -70,7 +70,11 @@
 		nickname = #{nickname},
 		allowed = #{allowed}
 		where userid = #{userid}
+	</update>
 
+	<update id="passwordChange">
+		update member set
+		userpw = #{userpw} where userid = #{userid}
 	</update>
 
 </mapper>

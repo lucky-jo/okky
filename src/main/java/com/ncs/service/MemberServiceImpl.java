@@ -34,4 +34,9 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.edit(memberVO);
     }
 
+    @Override
+    public int passwordChange(MemberVO memberVO) {
+        return memberMapper.passwordChange(memberVO);
+    }
+
 }

@@ -20,4 +20,6 @@ public interface MemberMapper {
 
     int edit(MemberVO memberVO);
 
+    int passwordChange(MemberVO memberVO);
+
 }
