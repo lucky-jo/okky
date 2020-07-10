@@ -14,11 +14,11 @@ okky web-site_Clone / <https://okky.kr/>
 
  * Project Manager 조재복 - <https://github.com/ildang100> / last2599@gmail.com / 
 
- * 이재성 - 이메일 / git
+ * 이재성 - 이메일 / <https://github.com/Jaeker-Lee>
 
- * 김창대 - 이메일 / git
+ * 김창대 - 이메일 / <https://github.com/cdkim1226>
 
- * 엄만성 - 이메일 / git
+ * 엄만성 - 이메일 / <https://github.com/mansung93>
 
 ### 역활 분담
 
