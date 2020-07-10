@@ -1,5 +1,6 @@
 package com.ncs.controller;
 
+import com.ncs.security.domain.CustomUser;
 import com.ncs.service.MemberService;
 import com.ncs.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,14 +55,26 @@ public class MemberController {
         System.out.println(memberVO);
         return mv;
     }
+
+//    @PreAuthorize("principal.username == #memberVO.userid")
+@PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView postEdit(MemberVO memberVO, ModelAndView mv){
+        memberService.edit(memberVO);
+        new CustomUser(memberService.read(memberVO.getUserid()));
+        mv.setViewName("member/edit");
+        return mv;
+    }
     
-    @PreAuthorize("principal.username == #memberVO.userid")
-    @RequestMapping(value = "/edit")
+//    @PreAuthorize("principal.username == #memberVO.userid")
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView edit(ModelAndView mv, MemberVO memberVO ) {
     	return mv;
     }
     
-    @PreAuthorize("principal.username == #memberVO.userid")
+//    @PreAuthorize("principal.username == #memberVO.userid")
+@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/passwordChange")
     public ModelAndView passwordChange(ModelAndView mv, MemberVO memberVO ) {
     	return mv;
