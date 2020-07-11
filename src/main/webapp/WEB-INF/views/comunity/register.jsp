@@ -89,8 +89,6 @@
             </div>
         </div>
 
-
-
 <div id="article-create" class="content" role="main">
 
 	<div class="content-header">

@@ -76,6 +76,20 @@
 		update member set
 		userpw = #{userpw} where userid = #{userid}
 	</update>
+	
+	<select id="historyBoardList">
+		select * from qna where id = #{userid}
+		union 
+		select * from tech where id = #{userid}
+		union 
+		select * from columnm where id = #{userid}
+		union
+		select * from comunity where id = #{userid}
+		union
+		select * from jobs where id = #{userid}
+		order by regdate desc
+		limit #{start} , #{perPageRow}
+	</select>
 
 </mapper>
   
