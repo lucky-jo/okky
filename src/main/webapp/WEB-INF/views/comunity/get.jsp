@@ -13,6 +13,22 @@ function del() {
 		return;
 	}
 } // del() 
+	var replyModify = function (rseq) {
+	var updatedata = "<div id=\"content-function-cog-2021030\" class=\"content-function-cog\">"
+		$.ajax({
+			type:'Get',
+			url:'comreply/modify',
+			data: {
+				rseq:rseq
+			},
+			success:function(data){
+				$('#note-text-'+data.get.rseq).html("<pre>"+data.get.rcontent+"</pre>");
+				$('.buttons2').attr("style","display: none;");
+				$('.buttons').attr("style","");
+			}
+		});
+
+	}
 </script>
 
 
@@ -155,7 +171,7 @@ function del() {
 					<div class="note-evaluate-wrapper">
 						<c:choose>
 							<c:when test="${liketype == 1 }">
-								<a href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1" 
+								<a href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1&writer=${get.id}" 
 									class="note-vote-btn" role="button" data-type="assent" 
 									data-eval="true" data-id="2010634" ><i
 									id="note-evaluate-assent-2010634"
@@ -244,7 +260,7 @@ function del() {
 								<li><a href="/comunity/update?seq=${get.seq}&id=${get.id}" class="edit"><i
 										class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
-								<li><a href="/comunity/delete?seq=${get.seq }"
+								<li><a href="/comunity/delete?seq=${get.seq }&id=${get.id}"
 									id="article-delete-btn"
 									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
 										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
@@ -297,7 +313,7 @@ function del() {
 									</div>
 								</div>
 								<fieldset class="form">
-									<article id="note-text-2015714"
+									<article id="note-text-${merge.board.rseq}"
 										class="list-group-item-text note-text">
 										<pre>${merge.board.rcontent }</pre>
 									</article>
@@ -309,7 +325,7 @@ function del() {
 									<div class="note-evaluate-wrapper">
 										<c:choose>
 											<c:when test="${merge.board.liketype == 1 }">
-												<a  href="/like/replydelete?rseq=${list.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2010634"><i
 													id="note-evaluate-assent-2010634"
@@ -349,7 +365,7 @@ function del() {
 													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2010634"
 													class="content-eval-count">${merge.board.rlikecount}</div>
-												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2010634"
 													onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
@@ -365,16 +381,16 @@ function del() {
 							<!-- 로그인 및 아이디 확인 후 출력 -->
 						 	<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAuthenticated()">
-							<c:if test="${pinfo.username eq list.rid }">
-							<div id="content-function-cog-2014246"
+							<c:if test="${pinfo.username eq merge.board.rid }">
+							<div id="content-function-cog-${merge.board.rseq}"
 								class="content-function-cog">
-								<div class="dropdown">
+								<div class="dropdown button2">
 									<a href="javascript://" data-toggle="dropdown"><i
 										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 										title="게시물 설정"></i></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="javascript://" class="note-edit-btn"
-											data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
+											data-id="2014246" onclick="replyModify('${merge.board.rseq}')"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
 										<li><a
 											href="/comreply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
 											class="note-delete-btn" data-id="2014246"><i
@@ -416,6 +432,7 @@ function del() {
 
 			<li class="list-group-item note-form clearfix"><sec:authorize
 					access="isAuthenticated()">
+					<sec:authentication var="user" property="principal" />
 				<div class="panel-body">
 					<form action="/comreply/register" method="post"
 						class="note-create-form">
@@ -462,7 +479,7 @@ function del() {
 			<sec:authorize access="isAnonymous()">
 				<div class="panel-body">
 					<h5 class="text-center">
-						<a href="/login/auth?redirectUrl=%2Farticle%2F734930" 
+						<a href="/comreply/register?seq=${get.seq}" 
 						class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
 					</h5>
 				</div>

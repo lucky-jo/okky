@@ -137,7 +137,7 @@
 
 
 				<c:forEach var="merge" items="${mergelist}">
-						<c:if test="${merge.board.replycount > 1 }">
+						<c:if test="${merge.board.replycount > 0 }">
 						<li
 							class="list-group-item list-group-item-question list-group-no-note clearfix">
 

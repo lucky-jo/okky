@@ -16,7 +16,7 @@
 		}
 	} // del()
 </script>
-
+<sec:authentication var="user" property="principal"/>
 <ul class="nav nav-sidebar nav-main">
 
 	<li data-toggle="tooltip" data-placement="right" 
@@ -98,11 +98,11 @@
 		<div class="panel-heading clearfix">
 			<div class='avatar avatar-medium clearfix pull-left'>
 				<a href='/user/info/94647' class='avatar-photo'><img
-					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+					src='/resources/user/${user.member.image}' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/94647" title="Kim">kim</a>
+					<a class="nickname" href="/user/info/94647" title="${user.member.nickname}">${user.member.nickname}</a>
 					<div class="activity block">
-						<span class="fa fa-flash"></span> 37
+						<span class="fa fa-flash"></span> ${user.member.apoint}
 					</div>
 				</div>
 			</div>
