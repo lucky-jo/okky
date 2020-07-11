@@ -37,12 +37,18 @@ public class QnaReplyController {
 		return "redirect:/qna/get?seq=" + rvo.getSeq();
 	}
 
+	@PreAuthorize("principal.username == #replyVO.rid")
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(ReplyVO replyVO) {
+		qnaReplyService.modify(replyVO);
+		return "redirect:/qna/get?seq=" + replyVO.getSeq();
+	}
+
 	@RequestMapping(value = "/modify", method = RequestMethod.GET )
 	public ModelAndView getModigy(ModelAndView mv, ReplyVO replyVO) {
 		mv.addObject("get",qnaReplyService.get(replyVO));
 		mv.setViewName("jsonView");
 		return mv;
 	}
-
 
 }
