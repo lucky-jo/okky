@@ -9,9 +9,9 @@ import com.ncs.mapper.ColumnMapper;
 import com.ncs.mapper.ComunityMapper;
 import com.ncs.mapper.JobsMapper;
 import com.ncs.mapper.QnaMapper;
+import com.ncs.mapper.TechMapper;
 import com.ncs.vo.ColumnVO;
 import com.ncs.vo.ComunityVO;
-import com.ncs.vo.JobsVO;
 import com.ncs.vo.QnaVO;
 
 @Controller
@@ -28,6 +28,9 @@ public class TestController {
 	
 	@Autowired
 	QnaMapper qnaMapper;
+	
+	@Autowired
+	TechMapper techMapper;
 	
 	@RequestMapping("/test2")
 	public ModelAndView test2(ModelAndView mv) {
@@ -98,27 +101,27 @@ public class TestController {
 		return mv;
 	}
 	
-	@RequestMapping("/test3")
-	public ModelAndView test3(ModelAndView mv) {
-		JobsVO vo = new JobsVO();
-		for(int i = 0; i < 1000; i++ ) {
-			for(int j = 0; j < 7 ; j++ ) {
-				vo.setTitle("관리자가 작성하는 글 select key"+j);
-				vo.setContent("관리자가 작성하는 내용 select key"+j);
-				vo.setId("admin9"+j);
-				vo.setCategory("a");
-				jobsMapper.insert(vo);
-			}
-			for(int k = 0; k < 7 ; k++ ) {
-				vo.setTitle("새로 작성하는 글 select key"+k);
-				vo.setContent("새로 작성하는 내용 select key"+k);
-				vo.setId("user5"+k);
-				vo.setCategory("b");
-				jobsMapper.insert(vo);
-			}
-		}
-		mv.setViewName("redirect:/index");
-		return mv;
-	}
+//	@RequestMapping("/test3")
+//	public ModelAndView test3(ModelAndView mv) {
+//		QnaVO vo = new QnaVO();
+//		for(int i = 0; i < 1000; i++ ) {
+//			for(int j = 0; j < 7 ; j++ ) {
+//				vo.setTitle("관리자가 작성하는 글 select key"+j);
+//				vo.setContent("관리자가 작성하는 내용 select key"+j);
+//				vo.setId("admin9"+j);
+//				vo.setCategory("Tech Q&A");
+//				techMapper.insert(vo);
+//			}
+//			for(int k = 0; k < 7 ; k++ ) {
+//				vo.setTitle("새로 작성하는 글 select key"+k);
+//				vo.setContent("새로 작성하는 내용 select key"+k);
+//				vo.setId("user5"+k);
+//				vo.setCategory("Blockchain Q&A");
+//				techMapper.insert(vo);
+//			}
+//		}
+//		mv.setViewName("redirect:/index");
+//		return mv;
+//	}
 
 }

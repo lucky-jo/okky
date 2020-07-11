@@ -19,21 +19,40 @@
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" 
+	data-container="body" title="Q&A"><a href="/qna/list" 
+	class="link"><i class="nav-icon fa fa-database"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Tech"><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" 
+	data-container="body" title="Tech"><a href="/tech/list" 
+	class="link"><i class="nav-icon fa fa-code"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
+	<li  class="active" data-toggle="tooltip" data-placement="right" 
+	data-container="body" title="커뮤니티"><a href="/comunity/list" 
+	class="link"><i class="nav-icon fa fa-comments"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" 
+	data-container="body" title="칼럼"><a href="/column/list" 
+	class="link"><i class="nav-icon fa fa-quote-left"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
-	<li  class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
+	<li  data-toggle="tooltip" data-placement="right" 
+	data-container="body" title="Jobs"><a href="/jobs/list" 
+	class="link"><i class="nav-icon fa fa-group"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
 </ul>
 
 <ul class="nav nav-sidebar nav-bottom">
-	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
+	<li data-toggle="tooltip" data-placement="right" data-container="body" 
+	title="Github Issues"><a href="https://github.com/okjsp/okky/issues" 
+	class="link" target="_blank"><i class="fa fa-github"></i> <span 
+	class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
+</div>
         <div class="sidebar-category-nav">
             <h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
