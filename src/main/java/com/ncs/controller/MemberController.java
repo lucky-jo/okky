@@ -1,8 +1,9 @@
 package com.ncs.controller;
 
-import com.ncs.security.CustomUserDetailsService;
-import com.ncs.service.MemberService;
-import com.ncs.vo.MemberVO;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +15,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import com.ncs.security.CustomUserDetailsService;
+import com.ncs.service.MemberService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.MemberVO;
+import com.ncs.vo.QnaVO;
 
 @RequestMapping(value = "/member")
 @Controller
@@ -48,7 +54,7 @@ public class MemberController {
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String postRegister(MemberVO vo){
         String[] image = {"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg"};
-        vo.setImage(image[(int)(Math.random()*9)]);
+        vo.setImage(image[(int)(Math.random()*9)+1]);
         System.out.println(vo.getImage());
         vo.setUserpw(bCryptPasswordEncoder.encode(vo.getUserpw()));
         memberService.register(vo);
@@ -57,10 +63,27 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/info")
-    public ModelAndView info( ModelAndView mv, MemberVO memberVO ){
+    public ModelAndView info( ModelAndView mv, MemberVO memberVO, SearchCriteria cri){
     	memberVO = memberService.get(memberVO.getUserid());
         mv.addObject("member", memberVO);
         System.out.println(memberVO);
+        
+        List<QnaVO> historyBoardList = memberService.historyBoardList(cri);
+        for (QnaVO qnaVO : historyBoardList) {
+			System.out.println(qnaVO);
+		}
+        mv.addObject("historyBoardList",historyBoardList);
+//        int sum = 0;
+//        List<Integer> historyRowCount = memberService.historyRowCount(cri);
+//        for (Integer integer : historyRowCount) {
+//			sum += integer;
+//		}
+//        PageMaker pageMaker = new PageMaker();
+//        pageMaker.setCri(cri);
+//        pageMaker.setTotalRow(sum);
+//
+//        mv.addObject("pageMaker",pageMaker);
+        
         return mv;
     }
 
