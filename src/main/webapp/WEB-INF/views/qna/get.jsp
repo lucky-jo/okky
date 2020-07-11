@@ -15,7 +15,6 @@ function del() {
 	}
 } // del()
 	var replyModify = function (rseq) {
-	var updatedata = "<div id=\"content-function-cog-2021030\" class=\"content-function-cog\">"
 		$.ajax({
 			type:'Get',
 			url:'/qnareply/modify',
@@ -23,9 +22,9 @@ function del() {
 				rseq:rseq
 			},
 			success:function(data){
-				$('#note-text-'+data.get.rseq).html("<pre>"+data.get.rcontent+"</pre>");
-				$('.buttons2').attr("style","display: none;");
-				$('.buttons').attr("style","");
+				$('#bottom-text-form-'+data.get.rseq).html(" <textarea name='rcontent' rows='7' cols='85%' id='note-text-2021030' class='list-group-item-text note-text'><pre> " + data.get.rcontent + "</pre></textarea>");
+				$('#buttons-drop-'+data.get.rseq).attr("style","display: none;");
+				$('#buttons-edit-'+data.get.rseq).attr("style","");
 			}
 		});
 
@@ -264,9 +263,8 @@ function del() {
 			<c:forEach var="merge" items="${mergeReplylist }">
 				<c:if test="${merge.board.rexist == 1 }">
 					<li class="list-group-item note-item clearfix" id="note-2015714">
-						<form action="/content/update/2015714" method="post"
+						<form action="/qnareply/modify" method="post"
 							data-id="2015714" class="note-update-form">
-							<input type="hidden" name="_method" value="PUT" id="_method" />
 							<div class="content-body panel-body pull-left">
 
 								<div class="note-select-indicator note-deselected">
@@ -289,12 +287,14 @@ function del() {
 										</div>
 									</div>
 								</div>
-								<fieldset class="form">
+								<%--댓글수정--%>
+								<fieldset class="form" id="bottom-text-form-${merge.board.rseq}">
 									<article id="note-text-${merge.board.rseq}"
 										class="list-group-item-text note-text">
 										<pre>${merge.board.rcontent }</pre>
 									</article>
 								</fieldset>
+
 							</div>
 
 							<div class="content-function pull-right text-center">
@@ -361,7 +361,7 @@ function del() {
 							<c:if test="${pinfo.username eq merge.board.rid }">
 							<div id="content-function-cog-${merge.board.rseq}"
 								class="content-function-cog">
-								<div class="dropdown button2">
+								<div class="dropdown" id="buttons-drop-${merge.board.rseq}">
 									<a href="javascript://" data-toggle="dropdown"><i
 										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 										title="게시물 설정"></i></a>
@@ -375,7 +375,7 @@ function del() {
 									</ul>
 
 								</div>
-								<div class="buttons" style="display: none;">
+								<div class="buttons" style="display: none;" id="buttons-edit-${merge.board.rseq }">
 									<p>
 										<a href="javascript://"
 											class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
@@ -383,17 +383,15 @@ function del() {
 									<p>
 										<input type="submit" name="create"
 											class="btn btn-success btn-wide" value="저장" id="create" />
+										<input type="hidden" name="rid" value="${merge.board.rid}">
+										<input type="hidden" name="rseq" value="${merge.board.rseq}">
+										<input type="hidden" name="seq" value="${merge.board.seq}">
 									</p>
 								</div>
 							</div>
 							</c:if>
 							</sec:authorize>
 
-						</form>
-
-						<form action="/content/delete/2015714" method="post"
-							id="note-delete-form-2015714">
-							<input type="hidden" name="_method" value="DELETE" id="_method" />
 						</form>
 
 					</li>

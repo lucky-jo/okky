@@ -53,5 +53,10 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 		return qnaReplyMapper.get(replyVO);
 	}
 
+	@Override
+	public int modify(ReplyVO replyVO) {
+		return qnaReplyMapper.modify(replyVO);
+	}
+
 
 }

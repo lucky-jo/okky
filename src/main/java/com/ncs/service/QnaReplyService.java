@@ -12,5 +12,6 @@ public interface QnaReplyService {
 	int delete(ReplyVO replyVO);
 	int replyCount();
 	ReplyVO get(ReplyVO replyVO);
+	int modify(ReplyVO replyVO);
 
 }
