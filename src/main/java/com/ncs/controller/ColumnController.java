@@ -125,7 +125,7 @@ public class ColumnController {
             return mv;
         }
 
-        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
         public ModelAndView getUpdate(ModelAndView mv, ColumnVO vo,HttpServletRequest request) {
             System.out.println("업데이트폼 요청 = " + vo);

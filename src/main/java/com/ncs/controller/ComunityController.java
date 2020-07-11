@@ -125,7 +125,7 @@ public class ComunityController {
 		return mv;
 	}
 	
-	@PreAuthorize("principal.username == #vo.id")
+	@PreAuthorize("isAuthenticated()") // 로그인이 되었는지 안되었는지 확인해줌
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView getUpdate(ModelAndView mv, ComunityVO vo) {
 	

@@ -135,7 +135,7 @@ public class JobsController {
             return mv;
         }
 
-        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @PreAuthorize("isAuthenticated()")
         @RequestMapping(value = "/update", method = RequestMethod.GET )
         public ModelAndView getUpdate(ModelAndView mv, JobsVO vo) {
             System.out.println("업데이트폼 요청 = " + vo);
