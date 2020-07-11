@@ -29,6 +29,9 @@ public class QnaServiceImpl implements QnaService{
 	
 	@Autowired
 	MemberMapper memberMapper;
+
+	@Autowired
+	CommonService commonService;
 	
 	@Autowired
 	MemberVO memberVO;
@@ -45,6 +48,7 @@ public class QnaServiceImpl implements QnaService{
 		memberVO.setUserid(request.getRemoteUser());
 		memberVO.setApoint(30);
 		memberMapper.pointUp(memberVO);
+		commonService.dobe(request.getRemoteUser());
 		return qnaMapper.insert(qnaVO);
 	}
 
