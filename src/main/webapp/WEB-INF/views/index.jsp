@@ -151,7 +151,7 @@
                 <li><a href="/tech/list" class="link"><i class="nav-icon fa fa-code"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-                <li><a href="/column/list" class="link"><i class="nav-icon fa fa-comments"></i> <span
+                <li><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
                 <li><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span

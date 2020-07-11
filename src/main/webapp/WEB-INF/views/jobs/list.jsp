@@ -53,19 +53,19 @@
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
- 		<li><a href="/column/list?category=Tech%20Q%26A&sorted="
+ 		<li><a href="/jobs/list?category=좋은회사/나쁜회사&sorted="
 			class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span>
 				<span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq '좋은회사/나쁜회사' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/column/list?category=Blockchain%20Q%26A&sorted="
+		<li><a href="/jobs/list?category=구인&sorted="
 			class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구인
 					</span> <span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq '구인' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/column/list?category=Blockchain%20Q%26A&sorted="
+		<li><a href="/jobs/list?category=구직&sorted="
 			class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구직
 					</span> <span

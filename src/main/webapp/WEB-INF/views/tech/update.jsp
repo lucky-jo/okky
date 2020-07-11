@@ -35,17 +35,29 @@
 	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
 </div>
-        <div class="sidebar-category-nav">
-            <h3 class="sub-title">Tech</h3>
-            	<ul class="nav">
+<div class="sidebar-category-nav">
+	<h3 class="sub-title">Tech</h3>
+	<ul class="nav">
 		<li><a href="/tech/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
+					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
+					class="nav-selected-dot"></span></span></a></li>
+ 		<li><a href="/tech/list?category=IT%20News%20%26%20정보&sorted="
+			class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">IT News & 정보</span>
+				<span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'IT News & 정보' ? 'nav-selected':''}" />'><span
+					class="nav-selected-dot"></span></span></a></li>
+		<li><a href="/tech/list?category=Tips%20%26%20강좌&sorted="
+			class="link"><span
+				class="nav-sidebar-label nav-sidebar-category-label">Tips & 강좌</span> 
+				<span
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Tips & 강좌' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
-            <div class="special-nav">
-            </div>
-        </div>
+	<div class="special-nav"></div>
+</div>
 
 
 

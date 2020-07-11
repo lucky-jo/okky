@@ -53,13 +53,13 @@
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
- 		<li><a href="/column/list?category=Tech%20Q%26A&sorted="
+ 		<li><a href="/tech/list?category=IT%20News%20%26%20정보&sorted="
 			class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">IT News & 정보</span>
 				<span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'IT News & 정보' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
-		<li><a href="/column/list?category=Blockchain%20Q%26A&sorted="
+		<li><a href="/tech/list?category=Tips%20%26%20강좌&sorted="
 			class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Tips & 강좌</span> 
 				<span

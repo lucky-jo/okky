@@ -35,9 +35,9 @@
 	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
 </div>
-        <div class="sidebar-category-nav">
-            <h3 class="sub-title">Q&A</h3>
-            	<ul class="nav">
+<div class="sidebar-category-nav">
+	<h3 class="sub-title">Q&A</h3>
+		<ul class="nav">
 		<li><a href="/qna/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
@@ -51,9 +51,8 @@
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Blockchain Q&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
-            <div class="special-nav">
-            </div>
-        </div>
+	<div class="special-nav"></div>
+</div>
 
 
 
