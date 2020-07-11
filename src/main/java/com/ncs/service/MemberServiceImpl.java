@@ -1,7 +1,12 @@
 package com.ncs.service;
 
 import com.ncs.mapper.MemberMapper;
+import com.ncs.util.SearchCriteria;
 import com.ncs.vo.MemberVO;
+import com.ncs.vo.QnaVO;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +43,15 @@ public class MemberServiceImpl implements MemberService {
     public int passwordChange(MemberVO memberVO) {
         return memberMapper.passwordChange(memberVO);
     }
+
+	@Override
+	public List<QnaVO> historyBoardList(SearchCriteria cri) {
+		return memberMapper.historyBoardList(cri);
+	}
+
+	@Override
+	public List<Integer> historyRowCount(SearchCriteria cri) {
+		return memberMapper.historyRowCount(cri);
+	}
 
 }
