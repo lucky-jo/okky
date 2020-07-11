@@ -6,6 +6,15 @@ public class SearchCriteria extends Criteria  {
 	private String keyword;
 	private String category;
 	private String sorted;
+	private String userid;
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	public String getSorted() {
 		return sorted;

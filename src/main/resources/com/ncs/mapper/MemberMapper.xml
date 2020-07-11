@@ -77,7 +77,7 @@
 		userpw = #{userpw} where userid = #{userid}
 	</update>
 	
-	<select id="historyBoardList">
+	<select id="historyBoardList" resultType="com.ncs.vo.QnaVO">
 		select * from qna where id = #{userid}
 		union 
 		select * from tech where id = #{userid}
@@ -89,6 +89,18 @@
 		select * from jobs where id = #{userid}
 		order by regdate desc
 		limit #{start} , #{perPageRow}
+	</select>
+	
+	<select id="historyRowCount" resultType="int">
+   		select * from qna where id = #{userid}
+		union 
+		select * from tech where id = #{userid}
+		union 
+		select * from columnm where id = #{userid}
+		union
+		select * from comunity where id = #{userid}
+		union
+		select * from jobs where id = #{userid}
 	</select>
 
 </mapper>

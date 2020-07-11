@@ -78,7 +78,7 @@
 
 	<select id="searchRowCount" resultType="int">
   <![CDATA[
-   select count(*) from qna where ( seq>0 ]]>
+   select count(*) from qna where ( exist = 1 ]]>
 		<include refid="search"></include>
 	</select>
 
