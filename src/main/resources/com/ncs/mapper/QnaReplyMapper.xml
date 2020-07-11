@@ -27,5 +27,9 @@
     <select id="get" resultType="com.ncs.vo.ReplyVO">
         select * from qnareply where rseq = #{rseq}
     </select>
+
+    <update id="modify">
+        update qnareply set rcontent = #{rcontent} where rseq = #{rseq}
+    </update>
   
   </mapper>
