@@ -36,7 +36,7 @@ public class JobsController {
 		pageMaker.setTotalRow(service.searchRowCount(cri));
 		mv.addObject("pageMaker",pageMaker);
 		
-		mv.setViewName("jobs/jlist");
+		mv.setViewName("jobs/list");
 		return mv;
 	}//list
 	
@@ -51,7 +51,7 @@ public class JobsController {
 	    }//insert:새글 등록창
 	  
 	  @RequestMapping("/insertForm")
-	  public ModelAndView jinsert(ModelAndView mv) {
+	  public ModelAndView insertForm(ModelAndView mv) {
 		  mv.setViewName("jobs/insertForm");
 		  return mv;
 	  }
@@ -63,7 +63,7 @@ public class JobsController {
 	   }//rinsert
 	 
 	  @RequestMapping(value = "/detailForm")
-		public ModelAndView jdetail( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
+		public ModelAndView detailForm( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
 			
 		    vo = service.selectOne(vo);
 			mv.addObject("Detail", vo);
@@ -97,7 +97,7 @@ public class JobsController {
 		}// update
 		
 		@RequestMapping(value="/updateForm")
-		public ModelAndView jupdate(ModelAndView mv, JobsVO vo) {
+		public ModelAndView updateForm(ModelAndView mv, JobsVO vo) {
 			mv.addObject("Detail",service.selectOne(vo));	
 			mv.setViewName("jobs/updateForm");
 			return mv ;	

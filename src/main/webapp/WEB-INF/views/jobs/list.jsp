@@ -51,7 +51,7 @@ $(function(){
 
 <div>
    Jobs
-   <div style="float: right;"><a href="/jobs/jinsert" >새 글 쓰기</a></div>
+   <div style="float: right;"><a href="/jobs/insertForm" >새 글 쓰기</a></div>
 </div><br><br>
 <div style="border: 10px;">
    검색창
@@ -93,7 +93,7 @@ $(function(){
          <td>${mm.id}</td>
       </tr>
       <tr align="center" height="30" bordercolor="gray">
-         <td><a href="/jobs/jdetail?seq=${mm.seq}">${mm.title}</a></td>
+         <td><a href="/jobs/detailForm?seq=${mm.seq}">${mm.title}</a></td>
          <td>${mm.regdate}</td>
       </tr>
    </tbody>

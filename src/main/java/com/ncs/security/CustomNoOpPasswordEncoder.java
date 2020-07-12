@@ -1,7 +1,8 @@
 package com.ncs.security;
 
-import lombok.extern.log4j.Log4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomNoOpPasswordEncoder implements PasswordEncoder {

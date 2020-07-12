@@ -1,14 +1,16 @@
 package com.ncs.security;
 
-import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.ncs.vo.MemberVO;
+
 import com.ncs.mapper.MemberMapper;
 import com.ncs.security.domain.CustomUser;
+import com.ncs.vo.MemberVO;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomUserDetailsService implements UserDetailsService {
