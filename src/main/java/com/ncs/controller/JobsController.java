@@ -1,10 +1,12 @@
 package com.ncs.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ncs.service.JobsReplyService;
+import com.ncs.service.JobsService;
+import com.ncs.service.LikeCountService;
+import com.ncs.service.MemberService;
+import com.ncs.util.PageMaker;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,18 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ncs.service.JobsReplyService;
-import com.ncs.service.JobsService;
-import com.ncs.service.LikeCountService;
-import com.ncs.service.MemberService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.JobsVO;
-import com.ncs.vo.LikeDTO;
-import com.ncs.vo.MemberVO;
-import com.ncs.vo.MergeDTO;
-import com.ncs.vo.ReplyLikeDTO;
-import com.ncs.vo.ReplyVO;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping(value = "/jobs/")
 @Controller
@@ -142,9 +135,9 @@ public class JobsController {
             return mv.addObject("get",jobsService.selectOne(vo));
         }
 
-        @PreAuthorize("principal.username == #request.getRemoteUser()")
+        @PreAuthorize("principal.username == #vo.id")
         @RequestMapping(value = "/delete")
-        public ModelAndView delete(ModelAndView mv, JobsVO vo,HttpServletRequest request) {
+        public ModelAndView delete(ModelAndView mv, JobsVO vo) {
             System.out.println("삭제요청 = " + vo);
             if(jobsService.delete(vo) > 0) {
                 mv.setViewName("redirect:/jobs/list");

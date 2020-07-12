@@ -131,10 +131,10 @@ public class ComunityController {
 	
 		 return mv.addObject("get",comunityService.selectOne(vo));
 	}
-	
-    @PreAuthorize("principal.username == #request.getRemoteUser()")
+
+	@PreAuthorize("principal.username == #vo.id")
     @RequestMapping(value = "/delete")
-    public ModelAndView delete(ModelAndView mv, ComunityVO vo,HttpServletRequest request) {
+    public ModelAndView delete(ModelAndView mv, ComunityVO vo) {
         System.out.println("삭제요청 = " + vo);
         if(comunityService.delete(vo) > 0) {
             mv.setViewName("redirect:/comunity/list");
