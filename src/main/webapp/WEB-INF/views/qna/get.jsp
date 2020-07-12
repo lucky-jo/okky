@@ -100,10 +100,10 @@ function del() {
 	<div class="panel panel-default clearfix fa-">
 		<div class="panel-heading clearfix">
 			<div class='avatar avatar-medium clearfix pull-left'>
-				<a href='/user/info/77218' class='avatar-photo'><img
+				<a href='/member/info?userid=${writer.userid}' class='avatar-photo'><img
 					src='/resources/user/${writer.image}' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/77218" title="${writer.nickname}">${writer.nickname}</a>
+					<a class="nickname" href="/member/info?userid=${writer.userid}" title="${writer.nickname}">${writer.nickname}</a>
 					<div class="activity">
 						<span class="fa fa-flash"></span>${writer.apoint}
 					</div>
@@ -125,7 +125,7 @@ function del() {
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/articles/life"
+						href="/qna/list"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>

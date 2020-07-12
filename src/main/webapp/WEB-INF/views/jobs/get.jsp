@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+		 pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
@@ -7,20 +7,35 @@
 <script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="/resources/jqLib/comunityCheck.js"></script>
 <script>
-function del() {
-	if(confirm("정말 삭제하시겠습니까?")==true){
-		document.remove.submit();
-	}else{
-		return;
+	function del() {
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			document.remove.submit();
+		}else{
+			return;
+		}
+	} // del()
+	var replyModify = function (rseq) {
+		$.ajax({
+			type:'Get',
+			url:'/jobsreply/modify',
+			data: {
+				rseq:rseq
+			},
+			success:function(data){
+				$('#bottom-text-form-'+data.get.rseq).html(" <textarea name='rcontent' rows='7' cols='85%' id='note-text-2021030' class='list-group-item-text note-text'><pre> " + data.get.rcontent + "</pre></textarea>");
+				$('#buttons-drop-'+data.get.rseq).attr("style","display: none;");
+				$('#buttons-edit-'+data.get.rseq).attr("style","");
+			}
+		});
+
 	}
-} // del() 
 </script>
 
 <ul class="nav nav-sidebar nav-main">
 
 	<li data-toggle="tooltip" data-placement="right"
 		data-container="body" title="Q&A"><a href="/qna/list"
-		class="link"><i class="nav-icon fa fa-database"></i> <span
+											 class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
 
 	<li data-toggle="tooltip" data-placement="right" data-container="body"
@@ -48,8 +63,8 @@ function del() {
 <ul class="nav nav-sidebar nav-bottom">
 	<li data-toggle="tooltip" data-placement="right" data-container="body"
 		title="Github Issues"><a
-		href="https://github.com/ildang100/okky" class="link"
-		target="_blank"><i class="fa fa-github"></i> <span
+			href="https://github.com/ildang100/okky" class="link"
+			target="_blank"><i class="fa fa-github"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Github	Issues</span></a></li>
 </ul>
 </div>
@@ -58,27 +73,27 @@ function del() {
 	<ul class="nav">
 		<li><a href="/jobs/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
+				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" />
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
-					class="nav-selected-dot"></span></span></a></li>
- 		<li><a href="/jobs/list?category=좋은회사/나쁜회사&sorted="
-			class="link"><span
+				class="nav-selected-dot"></span></span></a></li>
+		<li><a href="/jobs/list?category=좋은회사/나쁜회사&sorted="
+			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span>
-				<span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '좋은회사/나쁜회사' ? 'nav-selected':''}" />'><span
+			<span
+					class='nav-indicator <c:out value="${pageMaker.cri.category eq '좋은회사/나쁜회사' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/jobs/list?category=구인&sorted="
-			class="link"><span
+			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구인
 					</span> <span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq '구인' ? 'nav-selected':''}" />'><span
-					class="nav-selected-dot"></span></span></a></li>
+				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/jobs/list?category=구직&sorted="
-			class="link"><span
+			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구직
 					</span> <span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq '구직' ? 'nav-selected':''}" />'><span
-					class="nav-selected-dot"></span></span></a></li>
+				class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
 </div>
@@ -87,8 +102,8 @@ function del() {
 
 	<div class="nav" role="navigation">
 		<a href="/jobs/register"
-			class="create btn btn-success btn-wide pull-right"><i
-			class="fa fa-pencil"></i> 새 글 쓰기</a>
+		   class="create btn btn-success btn-wide pull-right"><i
+				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
 		<h4>사는얘기</h4>
 	</div>
@@ -96,10 +111,10 @@ function del() {
 	<div class="panel panel-default clearfix fa-">
 		<div class="panel-heading clearfix">
 			<div class='avatar avatar-medium clearfix pull-left'>
-				<a href='/user/info/77218' class='avatar-photo'><img
-					src='/resources/user/${writer.image}' /></a>
+				<a href='/member/info?userid=${writer.userid}' class='avatar-photo'><img
+						src='/resources/user/${writer.image}' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/77218" title="${writer.nickname}">${writer.nickname}</a>
+					<a class="nickname" href="/member/info?userid=${writer.userid}" title="${writer.nickname}">${writer.nickname}</a>
 					<div class="activity">
 						<span class="fa fa-flash"></span>${writer.apoint}
 					</div>
@@ -121,7 +136,7 @@ function del() {
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/articles/life"
+						href="/jobs/list"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>
@@ -136,7 +151,7 @@ function del() {
 			</div>
 
 			<div id="content-function"
-				class="content-function pull-right text-center">
+				 class="content-function pull-right text-center">
 				<div class="content-function-group">
 					<div class="note-evaluate-wrapper">
 						<c:choose>
@@ -144,47 +159,47 @@ function del() {
 								<a  href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="assent"
 									data-eval="true" data-id="2010634"><i
-									id="note-evaluate-assent-2010634"
-									class="fa fa-angle-up note-evaluate-assent-unvote "
-									data-placement="left" data-toggle="tooltip" title="추천"
-									onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+										id="note-evaluate-assent-2010634"
+										class="fa fa-angle-up note-evaluate-assent-unvote "
+										data-placement="left" data-toggle="tooltip" title="추천"
+										onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
 								<a href="javascript://" class="note-vote-btn" role="button"
-									data-type="dissent" data-eval="true" data-id="2010634"><i
-									id="note-evaluate-dissent-2010634"
-									class="fa fa-angle-down note-evaluate-dissent-disabled"
-									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+								   data-type="dissent" data-eval="true" data-id="2010634"><i
+										id="note-evaluate-dissent-2010634"
+										class="fa fa-angle-down note-evaluate-dissent-disabled"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 							</c:when>
 							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
 							<c:when test="${liketype == 0 }">
 								<a	href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1&writer=${get.id}"
-									class="note-vote-btn" role="button" data-type="assent"
-									data-eval="true" data-id="2013409"><i
-									id="note-evaluate-assent-2013409"
-									class="fa fa-angle-up note-evaluate-assent-assent"
-									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+									  class="note-vote-btn" role="button" data-type="assent"
+									  data-eval="true" data-id="2013409"><i
+										id="note-evaluate-assent-2013409"
+										class="fa fa-angle-up note-evaluate-assent-assent"
+										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
 								<a	href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1&writer=${get.id}"
-									class="note-vote-btn" role="button" data-type="dissent"
-									data-eval="true" data-id="2013409"><i
-									id="note-evaluate-dissent-2013409"
-									class="fa fa-angle-down note-evaluate-dissent-dissent"
-									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+									  class="note-vote-btn" role="button" data-type="dissent"
+									  data-eval="true" data-id="2013409"><i
+										id="note-evaluate-dissent-2013409"
+										class="fa fa-angle-down note-evaluate-dissent-dissent"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 							</c:when>
 							<c:when test="${liketype == -1 }">
 								<a  href="javascript://" class="note-vote-btn" role="button"
 									data-type="assent" data-eval="true" data-id="2010634"><i
-									id="note-evaluate-assent-2010634"
-									class="fa fa-angle-up note-evaluate-assent-disabled "
-									data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+										id="note-evaluate-assent-2010634"
+										class="fa fa-angle-up note-evaluate-assent-disabled "
+										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
 								<a  href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1&writer=${get.id}"
 									class="note-vote-btn" role="button" data-type="dissent"
 									data-eval="true" data-id="2010634"
 									onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
-									id="note-evaluate-dissent-2010634"
-									class="fa fa-angle-down note-evaluate-dissent-unvote"
-									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+										id="note-evaluate-dissent-2010634"
+										class="fa fa-angle-down note-evaluate-dissent-unvote"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 							</c:when>
 
 						</c:choose>
@@ -203,45 +218,45 @@ function del() {
 				</div>
 				<div class="content-function-group article-scrap-wrapper">
 					<a href="javascript://" id="article-scrap-btn" data-type="scrap"><i
-						class="fa fa-bookmark " data-toggle="tooltip"
-						data-placement="left" title="스크랩"></i></a>
+							class="fa fa-bookmark " data-toggle="tooltip"
+							data-placement="left" title="스크랩"></i></a>
 					<div id="article-scrap-count" class="content-count">0</div>
 				</div>
 			</div>
 			<div class="content-function-cog share-btn-wrapper">
 				<div class="dropdown">
 					<a
-						href="http://www.facebook.com/sharer/sharer.php?app_id=1451111438499030&sdk=joey&u=https%3A%2F%2Fokky.kr%2Farticle%2F734025&display=popup&ref=plugin"
-						class="btn-facebook-share"><i
-						class="fa fa-facebook-square fa-fw" data-toggle="tooltip"
-						data-placement="left" title="페이스북 공유"></i></a>
+							href="http://www.facebook.com/sharer/sharer.php?app_id=1451111438499030&sdk=joey&u=https%3A%2F%2Fokky.kr%2Farticle%2F734025&display=popup&ref=plugin"
+							class="btn-facebook-share"><i
+							class="fa fa-facebook-square fa-fw" data-toggle="tooltip"
+							data-placement="left" title="페이스북 공유"></i></a>
 
 				</div>
 				<sec:authorize access="isAuthenticated()">
-				<sec:authentication property="principal" var="pinfo"/>
-				<c:if test="${pinfo.username eq get.id }">
-				<div class="dropdown">
-					<form method="post" name="article-delete-form"
-						id="article-delete-form">
-						<input type="hidden" name="_method" value="DELETE" id="_method" />
+					<sec:authentication property="principal" var="pinfo"/>
+					<c:if test="${pinfo.username eq get.id }">
 						<div class="dropdown">
-							<a href="javascript://" data-toggle="dropdown"><i
-								class="fa fa-cog" data-toggle="tooltip" data-placement="left"
-								title="게시물 설정"></i></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/jobs/update?seq=${get.seq}&id=${get.id}" class="edit"><i
-										class="fa fa-edit fa-fw"></i> 수정 </a></li>
+							<form method="post" name="article-delete-form"
+								  id="article-delete-form">
+								<input type="hidden" name="_method" value="DELETE" id="_method" />
+								<div class="dropdown">
+									<a href="javascript://" data-toggle="dropdown"><i
+											class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+											title="게시물 설정"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="/jobs/update?seq=${get.seq}&id=${get.id}" class="edit"><i
+												class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
-								<li><a href="/jobs/delete?seq=${get.seq }"
-									id="article-delete-btn"
-									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
-										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+										<li><a href="/jobs/delete?seq=${get.seq}&id=${get.id}"
+											   id="article-delete-btn"
+											   onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
+												class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
 
-							</ul>
+									</ul>
+								</div>
+							</form>
 						</div>
-					</form>
-				</div>
-				</c:if>
+					</c:if>
 				</sec:authorize>
 			</div>
 		</div>
@@ -259,9 +274,8 @@ function del() {
 			<c:forEach var="merge" items="${mergeReplylist }">
 				<c:if test="${merge.board.rexist == 1 }">
 					<li class="list-group-item note-item clearfix" id="note-2015714">
-						<form action="/content/update/2015714" method="post"
-							data-id="2015714" class="note-update-form">
-							<input type="hidden" name="_method" value="PUT" id="_method" />
+						<form action="/jobsreply/modify" method="post"
+							  data-id="2015714" class="note-update-form">
 							<div class="content-body panel-body pull-left">
 
 								<div class="note-select-indicator note-deselected">
@@ -270,7 +284,7 @@ function del() {
 
 								<div class='avatar avatar-medium clearfix '>
 									<a href='/user/info/43814' class='avatar-photo'><img
-										src='/resources/user/${merge.member.image}' /></a>
+											src='/resources/user/${merge.member.image}' /></a>
 									<div class="avatar-info">
 										<a class="nickname" href="/user/info/43814" title="defult">${merge.board.rid }</a>
 										<div class="activity">
@@ -284,12 +298,14 @@ function del() {
 										</div>
 									</div>
 								</div>
-								<fieldset class="form">
-									<article id="note-text-2015714"
-										class="list-group-item-text note-text">
+									<%--댓글수정--%>
+								<fieldset class="form" id="bottom-text-form-${merge.board.rseq}">
+									<article id="note-text-${merge.board.rseq}"
+											 class="list-group-item-text note-text">
 										<pre>${merge.board.rcontent }</pre>
 									</article>
 								</fieldset>
+
 							</div>
 
 							<div class="content-function pull-right text-center">
@@ -297,53 +313,53 @@ function del() {
 									<div class="note-evaluate-wrapper">
 										<c:choose>
 											<c:when test="${merge.board.liketype == 1 }">
-												<a  href="/like/replydelete?rseq=${list.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2010634"><i
-													id="note-evaluate-assent-2010634"
-													class="fa fa-angle-up note-evaluate-assent-unvote "
-													data-placement="left" data-toggle="tooltip" title="추천"
-													onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+														id="note-evaluate-assent-2010634"
+														class="fa fa-angle-up note-evaluate-assent-unvote "
+														data-placement="left" data-toggle="tooltip" title="추천"
+														onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
 												<div id="content-vote-count-2010634"
-													class="content-eval-count">${merge.board.rlikecount}</div>
+													 class="content-eval-count">${merge.board.rlikecount}</div>
 												<a  href="javascript://" class="note-vote-btn" role="button"
 													data-type="dissent" data-eval="true" data-id="2010634"><i
-													id="note-evaluate-dissent-2010634"
-													class="fa fa-angle-down note-evaluate-dissent-disabled"
-													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+														id="note-evaluate-dissent-2010634"
+														class="fa fa-angle-down note-evaluate-dissent-disabled"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 											</c:when>
 											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
-											<c:when test="${list.liketype == 0 }">
+											<c:when test="${merge.board.liketype == 0 }">
 												<a  href="/like/replylike?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="assent"
 													data-eval="true" data-id="2013409"><i
-													id="note-evaluate-assent-2013409"
-													class="fa fa-angle-up note-evaluate-assent-assent"
-													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+														id="note-evaluate-assent-2013409"
+														class="fa fa-angle-up note-evaluate-assent-assent"
+														data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2013409"
-													class="content-eval-count">${merge.board.rlikecount }</div>
+													 class="content-eval-count">${merge.board.rlikecount }</div>
 												<a  href="/like/replylike?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2013409"><i
-													id="note-evaluate-dissent-2013409"
-													class="fa fa-angle-down note-evaluate-dissent-dissent"
-													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+														id="note-evaluate-dissent-2013409"
+														class="fa fa-angle-down note-evaluate-dissent-dissent"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 											</c:when>
 											<c:when test="${merge.board.liketype == -1 }">
 												<a  href="javascript://" class="note-vote-btn" role="button"
 													data-type="assent" data-eval="true" data-id="2010634"><i
-													id="note-evaluate-assent-2010634"
-													class="fa fa-angle-up note-evaluate-assent-disabled "
-													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+														id="note-evaluate-assent-2010634"
+														class="fa fa-angle-up note-evaluate-assent-disabled "
+														data-placement="left" data-toggle="tooltip" title="추천"></i></a>
 												<div id="content-vote-count-2010634"
-													class="content-eval-count">${merge.board.rlikecount}</div>
-												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
+													 class="content-eval-count">${merge.board.rlikecount}</div>
+												<a  href="/like/replydelete?rseq=${merge.board.rseq}&board=${merge.board.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1&writer=${get.id}"
 													class="note-vote-btn" role="button" data-type="dissent"
 													data-eval="true" data-id="2010634"
 													onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
-													id="note-evaluate-dissent-2010634"
-													class="fa fa-angle-down note-evaluate-dissent-unvote"
-													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+														id="note-evaluate-dissent-2010634"
+														class="fa fa-angle-down note-evaluate-dissent-unvote"
+														data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 											</c:when>
 
 										</c:choose>
@@ -353,42 +369,40 @@ function del() {
 							<!-- 로그인 및 아이디 확인 후 출력 -->
 							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAuthenticated()">
-							<c:if test="${pinfo.username eq list.rid }">
-							<div id="content-function-cog-2014246"
-								class="content-function-cog">
-								<div class="dropdown">
-									<a href="javascript://" data-toggle="dropdown"><i
-										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
-										title="게시물 설정"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="javascript://" class="note-edit-btn"
-											data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
-										<li><a
-											href="/colreply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
-											class="note-delete-btn" data-id="2014246"><i
-												class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
-									</ul>
-								</div>
-								<div class="buttons" style="display: none;">
-									<p>
-										<a href="javascript://"
-											class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
-									</p>
-									<p>
-										<input type="submit" name="create"
-											class="btn btn-success btn-wide" value="저장" id="create" />
-									</p>
-								</div>
-							</div>
-							</c:if>
+								<c:if test="${pinfo.username eq merge.board.rid }">
+									<div id="content-function-cog-${merge.board.rseq}"
+										 class="content-function-cog">
+										<div class="dropdown" id="buttons-drop-${merge.board.rseq}">
+											<a href="javascript://" data-toggle="dropdown"><i
+													class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+													title="게시물 설정"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="javascript://" class="note-edit-btn"
+													   data-id="2014246" onclick="replyModify('${merge.board.rseq}')"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
+												<li><a
+														href="/jobsreply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
+														class="note-delete-btn" data-id="2014246"><i
+														class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
+											</ul>
+
+										</div>
+										<div class="buttons" style="display: none;" id="buttons-edit-${merge.board.rseq }">
+											<p>
+												<a href="javascript://"
+												   class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
+											</p>
+											<p>
+												<input type="submit" name="create"
+													   class="btn btn-success btn-wide" value="저장" id="create" />
+												<input type="hidden" name="rid" value="${merge.board.rid}">
+												<input type="hidden" name="rseq" value="${merge.board.rseq}">
+												<input type="hidden" name="seq" value="${merge.board.seq}">
+											</p>
+										</div>
+									</div>
+								</c:if>
 							</sec:authorize>
 
-
-						</form>
-
-						<form action="/content/delete/2015714" method="post"
-							id="note-delete-form-2015714">
-							<input type="hidden" name="_method" value="DELETE" id="_method" />
 						</form>
 
 					</li>
@@ -397,7 +411,7 @@ function del() {
 			<li class="list-group-item note-item clearfix" id="note-2015129">
 
 				<form action="/content/delete/2015129" method="post"
-					id="note-delete-form-2015129">
+					  id="note-delete-form-2015129">
 					<input type="hidden" name="_method" value="DELETE" id="_method" />
 				</form>
 			</li>
@@ -406,8 +420,8 @@ function del() {
 				<sec:authorize access="isAuthenticated()">
 					<sec:authentication var="user" property="principal" />
 					<div class="panel-body">
-						<form action="/colreply/register" method="post"
-							class="note-create-form">
+						<form action="/jobsreply/register" method="post"
+							  class="note-create-form">
 
 							<div class="content-body panel-body pull-left">
 								<div style="margin-left: 5px;">
@@ -418,7 +432,7 @@ function del() {
 
 									<div class='avatar avatar-medium clearfix '>
 										<a href='/user/info/94647' class='avatar-photo'><img
-											src='/resources/user/${user.member.image}' /></a>
+												src='/resources/user/${user.member.image}' /></a>
 										<div class="avatar-info">
 											<a class="nickname" href="/user/info/94647" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
 											<div class="activity block">
@@ -430,29 +444,29 @@ function del() {
 								</div>
 								<fieldset class="form">
 									<textarea name="rcontent" id="note-create" placeholder="댓글 쓰기"
-										class="form-control"></textarea>
+											  class="form-control"></textarea>
 								</fieldset>
 							</div>
 							<div class="content-function-cog note-submit-buttons clearfix">
 								<p>
 									<a href="javascript://" id="note-create-cancel-btn"
-										class="btn btn-default btn-wide" style="display: none;">취소</a>
+									   class="btn btn-default btn-wide" style="display: none;">취소</a>
 								</p>
 								<input type="submit" name="create" id="btn-create-btn"
-									class="btn btn-success btn-wide" value=" 등록" />
+									   class="btn btn-success btn-wide" value=" 등록" />
 								<!-- disabled="disabled"  -->
 								<input type="hidden" name="rid"
-									value="<sec:authentication property="principal.username"/>" />
+									   value="<sec:authentication property="principal.username"/>" />
 								<input type="hidden" name="seq" value="${get.seq }" />
 							</div>
 						</form>
 					</div>
-				</sec:authorize> 
+				</sec:authorize>
 				<sec:authorize access="isAnonymous()">
 					<div class="panel-body">
 						<h5 class="text-center">
-							<a href="/colreply/register?seq=${get.seq}"
-								class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
+							<a href="/jobsreply/register?seq=${get.seq}"
+							   class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
 						</h5>
 					</div>
 				</sec:authorize>
