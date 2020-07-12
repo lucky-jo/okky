@@ -37,7 +37,7 @@
 
 <ul class="nav nav-sidebar nav-bottom">
 	<li data-toggle="tooltip" data-placement="right" data-container="body" 
-	title="Github Issues"><a href="https://github.com/okjsp/okky/issues" 
+	title="Github Issues"><a href="https://github.com/ildang100/okky"
 	class="link" target="_blank"><i class="fa fa-github"></i> <span 
 	class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>

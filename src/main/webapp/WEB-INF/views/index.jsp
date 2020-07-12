@@ -61,8 +61,8 @@
             <sec:authorize access="isAuthenticated()">
                 <sec:authentication var="user" property="principal"/>
                 <div class="nav-user nav-sidebar">
-                    <div class='avatar avatar-medium clearfix '><a href='/user/info/94647' class='avatar-photo'><img
-                            src='resources/user/${user.member.image }'/></a>
+                    <div class='avatar avatar-medium clearfix '><a href='/member/info?userid=${user.member.userid }' class='avatar-photo'><img
+                            src='/resources/user/${user.member.image }'/></a>
                         <div class="avatar-info"><a class="nickname" href="/member/info?userid=${user.member.userid }" title="${user.member.nickname }">${user.member.nickname }</a>
                             <div class="activity block"><span class="fa fa-flash"></span> ${user.member.apoint }</div>
                         </div>
@@ -163,8 +163,8 @@
             </ul>
 
             <ul class="nav nav-sidebar nav-bottom">
-                <li><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i
-                        class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a>
+                <li><a href="https://github.com/ildang100/okky" class="link" target="_blank"><i
+                        class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github</span></a>
                 </li>
             </ul>
         </div>
@@ -543,7 +543,7 @@
                         | <a href="/intro/ad">광고문의</a>
                         | <a href="mailto:info@okky.kr">Contact</a>
                         | <a href="https://www.facebook.com/okky.sns" target="_blank">Facebook</a>
-                        | <a href="https://github.com/okjsp/okky" target="_blank">Github</a> v0.12
+                        | <a href="https://github.com/ildang100/okky" target="_blank">Github</a> v0.12
                         <hr style="margin: 8px 0;"/>
                         <strong>상호명</strong> : 이브레인 | <strong>대표명</strong> : 노상범 | <strong>사업자등록번호</strong> :
                         144-81-32887 | <strong>문의전화</strong> : 02-6925-5202
