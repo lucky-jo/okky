@@ -40,18 +40,19 @@ public class QnaController {
         @RequestMapping(value = "/list")
         public ModelAndView list(ModelAndView mv, SearchCriteria cri) {
             cri.setSnoEno();
-            List<QnaVO> list = qnaService.searchList(cri);
-            List<MergeDTO<QnaVO,MemberVO>> mergelist = new ArrayList<>();
-            for (QnaVO qnaVO : list) {
-            	MemberVO membervo = memberService.get(qnaVO.getId());
-            	if( membervo != null ) {
-            		System.out.println(membervo.toString());
-    				mergelist.add(new MergeDTO<>(qnaVO, membervo));
-            	}	
-			}
-            if( mergelist != null ) {
-            	mv.addObject("mergelist",mergelist);
-            }
+            List<JoinDTO> list = qnaService.searchList(cri);
+//            List<MergeDTO<QnaVO,MemberVO>> mergelist = new ArrayList<>();
+//            for (QnaVO qnaVO : list) {
+//            	MemberVO membervo = memberService.get(qnaVO.getId());
+//            	if( membervo != null ) {
+//            		System.out.println(membervo.toString());
+//    				mergelist.add(new MergeDTO<>(qnaVO, membervo));
+//            	}	
+//			}
+//            if( mergelist != null ) {
+//            	mv.addObject("mergelist",mergelist);
+//            }
+            mv.addObject("mergelist", list);
             PageMaker pageMaker = new PageMaker();
             pageMaker.setCri(cri);
             pageMaker.setTotalRow(qnaService.searchRowCount(cri));

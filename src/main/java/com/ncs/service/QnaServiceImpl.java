@@ -5,6 +5,7 @@ import com.ncs.mapper.MemberMapper;
 import com.ncs.mapper.QnaMapper;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.GetCountDTO;
+import com.ncs.vo.JoinDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ public class QnaServiceImpl implements QnaService{
 		return qnaMapper.totalRowCount();
 	}
 	@Override
-	public List<QnaVO> searchList(SearchCriteria searchCriteria){
+	public List<JoinDTO> searchList(SearchCriteria searchCriteria){
 		return qnaMapper.searchList(searchCriteria);
 	}
 	@Override

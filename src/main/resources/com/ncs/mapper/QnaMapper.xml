@@ -82,10 +82,33 @@
 		<include refid="search"></include>
 	</select>
 
-	<select id="searchList" resultType="com.ncs.vo.QnaVO">
+<!-- 	<select id="searchList" resultType="com.ncs.vo.QnaVO">
   <![CDATA[
    select * 
    from qna where ( exist = 1
+     ]]>
+		<include refid="search"></include>
+     <choose>
+     	<when test="sorted == null or sorted.equals('')">
+			order by seq desc
+		</when>
+		 <when test="sorted=='like'.toString()">
+			 order by likecount desc, seq desc
+		 </when>
+		 <when test="sorted=='reply'.toString()">
+			 order by replycount desc, seq desc
+		 </when>
+		 <when test="sorted=='view'.toString()">
+			 order by cnt desc, seq desc
+		 </when>
+	 </choose>
+		limit #{start} , #{perPageRow}
+	</select> -->
+	
+		<select id="searchList" resultType="com.ncs.vo.JoinDTO">
+  <![CDATA[
+   select b.seq, b.title, b.id, b.regdate, b.likecount, b.exist, b.cnt, b.category, b.replycount, b.board, m.username, m.nickname, m.image, m.apoint 
+   from qna b, member m where ( b.id = m.userid and b.exist = 1
      ]]>
 		<include refid="search"></include>
      <choose>

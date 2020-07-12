@@ -126,23 +126,23 @@
 
 			<ul class="list-group">
 
-				<c:forEach var="merge" items="${mergelist}">
-					<c:if test="${merge.board.replycount > 0 }">
+				<c:forEach var="list" items="${mergelist}">
+					<c:if test="${list.replycount > 0 }">
 						<li
 							class="list-group-item list-group-item-question list-group-has-note clearfix">
 
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
-									<span class="list-group-item-text article-id">${merge.board.seq}</span>
+									<span class="list-group-item-text article-id">${list.seq}</span>
 									<a href="#"
 										class="list-group-item-text item-tag label label-info"><i
-										class="fa fa-comments"></i> ${merge.board.category}</a>
+										class="fa fa-comments"></i> ${list.category}</a>
 								</div>
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-										href="/qna/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
-										${merge.board.title} </a>
+										href="/qna/get?seq=${list.seq }&board=${list.board}&id=${list.id}">
+										${list.title} </a>
 								</h5>
 							</div>
 
@@ -151,15 +151,15 @@
 								<div class="list-group-item-summary clearfix">
 									<ul>
 										<li
-											class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
+											class="${list.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
 											class="item-icon fa fa-comment "></i>
-											${merge.board.replycount}</li>
+											${list.replycount}</li>
 										<li
-											class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
-											class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
+											class="${list.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
+											class="item-icon fa fa-thumbs-up"></i>${list.likecount }</li>
 										<li
-											class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
-											class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
+											class="${list.cnt > 0 ? '' : 'item-icon-disabled' }"><i
+											class="item-icon fa fa-eye"></i> ${list.cnt}</li>
 									</ul>
 								</div>
 
@@ -168,36 +168,36 @@
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
 									<a href='#' class='avatar-photo'><img
-										src='/resources/user/${merge.member.image }' /></a>
+										src='/resources/user/${list.image }' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<a class="nickname" href="#" title="${list.userid}">${list.userid}</a>
 										<div class="activity">
-											<span class="fa fa-flash"></span>${merge.member.apoint }
+											<span class="fa fa-flash"></span>${list.apoint }
 										</div>
 										<div class="date-created">
-											<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
+											<span class="timeago" title="${list.regdate}">${list.regdate}</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</li>
 					</c:if>
-					<c:if test="${merge.board.replycount == 0 }">
+					<c:if test="${list.replycount == 0 }">
 					<li
 						class="list-group-item list-group-item-question list-group-no-note clearfix">
 
 						<div class="list-title-wrapper clearfix">
 							<div class="list-tag clearfix">
-								<span class="list-group-item-text article-id">${merge.board.seq}</span>
+								<span class="list-group-item-text article-id">${list.seq}</span>
 								<a href="#"
 									class="list-group-item-text item-tag label label-info"><i
-									class="fa fa-comments"></i> ${merge.board.category}</a>
+									class="fa fa-comments"></i> ${list.category}</a>
 							</div>
 
 							<h5 class="list-group-item-heading list-group-item-evaluate">
 								<a
-									href="/qna/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
-									${merge.board.title} </a>
+									href="/qna/get?seq=${list.seq }&board=${list.board}&id=${list.id}">
+									${list.title} </a>
 							</h5>
 						</div>
 
@@ -206,15 +206,15 @@
 							<div class="list-group-item-summary clearfix">
 								<ul>
 									<li
-										class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
+										class="${list.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
 										class="item-icon fa fa-comment "></i>
-										${merge.board.replycount}</li>
+										${list.replycount}</li>
 
 									<li
-										class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
-										class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
-									<li class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
-										class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
+										class="${list.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
+										class="item-icon fa fa-thumbs-up"></i>${list.likecount }</li>
+									<li class="${list.cnt > 0 ? '' : 'item-icon-disabled' }"><i
+										class="item-icon fa fa-eye"></i> ${list.cnt}</li>
 								</ul>
 							</div>
 						</div>
@@ -222,14 +222,14 @@
 						<div class="list-group-item-author clearfix">
 							<div class='avatar avatar-list clearfix '>
 								<a href='#' class='avatar-photo'><img
-									src='/resources/user/${merge.member.image }' /></a>
+									src='/resources/user/${list.image }' /></a>
 								<div class="avatar-info">
-									<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+									<a class="nickname" href="#" title="${list.userid}">${list.userid}</a>
 									<div class="activity">
-										<span class="fa fa-flash"></span>${merge.member.apoint }
+										<span class="fa fa-flash"></span>${list.apoint }
 									</div>
 									<div class="date-created">
-										<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
+										<span class="timeago" title="${list.regdate}">${list.regdate}</span>
 									</div>
 								</div>
 							</div>
