@@ -86,7 +86,7 @@ public class ComunityController {
 		List<ReplyVO> list = comReplyService.selectList(vo.getSeq()); // comunity에서 seq 가져와서 댓글에 들어갈 데이터 리스트 정의
 		List<MergeDTO<ReplyVO,MemberVO>> mergelist = new ArrayList<>(); // MergeDTO(제네릭T,E)를 리스트로 정의
 	   	for (ReplyVO replyVO : list) { // 댓글에 들어갈 데이터가 list(List<ReplyVO>)가 될때까지 
-	   		mergelist.add(new MergeDTO<>(replyVO,memberService.get(vo.getId()))); //mergelist에 replyVO와 memberservice에서 받은 id를 추가한다
+	   		mergelist.add(new MergeDTO<>(replyVO,memberService.get(replyVO.getRid()))); //mergelist에 replyVO와 memberservice에서 받은 id를 추가한다
     	    rdto.setBoard(replyVO.getBoard());
     	    rdto.setLikerid(request.getRemoteUser());
     	    rdto.setRseq(replyVO.getRseq());

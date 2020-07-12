@@ -88,7 +88,7 @@ public class JobsController {
         	for (ReplyVO replyVO : list) {
 //        	    memberVO = memberService.get(qnaVO.getId());
 //        	    System.out.println(memberVO);
-        	    mergelist.add(new MergeDTO<>(replyVO,memberService.get(jobsVO.getId())));
+        	    mergelist.add(new MergeDTO<>(replyVO,memberService.get(replyVO.getRid())));
         	    rdto.setBoard(replyVO.getBoard());
         	    rdto.setLikerid(request.getRemoteUser());
         	    rdto.setRseq(replyVO.getRseq());

@@ -1,9 +1,9 @@
 package com.ncs.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ncs.security.CustomUserDetailsService;
+import com.ncs.service.MemberService;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,12 +15,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ncs.security.CustomUserDetailsService;
-import com.ncs.service.MemberService;
-import com.ncs.util.PageMaker;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.MemberVO;
-import com.ncs.vo.QnaVO;
+import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping(value = "/member")
 @Controller
@@ -68,11 +63,11 @@ public class MemberController {
         mv.addObject("member", memberVO);
         System.out.println(memberVO);
         
-        List<QnaVO> historyBoardList = memberService.historyBoardList(cri);
-        for (QnaVO qnaVO : historyBoardList) {
-			System.out.println(qnaVO);
-		}
-        mv.addObject("historyBoardList",historyBoardList);
+//        List<QnaVO> historyBoardList = memberService.historyBoardList(cri);
+//        for (QnaVO qnaVO : historyBoardList) {
+//			System.out.println(qnaVO);
+//		}
+//        mv.addObject("historyBoardList",historyBoardList);
 //        int sum = 0;
 //        List<Integer> historyRowCount = memberService.historyRowCount(cri);
 //        for (Integer integer : historyRowCount) {
