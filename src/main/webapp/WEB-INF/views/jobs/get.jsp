@@ -283,10 +283,10 @@
 								</div>
 
 								<div class='avatar avatar-medium clearfix '>
-									<a href='/user/info/43814' class='avatar-photo'><img
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 											src='/resources/user/${merge.member.image}' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="/user/info/43814" title="defult">${merge.board.rid }</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="defult">${merge.member.nickname }</a>
 										<div class="activity">
 											<span class="fa fa-flash"></span> ${merge.member.apoint}
 										</div>
@@ -431,10 +431,10 @@
 									</div>
 
 									<div class='avatar avatar-medium clearfix '>
-										<a href='/user/info/94647' class='avatar-photo'><img
+										<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 												src='/resources/user/${user.member.image}' /></a>
 										<div class="avatar-info">
-											<a class="nickname" href="/user/info/94647" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
+											<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
 											<div class="activity block">
 												<span class="fa fa-flash"></span> ${user.member.apoint}
 											</div>

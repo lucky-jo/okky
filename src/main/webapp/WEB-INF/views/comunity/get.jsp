@@ -17,7 +17,7 @@
 	var replyModify = function (rseq) {
 		$.ajax({
 			type:'Get',
-			url:'/comunityreply/modify',
+			url:'/comreply/modify',
 			data: {
 				rseq:rseq
 			},
@@ -33,7 +33,7 @@
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li class="active" data-toggle="tooltip" data-placement="right"
+	<li data-toggle="tooltip" data-placement="right"
 		data-container="body" title="Q&A"><a href="/qna/list"
 											 class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
@@ -43,7 +43,7 @@
 			class="nav-icon fa fa-code"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li data-toggle="tooltip" data-placement="right" data-container="body"
+	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
 		title="커뮤니티"><a href="/comunity/list" class="link"><i
 			class="nav-icon fa fa-comments"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
@@ -279,7 +279,7 @@
 			<c:forEach var="merge" items="${mergeReplylist }">
 				<c:if test="${merge.board.rexist == 1 }">
 					<li class="list-group-item note-item clearfix" id="note-2015714">
-						<form action="/comunityreply/modify" method="post"
+						<form action="/comreply/modify" method="post"
 							  data-id="2015714" class="note-update-form">
 							<div class="content-body panel-body pull-left">
 
@@ -288,10 +288,10 @@
 								</div>
 
 								<div class='avatar avatar-medium clearfix '>
-									<a href='/user/info/43814' class='avatar-photo'><img
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 											src='/resources/user/${merge.member.image}' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="/user/info/43814" title="defult">${merge.board.rid }</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="defult">${merge.member.nickname }</a>
 										<div class="activity">
 											<span class="fa fa-flash"></span> ${merge.member.apoint}
 										</div>
@@ -385,7 +385,7 @@
 												<li><a href="javascript://" class="note-edit-btn"
 													   data-id="2014246" onclick="replyModify('${merge.board.rseq}')"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
 												<li><a
-														href="/comunityreply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
+														href="/comreply/delete?rseq=${merge.board.rseq }&seq=${merge.board.seq}"
 														class="note-delete-btn" data-id="2014246"><i
 														class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
 											</ul>
@@ -425,7 +425,7 @@
 				<sec:authorize access="isAuthenticated()">
 					<sec:authentication var="user" property="principal" />
 					<div class="panel-body">
-						<form action="/comunityreply/register" method="post"
+						<form action="/comreply/register" method="post"
 							  class="note-create-form">
 
 							<div class="content-body panel-body pull-left">
@@ -436,10 +436,10 @@
 									</div>
 
 									<div class='avatar avatar-medium clearfix '>
-										<a href='/user/info/94647' class='avatar-photo'><img
+										<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 												src='/resources/user/${user.member.image}' /></a>
 										<div class="avatar-info">
-											<a class="nickname" href="/user/info/94647" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
+											<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
 											<div class="activity block">
 												<span class="fa fa-flash"></span> ${user.member.apoint}
 											</div>
@@ -470,7 +470,7 @@
 				<sec:authorize access="isAnonymous()">
 					<div class="panel-body">
 						<h5 class="text-center">
-							<a href="/comunityreply/register?seq=${get.seq}"
+							<a href="/comreply/register?seq=${get.seq}"
 							   class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
 						</h5>
 					</div>

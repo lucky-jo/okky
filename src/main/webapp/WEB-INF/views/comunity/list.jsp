@@ -113,7 +113,7 @@
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
 						<li><a href="/comunity/list?sorted=reply"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
-						<%--<li><a href="/qna/list" class="category-sort-link ">스크랩순</a></li>--%>
+						<%--<li><a href="/comunity/list" class="category-sort-link ">스크랩순</a></li>--%>
 						<li><a href="/comunity/list?sorted=view"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
@@ -134,25 +134,23 @@
 
 			<ul class="list-group">
 
-
-
 				<c:forEach var="merge" items="${mergelist}">
-						<c:if test="${merge.board.replycount > 0 }">
+					<c:if test="${merge.board.replycount > 0 }">
 						<li
-							class="list-group-item list-group-item-question list-group-no-note clearfix">
+								class="list-group-item list-group-item-question list-group-has-note clearfix">
 
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${merge.board.seq}</span>
 									<a href="#"
-										class="list-group-item-text item-tag label label-info"><i
-										class="fa fa-comments"></i> ${merge.board.category}</a>
-
+									   class="list-group-item-text item-tag label label-info"><i
+											class="fa fa-comments"></i> ${merge.board.category}</a>
 								</div>
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
-									<a href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
-									${merge.board.title} </a>
+									<a
+											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											${merge.board.title} </a>
 								</h5>
 							</div>
 
@@ -161,23 +159,24 @@
 								<div class="list-group-item-summary clearfix">
 									<ul>
 										<li
-											class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
-											class="item-icon fa fa-comment "></i>
-											${merge.board.replycount}</li>
+												class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
+												class="item-icon fa fa-comment "></i>
+												${merge.board.replycount}</li>
 										<li
-											class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
-											class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
+												class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
+												class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
 										<li
-											class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
-											class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
+												class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
+												class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
 									</ul>
 								</div>
+
 							</div>
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
 									<a href='#' class='avatar-photo'><img
-										src='/resources/user/${merge.member.image }' /></a>
+											src='/resources/user/${merge.member.image }' /></a>
 									<div class="avatar-info">
 										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
 										<div class="activity">
@@ -190,62 +189,62 @@
 								</div>
 							</div>
 						</li>
-						</c:if>
-						<c:if test="${merge.board.replycount == 0 }">
-					<li
-						class="list-group-item list-group-item-question list-group-no-note clearfix">
+					</c:if>
+					<c:if test="${merge.board.replycount == 0 }">
+						<li
+								class="list-group-item list-group-item-question list-group-no-note clearfix">
 
-						<div class="list-title-wrapper clearfix">
-							<div class="list-tag clearfix">
-								<span class="list-group-item-text article-id">${merge.board.seq}</span>
-								<a href="#"
-									class="list-group-item-text item-tag label label-info"><i
-									class="fa fa-comments"></i> ${merge.board.category}</a>
+							<div class="list-title-wrapper clearfix">
+								<div class="list-tag clearfix">
+									<span class="list-group-item-text article-id">${merge.board.seq}</span>
+									<a href="#"
+									   class="list-group-item-text item-tag label label-info"><i
+											class="fa fa-comments"></i> ${merge.board.category}</a>
+								</div>
+
+								<h5 class="list-group-item-heading list-group-item-evaluate">
+									<a
+											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											${merge.board.title} </a>
+								</h5>
 							</div>
 
-							<h5 class="list-group-item-heading list-group-item-evaluate">
-								<a
-									href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
-									${merge.board.title} </a>
-							</h5>
-						</div>
+							<div class="list-summary-wrapper clearfix">
 
-						<div class="list-summary-wrapper clearfix">
+								<div class="list-group-item-summary clearfix">
+									<ul>
+										<li
+												class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
+												class="item-icon fa fa-comment "></i>
+												${merge.board.replycount}</li>
 
-							<div class="list-group-item-summary clearfix">
-								<ul>
-									<li
-										class="${merge.board.replycount > 0 ? '' : 'item-icon-disabled' }  "><i
-										class="item-icon fa fa-comment "></i>
-										${merge.board.replycount}</li>
-
-									<li
-										class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
-										class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
-									<li class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
-										class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
-								</ul>
+										<li
+												class="${merge.board.likecount > 0 ? '' : 'item-icon-disabled' }  "><i
+												class="item-icon fa fa-thumbs-up"></i>${merge.board.likecount }</li>
+										<li class="${merge.board.cnt > 0 ? '' : 'item-icon-disabled' }"><i
+												class="item-icon fa fa-eye"></i> ${merge.board.cnt}</li>
+									</ul>
+								</div>
 							</div>
-						</div>
 
-						<div class="list-group-item-author clearfix">
-							<div class='avatar avatar-list clearfix '>
-								<a href='#' class='avatar-photo'><img
-									src='/resources/user/${merge.member.image }' /></a>
-								<div class="avatar-info">
-									<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
-									<div class="activity">
-										<span class="fa fa-flash"></span>${merge.member.apoint }
-									</div>
-									<div class="date-created">
-										<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
+							<div class="list-group-item-author clearfix">
+								<div class='avatar avatar-list clearfix '>
+									<a href='#' class='avatar-photo'><img
+											src='/resources/user/${merge.member.image }' /></a>
+									<div class="avatar-info">
+										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<div class="activity">
+											<span class="fa fa-flash"></span>${merge.member.apoint }
+										</div>
+										<div class="date-created">
+											<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</li>
+						</li>
 					</c:if>
-						
+
 				</c:forEach>
 
 			</ul>
@@ -274,8 +273,8 @@
 			</c:choose>
 			<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
 			<!--  		<li class="disabled"><span>...</span></li>
-		<li><a href="/qna/list?" class="step">8013</a></li>
-		<li class="next"><a href="/qna/list?" class="step">&raquo;</a></li> -->
+		<li><a href="/comunity/list?" class="step">8013</a></li>
+		<li class="next"><a href="/comunity/list?" class="step">&raquo;</a></li> -->
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.ePageNo > 0}">
