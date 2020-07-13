@@ -1,20 +1,21 @@
 package com.ncs.service;
 
-import com.ncs.mapper.MemberMapper;
-import com.ncs.util.MailHandler;
-import com.ncs.util.SearchCriteria;
-import com.ncs.util.TempKey;
-import com.ncs.vo.AuthKeyDTO;
-import com.ncs.vo.MemberVO;
-import com.ncs.vo.QnaVO;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
+import com.ncs.mapper.MemberMapper;
+import com.ncs.util.SearchCriteria;
+import com.ncs.util.TempKey;
+import com.ncs.vo.AuthKeyDTO;
+import com.ncs.vo.MemberVO;
+import com.ncs.vo.QnaVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -23,7 +24,10 @@ public class MemberServiceImpl implements MemberService {
     MemberMapper memberMapper;
 
     @Autowired
-    JavaMailSender mailSender;
+	JavaMailSender mailSender;
+    
+    @Autowired
+    MailService mailService;
 
     @Override
     public MemberVO read(String userid) {
@@ -33,23 +37,18 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public int register(MemberVO memberVO) throws MessagingException, UnsupportedEncodingException {
+
+    			
         AuthKeyDTO authKeyDTO = new AuthKeyDTO();
         TempKey tempKey = new TempKey();
-        MailHandler mailHandler = new MailHandler(mailSender);
-        String authkey = tempKey.getKey(50,true);
+        String authKey = tempKey.getKey(50, true);
+        authKeyDTO.setAuthkey(authKey);
         authKeyDTO.setUserid(memberVO.getUserid());
-        authKeyDTO.setAuthkey(authkey);
-        mailHandler.setSubject("[홈페이지 이메일 인증");
-        mailHandler.setText(
-                "<h1>메일인증</h1>" +
-                "<a href='http://localhost/member/authkey?userid=" + memberVO.getUserid() +
-                "&authkey=" + authkey +
-                "' target='_blenk'>이메일 인증 확인</a>");
-        mailHandler.setFrom("last2599@gmail.com","Okkay");
-        mailHandler.setTo(memberVO.getEmail());
-        mailHandler.send();
         memberMapper.addAuthKey(authKeyDTO);
-        memberMapper.addAuthKey(authKeyDTO);
+    	String body = "<h2>Okky 커뮤니티에 가입하신걸 환영 합니다!</h2><br><br>"
+    			+ "<h3>" + memberVO.getUserid() + "님</h3><p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : "
+    			+ "<a href='http://localhost:8080/member/authKey?userid="+ memberVO.getUserid() +"&authkey="+authKey+"'>인증하기</a></p>";
+        mailService.authSendMail(memberVO.getEmail(), "Okky 커뮤니티에 가입하신걸 환영 합니다.", body);
         memberMapper.register(memberVO);
         return memberMapper.auth(memberVO.getUserid());
     }

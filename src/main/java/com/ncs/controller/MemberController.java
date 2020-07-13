@@ -1,12 +1,11 @@
 package com.ncs.controller;
 
-import com.ncs.security.CustomUserDetailsService;
-import com.ncs.service.MemberService;
-import com.ncs.util.SearchCriteria;
-import com.ncs.vo.AuthKeyDTO;
-import com.ncs.vo.MemberVO;
+import java.io.UnsupportedEncodingException;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,9 +16,11 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
+import com.ncs.security.CustomUserDetailsService;
+import com.ncs.service.MemberService;
+import com.ncs.util.SearchCriteria;
+import com.ncs.vo.AuthKeyDTO;
+import com.ncs.vo.MemberVO;
 
 @RequestMapping(value = "/member")
 @Controller
@@ -33,9 +34,6 @@ public class MemberController {
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
-    JavaMailSenderImpl mailSender;
 
     @RequestMapping(value = "/customLogin",method = RequestMethod.GET)
     public void getLogin() {
