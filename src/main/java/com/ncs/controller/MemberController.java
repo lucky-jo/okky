@@ -56,7 +56,7 @@ public class MemberController {
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String postRegister(MemberVO vo, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         String[] image = {"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg"};
-        vo.setImage(image[(int)(Math.random()*9)+1]);
+        vo.setImage(image[(int)(Math.random()*9)]);
         System.out.println(vo.getImage());
         vo.setUserpw(bCryptPasswordEncoder.encode(vo.getUserpw()));
         memberService.register(vo);
