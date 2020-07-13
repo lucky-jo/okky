@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: last2
+  Date: 2020-07-06
+  Time: 오전 11:15
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -25,41 +32,9 @@
     <meta property="og:image" content="//okky.kr/assets/okky_logo_fb-cea175ff727ef14a4d8be0e68cff730a.png">
 
     <link rel="stylesheet" href="//okky.kr/assets/application-4938a5785f86450f51f45a6a41f3bf4e.css"/>
-    <script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
+
     <!--[if lt IE 9]>
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript"></script>
-<!--    <script src="/resources/jqLib/joinCheck.js"></script>-->
-    <script>
-    var idCheck = function () {
-    var userid = $('#username').val();
-    if (userid.length < 4) {
-        $('#idCheck1').attr("style","");
-        return false;
-    } else if (userid.replace(/[a-z.0-9]/gi, '').length > 0) {
-        $('#idCheck1').attr("style","display: none");
-        $('#idCheck2').attr("style","");
-        return false;
-    } else {
-        $('#idCheck1').attr("style","display: none");
-        $('#idCheck2').attr("style","display: none");
-        $.ajax({
-            type:'Get',
-            url:'/member/useridDuplicate',
-            data: {
-                userid : userid
-            },
-            success:function(data){
-                if(data.message == '200') {
-                    $('#idCheck3').attr("style","display: none");
-                } else if(data.message =='fail') {
-                    $('#idCheck3').attr("style","");
-                }
-            }
-        });
-
-    }
-}; // idCheck()
-</script>
     <![endif]-->
 
     <meta name="layout" content="main">
@@ -145,26 +120,11 @@
                     </div>
                     <form action="/member/register" method="post" class="form-signup form-user panel-body"
                           id="loginForm" autocomplete="off">
-                        <div  class="alert alert-danger" role="alert" <%--style="display: none"--%>>
-                            <ul>
-                                <li style="display: none " id="idCheck1">[아이디] : 4 글자 이상 입력하세요 ~~</li>
-                                <li style="display: none " id="idCheck2">[아이디] : 영문자 와 숫자 로만 입력하세요 ~~</li>
-                                <li style="display: none " id="idCheck3">[아이디] : 이미 중복된 값이 존재합니다.</li>
-                                <li style="display: none " id="pwCheck1">[비밀번호] : 4 글자 이상 입력하세요 ~~</li>
-                                <li style="display: none " id="pwCheck2">[비밀번호] : 특수문자를 반드시 1개 이상 입력하세요 ~~</li>
-                                <li style="display: none " id="pwCheck3">[비밀번호] : 숫자와 특수문자 로만 입력하세요 ~~</li>
-                                <li style="display: none " id="nameCheck1">[이름] : 2 글자 이상 입력하세요 ~~</li>
-                                <li style="display: none " id="nameCheck2">[이름] : 한글 또는 영문으로만 입력하세요 ~~</li>
-                                <li style="display: none " id="nickCheck1">[닉네임] : 이미 중복된 값이 존재합니다.</li>
-                                <li style="display: none " id="nickCheck2">[닉네임] : 한글 / 영문 / 숫자만 가능합니다.</li>
-                                <li style="display: none " id="nickCheck3">[이메일] : 이메일 형식이 아닙니다.</li>
-                            </ul>
-                        </div>
 
                         <fieldset>
 
                             <input type="text" name="userid" class="form-control input-sm" required="" placeholder="아이디"
-                                   value="" id="username" onfocusout="idCheck()"/>
+                                   value="" id="username"/>
 
                             <input type="password" name="userpw" class="form-control input-sm" placeholder="비밀번호"
                                    required="" value="" id="password"/>
@@ -185,7 +145,7 @@
                             </div>
                         </fieldset>
 
-                        <%--<div class="recaptcha-wrapper">
+                        <div class="recaptcha-wrapper">
 
                             <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
                             <div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw"></div>
@@ -210,9 +170,9 @@
                                 </div>
                             </noscript>
 
-                        </div>--%>
+                        </div>
 
-                        <button class="btn btn-primary btn-block" onclick="duplicationCheck()">아래 약관을 동의하며 회원 가입</button>
+                        <button class="btn btn-primary btn-block" type="submit">아래 약관을 동의하며 회원 가입</button>
 
                         <div class="signup-block">
                             <a href="/user/agreement" data-toggle="modal" data-target="#userAgreement">회원가입약관</a> <span
@@ -222,7 +182,7 @@
                     </form>
                 </div>
             </div>
-            <%--<div class="col-md-6 main-block-right">
+            <div class="col-md-6 main-block-right">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h5 class="panel-header">SNS로 가입하기</h5>
@@ -235,7 +195,7 @@
                            class="btn btn-google btn-block"><i class="fa fa-google fa-fw"></i> Google 로 가입하기</a>
                     </div>
                 </div>
-            </div>--%>
+            </div>
 
         </div>
 

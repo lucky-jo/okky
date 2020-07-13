@@ -103,9 +103,5 @@
 		select * from jobs where id = #{userid}
 	</select>
 
-	<select id="useridDuplicate" resultType="int">
-		select count(*) from member where userid = #{userid}
-	</select>
-
 </mapper>
   

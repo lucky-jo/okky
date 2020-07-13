@@ -1,10 +1,10 @@
 package com.ncs.service;
 
+import java.util.List;
+
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
-
-import java.util.List;
 
 public interface MemberService {
 
@@ -21,6 +21,4 @@ public interface MemberService {
     List<QnaVO> historyBoardList(SearchCriteria cri);
     
     List<Integer> historyRowCount(SearchCriteria cri);
-
-    int useridDuplicate(MemberVO memberVO);
 }

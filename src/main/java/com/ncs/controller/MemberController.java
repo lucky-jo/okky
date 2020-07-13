@@ -83,7 +83,7 @@ public class MemberController {
     }
 
 //    @PreAuthorize("principal.username == #memberVO.userid")
-    @PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView postEdit(MemberVO memberVO, ModelAndView mv){
         memberService.edit(memberVO);
@@ -110,25 +110,13 @@ public class MemberController {
     }
     
 //    @PreAuthorize("principal.username == #memberVO.userid")
-    @PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/passwordChange" ,method = RequestMethod.GET )
     public void getPasswordChange(ModelAndView mv, MemberVO memberVO ) {
     }
 
     @RequestMapping(value = "/customLogout", method = RequestMethod.GET )
     public void getCustomLogout() {
-    }
-
-    @RequestMapping(value = "/useridDuplicate")
-    public ModelAndView useridDuplicate(ModelAndView mv, MemberVO memberVO){
-        if (memberService.useridDuplicate(memberVO) > 0 ) {
-            mv.addObject("message","fail");
-        } else {
-            mv.addObject("message","200");
-        }
-        mv.setViewName("jsonView");
-        return mv;
-
     }
 
 }
