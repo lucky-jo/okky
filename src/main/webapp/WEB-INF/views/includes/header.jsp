@@ -32,8 +32,10 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript" ></script>
     <![endif]-->
 
+	<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
     <meta name="layout" content="main_with_banner">
+    
 
 
 

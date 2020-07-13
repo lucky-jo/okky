@@ -121,6 +121,9 @@
 
 						<textarea name="content" id="summernote" rows="20"
 							class="form-control input-block-level">${get.content }</textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('content');
+							</script>
 					</div>
 					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
 					
