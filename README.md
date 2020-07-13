@@ -48,6 +48,7 @@ okky web-site_Clone / <https://okky.kr/>
     * 비밀번호 수정
     * 이메일 인증
     * 회원 ID / PW 찾기
+    * TextArea editor 적용
     * 트랜잭션 처리 
        * 글 조회 / 조회수 증가 / 회원활동 점수증가
        * 글 작성 / 회원활동 점수 증가
