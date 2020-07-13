@@ -26,7 +26,7 @@ public class JobsReplyServiceImpl implements JobsReplyService {
 	    return rmapper.update(rvo); 
 	}
 	@Override 
-	public int delete(JobsReplyVO rvo) { 
+	public int jdelete(JobsReplyVO rvo) { 
 		return rmapper.delete(rvo);
     }
 	@Override
