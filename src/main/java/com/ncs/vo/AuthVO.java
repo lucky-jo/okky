@@ -2,7 +2,7 @@ package com.ncs.vo;
 
 public class AuthVO {
     private String userid;
-    private String auth;
+    private String authkey;
 
     public String getUserid() {
         return userid;
@@ -13,18 +13,18 @@ public class AuthVO {
     }
 
     public String getAuth() {
-        return auth;
+        return authkey;
     }
 
-    public void setAuth(String auth) {
-        this.auth = auth;
+    public void setAuth(String authkey) {
+        this.authkey = authkey;
     }
 
     @Override
     public String toString() {
         return "AuthVO{" +
                 "userid='" + userid + '\'' +
-                ", auth='" + auth + '\'' +
+                ", auth='" + authkey + '\'' +
                 '}';
     }
 }
