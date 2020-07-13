@@ -20,7 +20,7 @@ okky web-site_Clone / <https://okky.kr/>
 
  * 엄만성 - 이메일 / <https://github.com/mansung93>
 
-### 역활 분담
+### 역할 분담
 
  * PM 조재복 - Spring MVC 설계 , FrontEnd 전체 , git merge , QnA 게시판 전체 , Tech 게시판  전체 , 각 팀원 Spring MVC에 대한 이해와 교육
 
@@ -46,6 +46,7 @@ okky web-site_Clone / <https://okky.kr/>
     * 회원 Info
     * 회원 정보 수정
     * 비밀번호 수정
+    * AWS 배포
     * 트랜잭션 처리 
        * 글 조회 / 조회수 증가 / 회원활동 점수증가
        * 글 작성 / 회원활동 점수 증가
@@ -78,6 +79,5 @@ okky web-site_Clone / <https://okky.kr/>
 ### Todo List
  * 회원 가입시 이메일 인증
  * 이이디 / 비밀번호 분실  기능
- * AWS 에 배포 예정
 
        

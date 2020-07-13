@@ -1,12 +1,11 @@
 package com.ncs.mapper;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface MemberMapper {
@@ -29,5 +28,7 @@ public interface MemberMapper {
     List<QnaVO> historyBoardList(SearchCriteria cri);
     
     List<Integer> historyRowCount(SearchCriteria cri);
+
+    int useridDuplicate(MemberVO memberVO);
 
 }

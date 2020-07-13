@@ -4,12 +4,11 @@ import com.ncs.mapper.MemberMapper;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -53,5 +52,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<Integer> historyRowCount(SearchCriteria cri) {
 		return memberMapper.historyRowCount(cri);
 	}
+
+    @Override
+    public int useridDuplicate(MemberVO memberVO) {
+        return memberMapper.useridDuplicate(memberVO);
+    }
 
 }
