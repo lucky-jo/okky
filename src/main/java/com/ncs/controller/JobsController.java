@@ -11,10 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsReplyService;
 import com.ncs.service.JobsService;
+import com.ncs.service.LikeCountService;
 import com.ncs.util.PageMaker;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
+import com.ncs.vo.LikeDTO;
+import com.ncs.vo.ReplyLikeDTO;
+import com.ncs.vo.ReplyVO;
 
 @RequestMapping("/jobs/")
 @Controller
@@ -25,6 +29,9 @@ public class JobsController {
 	
 	@Autowired
 	JobsReplyService jservice;
+	
+	@Autowired
+	LikeCountService likeCountService;
 	
 	@RequestMapping("/list")
 	public ModelAndView list(ModelAndView mv,SearchCriteria cri) {
@@ -37,6 +44,7 @@ public class JobsController {
 		mv.addObject("pageMaker",pageMaker);
 		
 		mv.setViewName("jobs/list");
+		System.out.println(pageMaker.toString());
 		return mv;
 	}//list
 	
@@ -44,7 +52,7 @@ public class JobsController {
 	  @RequestMapping("/insert") 
 	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
-			  //mv.addObject("새 글이 등록 되었습니다");
+			  mv.addObject("message","새 글이 등록 되었습니다");
 	          mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq()); 
 	    }
 		  return mv;
@@ -55,21 +63,31 @@ public class JobsController {
 		  mv.setViewName("jobs/insertForm");
 		  return mv;
 	  }
-	  @RequestMapping("/rinsert")
-	  public ModelAndView rinsert(ModelAndView mv, JobsReplyVO rvo) { 
-	      if(jservice.rinsert(rvo)>0) 
-	      mv.addObject("message", "댓글달기완료");  
-		  mv.setViewName("redirect:/jobs/detailForm?seq="+rvo.getSeq());
-	      return mv; 
-	   }//rinsert
 	 
 	  @RequestMapping(value = "/detailForm")
-		public ModelAndView detailForm( ModelAndView mv, JobsVO vo,JobsReplyVO rvo) {
-			
+		public ModelAndView detailForm( ModelAndView mv, JobsVO vo,JobsReplyVO rvo, LikeDTO dto, ReplyLikeDTO rdto,HttpServletRequest request) {
+		    List<JobsReplyVO> rlist = jservice.selectlist(rvo.getSeq());
+		    for (JobsReplyVO jobsreplyVO : rlist) {
+	    	    rdto.setBoard(jobsreplyVO.getBoard());
+	    	    rdto.setLikerid(request.getRemoteUser());
+	    	    rdto.setRseq(jobsreplyVO.getRseq());
+				jobsreplyVO.setLiketype(likeCountService.replyLikeExist(rdto));
+				System.out.println(jobsreplyVO.getLiketype());
+				System.out.println(jobsreplyVO.toString());
+			}
+		    
 		    vo = service.selectOne(vo);
-			mv.addObject("Detail", vo);
-			List<JobsReplyVO> rlist = jservice.selectlist(rvo.getSeq());
+		    if( vo != null ) {
+	    	    dto.setSeq(vo.getSeq());
+	    		dto.setBoard("jobs");
+	    		dto.setLikeid(request.getRemoteUser());
+	    		int cnt = likeCountService.likeExist(dto);
+	        	System.out.println(cnt);
+	        	mv.addObject("liketype", cnt);
+	    	}	  
+		    mv.addObject("Detail", vo);
 			mv.addObject("Detailr",rlist);
+			mv.setViewName("jobs/detailForm");
 
 			// 4) 결과 ( Detail or Update 인지 ) 
 			// => request.getParameter("code") 가 U 인지 확인
