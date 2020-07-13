@@ -3,8 +3,10 @@ package com.ncs.controller;
 import com.ncs.security.CustomUserDetailsService;
 import com.ncs.service.MemberService;
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.AuthKeyDTO;
 import com.ncs.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 @RequestMapping(value = "/member")
 @Controller
@@ -29,6 +33,9 @@ public class MemberController {
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    JavaMailSenderImpl mailSender;
 
     @RequestMapping(value = "/customLogin",method = RequestMethod.GET)
     public void getLogin() {
@@ -47,7 +54,7 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String postRegister(MemberVO vo){
+    public String postRegister(MemberVO vo, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         String[] image = {"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg"};
         vo.setImage(image[(int)(Math.random()*9)+1]);
         System.out.println(vo.getImage());
@@ -127,6 +134,16 @@ public class MemberController {
             mv.addObject("message","200");
         }
         mv.setViewName("jsonView");
+        return mv;
+
+    }
+
+    @RequestMapping(value = "/authKey", method = RequestMethod.GET )
+    public ModelAndView authkey(ModelAndView mv, AuthKeyDTO authKeyDTO){
+        if (memberService.getAuth(authKeyDTO) == 1 ) {
+            mv.addObject("message","환영합니다.");
+            mv.setViewName("member/wellcome");
+        }
         return mv;
 
     }

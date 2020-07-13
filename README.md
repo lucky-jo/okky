@@ -78,6 +78,6 @@ okky web-site_Clone / <https://okky.kr/>
     
 ### Todo List
  * 회원 가입시 이메일 인증
- * 이이디 / 비밀번호 분실  기능
+ * 아이디 / 비밀번호 분실시 찾는 기능
 
        
