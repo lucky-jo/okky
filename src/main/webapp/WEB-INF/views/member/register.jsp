@@ -59,6 +59,94 @@
 
     }
 }; // idCheck()
+
+	var pwCheck = function () {
+    var password = $('#password').val();
+    var pLength=password.length ; 
+    if (password.length < 4) {
+        $('#pwCheck1').attr("style","");
+        return false;
+    } else if (password.replace(/[!-*]/gi,'').length >= pLength) {
+        $('#pwCheck1').attr("style","display: none");
+        $('#pwCheck2').attr("style","");
+        return false;
+    } else if (password.replace(/[0-9.!-*]/gi,'').length > 0) {
+    	$('#pwCheck2').attr("style","display: none");
+    	$('#pwCheck3').attr("style","");
+    } else {
+    	$('#pwCheck1').attr("style","display: none");
+    	$('#pwCheck2').attr("style","display: none");
+        $('#pwCheck3').attr("style","display: none");
+        return true;
+    }
+}; // pwCheck()
+
+	var emCheck = function(){
+    var email = $('#email').val();
+    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+    if (exptext.test(email) == false) {
+        $('#emailCheck1').attr("style","");
+        return false;
+    } else {
+    	  $('#emailCheck1').attr("style","display: none");
+    	  $.ajax({
+              type:'Get',
+              url:'/member/emailDuplicate',
+              data: {
+                  email : email
+              },
+              success:function(data){
+                  if(data.message == '200') {
+                      $('#emailCheck2').attr("style","display: none");
+                  } else if(data.message =='fail') {
+                      $('#emailCheck2').attr("style","");
+                  }
+              }
+          });
+    }
+}; // emCheck()
+
+	var nmCheck = function(){
+    var name = $('#fullName').val();
+    if (name.length < 2) {
+    	console.log(name.length);
+        $('#nameCheck1').attr("style","");
+        return false;
+    } else if (name.replace(/[a-z.가-힇]/gi, '').length > 0) {
+        $('#nameCheck1').attr("style","display: none");
+        $('#nameCheck2').attr("style","");
+        return false;
+    } else {
+    	  $('#nameCheck1').attr("style","display: none");
+          $('#nameCheck2').attr("style","display: none");
+        return true;
+    }
+}; // nmCheck()
+
+	var nickCheck = function () {
+    var nickname = $('#nickname').val();
+    if (nickname.replace(/[a-z.가-힇.0-9]/gi, '').length > 0) {
+        $('#nickCheck2').attr("style","");
+        return false;
+    } else {
+        $('#nickCheck2').attr("style","display: none");
+        $.ajax({
+            type:'Get',
+            url:'/member/nicknameDuplicate',
+            data: {
+                nickname : nickname
+            },
+            success:function(data){
+                if(data.message == '200') {
+                    $('#nickCheck1').attr("style","display: none");
+                } else if(data.message =='fail') {
+                    $('#nickCheck1').attr("style","");
+                }
+            }
+        });
+
+    }
+}; // nickCheck()
 </script>
     <![endif]-->
 
@@ -157,7 +245,8 @@
                                 <li style="display: none " id="nameCheck2">[이름] : 한글 또는 영문으로만 입력하세요 ~~</li>
                                 <li style="display: none " id="nickCheck1">[닉네임] : 이미 중복된 값이 존재합니다.</li>
                                 <li style="display: none " id="nickCheck2">[닉네임] : 한글 / 영문 / 숫자만 가능합니다.</li>
-                                <li style="display: none " id="nickCheck3">[이메일] : 이메일 형식이 아닙니다.</li>
+                                <li style="display: none " id="emailCheck1">[이메일] : 이메일 형식이 아닙니다.</li>
+                                <li style="display: none " id="emailCheck2">[이메일] : 이미 중복된 값이 존재합니다.</li>
                             </ul>
                         </div>
 
@@ -167,16 +256,16 @@
                                    value="" id="username" onfocusout="idCheck()"/>
 
                             <input type="password" name="userpw" class="form-control input-sm" placeholder="비밀번호"
-                                   required="" value="" id="password"/>
+                                   required="" value="" id="password" onfocusout="pwCheck()"/>
 
                             <input type="text" name="email" class="form-control input-sm" placeholder="이메일" required=""
-                                   value="" id="person.email"/>
+                                   value="" id="email" onfocusout="emCheck()"/>
 
                             <input type="text" name="username" class="form-control input-sm" placeholder="이름"
-                                   required="" value="" id="person.fullName"/>
+                                   required="" value="" id="fullName" onfocusout="nmCheck()"/>
 
                             <input type="text" name="nickname" class="form-control input-sm" placeholder="닉네임"
-                                   required="" value="" id="avatar.nickname"/>
+                                   required="" value="" id="nickname" onfocusout="nickCheck()"/>
 
                             <div class="checkbox">
                                 <label>

@@ -36,4 +36,9 @@ public interface MemberMapper {
 
     int getAuthKey(AuthKeyDTO authKeyDTO);
 
+	int nicknameDuplicate(MemberVO memberVO);
+
+	int emailDuplicate(MemberVO memberVO);
+
+
 }

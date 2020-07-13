@@ -88,4 +88,13 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.getAuthKey(authKeyDTO);
     }
 
+    @Override
+    public int nicknameDuplicate(MemberVO memberVO) {
+        return memberMapper.nicknameDuplicate(memberVO);
+    }
+    @Override
+    public int emailDuplicate(MemberVO memberVO) {
+        return memberMapper.emailDuplicate(memberVO);
+    }
+
 }

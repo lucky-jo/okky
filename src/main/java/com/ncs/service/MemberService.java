@@ -27,5 +27,11 @@ public interface MemberService {
 
     int useridDuplicate(MemberVO memberVO);
 
+
     int getAuth(AuthKeyDTO authKeyDTO);
+    
+    int nicknameDuplicate(MemberVO memberVO);
+    
+    int emailDuplicate(MemberVO memberVO);
+
 }

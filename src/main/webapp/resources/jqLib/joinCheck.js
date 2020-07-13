@@ -41,23 +41,18 @@ var idCheck = function () {
     }
 }; // idCheck() 
 
-function pwCheck() {
+var pwCheck = function () {
     var password = $('#password').val();
-    var pLength = password.length;
     if (password.length < 4) {
-        $('#pMessage').html('Password 는 4 글자 이상 입력하세요 ~~');
-        $('#password').focus();
+        $('#pwCheck1').attr("style","");
         return false;
-    } else if (password.replace(/[!-*]/gi, '').length >= pLength) {
-        $('#pMessage').html('Password는 특수문자를 반드시 1개 이상 입력하세요 ~~');
-        $('#password').focus();
-        return false;
-    } else if (password.replace(/[0-9.!-*]/gi, '').length > 0) {
-        $('#pMessage').html('Password는 숫자와 특수문자 로만 입력하세요 ~~');
-        $('#password').focus();
+    } else if (userid.replace(/[a-z.0-9]/gi, '').length > 0) {
+        $('#pwCheck1').attr("style","display: none");
+        $('#pwCheck2').attr("style","");
         return false;
     } else {
-        $('#pMessage').html('');
+        $('#pwCheck2').attr("style","display: none");
+        $('#pwCheck3').attr("style","");
         return true;
     }
 }; // pwCheck()

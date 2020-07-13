@@ -115,5 +115,13 @@
 		select count(*) from authkey where userid = #{userid} and authkey = #{authkey}
 	</select>
 
+	<select id="nicknameDuplicate" resultType="int">
+		select count(*) from member where nickname = #{nickname}
+	</select>
+	
+	<select id="emailDuplicate" resultType="int">
+		select count(*) from member where email = #{email}
+	</select>
+
 </mapper>
   

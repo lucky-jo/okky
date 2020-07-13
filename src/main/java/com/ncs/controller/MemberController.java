@@ -146,4 +146,28 @@ public class MemberController {
 
     }
 
+    @RequestMapping(value = "/nicknameDuplicate")
+    public ModelAndView nicknameDuplicate(ModelAndView mv, MemberVO memberVO){
+        if (memberService.nicknameDuplicate(memberVO) > 0 ) {
+            mv.addObject("message","fail");
+        } else {
+            mv.addObject("message","200");
+        }
+        mv.setViewName("jsonView");
+        return mv;
+
+    }
+    
+    @RequestMapping(value = "/emailDuplicate")
+    public ModelAndView emailDuplicate(ModelAndView mv, MemberVO memberVO){
+        if (memberService.emailDuplicate(memberVO) > 0 ) {
+            mv.addObject("message","fail");
+        } else {
+            mv.addObject("message","200");
+        }
+        mv.setViewName("jsonView");
+        return mv;
+
+    }
+
 }
