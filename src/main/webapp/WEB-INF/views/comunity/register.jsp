@@ -7,6 +7,7 @@
 <%@include file="../includes/header.jsp"%>
 <script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="/resources/jqLib/comunityCheck.js"></script>
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
 	function del() {
 		if (confirm("정말 삭제하시겠습니까?") == true) {
@@ -156,6 +157,9 @@
 
 						<textarea name="content" id="summernote" rows="20"
 							class="form-control input-block-level"></textarea>
+							<script type="text/javascript">
+								CKEDITOR.replace('content');
+							</script>
 					</div>
 					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
 					
