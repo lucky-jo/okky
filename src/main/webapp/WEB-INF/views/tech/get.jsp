@@ -6,6 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <script src="/resources/jqLib/jquery-3.2.1.min.js"></script>
 <script src="/resources/jqLib/comunityCheck.js"></script>
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 <script>
 	function del() {
 		if(confirm("정말 삭제하시겠습니까?")==true){
@@ -138,7 +139,7 @@
 				<hr />
 				<article class="content-text" itemprop="articleBody">
 
-					<pre>${get.content}</pre>
+					${get.content}
 
 				</article>
 
@@ -296,7 +297,7 @@
 								<fieldset class="form" id="bottom-text-form-${merge.board.rseq}">
 									<article id="note-text-${merge.board.rseq}"
 											 class="list-group-item-text note-text">
-										<pre>${merge.board.rcontent }</pre>
+										${merge.board.rcontent }
 									</article>
 								</fieldset>
 
@@ -439,6 +440,9 @@
 								<fieldset class="form">
 									<textarea name="rcontent" id="note-create" placeholder="댓글 쓰기"
 											  class="form-control"></textarea>
+											  <script type="text/javascript">
+								CKEDITOR.replace('rcontent');
+							</script>
 								</fieldset>
 							</div>
 							<div class="content-function-cog note-submit-buttons clearfix">
