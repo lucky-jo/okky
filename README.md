@@ -26,7 +26,7 @@ okky web-site_Clone / <https://okky.kr/>
 
  * 이재성 - Jobs 게시판 전체
 
- * 김창대 - Community 게시판 전체
+ * 김창대 - Community,Tech 게시판 전체
 
  * 엄만성 - Column 게시판 전체
 
@@ -46,6 +46,8 @@ okky web-site_Clone / <https://okky.kr/>
     * 회원 Info
     * 회원 정보 수정
     * 비밀번호 수정
+    * 이메일 인증
+    * 회원 ID / PW 찾기
     * 트랜잭션 처리 
        * 글 조회 / 조회수 증가 / 회원활동 점수증가
        * 글 작성 / 회원활동 점수 증가
@@ -68,17 +70,17 @@ okky web-site_Clone / <https://okky.kr/>
     * 댓글 CRUD
     * Controller 회원 인증 처리
     * Service Transaction 처리
+    * 회원가입 유효성 및 중복 검사
     * 애플리케이션 Tester
  * 엄만성
     * Column 게시판 CRUD
     * 게시판 페이징
     * 검색기능
     * 댓글 CRUD
+    * 애플리케이션 Tester
     
 ### Todo List
  * 회원 가입시 이메일 인증
  * 아이디 / 비밀번호 분실시 찾는 기능
- * 이이디 / 비밀번호 분실  기능
- * AWS 에 배포 예정
 
        
