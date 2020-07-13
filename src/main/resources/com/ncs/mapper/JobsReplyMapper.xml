@@ -20,7 +20,7 @@
   	insert into jobsreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
   </insert>
   
-  <update id="delete">
+  <update id="jdelete">
   	update jobsreply set rexist = 0 where rseq = #{rseq}
   </update>
   
