@@ -17,7 +17,7 @@ public interface JobsReplyService {
 	
 	int update(JobsReplyVO rvo); // update
 	
-	int delete(JobsReplyVO rvo); // delete
+	int jdelete(JobsReplyVO rvo); // delete
 
 	
 
