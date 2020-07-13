@@ -11,5 +11,6 @@ public interface JobsReplyMapper {
 	int update(JobsReplyVO rvo);
 	int delete(JobsReplyVO rvo);
 	int rinsert(JobsReplyVO rvo);
+	int replyCount();
 
 }
