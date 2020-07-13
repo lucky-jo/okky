@@ -107,5 +107,13 @@
 		select count(*) from member where userid = #{userid}
 	</select>
 
+	<insert id="addAuthKey">
+		insert into authkey values (#{userid},#{authkey})
+	</insert>
+
+	<select id="getAuthKey" resultType="int">
+		select count(*) from authkey where userid = #{userid} and authkey = #{authkey}
+	</select>
+
 </mapper>
   
