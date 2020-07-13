@@ -23,4 +23,8 @@ public interface MemberService {
     List<Integer> historyRowCount(SearchCriteria cri);
 
     int useridDuplicate(MemberVO memberVO);
+    
+    int nicknameDuplicate(MemberVO memberVO);
+    
+    int emailDuplicate(MemberVO memberVO);
 }

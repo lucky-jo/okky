@@ -57,5 +57,12 @@ public class MemberServiceImpl implements MemberService {
     public int useridDuplicate(MemberVO memberVO) {
         return memberMapper.useridDuplicate(memberVO);
     }
-
+    @Override
+    public int nicknameDuplicate(MemberVO memberVO) {
+        return memberMapper.nicknameDuplicate(memberVO);
+    }
+    @Override
+    public int emailDuplicate(MemberVO memberVO) {
+        return memberMapper.emailDuplicate(memberVO);
+    }
 }

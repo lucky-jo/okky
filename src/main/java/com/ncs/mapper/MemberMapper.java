@@ -31,4 +31,8 @@ public interface MemberMapper {
 
     int useridDuplicate(MemberVO memberVO);
 
+	int nicknameDuplicate(MemberVO memberVO);
+
+	int emailDuplicate(MemberVO memberVO);
+
 }
