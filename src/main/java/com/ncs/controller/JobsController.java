@@ -104,12 +104,12 @@ public class JobsController {
 		} //bupdate
 		
 		@RequestMapping(value="/delete")
-		public ModelAndView bdelete(ModelAndView mv, JobsVO vo) {
+		public ModelAndView delete(ModelAndView mv, JobsVO vo) {
 			
 			if (service.delete(vo)>0) {//성공 => 글목록 출력 (blist)
 				mv.addObject("message", "삭제되었습니다");	
-				mv.addObject("melon",service.selectlist());
-				mv.setViewName("jobs/jlist");
+				mv.addObject("Detail",service.selectlist());
+				mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq());
 			}	
 			else { // 실패 => doFinish.jsp
 				mv.addObject("fCode","BD");
