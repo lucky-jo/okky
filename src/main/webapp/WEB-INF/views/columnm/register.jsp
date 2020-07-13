@@ -16,7 +16,7 @@
 		}
 	} // del()
 </script>
-
+<sec:authentication var="user" property="principal"/>
 <ul class="nav nav-sidebar nav-main">
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
@@ -25,7 +25,7 @@
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="커뮤니티"><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-	<li  class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
+	<li  class="active" data-toggle="tooltip" data-placement="right" data-container="body" title="칼럼"><a href="/columnm/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Jobs"><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
@@ -38,7 +38,7 @@
         <div class="sidebar-category-nav">
             <h3 class="sub-title">칼럼</h3>
             	<ul class="nav">
-		<li><a href="/column/list?sorted=" class="link"><span
+		<li><a href="/columnm/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
@@ -52,23 +52,24 @@
 <div id="article-create" class="content" role="main">
 
 	<div class="content-header">
-		<h3>글 수정하기</h3>
+		<h3>새 글 쓰기</h3>
 	</div>
-	<div class="panel panel-default clearfix">
+	<div class="panel panel-default clearfix fa-">
 		<div class="panel-heading clearfix">
 			<div class='avatar avatar-medium clearfix pull-left'>
-				<a href='/user/info/94647' class='avatar-photo'><img
-					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+				<a href='/member/info?userid=${user.member.userid}' class='avatar-photo'><img
+						src='/resources/user/${user.member.image}' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/94647" title="${get.id }">${get.id }</a>
-					<div class="activity block">
-						<span class="fa fa-flash"></span> 활동
+					<a class="nickname" href="/member/info?userid=${user.member.userid}" title="${user.member.nickname}">${user.member.nickname}</a>
+					<div class="activity">
+						<span class="fa fa-flash"></span>${user.member.apoint}
 					</div>
 				</div>
 			</div>
+
 		</div>
 		<div class="panel-body">
-			<form action="/column/update" method="post"
+			<form action="/columnm/register" method="post"
 				id="article-form" class="article-form" role="form"
 				onsubmit="return postForm()">
 				<input type="hidden" name="SYNCHRONIZER_TOKEN"
@@ -77,23 +78,10 @@
 					name="SYNCHRONIZER_URI" value="/articles/questions/create"
 					id="SYNCHRONIZER_URI" />
 				<fieldset class="form">
-					<div class="form-group  has-feedback">
-						<div>
-							<select id="category" name="category" class="form-control"
-								required="">
-								<option value="">게시판을 선택해 주세요.</option>
-
-								<option value="a" data-external="" data-anonymity="false">
-									Tech Q&A</option>
-								<option value="b" data-external=""
-									data-anonymity="false">Blockchain Q&A</option>
-							</select>
-						</div>
-					</div>
 
 					<div class="form-group  has-feedback">
 						<div>
-							<input type="text" name="title" required="" value="${get.title }"
+							<input type="text" name="title" required="" value=""
 								placeholder="제목을 입력해 주세요." class="form-control" id="title" />
 						</div>
 					</div>
@@ -108,16 +96,15 @@
 					<div class="form-group  has-feedback">
 
 						<textarea name="content" id="summernote" rows="20"
-							class="form-control input-block-level">${get.content }</textarea>
+							class="form-control input-block-level"></textarea>
 					</div>
 					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
 					
 					<div class="nav" role="navigation">
                                 <fieldset class="buttons">
-                                    <a href="/column/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
+                                    <a href="/columnm/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
                                     <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
-                                    <input type="hidden" name="id" value="${get.id }">
-                                    <input type="hidden" name="seq" value="${get.seq }">
+                                    <input type="hidden" name="id" value="<sec:authentication property="principal.username"/>">
                                 </fieldset>
                             </div>
 					

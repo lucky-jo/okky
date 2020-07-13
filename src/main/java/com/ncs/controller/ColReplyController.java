@@ -21,20 +21,20 @@ public class ColReplyController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST )
 	public String register(ReplyVO rvo) {
 		colReplyService.register(rvo);
-		return ("redirect:/column/get?seq=" + rvo.getSeq());
+		return ("redirect:/columnm/get?seq=" + rvo.getSeq());
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/register", method = RequestMethod.GET )
 	public String getRegister(ColumnVO columnVO) {
-		return ("redirect:/column/get?seq=" + columnVO.getSeq());
+		return ("redirect:/columnm/get?seq=" + columnVO.getSeq());
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
 		colReplyService.delete(rvo);
-		return "redirect:/column/get?seq=" + rvo.getSeq();
+		return "redirect:/columnm/get?seq=" + rvo.getSeq();
 	}
 
 

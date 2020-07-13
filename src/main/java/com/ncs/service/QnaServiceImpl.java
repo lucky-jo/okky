@@ -1,5 +1,17 @@
 package com.ncs.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import com.ncs.mapper.LikeCountMapper;
 import com.ncs.mapper.MemberMapper;
 import com.ncs.mapper.QnaMapper;
@@ -8,16 +20,6 @@ import com.ncs.vo.GetCountDTO;
 import com.ncs.vo.JoinDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class QnaServiceImpl implements QnaService{

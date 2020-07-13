@@ -24,7 +24,7 @@
 	class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
 	<li  data-toggle="tooltip" data-placement="right" 
-	data-container="body" title="칼럼"><a href="/column/list" 
+	data-container="body" title="칼럼"><a href="/columnm/list" 
 	class="link"><i class="nav-icon fa fa-quote-left"></i> <span 
 	class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
@@ -175,12 +175,12 @@
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
-											src='/resources/user/${merge.member.image }' /></a>
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
+											src='/resources/user/${merge.member.image}' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="defult">${merge.member.nickname}</a>
 										<div class="activity">
-											<span class="fa fa-flash"></span>${merge.member.apoint }
+											<span class="fa fa-flash"></span>${merge.member.apoint}
 										</div>
 										<div class="date-created">
 											<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
@@ -229,10 +229,10 @@
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 											src='/resources/user/${merge.member.image }' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="${merge.member.userid}">${merge.member.nickname}</a>
 										<div class="activity">
 											<span class="fa fa-flash"></span>${merge.member.apoint }
 										</div>

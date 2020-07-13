@@ -154,7 +154,7 @@
                 <li><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-                <li><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
+                <li><a href="/columnm/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
                 <li><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span
@@ -220,7 +220,7 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/column/detail?seq=${list.seq}">${list.title}</a>
+                                            <a href="/columnm/detail?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/user/info/21442'
                                                                                                 class='avatar-photo'><img

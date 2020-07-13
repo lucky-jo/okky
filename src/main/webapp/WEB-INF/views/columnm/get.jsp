@@ -49,7 +49,7 @@
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
 	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
-		title="칼럼"><a href="/column/list" class="link"><i
+		title="칼럼"><a href="/columnm/list" class="link"><i
 			class="nav-icon fa fa-quote-left"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
@@ -69,9 +69,9 @@
 </ul>
 </div>
 <div class="sidebar-category-nav">
-	<h3 class="sub-title">Q&A</h3>
+	<h3 class="sub-title">칼럼</h3>
 	<ul class="nav">
-		<li><a href="/column/list?sorted=" class="link"><span
+		<li><a href="/columnm/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" />
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
@@ -84,11 +84,11 @@
 <div id="article" class="content" role="main">
 
 	<div class="nav" role="navigation">
-		<a href="/column/register"
+		<a href="/columnm/register"
 		   class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		<h4>사는얘기</h4>
+		<h4>칼럼</h4>
 	</div>
 
 	<div class="panel panel-default clearfix fa-">
@@ -119,7 +119,7 @@
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/column/list"
+						href="/columnm/list"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>
@@ -186,7 +186,7 @@
 							</c:when>
 
 						</c:choose>
-						<%--<a href="/column/like?seq=${get.seq}&id=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
+						<%--<a href="/columnm/like?seq=${get.seq}&id=${get.id}&board=${get.board}&liketype=1" class="note-vote-btn" role="button"
 							data-type="assent" data-eval="true" data-id="2013409"><i
 							id="note-evaluate-assent-2013409"
 							class="fa fa-angle-up note-evaluate-assent-assent"
@@ -227,10 +227,10 @@
 											class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 											title="게시물 설정"></i></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="/column/update?seq=${get.seq}&id=${get.id}" class="edit"><i
+										<li><a href="/columnm/update?seq=${get.seq}&id=${get.id}" class="edit"><i
 												class="fa fa-edit fa-fw"></i> 수정 </a></li>
 
-										<li><a href="/column/delete?seq=${get.seq}&id=${get.id}"
+										<li><a href="/columnm/delete?seq=${get.seq}&id=${get.id}"
 											   id="article-delete-btn"
 											   onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
 												class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
@@ -417,7 +417,7 @@
 										<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 												src='/resources/user/${user.member.image}' /></a>
 										<div class="avatar-info">
-											<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
+											<a class="nickname" href="/member/info?userid=${writer.userid}" title="${writer.nickname}">${writer.nickname}</a>
 											<div class="activity block">
 												<span class="fa fa-flash"></span> ${user.member.apoint}
 											</div>

@@ -24,7 +24,7 @@
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
 	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
-		title="칼럼"><a href="/column/list" class="link"><i
+		title="칼럼"><a href="/columnm/list" class="link"><i
 			class="nav-icon fa fa-quote-left"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
@@ -48,7 +48,7 @@
 <div class="sidebar-category-nav">
 	<h3 class="sub-title">Q&A</h3>
 	<ul class="nav">
-		<li><a href="/column/list?sorted=" class="link"><span
+		<li><a href="/columnm/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
 				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> 
 					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
@@ -62,12 +62,12 @@
 
 		<div class="nav" role="navigation">
 
-			<a href="/column/register"
+			<a href="/columnm/register"
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
 			<h4>칼럼</h4>
-			<form action="/column/list" method="get" name="category-filter-form"
+			<form action="/columnm/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
@@ -87,15 +87,15 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/column/list" data-sort="id"
+						<li><a href="/columnm/list" data-sort="id"
 							class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
 																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
-						<li><a href="/column/list?sorted=like"
+						<li><a href="/columnm/list?sorted=like"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
-						<li><a href="/column/list?sorted=reply"
+						<li><a href="/columnm/list?sorted=reply"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
-						<%--<li><a href="/column/list" class="category-sort-link ">스크랩순</a></li>--%>
-						<li><a href="/column/list?sorted=view"
+						<%--<li><a href="/columnm/list" class="category-sort-link ">스크랩순</a></li>--%>
+						<li><a href="/columnm/list?sorted=view"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
 
@@ -130,7 +130,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/column/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											href="/columnm/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
@@ -156,12 +156,12 @@
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
-											src='/resources/user/${merge.member.image }' /></a>
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
+											src='/resources/user/${merge.member.image}' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="${merge.member.userid}">${merge.member.nickname}</a>
 										<div class="activity">
-											<span class="fa fa-flash"></span>${merge.member.apoint }
+											<span class="fa fa-flash"></span>${merge.member.apoint}
 										</div>
 										<div class="date-created">
 											<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
@@ -185,7 +185,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/column/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											href="/columnm/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
@@ -213,9 +213,9 @@
 									<a href='#' class='avatar-photo'><img
 											src='/resources/user/${merge.member.image }' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.userid}</a>
+										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.nickname}</a>
 										<div class="activity">
-											<span class="fa fa-flash"></span>${merge.member.apoint }
+											<span class="fa fa-flash"></span>${merge.member.apoint}
 										</div>
 										<div class="date-created">
 											<span class="timeago" title="${merge.board.regdate}">${merge.board.regdate}</span>
@@ -249,13 +249,13 @@
 					<li class="active"><span>${i}</span></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="/column/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
+					<li><a href="/columnm/list${pageMaker.makeSearch(i)}" class="step">${i }</a></li>
 				</c:otherwise>
 			</c:choose>
 			<%-- <c:out value="${pageMaker.cri.currPage == i ? 'class=active':''}"/> --%>
 			<!--  		<li class="disabled"><span>...</span></li>
-		<li><a href="/column/list?" class="step">8013</a></li>
-		<li class="next"><a href="/column/list?" class="step">&raquo;</a></li> -->
+		<li><a href="/columnm/list?" class="step">8013</a></li>
+		<li class="next"><a href="/columnm/list?" class="step">&raquo;</a></li> -->
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.ePageNo > 0}">

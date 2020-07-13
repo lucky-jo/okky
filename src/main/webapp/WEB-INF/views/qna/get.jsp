@@ -49,7 +49,7 @@ function del() {
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
 	<li data-toggle="tooltip" data-placement="right" data-container="body"
-		title="칼럼"><a href="/column/list" class="link"><i
+		title="칼럼"><a href="/columnm/list" class="link"><i
 			class="nav-icon fa fa-quote-left"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 

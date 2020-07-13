@@ -95,7 +95,7 @@
                 <li><a href="/comunity/list" class="link"><i class="nav-icon fa fa-comments"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
 
-                <li><a href="/column/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
+                <li><a href="/columnm/list" class="link"><i class="nav-icon fa fa-quote-left"></i> <span
                         class="nav-sidebar-label nav-sidebar-category-label">칼럼</span></a></li>
 
                 <li><a href="/jobs/list" class="link"><i class="nav-icon fa fa-group"></i> <span
