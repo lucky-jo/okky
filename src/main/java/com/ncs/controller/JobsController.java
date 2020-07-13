@@ -58,6 +58,7 @@ public class JobsController {
 	  @RequestMapping("/rinsert")
 	  public ModelAndView rinsert(ModelAndView mv, JobsReplyVO rvo) { 
 	      if(jservice.rinsert(rvo)>0) 
+	      mv.addObject("message", "댓글달기완료");  
 		  mv.setViewName("redirect:/jobs/detailForm?seq="+rvo.getSeq());
 	      return mv; 
 	   }//rinsert
