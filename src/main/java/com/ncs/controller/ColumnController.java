@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping(value = "/column/")
+@RequestMapping(value = "/columnm/")
 @Controller
 public class ColumnController {
 
@@ -57,7 +57,7 @@ public class ColumnController {
             pageMaker.setTotalRow(columnService.searchRowCount(cri));
 
             mv.addObject("pageMaker",pageMaker);
-            mv.setViewName("column/list");
+            mv.setViewName("columnm/list");
             System.out.println(pageMaker.toString());
             return mv;
         }
@@ -66,7 +66,7 @@ public class ColumnController {
         @RequestMapping(value = "/register", method = RequestMethod.POST )
         public ModelAndView postInsert(ModelAndView mv, ColumnVO vo ) {
             if(columnService.insert(vo)>0) {
-                mv.setViewName("redirect:/column/get?seq="+vo.getSeq());
+                mv.setViewName("redirect:/columnm/get?seq="+vo.getSeq());
             }
             return mv;
         }
@@ -97,7 +97,7 @@ public class ColumnController {
             columnVO = columnService.selectOne(columnVO);
         	if( columnVO != null ) {
         	    dto.setSeq(columnVO.getSeq());
-        		dto.setBoard("column");
+        		dto.setBoard("columnm");
         		dto.setLikeid(request.getRemoteUser());
         		int cnt = likeCountService.likeExist(dto);
         		System.out.println(request.getRemoteUser());
@@ -109,7 +109,7 @@ public class ColumnController {
         	mv.addObject("mergeReplylist", mergelist);
             mv.addObject("get",columnVO);
             mv.addObject("writer",memberService.get(columnVO.getId()));
-            mv.setViewName("column/get");
+            mv.setViewName("columnm/get");
             return mv;
         }
 
@@ -118,9 +118,9 @@ public class ColumnController {
         public ModelAndView update(ModelAndView mv,ColumnVO vo) {
             System.out.println("업데이트 요청 = " + vo);
             if(columnService.update(vo) > 0) {
-                mv.setViewName("redirect:/column/get?seq="+vo.getSeq());
+                mv.setViewName("redirect:/columnm/get?seq="+vo.getSeq());
             }else {
-                mv.setViewName("redirect:/column/list");
+                mv.setViewName("redirect:/columnm/list");
             }
             return mv;
         }
@@ -137,9 +137,9 @@ public class ColumnController {
         public ModelAndView delete(ModelAndView mv, ColumnVO vo) {
             System.out.println("삭제요청 = " + vo);
             if(columnService.delete(vo) > 0) {
-                mv.setViewName("redirect:/column/list");
+                mv.setViewName("redirect:/columnm/list");
             }else {
-                mv.setViewName("redirect:/column/get?seq="+vo.getSeq());
+                mv.setViewName("redirect:/columnm/get?seq="+vo.getSeq());
             }
             return mv;
         }

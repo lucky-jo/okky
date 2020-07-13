@@ -1,13 +1,14 @@
 package com.ncs.service;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
+import javax.mail.MessagingException;
+
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.AuthKeyDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
-
-import javax.mail.MessagingException;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 public interface MemberService {
 

@@ -1,12 +1,13 @@
 package com.ncs.mapper;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.AuthKeyDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface MemberMapper {
@@ -39,6 +40,5 @@ public interface MemberMapper {
 	int nicknameDuplicate(MemberVO memberVO);
 
 	int emailDuplicate(MemberVO memberVO);
-
 
 }
