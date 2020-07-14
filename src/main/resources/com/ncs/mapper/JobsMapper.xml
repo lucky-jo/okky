@@ -96,7 +96,16 @@
     <select id="totalRowCount" resultType="int">
 	select count(*) from jobs
   </select>
+  <!-- getcount -->
+    <select id="getcount">
+    select count(*) from getcount where id=#{id} and board=#{board} and 
+    today=#{today} and seq=#{seq}
+    </select>
     
+    <!-- registercount -->
+    <select id="registercount">
+    insert into getcount values(#{id},#{board},#{today},#{seq})
+    </select>
   
   <!-- replyInsert() -->
   <!-- <insert id="replyinsert">
