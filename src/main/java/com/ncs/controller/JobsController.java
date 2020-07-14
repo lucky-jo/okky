@@ -100,7 +100,7 @@ public class JobsController {
             jobsVO = jobsService.selectOne(jobsVO);
         	if( jobsVO != null ) {
         	    dto.setSeq(jobsVO.getSeq());
-        		dto.setBoard("qna");
+        		dto.setBoard("jobs");
         		dto.setLikeid(request.getRemoteUser());
         		int cnt = likeCountService.likeExist(dto);
         		System.out.println(request.getRemoteUser());
