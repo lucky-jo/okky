@@ -85,8 +85,8 @@ public class JobsController {
 	        	System.out.println(cnt);
 	        	mv.addObject("liketype", cnt);
 	    	}	  
+		    mv.addObject("Detailr",rlist);
 		    mv.addObject("Detail", vo);
-			mv.addObject("Detailr",rlist);
 			mv.setViewName("jobs/detailForm");
 
 			// 4) 결과 ( Detail or Update 인지 ) 
