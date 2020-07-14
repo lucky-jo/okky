@@ -77,7 +77,9 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<h4>Q&A</h4>
+			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">Q&A</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'Tech Q&A'}"><h4 class="sub-title">Tech Q&A</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'Blockchain Q&A'}"><h4 class="sub-title">Blockchain Q&A</h4></c:if>
 			<form action="/qna/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">

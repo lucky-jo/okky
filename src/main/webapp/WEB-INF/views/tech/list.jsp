@@ -77,7 +77,9 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<h4>Tech</h4>
+			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">Tech</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'IT News & 정보'}"><h4 class="sub-title">IT News & 정보</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'Tips & 강좌'}"><h4 class="sub-title">Tips & 강좌</h4></c:if>
 			<form action="/tech/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">

@@ -18,6 +18,8 @@
 	} // del()
 </script>
 
+<sec:authentication var="user" property="principal"/>
+
 <ul class="nav nav-sidebar nav-main">
 
 	<li  data-toggle="tooltip" data-placement="right" data-container="body" title="Q&A"><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
@@ -67,15 +69,15 @@
 	<div class="content-header">
 		<h3>새 글 쓰기</h3>
 	</div>
-	<div class="panel panel-default clearfix">
+	<div class="panel panel-default clearfix fa-">
 		<div class="panel-heading clearfix">
 			<div class='avatar avatar-medium clearfix pull-left'>
-				<a href='/user/info/94647' class='avatar-photo'><img
-					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+				<a href='/member/info?userid=${user.member.userid}' class='avatar-photo'><img
+						src='/resources/user/${user.member.image}' /></a>
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/94647" title="일당백">일당백</a>
-					<div class="activity block">
-						<span class="fa fa-flash"></span> 37
+					<a class="nickname" href="/member/info?userid=${user.member.userid}" title="${user.member.nickname}">${user.member.nickname}</a>
+					<div class="activity">
+						<span class="fa fa-flash"></span>${user.member.apoint}
 					</div>
 				</div>
 			</div>

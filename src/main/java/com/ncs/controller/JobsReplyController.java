@@ -35,7 +35,7 @@ public class JobsReplyController {
 	@RequestMapping(value = "/delete")
 	public String delete(ReplyVO rvo) {
 		jobsReplyService.delete(rvo);
-		return "redirect:/qna/get?seq=" + rvo.getSeq();
+		return "redirect:/jobs/get?seq=" + rvo.getSeq();
 	}
 
 	@PreAuthorize("principal.username == #replyVO.rid")

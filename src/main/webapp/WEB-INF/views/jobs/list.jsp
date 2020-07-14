@@ -83,7 +83,10 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<h4>Jobs</h4>
+			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">jobs</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '좋은회사/나쁜회사'}"><h4 class="sub-title">좋은회사/나쁜회사</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '구인'}"><h4 class="sub-title">구인</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '구직'}"><h4 class="sub-title">구직</h4></c:if>
 			<form action="/jobs/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">
