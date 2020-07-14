@@ -24,4 +24,11 @@
   	update comreply set rexist = 0 where rseq = #{rseq}
   </update>
   
+  <select id="get" resultType="com.ncs.vo.ReplyVO">
+    select * from comreply where rseq = #{rseq}
+  </select>
+
+  <update id="modify">
+    update comreply set rcontent = #{rcontent} where rseq = #{rseq}
+  </update>
   </mapper>
