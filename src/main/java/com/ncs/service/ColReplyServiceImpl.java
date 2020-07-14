@@ -48,4 +48,13 @@ public class ColReplyServiceImpl implements ColReplyService {
 		return colReplyMapper.replyCount();
 	}
 
+	@Override
+	public ReplyVO get(ReplyVO replyVO) {
+		return colReplyMapper.get(replyVO);
+	}
+
+	@Override
+	public int modify(ReplyVO replyVO) {
+		return colReplyMapper.modify(replyVO);
+	}
 }

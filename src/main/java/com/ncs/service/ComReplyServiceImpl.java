@@ -1,12 +1,13 @@
 package com.ncs.service;
 
-import com.ncs.mapper.ComReplyMapper;
-import com.ncs.mapper.QnaMapper;
-import com.ncs.vo.ReplyVO;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.ncs.mapper.ComReplyMapper;
+import com.ncs.mapper.ComunityMapper;
+import com.ncs.vo.ReplyVO;
 
 @Service
 public class ComReplyServiceImpl implements ComReplyService {
@@ -15,11 +16,11 @@ public class ComReplyServiceImpl implements ComReplyService {
 	ComReplyMapper comReplyMapper;
 	
 	@Autowired
-	QnaMapper qnaMapper;
+	ComunityMapper comunityMapper;
 
 	@Override
 	public int register(ReplyVO replyVO) {
-		qnaMapper.replycountUp(replyVO.getSeq());
+		comunityMapper.replycountUp(replyVO.getSeq());
 		return comReplyMapper.register(replyVO);
 	}
 
@@ -43,6 +44,14 @@ public class ComReplyServiceImpl implements ComReplyService {
 		return comReplyMapper.replyCount();
 	}
 	
-	
+	@Override
+	public ReplyVO get(ReplyVO replyVO) {
+		return comReplyMapper.get(replyVO);
+	}
+
+	@Override
+	public int modify(ReplyVO replyVO) {
+		return comReplyMapper.modify(replyVO);
+	}
 
 }

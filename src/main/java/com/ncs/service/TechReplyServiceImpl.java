@@ -47,7 +47,16 @@ public class TechReplyServiceImpl implements TechReplyService {
 	public int replyCount() {
 		return techReplyMapper.replyCount();
 	}
-	
+	@Override
+	public ReplyVO get(ReplyVO replyVO) {
+		return techReplyMapper.get(replyVO);
+	}
+
+	@Override
+	public int modify(ReplyVO replyVO) {
+		return techReplyMapper.modify(replyVO);
+	}
+
 	
 
 }

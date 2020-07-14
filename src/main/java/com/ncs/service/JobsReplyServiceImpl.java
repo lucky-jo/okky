@@ -47,6 +47,15 @@ public class JobsReplyServiceImpl implements JobsReplyService {
 		return jobsReplyMapper.replyCount();
 	}
 	
+	@Override
+	public ReplyVO get(ReplyVO replyVO) {
+		return jobsReplyMapper.get(replyVO);
+	}
+
+	@Override
+	public int modify(ReplyVO replyVO) {
+		return jobsReplyMapper.modify(replyVO);
+	}
 	
 
 }

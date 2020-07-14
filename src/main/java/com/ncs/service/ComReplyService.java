@@ -11,5 +11,7 @@ public interface ComReplyService {
 	int update(ReplyVO replyVO);
 	int delete(ReplyVO replyVO);
 	int replyCount();
+	ReplyVO get(ReplyVO replyVO);
+	int modify(ReplyVO replyVO);
 
 }
