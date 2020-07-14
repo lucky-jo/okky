@@ -11,5 +11,7 @@ public interface ComReplyMapper {
 	int update(ReplyVO rvo);
 	int delete(ReplyVO rvo);
 	int replyCount();
+	ReplyVO get(ReplyVO replyVO);
+	int modify(ReplyVO replyVO);
 	
 }
