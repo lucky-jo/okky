@@ -64,7 +64,7 @@
 <tr><td></td><td><input type="submit" value="댓글등록">
                  <input type="reset" value="취소">
                  <input type="hidden" name="rid" value="melon">
-                  <input type="hidden" name="seq" value="${Detail.seq}"></td>	
+                  <input type="hidden" name="seq" value="${Detailr.seq}"></td>	
 </table>
 </form>
 
