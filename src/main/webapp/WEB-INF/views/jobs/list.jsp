@@ -141,8 +141,8 @@
 
 								</div>
 
-							<%-- 	<h5 class="list-group-item-heading list-group-item-evaluate">
-									<a href="/jobs/detailForm?seq=${melon.seq }&board=${board}"> ${melon.title} </a>
+							 	<h5 class="list-group-item-heading list-group-item-evaluate">
+									<a href="/jobs/detailForm?seq=${melon.seq }&board=${melon.board}"> ${melon.title} </a>
 								</h5>
 							</div>
 
@@ -167,8 +167,8 @@
 										<li class=""><i class="item-icon fa fa-eye"></i> ${melon.cnt}</li>
 									</ul>
 								</div>
-							</div>
- --%>
+							</div> 
+ 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
 									<a href='#' class='avatar-photo'><img
