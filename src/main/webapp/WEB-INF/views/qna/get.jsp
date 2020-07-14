@@ -23,14 +23,18 @@ function del() {
 				rseq:rseq
 			},
 			success:function(data){
-				$('#bottom-text-form-'+data.get.rseq).html(" <textarea name='rcontent' id='note-text-"+ data.get.rseq+"' class='list-group-item-text note-text'>" + data.get.rcontent 
+				$('#note-text-'+data.get.rseq).attr("style","display: none;");
+				$('#bottom-text-form-'+data.get.rseq).append(" <textarea name='rcontent' id='note-text-modify-"+ data.get.rseq+"' class='list-group-item-text note-text'>" + data.get.rcontent 
 						+ "</textarea><script> CKEDITOR.replace( 'rcontent' )<\/script>");
 				$('#buttons-drop-'+data.get.rseq).attr("style","display: none;");
 				$('#buttons-edit-'+data.get.rseq).attr("style","");
+				
 			}
 		});
-
+	
 	}
+
+	
 </script>
 
 <ul class="nav nav-sidebar nav-main">
