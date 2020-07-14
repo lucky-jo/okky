@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsReplyService;
 import com.ncs.vo.JobsVO;
@@ -37,5 +38,18 @@ public class JobsReplyController {
 		return "redirect:/qna/get?seq=" + rvo.getSeq();
 	}
 
+	@PreAuthorize("principal.username == #replyVO.rid")
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(ReplyVO replyVO) {
+		jobsReplyService.modify(replyVO);
+		return "redirect:/jobs/get?seq=" + replyVO.getSeq();
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET )
+	public ModelAndView getModigy(ModelAndView mv, ReplyVO replyVO) {
+		mv.addObject("get",jobsReplyService.get(replyVO));
+		mv.setViewName("jsonView");
+		return mv;
+	}
 
 }
