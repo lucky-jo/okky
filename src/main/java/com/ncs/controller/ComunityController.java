@@ -96,6 +96,7 @@ public class ComunityController {
 		}
 		//service.countUp(vo); 굳이 서비스에 추가하지 않고 selectOne에 기능만 추가해서 사용
 		//update에서 중복 사용 되도 조건을 주면 상관 없음
+	   	vo.setId(request.getRemoteUser());
 		vo = comunityService.selectOne(vo);
 		if( vo != null ) {
     	    dto.setSeq(vo.getSeq());
