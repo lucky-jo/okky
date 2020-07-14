@@ -3,6 +3,7 @@ package com.ncs.service;
 import java.util.List;
 
 import com.ncs.util.SearchCriteria;
+import com.ncs.vo.GetCountDTO;
 import com.ncs.vo.JobsReplyVO;
 import com.ncs.vo.JobsVO;
 
@@ -25,9 +26,13 @@ public interface JobsService {
 		
 	int searchRowCount(SearchCriteria cri);//searchRowCount
 
-	
+	int totalRowCount();
+
+	int countUp(JobsVO vo);
 
 	
+
+    
 		
 
 		
