@@ -23,13 +23,29 @@
 				rseq:rseq
 			},
 			success:function(data){
-				$('#bottom-text-form-'+data.get.rseq).html(" <textarea name='rcontent' rows='7' cols='85%' id='note-text-2021030' class='list-group-item-text note-text'><pre> " + data.get.rcontent + "</pre></textarea>");
+				$('#note-text-'+data.get.rseq).attr("style","display: none;");
+				$('#bottom-text-form-'+data.get.rseq).append(" <textarea name='rcontent' id='note-text-modify-"+ data.get.rseq+"' class='list-group-item-text note-text'>" + data.get.rcontent 
+						+ "</textarea><script> CKEDITOR.replace( 'rcontent' )<\/script>");
 				$('#buttons-drop-'+data.get.rseq).attr("style","display: none;");
 				$('#buttons-edit-'+data.get.rseq).attr("style","");
+				
 			}
 		});
-
+	
 	}
+	
+/* 	var cancelModify = function(rseq){
+		
+		$('#cke_note-text-modify-'+rseq).remove();
+		$('#note-text-'+rseq).attr("style","");
+		$('#buttons-drop-'+rseq).attr("style","");
+		$('#buttons-edit-'+rseq).attr("style","display: none;");
+		return;
+	} */
+	// 수정 할 때 텍스트 입력창이 같이 안지워짐
+	
+		
+		
 </script>
 
 <ul class="nav nav-sidebar nav-main">
@@ -309,7 +325,7 @@
 									<article id="note-text-${merge.board.rseq}"
 											 class="list-group-item-text note-text">
 										${merge.board.rcontent }
-									</article>
+									</article>									
 								</fieldset>
 
 							</div>
@@ -395,7 +411,7 @@
 										<div class="buttons" style="display: none;" id="buttons-edit-${merge.board.rseq }">
 											<p>
 												<a href="javascript://"
-												   class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
+												   class="btn btn-default btn-wide note-edit-cancel-btn" onclick="cancelModify('${merge.board.rseq }')">취소</a>
 											</p>
 											<p>
 												<input type="submit" name="create"
