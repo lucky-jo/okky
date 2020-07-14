@@ -86,7 +86,7 @@
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
 			<h4>커뮤니티</h4>
-			<form action="/community/list" method="get"
+			<form action="/comunity/list" method="get"
 				name="category-filter-form" id="category-filter-form">
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
