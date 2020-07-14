@@ -30,6 +30,8 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript"></script>
 <!--    <script src="/resources/jqLib/joinCheck.js"></script>-->
     <script>
+    var emailauth = 0;
+    
     var idCheck = function () {
     var userid = $('#username').val();
     if (userid.length < 4) {
@@ -98,6 +100,7 @@
               success:function(data){
                   if(data.message == '200') {
                       $('#emailCheck2').attr("style","display: none");
+                      emailauth = 1;
                   } else if(data.message =='fail') {
                       $('#emailCheck2').attr("style","");
                   }
@@ -147,6 +150,19 @@
 
     }
 }; // nickCheck()
+
+	var mailauth = function(){
+	if(emailauth == 0){
+		return;
+	}else{
+		$.ajax({
+			type :'Get',
+			url : "member/register",
+			data : 
+			
+		}); // ajax
+	}
+}
 </script>
     <![endif]-->
 
@@ -259,7 +275,7 @@
                                    required="" value="" id="password" onfocusout="pwCheck()"/>
 
                             <input type="text" name="email" class="form-control input-sm" placeholder="이메일" required=""
-                                   value="" id="email" onfocusout="emCheck()"/>
+                                   value="" id="email" onfocusout="emCheck()"/><button class="btn btn-primary btn-block" onclick="mailauth()">이메일 인증</button>
 
                             <input type="text" name="username" class="form-control input-sm" placeholder="이름"
                                    required="" value="" id="fullName" onfocusout="nmCheck()"/>
