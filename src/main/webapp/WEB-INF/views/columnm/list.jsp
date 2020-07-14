@@ -46,7 +46,7 @@
 </div>
 
 <div class="sidebar-category-nav">
-	<h3 class="sub-title">Q&A</h3>
+	<h3 class="sub-title">칼럼</h3>
 	<ul class="nav">
 		<li><a href="/columnm/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span

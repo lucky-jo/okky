@@ -96,7 +96,7 @@ function del() {
 			class="create btn btn-success btn-wide pull-right"><i
 			class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		<h4>사는얘기</h4>
+		S
 	</div>
 
 	<div class="panel panel-default clearfix fa-">

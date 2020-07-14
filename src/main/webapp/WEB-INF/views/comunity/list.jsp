@@ -43,7 +43,7 @@
 </ul>
 </div>
         <div class="sidebar-category-nav">
-            <h3 class="sub-title">커뮤니티</h3>
+        	<h3 class="sub-title">커뮤니티</h3>
             <ul class="nav">
                 <li><a href="/comunity/list" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">All</span><span 
@@ -85,7 +85,13 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<h4>커뮤니티</h4>
+			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">커뮤니티</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '공지사항'}"><h4 class="sub-title">공지사항</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '사는얘기'}"><h4 class="sub-title">사는얘기</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '포럼'}"><h4 class="sub-title">포럼</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq 'IT행사'}"><h4 class="sub-title">IT행사</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '정기모임/스터디'}"><h4 class="sub-title">정기모임/스터디</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '학원/홍보'}"><h4 class="sub-title">학원/홍보</h4></c:if>
 			<form action="/comunity/list" method="get"
 				name="category-filter-form" id="category-filter-form">
 				<div class="category-filter-wrapper">
