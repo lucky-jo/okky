@@ -1,9 +1,11 @@
 package com.ncs.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,10 +18,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.ncs.security.CustomUserDetailsService;
 import com.ncs.service.MemberService;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.AuthKeyDTO;
+import com.ncs.vo.AuthVO;
 import com.ncs.vo.MemberVO;
 
 @RequestMapping(value = "/member")
@@ -170,4 +174,29 @@ public class MemberController {
 
     }
 
+    @RequestMapping(value = "/sendauthkey")
+    public ModelAndView sendAuthkey(ModelAndView mv, AuthKeyDTO authdto) {
+    	if(memberService.sendAuthkey(authdto) > 0) {
+    		mv.addObject("message","fail");
+    }else {
+    	mv.addObject("massage","200");
+    }
+    	mv.setViewName("jsonView");
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/authkeycheck")
+    public ModelAndView authKeycheck(ModelAndView mv, AuthKeyDTO authdto) {
+    	System.out.println(authdto.toString());
+    	if(memberService.authKeyCheck(authdto) > 0) {
+    		mv.addObject("message", "200");
+    		System.out.println("성공");
+    	}else {
+    		mv.addObject("message", "fail");
+    		System.out.println("실패");
+    	}
+    	mv.setViewName("jsonView");
+    	return mv;
+    }
+    
 }
