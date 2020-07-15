@@ -127,7 +127,13 @@
 		   class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		<h4>사는얘기</h4>
+			<c:if test="${pageMaker.cri.category eq null}"><h4>커뮤니티</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '공지사항'}"><h4>공지사항</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '사는얘기'}"><h4>사는얘기</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '포럼'}"><h4>포럼</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq 'IT행사'}"><h4>IT행사</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '정기모임/스터디'}"><h4>정기모임/스터디</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '학원/홍보'}"><h4>학원/홍보</h4></c:if>
 	</div>
 
 	<div class="panel panel-default clearfix fa-">

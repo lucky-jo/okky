@@ -87,15 +87,15 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/columnm/list" data-sort="id"
+						<li><a href="/columnm/list?category=${pageMaker.cri.category}" data-sort="id"
 							class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
 																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
-						<li><a href="/columnm/list?sorted=like"
+						<li><a href="/columnm/list?sorted=like&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
-						<li><a href="/columnm/list?sorted=reply"
+						<li><a href="/columnm/list?sorted=reply&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
 						<%--<li><a href="/columnm/list" class="category-sort-link ">스크랩순</a></li>--%>
-						<li><a href="/columnm/list?sorted=view"
+						<li><a href="/columnm/list?sorted=view&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
 

@@ -47,7 +47,8 @@
             <ul class="nav">
                 <li><a href="/comunity/list" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">All</span><span 
-                		class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span 
+                		class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> 
+                		<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}"/>'><span 
                 		class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/comunity/list?category=공지사항&sorted=" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span 
@@ -85,14 +86,14 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">커뮤니티</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '공지사항'}"><h4 class="sub-title">공지사항</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '사는얘기'}"><h4 class="sub-title">사는얘기</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '포럼'}"><h4 class="sub-title">포럼</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq 'IT행사'}"><h4 class="sub-title">IT행사</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '정기모임/스터디'}"><h4 class="sub-title">정기모임/스터디</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '학원/홍보'}"><h4 class="sub-title">학원/홍보</h4></c:if>
-			<form action="/comunity/list" method="get"
+			<c:if test="${pageMaker.cri.category eq null}"><h4>커뮤니티</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '공지사항'}"><h4>공지사항</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '사는얘기'}"><h4>사는얘기</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '포럼'}"><h4>포럼</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq 'IT행사'}"><h4>IT행사</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '정기모임/스터디'}"><h4>정기모임/스터디</h4></c:if>
+        	<c:if test="${pageMaker.cri.category eq '학원/홍보'}"><h4>학원/홍보</h4></c:if>
+			<form action="/comunity/list?category=${pageMaker.cri.category}" method="get"
 				name="category-filter-form" id="category-filter-form">
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
@@ -106,21 +107,24 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-search"></i>
 								</button>
+								<button type="clear" class="btn btn-default">
+									<i class="fa fa-clear"></i>
+								</button>
 
 							</span>
 						</div>
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/comunity/list" data-sort="id"
+						<li><a href="/comunity/list?category=${pageMaker.cri.category}" data-sort="id"
 							class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
 																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
-						<li><a href="/comunity/list?sorted=like"
+						<li><a href="/comunity/list?sorted=like&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
-						<li><a href="/comunity/list?sorted=reply"
+						<li><a href="/comunity/list?sorted=reply&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
 						<%--<li><a href="/comunity/list" class="category-sort-link ">스크랩순</a></li>--%>
-						<li><a href="/comunity/list?sorted=view"
+						<li><a href="/comunity/list?sorted=view&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
 
@@ -148,14 +152,14 @@
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${merge.board.seq}</span>
-									<a href="#"
+									<a href="/comunity/list?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}"
 									   class="list-group-item-text item-tag label label-info"><i
 											class="fa fa-comments"></i> ${merge.board.category}</a>
 								</div>
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
@@ -203,14 +207,14 @@
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${merge.board.seq}</span>
-									<a href="#"
+									<a href="/comunity/list?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}"
 									   class="list-group-item-text item-tag label label-info"><i
 											class="fa fa-comments"></i> ${merge.board.category}</a>
 								</div>
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
+											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
 											${merge.board.title} </a>
 								</h5>
 							</div>

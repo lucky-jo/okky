@@ -77,9 +77,9 @@
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<c:if test="${pageMaker.cri.category eq null}"><h4 class="sub-title">Q&A</h4></c:if>
-			<c:if test="${pageMaker.cri.category eq 'Tech Q&A'}"><h4 class="sub-title">Tech Q&A</h4></c:if>
-			<c:if test="${pageMaker.cri.category eq 'Blockchain Q&A'}"><h4 class="sub-title">Blockchain Q&A</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq null}"><h4>Q&A</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'Tech Q&A'}"><h4>Tech Q&A</h4></c:if>
+			<c:if test="${pageMaker.cri.category eq 'Blockchain Q&A'}"><h4>Blockchain Q&A</h4></c:if>
 			<form action="/qna/list" method="get" name="category-filter-form"
 				id="category-filter-form">
 				<div class="category-filter-wrapper">
@@ -100,15 +100,15 @@
 					</div>
 
 					<ul class="list-sort pull-left">
-						<li><a href="/qna/list" data-sort="id"
+						<li><a href="/qna/list?category=${pageMaker.cri.category}" data-sort="id"
 							class=" <c:out value="${pageMaker.cri.sorted eq null ? 'active':''}" />
 																		<c:out value="${pageMaker.cri.sorted eq '' ? 'active':''}" />">최신순</a></li>
-						<li><a href="/qna/list?sorted=like"
+						<li><a href="/qna/list?sorted=like&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'like' ? 'active':''}" />">추천순</a></li>
-						<li><a href="/qna/list?sorted=reply"
+						<li><a href="/qna/list?sorted=reply&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'reply' ? 'active':''}" />"">댓글순</a></li>
 						<%--<li><a href="/qna/list" class="category-sort-link ">스크랩순</a></li>--%>
-						<li><a href="/qna/list?sorted=view"
+						<li><a href="/qna/list?sorted=view&category=${pageMaker.cri.category}"
 							class=" <c:out value="${pageMaker.cri.sorted eq 'view' ? 'active':''}" />"">조회순</a></li>
 					</ul>
 
