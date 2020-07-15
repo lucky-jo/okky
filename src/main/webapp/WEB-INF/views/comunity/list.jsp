@@ -107,8 +107,8 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-search"></i>
 								</button>
-								<button type="clear" class="btn btn-default">
-									<i class="fa fa-clear"></i>
+								<button class="btn btn-default">
+									<a href="javascript:history.back();">clear</a></i>
 								</button>
 
 							</span>
