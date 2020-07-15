@@ -122,6 +122,13 @@
 	<select id="emailDuplicate" resultType="int">
 		select count(*) from member where email = #{email}
 	</select>
+	
+	<insert id="sendAuthkey">
+		insert into authkey (email,authkey) values(#{email},#{authkey})
+	</insert>
 
+	<select id="authKeyCheck" resultType="int">
+		select count(*) from authkey where email = #{email} and authkey = #{authkey}
+	</select>
 </mapper>
   
