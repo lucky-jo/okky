@@ -53,7 +53,7 @@ public class JobsController {
 	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  mv.addObject("message","새 글이 등록 되었습니다");
-	          mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq()); 
+	          mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq()); 
 	    }
 		  return mv;
 	    }//insert:새글 등록창
@@ -64,8 +64,8 @@ public class JobsController {
 		  return mv;
 	  }
 	 
-	  @RequestMapping(value = "/detailForm")
-		public ModelAndView detailForm( ModelAndView mv, JobsVO vo,JobsReplyVO rvo, LikeDTO dto, ReplyLikeDTO rdto,HttpServletRequest request) {
+	  @RequestMapping(value = "/get")
+		public ModelAndView get( ModelAndView mv, JobsVO vo,JobsReplyVO rvo, LikeDTO dto, ReplyLikeDTO rdto,HttpServletRequest request) {
 		    List<JobsReplyVO> rlist = jservice.selectlist(rvo.getSeq());
 		    for (JobsReplyVO jobsreplyVO : rlist) {
 	    	    rdto.setBoard(jobsreplyVO.getBoard());
@@ -85,9 +85,8 @@ public class JobsController {
 	        	System.out.println(cnt);
 	        	mv.addObject("liketype", cnt);
 	    	}	  
-		    mv.addObject("Detailr",rlist);
-		    mv.addObject("Detail", vo);
-			mv.setViewName("jobs/detailForm");
+		    mv.addObject("get", vo);
+			mv.setViewName("jobs/get");
 
 			// 4) 결과 ( Detail or Update 인지 ) 
 			// => request.getParameter("code") 가 U 인지 확인
@@ -107,7 +106,7 @@ public class JobsController {
 			
 			if (cnt>0) {
 				mv.addObject("message", "성공");
-				mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq());
+				mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq());
 			}else {
 				mv.addObject("fCode","BN");
 				mv.setViewName("member/doFinish");
@@ -128,7 +127,7 @@ public class JobsController {
 			if (service.delete(vo)>0) {//성공 => 글목록 출력 (blist)
 				mv.addObject("message", "삭제되었습니다");	
 				mv.addObject("Detail",service.selectlist());
-				mv.setViewName("redirect:/jobs/detailForm?seq="+vo.getSeq());
+				mv.setViewName("redirect:/jobs/get?seq="+vo.getSeq());
 			}	
 			else { // 실패 => doFinish.jsp
 				mv.addObject("fCode","BD");
