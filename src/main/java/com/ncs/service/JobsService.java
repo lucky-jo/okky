@@ -28,7 +28,7 @@ public interface JobsService {
 
 	int totalRowCount();
 
-	int countUp(JobsVO vo);
+	int countUp(int seq);
 
 	
 
