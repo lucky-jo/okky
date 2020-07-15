@@ -47,13 +47,13 @@
     </insert>
     
     <!-- jobs rinsert() -->
-   <insert id="rinsert">
+   <!-- <insert id="rinsert">
     <selectKey keyProperty="seq" order="BEFORE" resultType="int">
       select IFNULL(MAX(seq),0)+1 as seq from jobs where id = #{id} 
     </selectKey>
     insert into jobs( seq,id,title,content,regdate,cnt,likecount,updatedate,exist,category )
     values( #{seq},#{id},#{title},#{content},SYSDATE(),#{cnt},#{likecount},SYSDATE(),#{exist},#{category}) 
-   </insert>
+   </insert> -->
      
     <!--jobs Detail() -->
     <select id="selectOne" resultType="com.ncs.vo.JobsVO">
