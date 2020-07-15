@@ -97,7 +97,7 @@
 	select count(*) from jobs
   </select>
   <!-- getcount -->
-    <select id="getcount">
+    <select id="getcount" resultType="int">
     select count(*) from getcount where id=#{id} and board=#{board} and 
     today=#{today} and seq=#{seq}
     </select>
