@@ -29,6 +29,10 @@ public interface JobsService {
 	int totalRowCount();
 
 	int countUp(int seq);
+	
+	public int getcount(GetCountDTO dto);
+
+	int registercount(GetCountDTO dto);
 
 	
 
