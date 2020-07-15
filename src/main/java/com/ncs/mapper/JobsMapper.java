@@ -36,7 +36,6 @@ public interface JobsMapper {
 
 	public int countUp(int seq);
 
-	public int countUp(JobsVO vo);
 
 
 	
