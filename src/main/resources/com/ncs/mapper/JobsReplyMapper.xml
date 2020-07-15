@@ -24,4 +24,6 @@
   	update jobsreply set rexist = 0 where rseq = #{rseq}
   </update>
   
+   
+  
   </mapper>
