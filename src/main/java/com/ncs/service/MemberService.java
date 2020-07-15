@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.AuthKeyDTO;
+import com.ncs.vo.AuthVO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
 
@@ -35,4 +36,8 @@ public interface MemberService {
     
     int emailDuplicate(MemberVO memberVO);
 
+    int sendAuthkey(AuthKeyDTO authdto);
+    
+    int authKeyCheck(AuthKeyDTO authdto);
+    
 }
