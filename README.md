@@ -71,7 +71,9 @@ okky web-site_Clone / <https://okky.kr/>
     * 댓글 CRUD
     * Controller 회원 인증 처리
     * Service Transaction 처리
-    * 회원가입 유효성 및 중복 검사
+    * 회원가입시 유효성 및 중복 검사
+    * 회원가입시 이메일 인증 기능 구현
+    * 아이디 및 비밀번호 분실시 찾는 기능 구현
     * 애플리케이션 Tester
  * 엄만성
     * Column 게시판 CRUD
