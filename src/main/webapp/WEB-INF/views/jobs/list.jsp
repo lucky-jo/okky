@@ -142,7 +142,7 @@
 								</div>
 
 							 	<h5 class="list-group-item-heading list-group-item-evaluate">
-									<a href="/jobs/detailForm?seq=${melon.seq }&board=${melon.board}"> ${melon.title} </a>
+									<a href="/jobs/get?seq=${melon.seq }&board=${melon.board}"> ${melon.title} </a>
 								</h5>
 							</div>
 
