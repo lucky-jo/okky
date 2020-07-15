@@ -61,7 +61,6 @@
 		title="Jobs"><a href="/jobs/list" class="link"><i
 			class="nav-icon fa fa-group"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
-
 </ul>
 
 <ul class="nav nav-sidebar nav-bottom">
@@ -71,7 +70,7 @@
 			target="_blank"><i class="fa fa-github"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Github	Issues</span></a></li>
 </ul>
-</div>
+
 <div class="sidebar-category-nav">
 	<h3 class="sub-title">칼럼</h3>
 	<ul class="nav">
