@@ -74,8 +74,8 @@ public class JobsServiceImpl<GetCountDto> implements JobsService {
 		return mapper.totalRowCount();
 	}
 	@Override
-	public int countUp(JobsVO vo) {
-		return mapper.countUp(vo);
+	public int countUp(int seq) {
+		return mapper.countUp(seq);
 	}
 	
 	
