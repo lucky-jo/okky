@@ -17,7 +17,7 @@ import com.ncs.vo.JobsVO;
 
 
 @Service
-public class JobsServiceImpl<GetCountDto> implements JobsService {
+public class JobsServiceImpl implements JobsService {
 	
 	
 	@Autowired
@@ -77,7 +77,14 @@ public class JobsServiceImpl<GetCountDto> implements JobsService {
 	public int countUp(int seq) {
 		return mapper.countUp(seq);
 	}
+	@Override
+	public int getcount(GetCountDTO dto) {
+		return mapper.getcount(dto);
+	}
 	
-	
+	@Override
+	public int registercount(GetCountDTO dto) {
+		return mapper.getcount(dto);
+	}
 	
 }
