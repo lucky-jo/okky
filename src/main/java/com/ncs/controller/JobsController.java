@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsReplyService;
@@ -49,7 +50,7 @@ public class JobsController {
 	}//list
 	
 	
-	  @RequestMapping("/insert") 
+	  @RequestMapping("/register") 
 	  public ModelAndView insert(ModelAndView mv,JobsVO vo) { 
 		  if(service.insert(vo)>0) {
 			  mv.addObject("message","새 글이 등록 되었습니다");
@@ -58,11 +59,10 @@ public class JobsController {
 		  return mv;
 	    }//insert:새글 등록창
 	  
-	  @RequestMapping("/insertForm")
-	  public ModelAndView insertForm(ModelAndView mv) {
-		  mv.setViewName("jobs/insertForm");
-		  return mv;
-	  }
+	  @RequestMapping(value = "/register", method = RequestMethod.GET)
+		public void getInsert() {
+		
+		}
 	 
 	  @RequestMapping(value = "/get")
 		public ModelAndView get( ModelAndView mv, JobsVO vo,JobsReplyVO rvo, LikeDTO dto, ReplyLikeDTO rdto,HttpServletRequest request) {
