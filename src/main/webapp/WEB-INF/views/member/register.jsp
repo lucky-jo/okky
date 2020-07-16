@@ -39,166 +39,190 @@
     <script src="//okky.kr/assets/libs/html5-ca664f64318d191265abf57fdf467aec.js" type="text/javascript"></script>
 <!--    <script src="/resources/jqLib/joinCheck.js"></script>-->
 <script>
-    var emailauth = 0;
-    
-    var idCheck = function () {
-    var userid = $('#username').val();
-    if (userid.length < 4) {
-        $('#idCheck1').attr("style","");
-        return false;
-    } else if (userid.replace(/[a-z.0-9]/gi, '').length > 0) {
-        $('#idCheck1').attr("style","display: none");
-        $('#idCheck2').attr("style","");
-        return false;
-    } else {
-        $('#idCheck1').attr("style","display: none");
-        $('#idCheck2').attr("style","display: none");
-        $.ajax({
-            type:'Get',
-            url:'/member/useridDuplicate',
-            data: {
-                userid : userid
-            },
-            success:function(data){
-                if(data.message == '200') {
-                    $('#idCheck3').attr("style","display: none");
-                } else if(data.message =='fail') {
-                    $('#idCheck3').attr("style","");
-                }
-            }
-        });
+	var oneclick = 1; // 요총 한번만 할 수 있는 스위치(1=on, 0=off)
+	var idCheck = function() {
+		var userid = $('#username').val();
+		if (userid.length < 4) {
+			$('#idCheck1').attr("style", "");
+			return false;
+		} else if (userid.replace(/[a-z.0-9]/gi, '').length > 0) {
+			$('#idCheck1').attr("style", "display: none");
+			$('#idCheck2').attr("style", "");
+			return false;
+		} else {
+			$('#idCheck1').attr("style", "display: none");
+			$('#idCheck2').attr("style", "display: none");
+			$.ajax({
+				type : 'Get',
+				url : '/member/useridDuplicate',
+				data : {
+					userid : userid
+				},
+				success : function(data) {
+					if (data.message == '200') {
+						$('#idCheck3').attr("style", "display: none");
+					} else if (data.message == 'fail') {
+						$('#idCheck3').attr("style", "");
+					}
+				}
+			});
 
-    }
-}; // idCheck()
+		}
+	}; // idCheck()
 
-	var pwCheck = function () {
-    var password = $('#password').val();
-    var pLength=password.length ; 
-    if (password.length < 4) {
-        $('#pwCheck1').attr("style","");
-        return false;
-    } else if (password.replace(/[!-*]/gi,'').length >= pLength) {
-        $('#pwCheck1').attr("style","display: none");
-        $('#pwCheck2').attr("style","");
-        return false;
-    } else if (password.replace(/[0-9.!-*]/gi,'').length > 0) {
-    	$('#pwCheck2').attr("style","display: none");
-    	$('#pwCheck3').attr("style","");
-    } else {
-    	$('#pwCheck1').attr("style","display: none");
-    	$('#pwCheck2').attr("style","display: none");
-        $('#pwCheck3').attr("style","display: none");
-        return true;
-    }
-}; // pwCheck()
+	var pwCheck = function() {
+		var password = $('#password').val();
+		var pLength = password.length;
+		if (password.length < 4) {
+			$('#pwCheck1').attr("style", "");
+			return false;
+		} else if (password.replace(/[!-*]/gi, '').length >= pLength) {
+			$('#pwCheck1').attr("style", "display: none");
+			$('#pwCheck2').attr("style", "");
+			return false;
+		} else if (password.replace(/[0-9.!-*]/gi, '').length > 0) {
+			$('#pwCheck2').attr("style", "display: none");
+			$('#pwCheck3').attr("style", "");
+		} else {
+			$('#pwCheck1').attr("style", "display: none");
+			$('#pwCheck2').attr("style", "display: none");
+			$('#pwCheck3').attr("style", "display: none");
+			return true;
+		}
+	}; // pwCheck()
 
-	var emCheck = function(){
-    var email = $('#email').val();
-    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-    if (exptext.test(email) == false) {
-        $('#emailCheck1').attr("style","");
-        return false;
-    } else {
-    	  $('#emailCheck1').attr("style","display: none");
-    	  $.ajax({
-              type:'Get',
-              url:'/member/emailDuplicate',
-              data: {
-                  email : email
-              },
-              success:function(data){
-                  if(data.message == '200') {
-                      $('#emailCheck2').attr("style","display: none");
-                      emailauth = 1;
-                  } else if(data.message =='fail') {
-                      $('#emailCheck2').attr("style","");
-                  }
-              }
-          });
-    }
-}; // emCheck()
+	/* 	var emCheck = function() {
+	 var email = $('#email').val();
+	 var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	 if (exptext.test(email) == false) {
+	 $('#emailCheck1').attr("style", "");
+	 return false;
+	 } else {
+	 $('#emailCheck1').attr("style", "display: none");
+	 $.ajax({
+	 type : 'Get',
+	 url : '/member/emailDuplicate',
+	 data : {
+	 email : email
+	 },
+	 success : function(data) {
+	 if (data.message == '200') {
+	 $('#emailCheck2').attr("style", "display: none");
+	 emailauth = 1;
+	 } else if (data.message == 'fail') {
+	 $('#emailCheck2').attr("style", "");
+	 }
+	 }
+	 });
+	 }
+	 }; // emCheck() */
 
-	var nmCheck = function(){
-    var name = $('#fullName').val();
-    if (name.length < 2) {
-    	console.log(name.length);
-        $('#nameCheck1').attr("style","");
-        return false;
-    } else if (name.replace(/[a-z.가-힇]/gi, '').length > 0) {
-        $('#nameCheck1').attr("style","display: none");
-        $('#nameCheck2').attr("style","");
-        return false;
-    } else {
-    	  $('#nameCheck1').attr("style","display: none");
-          $('#nameCheck2').attr("style","display: none");
-        return true;
-    }
-}; // nmCheck()
+	var nmCheck = function() {
+		var name = $('#fullName').val();
+		if (name.length < 2) {
+			console.log(name.length);
+			$('#nameCheck1').attr("style", "");
+			return false;
+		} else if (name.replace(/[a-z.가-힇]/gi, '').length > 0) {
+			$('#nameCheck1').attr("style", "display: none");
+			$('#nameCheck2').attr("style", "");
+			return false;
+		} else {
+			$('#nameCheck1').attr("style", "display: none");
+			$('#nameCheck2').attr("style", "display: none");
+			return true;
+		}
+	}; // nmCheck()
 
-	var nickCheck = function () {
-    var nickname = $('#nickname').val();
-    if (nickname.replace(/[a-z.가-힇.0-9]/gi, '').length > 0) {
-        $('#nickCheck2').attr("style","");
-        return false;
-    } else {
-        $('#nickCheck2').attr("style","display: none");
-        $.ajax({
-            type:'Get',
-            url:'/member/nicknameDuplicate',
-            data: {
-                nickname : nickname
-            },
-            success:function(data){
-                if(data.message == '200') {
-                    $('#nickCheck1').attr("style","display: none");
-                } else if(data.message =='fail') {
-                    $('#nickCheck1').attr("style","");
-                }
-            }
-        });
+	var nickCheck = function() {
+		var nickname = $('#nickname').val();
+		if (nickname.replace(/[a-z.가-힇.0-9]/gi, '').length > 0) {
+			$('#nickCheck2').attr("style", "");
+			return false;
+		} else {
+			$('#nickCheck2').attr("style", "display: none");
+			$.ajax({
+				type : 'Get',
+				url : '/member/nicknameDuplicate',
+				data : {
+					nickname : nickname
+				},
+				success : function(data) {
+					if (data.message == '200') {
+						$('#nickCheck1').attr("style", "display: none");
+					} else if (data.message == 'fail') {
+						$('#nickCheck1').attr("style", "");
+					}
+				}
+			});
 
-    }
-}; // nickCheck()
+		}
+	}; // nickCheck()
 
-	var mailauth = function(){
-	if(emailauth == 0){
-		return;
-	}else{
+	var mailauth = function(e) {
+		if (oneclick == 0) {
+			return false;
+		} else {
+			console.log(oneclick); 
+			var email = $('#email').val();
+			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			if (exptext.test(email) == false) {
+				$('#emailCheck1').attr("style", "");
+				return false;
+			} else {
+				$('#emailCheck1').attr("style", "display: none");
+				$.ajax({
+					type : 'Get',
+					url : '/member/emailDuplicate',
+					data : {
+						email : email
+					},
+					success : function(data) {
+						if (data.message == '200') {
+							$('#emailCheck2').attr("style", "display: none");
+						} else if (data.message == 'fail') {
+							$('#emailCheck2').attr("style", "");
+							return false;
+						}
+					}
+				});
+			}
+			$.ajax({
+				type : 'Get',
+				url : "/member/sendauthkey",
+				data : {
+					email : document.getElementById("email").value
+				},
+				success : function(data) {
+					if (data.message == '200') {
+						$('#authkey').attr("style", "");
+						oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
+					} else if (data.message == 'fail') {
+						$('#authkey').attr("style", "");
+					}
+				}
+			}); // ajax
+
+		}
+	}
+
+	var authkeycheck = function() {
 		$.ajax({
-			type :'Get',
-			url : "/member/sendauthkey",
+			type : 'Get',
+			url : "/member/authkeycheck",
 			data : {
-				email : document.getElementById("email").value
+				email : document.getElementById("email").value,
+				authkey : document.getElementById("inputauthkey").value
 			},
-			success:function(data){
-				if(data.message == '200'){
-					$('#authkey').attr("style","");
-				}else if(data.message =='fail') {
-                    $('#authkey').attr("style","");
-                }
+			success : function(data) {
+				if (data.message == '200') {
+					$('#authkey').attr("style", "");
+				} else if (data.message == 'fail') {
+					$('#authkey').attr("style", "");
+				}
 			}
 		}); // ajax
 	}
-}
-
-	var authkeycheck = function(){
-			$.ajax({
-				type :'Get',
-				url : "/member/authkeycheck",
-				data : {
-					email : document.getElementById("email").value,
-					authkey : document.getElementById("inputauthkey").value
-				},
-				success:function(data){
-					if(data.message == '200'){
-						$('#authkey').attr("style","display: none");
-					}else if(data.message =='fail') {
-	                    $('#authkey').attr("style","");
-	                }
-				}
-			}); // ajax
-		}
-	
 </script>
 <![endif]-->
 
@@ -322,17 +346,20 @@
 										아닙니다.</li>
 									<li style="display: none" id="emailCheck2">[이메일] : 이미 중복된
 										값이 존재합니다.</li>
-									<li style="display: none" id="authCheck">[인증키] : 인증키가 맞지 않습니다.
-										</li>
+									<li style="display: none" id="authCheck">[인증키] : 인증키가 맞지
+										않습니다.</li>
+
 								</ul>
 							</div>
-							<div class="alert " role="alert" style="display: none" id="authkey">
+							<div class="alert " role="alert" style="display: none"
+								id="authkey">
 								<input type="text" class="form-control input-sm" name="authkey"
-									placeholder="인증번호 8자리" id="inputauthkey">
-								<button class="btn btn-primary btn-block" onclick="authkeycheck()">인증확인</button>
+									placeholder="인증번호 7자리" id="inputauthkey">
+								<button class="btn btn-primary btn-block"
+									onclick="authkeycheck()">인증확인</button>
 							</div>
 
-							<fieldset>
+							<div>
 
 								<input type="text" name="userid" class="form-control input-sm"
 									required="" placeholder="아이디" value="" id="username"
@@ -340,11 +367,11 @@
 									class="form-control input-sm" placeholder="비밀번호" required=""
 									value="" id="password" onfocusout="pwCheck()" /> <input
 									type="text" name="email" class="form-control input-sm"
-									placeholder="이메일" required="" value="" id="email"
-									onfocusout="emCheck()" />
-								<button class="btn btn-primary btn-block" onclick="mailauth()">이메일
-									인증</button>
-
+									placeholder="이메일" required="" value="" id="email" />
+								<div>
+									<div class="btn btn-primary btn-block" onclick="mailauth()">이메일
+										인증</div>
+								</div>
 								<input type="text" name="username" class="form-control input-sm"
 									placeholder="이름" required="" value="" id="fullName"
 									onfocusout="nmCheck()" /> <input type="text" name="nickname"
@@ -356,7 +383,7 @@
 										value="true" checked="checked"> 이메일 수신 동의
 									</label>
 								</div>
-							</fieldset>
+							</div>
 
 							<%--<div class="recaptcha-wrapper">
 
@@ -452,8 +479,8 @@
 
 	</div>
 	<script>
-    var contextPath = "", encodedURL = "%2Fuser%2Fregister";
-</script>
+		var contextPath = "", encodedURL = "%2Fuser%2Fregister";
+	</script>
 	<script
 		src="//okky.kr/assets/application-857e72d372e881813d8d698bad484d96.js"
 		type="text/javascript"></script>
@@ -462,22 +489,21 @@
 		type="text/javascript"></script>
 
 	<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-6707625-5', 'auto');
-    ga('send', 'pageview');
-
-</script>
+		ga('create', 'UA-6707625-5', 'auto');
+		ga('send', 'pageview');
+	</script>
 
 	<div id="userPrivacy" class="modal" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">

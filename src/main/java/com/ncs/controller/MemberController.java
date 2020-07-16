@@ -177,9 +177,10 @@ public class MemberController {
     @RequestMapping(value = "/sendauthkey")
     public ModelAndView sendAuthkey(ModelAndView mv, AuthKeyDTO authdto) {
     	if(memberService.sendAuthkey(authdto) > 0) {
-    		mv.addObject("message","fail");
+    		mv.addObject("message","200");
+    		System.out.println("성공");
     }else {
-    	mv.addObject("massage","200");
+    	mv.addObject("massage","fail");
     }
     	mv.setViewName("jsonView");
     	return mv;
