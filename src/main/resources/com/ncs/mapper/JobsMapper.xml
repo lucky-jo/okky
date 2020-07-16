@@ -104,7 +104,7 @@
     
     <!-- registercount -->
     <select id="registercount" resultType="int">
-    insert into registercount values(#{id},#{board},#{today},#{seq})
+    insert into getcount values(#{id},#{board},#{today},#{seq})
     </select>
   
   <!-- replyInsert() -->
