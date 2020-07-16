@@ -44,6 +44,7 @@ function del() {
 			class="nav-sidebar-label nav-sidebar-category-label">Jobs</span></a></li>
 
 </ul>
+
 <ul class="nav nav-sidebar nav-bottom">
 	<li data-toggle="tooltip" data-placement="right" data-container="body" 
 	title="Github Issues"><a 
@@ -52,98 +53,403 @@ function del() {
 	class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
 </div>
+<div class="sidebar-category-nav">
+            <h3 class="sub-title">Jobs</h3>
+            <ul class="nav">
+                <li><a href="/jobs/list" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">All</span><span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span 
+                		class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=a" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span 
+                		class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=b" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">구인</span> <span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span 
+                		class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=c" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">구직</span> <span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span 
+                		class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=d" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">eBrainJobs</span> <span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq 'd' ? 'nav-selected':''}"/>'><span 
+                		class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=e" class="link"><span 
+                		class="nav-sidebar-label nav-sidebar-category-label">구인(정규직)</span> <span 
+                		class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span 
+                		class="nav-selected-dot"></span></span></a></li>
+               
+            </ul>
+            <div class="special-nav"></div>
+ </div>
+        
+     <div id="article" class="content" role="main">   
+     
+     <div class="nav" role="navigation">
+		<a href="/jobs/insertForm" 
+		class="create btn btn-success btn-wide pull-right"><i 
+		class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div>
-	Jobs
-	<div style="float: right;">
-	<a href="/jobs/updateForm?seq=${message.seq}">내글 수정</a>&nbsp;&nbsp;
-	<a href="/jobs/delete?seq=${message.seq}">삭제</a>
+		<h4>구인</h4>
 	</div>
-	
-</div><br><br>
-<div style="border: 10px;">
-	content
-</div><br>
-<div>
-최신순  추천순  댓글순  스크랩순  조회순
-</div>
-<br>
-<table>
-	<tr height="40"><td>Seq</td>
-		<td>${Detail.seq}</td></tr>
-	<tr height="40"><td>Title</td>
-		<td>${Detail.title}</td></tr>
-	<tr height="40"><td>Id</td>
-		<td>${Detail.id}</td></tr>
-	<tr height="40"><td>Content</td>
-		<td><textarea rows="10" cols="40" readonly="readonly">${message.content}</textarea></td>
-	</tr>
-	<tr height="40"><td>Regdate</td>
-		<td>${Detail.regdate}</td></tr>
-	<tr height="40"><td>Count</td>
-		<td>${Detail.cnt}</td></tr>
-</table><br>
+
+<div class="panel panel-default clearfix fa-">
+		<div class="panel-heading clearfix">
+			<div class='avatar avatar-medium clearfix pull-left'>
+				<a href='/user/info/77218' class='avatar-photo'><img 
+					src='//www.gravatar.com/avatar/d8bb3e40bda6895a753049fb0698cc5f?d=identicon&s=40'/></a> 
+				<div class="avatar-info">
+					<a class="nickname" href="/user/info/77218"  title="${get.title}">${get.id}</a> 
+					<div class="activity">
+						<span class="fa fa-flash"></span> 113
+					</div>
+					<div class="date-created">
+						<span class="timeago" title="2020-07-02 11:47:20.0">2020-07-02 11:47:20</span> 
+					</div> 
+				</div>
+			</div>
+			<div class="content-identity pull-right">
+				<div class="content-identity-count">
+					<i class="fa fa-comment"></i> 댓글수
+				</div>
+				<div class="content-identity-count">
+					<i class="fa fa-eye"></i> ${get.cnt}
+				</div>
+			</div>
+		</div>
+		<div class="content-container clearfix">
+			<div id="content-body" class="panel-body content-body pull-left">
+				<div class="content-tags">
+					<span class="list-group-item-text article-id">#${get.seq}</span>
+					<a href="/articles/life" 
+					class="list-group-item-text item-tag label label-info"><i 
+					class="fa fa-comments"></i> ${get.category}</a>
+				</div>
+				<h2 class="panel-title">${get.title}</h2>
+				<hr/>
+				<article class="content-text" itemprop="articleBody">
 
 
+					${get.content}
 
 
-<form action="/jobs/rinsert" method="post">
-<table>
-<tr height="40"><td bgcolor="aqua" >Content</td>
-	<td><textarea rows="10" cols="40" name="rcontent"></textarea>
-	</td></tr>
-<tr><td></td><td><input type="submit" value="댓글등록">
-                 <input type="reset" value="취소">
-                 <input type="hidden" name="rid" value="message">
-                  <input type="hidden" name="seq" value="${message.seq}"></td>	
-</table>
-</form>
+				</article>
+
+			</div>
+
+						<div id="content-function"
+				class="content-function pull-right text-center">
+				<div class="content-function-group">
+					<div class="note-evaluate-wrapper">
+						<c:choose>
+							<c:when test="${liketype == 1 }">
+								<a href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=1" 
+									class="note-vote-btn" role="button" data-type="assent" 
+									data-eval="true" data-id="2010634" ><i
+									id="note-evaluate-assent-2010634"
+									class="fa fa-angle-up note-evaluate-assent-unvote "
+									data-placement="left" data-toggle="tooltip" title="추천" onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
+								<a href="javascript://" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2010634"><i
+									id="note-evaluate-dissent-2010634"
+									class="fa fa-angle-down note-evaluate-dissent-disabled"
+									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
+							<c:when test="${liketype == 0 }">
+								<a href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1" 
+									class="note-vote-btn" role="button"
+								   data-type="assent" data-eval="true" data-id="2013409"><i
+										id="note-evaluate-assent-2013409"
+										class="fa fa-angle-up note-evaluate-assent-assent"
+										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
+								<a href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2013409"><i
+										id="note-evaluate-dissent-2013409"
+										class="fa fa-angle-down note-evaluate-dissent-dissent"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+							<c:when test="${liketype == -1 }">
+								<a href="javascript://" class="note-vote-btn" role="button"
+								   data-type="assent" data-eval="true" data-id="2010634" ><i
+										id="note-evaluate-assent-2010634"
+										class="fa fa-angle-up note-evaluate-assent-disabled "
+										data-placement="left" data-toggle="tooltip" title="추천" ></i></a>
+								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
+								<a href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
+								   data-type="dissent" data-eval="true" data-id="2010634" onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
+										id="note-evaluate-dissent-2010634"
+										class="fa fa-angle-down note-evaluate-dissent-unvote"
+										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+							</c:when>
+
+						</c:choose>
+						
+					</div>
+				</div>
+				<div class="content-function-group article-scrap-wrapper">
+					<a href="javascript://" id="article-scrap-btn" data-type="scrap"><i
+						class="fa fa-bookmark " data-toggle="tooltip"
+						data-placement="left" title="스크랩"></i></a>
+					<div id="article-scrap-count" class="content-count">0</div>
+				</div>
+			</div>
+			<div class="content-function-cog share-btn-wrapper">
+				<div class="dropdown">
+					<a
+						href="http://www.facebook.com/sharer/sharer.php?app_id=1451111438499030&sdk=joey&u=https%3A%2F%2Fokky.kr%2Farticle%2F734025&display=popup&ref=plugin"
+						class="btn-facebook-share"><i
+						class="fa fa-facebook-square fa-fw" data-toggle="tooltip"
+						data-placement="left" title="페이스북 공유"></i></a>
+
+				</div>
+				<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal" var="pinfo"/>
+				<c:if test="${pinfo.username eq get.id }">
+				<div class="dropdown">
+					<form method="post" name="article-delete-form"
+						id="article-delete-form">
+						<input type="hidden" name="_method" value="DELETE" id="_method" />
+						<div class="dropdown">
+							<a href="javascript://" data-toggle="dropdown"><i
+								class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+								title="게시물 설정"></i></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/jobs/update?seq=${get.seq}" class="edit"><i
+										class="fa fa-edit fa-fw"></i> 수정 </a></li>
+
+								<li><a href="/jobs/delete?seq=${get.seq }"
+									id="article-delete-btn"
+									onclick="return confirm(&#39;정말로 삭제하시겠습니까?&#39;)"><i
+										class="fa fa-trash-o fa-fw"></i> 삭제 </a></li>
+
+							</ul>
+						</div>
+					</form>
+				</div>
+				</c:if>
+				</sec:authorize>
+			</div>
+		</div>
+	</div>
+
+<div class="panel panel-default clearfix">
+		<!-- List group -->
+		<ul class="list-group">
+
+			<li id="note-title" class="list-group-item note-title">
+				<h3 class="panel-title">
+					답변 <span id="note-count">리플갯수</span>
+				</h3>
+			</li>
+			<c:forEach var="list" items="${replylist}">
+				<c:if test="${list.rexist == 1}">
+					<li class="list-group-item note-item clearfix" id="note-2015714">
+						<form action="/content/update/2015714" method="post"
+							data-id="2015714" class="note-update-form">
+							<input type="hidden" name="_method" value="PUT" id="_method" />
+							<div class="content-body panel-body pull-left">
+
+								<div class="note-select-indicator note-deselected">
+									<i class="fa fa-comment"></i>
+								</div>
+
+								<div class='avatar avatar-medium clearfix '>
+									<a href='/user/info/43814' class='avatar-photo'><img
+										src='//www.gravatar.com/avatar/eaa518caadea3ddd84540984e68cc0b6?d=identicon&s=40' /></a>
+									<div class="avatar-info">
+										<a class="nickname" href="/user/info/43814" title="defult">${list.rid }</a>
+										<div class="activity">
+											<span class="fa fa-flash"></span> 활동
+										</div>
+										<div class="date-created">
+											<span class="timeago" title="${list.regdate }">${list.regdate }
+											</span> 작성 <span class="date-saperate">∙ ${list.rupdatedate }</span>
+											수정됨
+
+										</div>
+									</div>
+								</div>
+								<fieldset class="form">
+									<article id="note-text-2015714"
+										class="list-group-item-text note-text">
+										<pre>${list.rcontent }</pre>
+									</article>
+								</fieldset>
+							</div>
+
+							<div class="content-function pull-right text-center">
+								<div class="content-function-group">
+									<div class="note-evaluate-wrapper">
+										<c:choose>
+											<c:when test="${list.liketype == 1 }">
+												<a 
+													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1" 
+													class="note-vote-btn" role="button"
+												  	data-type="assent" data-eval="true" data-id="2010634" ><i
+													id="note-evaluate-assent-2010634"
+													class="fa fa-angle-up note-evaluate-assent-unvote "
+													data-placement="left" data-toggle="tooltip" title="추천" 
+													onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+												<div id="content-vote-count-2010634" 
+													class="content-eval-count">${list.rlikecount}</div>
+												<a href="javascript://" class="note-vote-btn" role="button"
+												   data-type="dissent" data-eval="true" data-id="2010634"><i
+												   id="note-evaluate-dissent-2010634"
+												   class="fa fa-angle-down note-evaluate-dissent-disabled"
+												   data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+											<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
+											<c:when test="${list.liketype == 0 }">
+												<a 
+													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=1" 
+													class="note-vote-btn" role="button"
+												   	data-type="assent" data-eval="true" data-id="2013409"><i
+													id="note-evaluate-assent-2013409"
+													class="fa fa-angle-up note-evaluate-assent-assent"
+													data-placement="left" data-toggle="tooltip" title="추천"></i></a>
+												<div id="content-vote-count-2013409" 
+													class="content-eval-count">${list.rlikecount }</div>
+												<a 
+													href="/like/replylike?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1" class="note-vote-btn" role="button"
+												   	data-type="dissent" data-eval="true" data-id="2013409"><i
+													id="note-evaluate-dissent-2013409"
+													class="fa fa-angle-down note-evaluate-dissent-dissent"
+													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+											<c:when test="${list.liketype == -1 }">
+												<a href="javascript://" class="note-vote-btn" role="button"
+												   	data-type="assent" data-eval="true" data-id="2010634" ><i
+													id="note-evaluate-assent-2010634"
+													class="fa fa-angle-up note-evaluate-assent-disabled "
+													data-placement="left" data-toggle="tooltip" title="추천" ></i></a>
+												<div id="content-vote-count-2010634" 
+													class="content-eval-count">${list.rlikecount}</div>
+												<a 
+													href="/like/replydelete?rseq=${list.rseq}&board=${list.board}&parentBoard=${get.board}&parentSeq=${get.seq}&liketype=-1" 
+													class="note-vote-btn" role="button"
+												  	data-type="dissent" data-eval="true" data-id="2010634" 
+												  	onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
+													id="note-evaluate-dissent-2010634"
+													class="fa fa-angle-down note-evaluate-dissent-unvote"
+													data-placement="left" data-toggle="tooltip" title="반대"></i></a>
+											</c:when>
+
+										</c:choose>
+									</div>
+								</div>
+							</div>
+							<!-- 로그인 및 아이디 확인 후 출력 -->
+						 	<sec:authentication property="principal" var="pinfo"/>
+							<sec:authorize access="isAuthenticated()">
+							<c:if test="${pinfo.username eq list.rid }">
+							<div id="content-function-cog-2014246"
+								class="content-function-cog">
+								<div class="dropdown">
+									<a href="javascript://" data-toggle="dropdown"><i
+										class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+										title="게시물 설정"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="javascript://" class="note-edit-btn"
+											data-id="2014246"><i class="fa fa-edit fa-fw"></i> 수정</a></li>
+										<li><a
+											href="/comreply/delete?rseq=${list.rseq }&seq=${list.seq}"
+											class="note-delete-btn" data-id="2014246"><i
+												class="fa fa-trash-o fa-fw"></i> 삭제</a></li>
+									</ul>
+								</div>
+								<div class="buttons" style="display: none;">
+									<p>
+										<a href="javascript://"
+											class="btn btn-default btn-wide note-edit-cancel-btn">취소</a>
+									</p>
+									<p>
+										<input type="submit" name="create"
+											class="btn btn-success btn-wide" value="저장" id="create" />
+									</p>
+								</div>
+							</div>
+						 	</c:if>
+							</sec:authorize> 
 
 
-<%-- <div align="center">
-<!-- 1) -->
-<c:choose>
-	<c:when test="${sPage>perPageNo}">
-		<a href="plist?currPage=1">First</a>&nbsp;
-		<a href="plist?currPage=${sPage-1}">Prev</a>&nbsp;&nbsp;
-	</c:when>
-	<c:otherwise>
-		<font color="gray">First&nbsp;Prev&nbsp;&nbsp;</font>
-	</c:otherwise>
-</c:choose>
-<!-- 2) -->
-<c:forEach  var="i"  begin="${sPage}" end="${ePage}">
-	<c:choose>
-		<c:when test="${i==currPage}">
-			<font size="5" color="Orange">${i}</font>
-		</c:when>
-		<c:otherwise>
-			<a href="plist?currPage=${i}">${i}</a>
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
-<!-- 3) -->
-<c:choose>
-	<c:when test="${ePage<totalPageNo}">
-		<a href="plist?currPage=${ePage+1}">&nbsp;&nbsp;Next</a>
-		<a href="plist?currPage=${totalPageNo}">&nbsp;Last</a>
-	</c:when>
-	<c:otherwise>
-		<font color="gray">&nbsp;&nbsp;Next&nbsp;Last</font>
-	</c:otherwise>
-</c:choose>
-</div> --%>
+						</form>
+
+						<form action="/content/delete/2015714" method="post"
+							id="note-delete-form-2015714">
+							<input type="hidden" name="_method" value="DELETE" id="_method" />
+						</form>
+
+					</li>
+				</c:if>
+			</c:forEach>
+			<li class="list-group-item note-item clearfix" id="note-2015129">
+
+				<form action="/content/delete/2015129" method="post"
+					id="note-delete-form-2015129">
+					<input type="hidden" name="_method" value="DELETE" id="_method" />
+				</form>
+			</li>
+
+			<li class="list-group-item note-form clearfix"><sec:authorize
+					access="isAuthenticated()">
+				<div class="panel-body">
+					<form action="/comreply/register" method="post"
+						class="note-create-form">
+
+						<div class="content-body panel-body pull-left">
+							<div style="margin-left: 5px;">
+
+								<div class="note-select-indicator note-deselected">
+									<i class="fa fa-edit"></i>
+								</div>
+
+								<div class='avatar avatar-medium clearfix '>
+									<a href='/user/info/94647' class='avatar-photo'><img
+										src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+									<div class="avatar-info">
+										<a class="nickname" href="/user/info/94647" title="<sec:authentication property="principal.username"/>"><sec:authentication property="principal.username"/></a>
+										<div class="activity block">
+											<span class="fa fa-flash"></span> 80
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<fieldset class="form">
+								<textarea name="rcontent" id="note-create" placeholder="댓글 쓰기"
+									class="form-control"></textarea>
+							</fieldset>
+						</div>
+						<div class="content-function-cog note-submit-buttons clearfix">
+							<p>
+								<a href="javascript://" id="note-create-cancel-btn"
+									class="btn btn-default btn-wide" style="display: none;">취소</a>
+							</p>
+							<input type="submit" name="create" id="btn-create-btn"
+								class="btn btn-success btn-wide" value=" 등록" />
+							<!-- disabled="disabled"  -->
+							<input type="hidden" name="rid" 
+								value="<sec:authentication property="principal.username"/>" /> 
+							<input type="hidden" name="seq" value="${get.seq }" />
+						</div>
+					</form>
+				</div>
+			</sec:authorize> 
+			<sec:authorize access="isAnonymous()">
+				<div class="panel-body">
+					<h5 class="text-center">
+						<a href="/login/auth?redirectUrl=%2Farticle%2F734930" 
+						class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
+					</h5>
+				</div>
+			</sec:authorize>
+			</li>
+		</ul>
+	</div>
+
 <%@include file="../includes/footer.jsp"%>
