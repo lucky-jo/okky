@@ -43,35 +43,96 @@ function inCheck() {
 	<li data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"><a href="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></a></li>
 </ul>
 </div>
-<h2>새 글 쓰기</h2>
+<div class="sidebar-category-nav">
+            <h3 class="sub-title">커뮤니티</h3>
+            <ul class="nav">
+                <li><a href="/jobs/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=b" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구인</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'b' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=c" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구직</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'c' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=d" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">eBrainJobs</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'd' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                <li><a href="/jobs/list?category=e" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">구인(정규직)</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
+                
+            </ul>
+            <div class="special-nav">
+            </div>
+        </div>
 
-<div>image</div>
-<div>
-	${logID}
+<div id="article-create" class="content" role="main">
+
+	<div class="content-header">
+		<h3>새 글 쓰기</h3>
+	</div>
+	<div class="panel panel-default clearfix">
+		<div class="panel-heading clearfix">
+			<div class='avatar avatar-medium clearfix pull-left'>
+				<a href='/user/info/94647' class='avatar-photo'><img
+					src='//www.gravatar.com/avatar/9673f3346e67c0417b21e970fcc821cb?d=identicon&s=40' /></a>
+				<div class="avatar-info">
+					<a class="nickname" href="/user/info/94647" title="Lee">Lee</a>
+					<div class="activity block">
+						<span class="fa fa-flash"></span> 37
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="panel-body">
+			<form action="/comunity/register" method="post"
+				id="article-form" class="article-form" role="form"
+				onsubmit="return postForm()">
+				<input type="hidden" name="SYNCHRONIZER_TOKEN"
+					value="e5959747-1ffb-4a10-b899-811d11569367"
+					id="SYNCHRONIZER_TOKEN" /> <input type="hidden"
+					name="SYNCHRONIZER_URI" value="/articles/questions/create"
+					id="SYNCHRONIZER_URI" />
+				<fieldset class="form">
+					<div class="form-group  has-feedback">
+						<div>
+							<select id="category" name="category" class="form-control"
+								required="">
+								<option value="">게시판을 선택해 주세요.</option>
+
+								<option value="좋은회사/나쁜회사" data-external="" 
+									data-anonymity="false">좋은회사/나쁜회사</option>
+								<option value="구인" data-external=""
+									data-anonymity="false">구직</option>
+								<option value="구직" data-external=""
+									data-anonymity="false">구직</option>
+								
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group  has-feedback">
+						<div>
+							<input type="text" name="title" required="" value=""
+								placeholder="제목을 입력해 주세요." class="form-control" id="title" />
+						</div>
+					</div>
+
+
+
+					<div class="form-group  has-feedback">
+
+						<textarea name="content" id="summernote" rows="20"
+							class="form-control input-block-level"></textarea>
+					</div>
+					<!-- <input type="hidden" name="content.textType" value="HTML" id="content.textType" /> -->
+					
+					<div class="nav" role="navigation">
+                                <fieldset class="buttons">
+                                    <a href="/jobs/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
+                                    <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
+                                    <input type="hidden" name="id" value="Lee">
+                                </fieldset>
+                            </div>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
 </div>
-	<form action="/jobs/insert" method="post">
-		<table>
-			<tr height="60">
-				<td>
-					<select name="category" id="category">
-  						<option value="0">게시판을 선택해주세요</option>
-    					<option value="1">사는 얘기</option>
-    					<option value="2">포럼</option>
-    					<option value="3">IT 행사</option>
-    					<option value="4">정기모임/스터디</option>
-    					<option value="5">학원/홍보</option>
-  					</select>
-				</td>
-			</tr>
-			<tr height="60">
-				<td><input type="text" name="title" id="title" value="제목을 입력해주세요"></td>
-			</tr>
-			<tr height="60">
-				<td><textarea rows="20" cols="60" name="content"></textarea></td>
-			</tr>
-				<td><input type="reset" value="취소">
-					<input type="submit" value="등록">
-					<input type="hidden" name="id" value="hongildong"></td>
-		</table>
-	</form>
+
+
 <%@include file="../includes/footer.jsp"%>

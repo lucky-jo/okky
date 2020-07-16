@@ -67,7 +67,7 @@
                 		class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/jobs/list?category=e" class="link"><span 
                 		class="nav-sidebar-label nav-sidebar-category-label">구인(정규직)</span> <span 
-                		class='nav-indicator <c:out value="${maker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span 
+                		class='nav-indicator <c:out value="${pageMaker.cri.category eq 'e' ? 'nav-selected':''}"/>'><span 
                 		class="nav-selected-dot"></span></span></a></li>
                
             </ul>
