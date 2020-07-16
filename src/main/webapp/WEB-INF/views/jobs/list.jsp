@@ -101,7 +101,11 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-search"></i>
 								</button>
-
+								<c:if test="${pageMaker.cri.keyword != null}">
+								<button class="btn btn-default">
+									<a href="javascript:history.back();">clear</a></i>
+								</button>
+								</c:if>
 							</span>
 						</div>
 					</div>

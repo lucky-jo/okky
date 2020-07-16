@@ -104,13 +104,14 @@
 								name="keyword" id="search-field" class="form-control"
 								placeholder="검색어" value="${pageMaker.cri.keyword}" /> <span
 								class="input-group-btn">
-								<button type="submit" class="btn btn-default">
+								<button type="submit" class="btn btn-default" id="button">
 									<i class="fa fa-search"></i>
 								</button>
+								<c:if test="${pageMaker.cri.keyword != null}">
 								<button class="btn btn-default">
 									<a href="javascript:history.back();">clear</a></i>
 								</button>
-
+								</c:if>
 							</span>
 						</div>
 					</div>
