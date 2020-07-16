@@ -93,16 +93,18 @@ public class MemberServiceImpl implements MemberService {
     public int nicknameDuplicate(MemberVO memberVO) {
         return memberMapper.nicknameDuplicate(memberVO);
     }
-    @Override
-    public int emailDuplicate(MemberVO memberVO) {
-        return memberMapper.emailDuplicate(memberVO);
-    }
+
+	@Override 
+	public int emailDuplicate(MemberVO memberVO) { 
+		return memberMapper.emailDuplicate(memberVO); 
+	}
+	
     @Transactional
     @Override
 	public int sendAuthkey(AuthKeyDTO authdto) {
     	// 1. db에 인증키 저장
         Random r = new Random();
-        String dice = Integer.toString(r.nextInt(4589362) + 49311); //이메일로 받는 인증코드 부분 (난수)
+        int dice = r.nextInt(8990)+1001 ; //이메일로 받는 인증코드 부분 (난수)
         authdto.setAuthkey(dice);
         int result = memberMapper.sendAuthkey(authdto);
     	// 2. 인증키 전송
