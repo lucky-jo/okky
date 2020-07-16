@@ -94,7 +94,11 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-search"></i>
 								</button>
-
+								<c:if test="${pageMaker.cri.keyword != null}">
+								<button class="btn btn-default">
+									<a href="/qna/list?category=${pageMaker.cri.category}">clear</a></i>
+								</button>
+								</c:if>
 							</span>
 						</div>
 					</div>
