@@ -83,7 +83,7 @@
 								</button>
 								<c:if test="${pageMaker.cri.keyword != null}">
 								<button class="btn btn-default">
-									<a href="javascript:history.back();">clear</a></i>
+									<a href="/columnm/list?category=${pageMaker.cri.category}">clear</a></i>
 								</button>
 								</c:if>
 							</span>
