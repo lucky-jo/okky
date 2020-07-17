@@ -40,6 +40,7 @@
 <!--    <script src="/resources/jqLib/joinCheck.js"></script>-->
 <script>
 	var oneclick = 1; // 요총 한번만 할 수 있는 스위치(1=on, 0=off)
+	var authclick = 1;
 	var idCheck = function() {
 		var userid = $('#username').val();
 		if (userid.length < 4) {
@@ -155,7 +156,6 @@
 					}
 				}
 			});
-
 		}
 	}; // nickCheck()
 
@@ -163,7 +163,7 @@
 		if (oneclick == 0) {
 			return false;
 		} else {
-			console.log(oneclick); 
+			console.log(oneclick);
 			var email = $('#email').val();
 			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 			if (exptext.test(email) == false) {
@@ -195,36 +195,71 @@
 				},
 				success : function(data) {
 					if (data.message == '200') {
-						$('#authkey').attr("style", "");
+						$('#authkeybox').attr("style", "");
 						oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
 					} else if (data.message == 'fail') {
-						$('#authkey').attr("style", "");
+						$('#authkeybox').attr("style", "display: none");
 					}
 				}
 			}); // ajax
-
 		}
-	}
+	};
 
 	var authkeycheck = function() {
-		$.ajax({
-			type : 'Get',
-			url : "/member/authkeycheck",
-			data : {
-				email : document.getElementById("email").value,
-				authkey : document.getElementById("inputauthkey").value
-			},
-			success : function(data) {
-				if (data.message == '200') {
-					$('#authkey').attr("style", "");
-				} else if (data.message == 'fail') {
-					$('#authkey').attr("style", "");
-				}
+		if (authclick == 0) {
+			console.log(authclick);
+			return false;
+		} else {
+			console.log(authclick);
+			var authk = $('#inputauthkey').val();
+			if (authk.length < 4) {
+				$('#authCheck1').attr("style", "");
+				return false;
+			} else if (authk.replace(/[0-9]/gi, '').length > 0) {
+				$('#authCheck2').attr("style", "");
+				return false;
+			} else {
+				$.ajax({
+					type : 'Get',
+					url : "/member/authkeycheck",
+					data : {
+						email : document.getElementById("email").value,
+						authkey : document.getElementById("inputauthkey").value
+					},
+					success : function(data) {
+						if (data.message == '200') {
+							$('#authkeysuccess').attr("style", "");
+							$('#email').attr("readonly", "readonly");
+							$('#inputauthkey').attr("readonly", "readonly");
+							$('#authkeybox').remove();
+							$('#emailbox').remove();
+							authclick = 0;
+						} else if (data.message == 'fail') {
+							$('#authkeybox').attr("style", "");
+						}
+					}
+				}); // ajax
 			}
-		}); // ajax
+		}
+	};
+
+	
+	var duplicationCheck = function(){
+		var id = idCheck();
+		var pw = pwCheck();
+		var name = nmCheck();
+		var nick = nickCheck();
+		var email = mailauth();
+		if(id == true && pw == true && name == true && 
+			nick == true && email == true){
+			return true;
+		}else{
+			$('#finalCheck').attr("style", "");
+			return false;
+		}
 	}
+	
 </script>
-<![endif]-->
 
 <meta name="layout" content="main">
 
@@ -346,15 +381,21 @@
 										아닙니다.</li>
 									<li style="display: none" id="emailCheck2">[이메일] : 이미 중복된
 										값이 존재합니다.</li>
-									<li style="display: none" id="authCheck">[인증키] : 인증키가 맞지
-										않습니다.</li>
+									<li style="display: none" id="authCheck1">[인증키] : 숫자 4개를
+										입력하세요.</li>
+									<li style="display: none" id="authCheck2">[인증키] : 숫자로만
+										입력하세요.</li>
+									<li style="display: none" id="authkeysuccess">[인증키] :
+										인증성공.</li>
+									<li style="display: none" id="finalCheck">[입력오류] : 확인하지 않은 항목이 있습니다.
+										확인 후 전송하세요.</li>
 
 								</ul>
 							</div>
 							<div class="alert " role="alert" style="display: none"
-								id="authkey">
+								id="authkeybox">
 								<input type="text" class="form-control input-sm" name="authkey"
-									placeholder="인증번호 7자리" id="inputauthkey">
+									placeholder="인증번호 4자리" id="inputauthkey" maxlength="4">
 								<button class="btn btn-primary btn-block"
 									onclick="authkeycheck()">인증확인</button>
 							</div>
@@ -369,8 +410,8 @@
 									type="text" name="email" class="form-control input-sm"
 									placeholder="이메일" required="" value="" id="email" />
 								<div>
-									<div class="btn btn-primary btn-block" onclick="mailauth()">이메일
-										인증</div>
+									<div class="btn btn-primary btn-block" id="emailbox"
+										onclick="mailauth()">이메일 인증</div>
 								</div>
 								<input type="text" name="username" class="form-control input-sm"
 									placeholder="이름" required="" value="" id="fullName"
