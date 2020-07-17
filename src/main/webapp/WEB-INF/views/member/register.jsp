@@ -396,8 +396,8 @@
 								id="authkeybox">
 								<input type="text" class="form-control input-sm" name="authkey"
 									placeholder="인증번호 4자리" id="inputauthkey" maxlength="4">
-								<button class="btn btn-primary btn-block"
-									onclick="authkeycheck()">인증확인</button>
+								<div class="btn btn-primary btn-block"
+									onclick="authkeycheck()">인증확인</div>
 							</div>
 
 							<div>
