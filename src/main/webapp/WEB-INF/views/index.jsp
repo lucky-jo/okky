@@ -99,14 +99,6 @@
                         </div>
                     </script>
 
-                    <script id="notification-template" type="text/template">
-                        <div class="popover popover-fixed" role="tooltip">
-                            <div class="arrow"></div>
-                            <h3 class="popover-title"></h3>
-                            <div class="popover-content" id="notification-popover"></div>
-                        </div>
-                    </script>
-
                     <script id="search-google-template" type="text/template">
                         <div class="popover popover-fixed" role="tooltip">
                             <div class="arrow"></div>
@@ -181,12 +173,13 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${best}">
+                           
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/article/735343">&#39;악덕 보도방&#39; 구분법.</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/user/info/21016'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info/'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/f50ed624226bd860725f788e4dcdbb47?d=identicon&s=10'/></a>
                                                     <div class="avatar-info"><a class="nickname" href="/user/info/21016"
@@ -201,6 +194,7 @@
                                         </h5>
                                     </div>
                                 </li>
+                           
                             </c:forEach>
                         </ul>
                     </div>
@@ -217,19 +211,19 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${best}">
+                            	<c:if test="${list.replycount > 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/columnm/detail?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/user/info/21442'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/ab4c2d1dead2e8b4383f40a0b6222b25?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/user/info/21442"
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
                                                                                 title="${list.id}">${list.id}</a>
-                                                        <div class="activity"><span class="fa fa-flash"></span> 457</div>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-04 20:08:31.0">2020-07-04 20:08:31</span>
+                                                                                        title="2020-07-04 20:08:31.0">${list.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,6 +231,28 @@
                                         </h5>
                                     </div>
                                 </li>
+                                </c:if>
+                                                            	<c:if test="${list.replycount == 0 }">
+                                <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                    <div class="list-title-wrapper">
+                                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                                            <a href="/columnm/detail?seq=${list.seq}">${list.title}</a>
+                                            <div class="list-group-item-author pull-right clearfix">
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
+                                                                                                class='avatar-photo'><img
+                                                        src='//www.gravatar.com/avatar/ab4c2d1dead2e8b4383f40a0b6222b25?d=identicon&s=10'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
+                                                                                title="${list.id}">${list.id}</a>
+                                                        <div class="date-created"><span class="timeago"
+                                                                                        title="2020-07-04 20:08:31.0">${list.regdate }</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h5>
+                                    </div>
+                                </li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </div>
@@ -246,7 +262,7 @@
 
             <div class="col-sm-8 main-block-left">
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="/articles/questions"
+                    <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="/qna/list"
                                                                                   class="main-more-btn pull-right"><i
                             class="fa fa-ellipsis-h"></i></a></h4>
 
@@ -256,19 +272,20 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${qnalist}">
-                                <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                            	<c:if test="${list.replycount > 0 }">
+                                <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/qna/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/user/info/49491'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=${list.id }'
                                                                                                 class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/06abbd8dc732da5bfd24567f2125a7d0?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/user/info/49491"
-                                                                                title="${list.id}">${list.id}</a>
-                                                        <div class="activity"><span class="fa fa-flash"></span> 1k</div>
+                                                        src='/resources/user/${list.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=${list.id }"
+                                                                                title="${list.id}">${list.nickname}</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span>${list.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-09 17:08:35.0">2020-07-09 17:08:35</span>
+                                                                                        title="2020-07-09 17:08:35.0">${list.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -276,13 +293,36 @@
                                         </h5>
                                     </div>
                                 </li>
+                                </c:if>
+                                <c:if test="${list.replycount == 0 }">
+                                <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                    <div class="list-title-wrapper">
+                                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                                            <a href="/qna/get?seq=${list.seq}">${list.title}</a>
+                                            <div class="list-group-item-author pull-right clearfix">
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=${list.id }'
+                                                                                                class='avatar-photo'><img
+                                                        src='/resources/user/${list.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=${list.id }"
+                                                                                title="${list.id}">${list.nickname}</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span>${list.apoint }</div>
+                                                        <div class="date-created"><span class="timeago"
+                                                                                        title="2020-07-09 17:08:35.0">${list.regdate }</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h5>
+                                    </div>
+                                </li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </div>
 
                 </div>
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="/articles/community"
+                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="/comunity/list"
                                                                                   class="main-more-btn pull-right"><i
                             class="fa fa-ellipsis-h"></i></a></h4>
 
@@ -292,15 +332,16 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${communitylist}">
+                            	<c:if test="${list.replycount > 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/comunity/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/user/info/80511'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.id }'
                                                                                                 class='avatar-photo'><img
                                                         src='//www.gravatar.com/avatar/0007d053068c17303825e04128234c3c?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/user/info/80511"
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.id }"
                                                                                 title="${list.id}">${list.id}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span> 338</div>
                                                         <div class="date-created"><span class="timeago"
@@ -312,6 +353,29 @@
                                         </h5>
                                     </div>
                                 </li>
+                                </c:if>
+                                <c:if test="${list.replycount == 0 }">
+                                <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
+                                    <div class="list-title-wrapper">
+                                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                                            <a href="/comunity/get?seq=${list.seq}">${list.title}</a>
+                                            <div class="list-group-item-author pull-right clearfix">
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.id }'
+                                                                                                class='avatar-photo'><img
+                                                        src='//www.gravatar.com/avatar/0007d053068c17303825e04128234c3c?d=identicon&s=10'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.id }"
+                                                                                title="${list.id}">${list.id}</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span> 338</div>
+                                                        <div class="date-created"><span class="timeago"
+                                                                                        title="2020-07-09 17:08:53.0">2020-07-09 17:08:53</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h5>
+                                    </div>
+                                </li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </div>
@@ -333,7 +397,7 @@
                 </div>
 
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="/articles/tech"
+                    <h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="/tech/list"
                                                                                class="main-more-btn pull-right"><i
                             class="fa fa-ellipsis-h"></i></a></h4>
 
@@ -415,7 +479,7 @@
                 </div>
 
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼 <a href="/articles/columns"
+                    <h4 class="main-header"><i class="fa fa-quote-left"></i> 칼럼 <a href="/columnm/list"
                                                                                    class="main-more-btn pull-right"><i
                             class="fa fa-ellipsis-h"></i></a></h4>
 
@@ -431,7 +495,7 @@
 
                 </div>
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-book"></i> 학원/홍보 <a href="/articles/promote"
+                    <h4 class="main-header"><i class="fa fa-book"></i> 학원/홍보 <a href="/jobs/list"
                                                                                 class="main-more-btn pull-right"><i
                             class="fa fa-ellipsis-h"></i></a></h4>
 
