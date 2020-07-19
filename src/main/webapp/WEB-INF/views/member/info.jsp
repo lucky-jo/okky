@@ -115,13 +115,6 @@
                         </div>
                     </script>
 
-                    <script id="notification-template" type="text/template">
-                        <div class="popover popover-fixed" role="tooltip">
-                            <div class="arrow"></div>
-                            <h3 class="popover-title"></h3>
-                            <div class="popover-content" id="notification-popover"></div>
-                        </div>
-                    </script>
 
                     <script id="search-google-template" type="text/template">
                         <div class="popover popover-fixed" role="tooltip">
@@ -207,7 +200,7 @@
             </div>
             <div class="col-sm-2 user-info-nav pull-right">
                 <ul class="nav">
-                    <li class="active"><a href="/member/info/${member.userid }">최근 활동</a></li>
+                    <li class="active"><a href="/member/info?userid=${member.userid }">최근 활동</a></li>
                     <li class=""><a href="#">게시물 </a></li>
 
                     <li class=""><a href="#">스크랩 </a></li>
@@ -217,8 +210,8 @@
             <%--내용 시작--%>
             <div class="col-sm-10 main-block-left pull-left">
                 <ul class="list-group">
-
-                    <li class="list-group-item list-group-item-small  list-group-has-note clearfix">
+						<!-- 목록 시작 -->
+<!--                     <li class="list-group-item list-group-item-small  list-group-has-note clearfix">
                         <div class="list-icon-wrapper pull-left">
 
                             <i class="fa fa-angle-up fa-lg"></i>
@@ -249,10 +242,10 @@
                                 </div>
                             </h5>
                         </div>
-                    </li>
+                    </li> -->
 
                 </ul>
-                <div class="text-center">
+<!--                 <div class="text-center">
 
                     <ul class="pagination pagination-sm">
                         <li class="prev disabled"><span>&laquo;</span></li>
@@ -264,7 +257,7 @@
                                 class="step">&raquo;</a></li>
                     </ul>
 
-                </div>
+                </div> -->
             </div>
         </div>
 

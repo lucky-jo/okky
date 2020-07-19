@@ -109,14 +109,6 @@
                         </div>
                     </script>
 
-                    <script id="notification-template" type="text/template">
-                        <div class="popover popover-fixed" role="tooltip">
-                            <div class="arrow"></div>
-                            <h3 class="popover-title"></h3>
-                            <div class="popover-content" id="notification-popover"></div>
-                        </div>
-                    </script>
-
                     <script id="search-google-template" type="text/template">
                         <div class="popover popover-fixed" role="tooltip">
                             <div class="arrow"></div>

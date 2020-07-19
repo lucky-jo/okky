@@ -279,10 +279,10 @@
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/qna/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
                                                                                                 class='avatar-photo'><img
                                                         src='/resources/user/${list.image }'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info=${list.id }"
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
                                                                                 title="${list.id}">${list.nickname}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span>${list.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
@@ -301,10 +301,10 @@
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/qna/get?seq=${list.seq}">${list.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
                                                                                                 class='avatar-photo'><img
                                                         src='/resources/user/${list.image }'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info=${list.id }"
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
                                                                                 title="${list.id}">${list.nickname}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span>${list.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
@@ -339,10 +339,10 @@
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
                                             <a href="/comunity/get?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.member.userid }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.member.userid }'
                                                                                                 class='avatar-photo'><img
                                                         src='/resources/user/${list.member.image }'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.member.userid }"
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.member.userid }"
                                                                                 title="${list.member.nickname}">${list.member.nickname}</a>
                                                         <div class="activity"><span class="fa fa-flash"></span> ${list.member.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
@@ -384,18 +384,6 @@
                 </div>
             </div>
             <div class="col-sm-4 main-block-right">
-
-                <div class="main-block">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- okkyad_250x250 -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:250px;height:250px"
-                         data-ad-client="ca-pub-8103607814406874"
-                         data-ad-slot="4095178752"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </div>
 
                 <div class="main-block">
                     <h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="/tech/list"
@@ -441,9 +429,9 @@
 
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <a href="/articles/tagged/test"
+                            <a href="/index"
                                class="list-group-item-text item-tag label label-gray">test</a>
-                            <h5><a href="/article/737955">좋은 테스트란 무엇일까?_뮤테이션 테스트</a></h5>
+                            <h5><a href="/index">좋은 테스트란 무엇일까?_뮤테이션 테스트</a></h5>
                             <p class="main-block-desc">&nbsp;<a href="/article/737955"> 이번 학기에 배운 수업이 인상에 깊게 남아 그 일부를
                                 정리해보았습니다. A) 좋은 테스팅의 조건과 coverage intro 테스트 성능을 측정할 때...</a></p>
                         </div>
@@ -465,12 +453,12 @@
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
-                                        <a href="/article/737293">[리멤버 커리어] 코딩 잘 될 것만 같은 개발자 선물 이벤트</a>
+                                        <a href="/index">[리멤버 커리어] 코딩 잘 될 것만 같은 개발자 선물 이벤트</a>
                                         <div class="list-group-item-author pull-right clearfix">
-                                            <div class='avatar avatar-x-small clearfix '><a href='/user/info/103405'
+                                            <div class='avatar avatar-x-small clearfix '><a href='/index'
                                                                                             class='avatar-photo'><img
                                                     src='//graph.facebook.com/3635196946495555/picture?width=10&height=10'/></a>
-                                                <div class="avatar-info"><a class="nickname" href="/user/info/103405"
+                                                <div class="avatar-info"><a class="nickname" href="/index"
                                                                             title="본원이십네다">본원이십네다</a>
                                                     <div class="activity"><span class="fa fa-flash"></span> 40</div>
                                                     <div class="date-created"><span class="timeago"
@@ -487,12 +475,12 @@
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
-                                        <a href="/article/737739">[중앙정보처리학원] 머신러닝 기반 빅데이터 플랫폼 개발자 취업 연계교육</a>
+                                        <a href="/index">[중앙정보처리학원] 머신러닝 기반 빅데이터 플랫폼 개발자 취업 연계교육</a>
                                         <div class="list-group-item-author pull-right clearfix">
-                                            <div class='avatar avatar-x-small clearfix '><a href='/user/info/68557'
+                                            <div class='avatar avatar-x-small clearfix '><a href='/index'
                                                                                             class='avatar-photo'><img
                                                     src='//graph.facebook.com/1718111788267124/picture?width=10&height=10'/></a>
-                                                <div class="avatar-info"><a class="nickname" href="/user/info/68557"
+                                                <div class="avatar-info"><a class="nickname" href="/index"
                                                                             title="charles!">charles!</a>
                                                     <div class="activity"><span class="fa fa-flash"></span> 687</div>
                                                     <div class="date-created"><span class="timeago"
@@ -509,12 +497,12 @@
                             <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                 <div class="list-title-wrapper">
                                     <h5 class="list-group-item-heading list-group-item-evaluate">
-                                        <a href="/article/737035">[KOCCA] 2020 콘텐츠임팩트 교육과정 교육생 모집</a>
+                                        <a href="/index">[KOCCA] 2020 콘텐츠임팩트 교육과정 교육생 모집</a>
                                         <div class="list-group-item-author pull-right clearfix">
-                                            <div class='avatar avatar-x-small clearfix '><a href='/user/info/89941'
+                                            <div class='avatar avatar-x-small clearfix '><a href='/index'
                                                                                             class='avatar-photo'><img
                                                     src='//www.gravatar.com/avatar/8a7fa0b7d16da949a0e774c31a04028b?d=identicon&s=10'/></a>
-                                                <div class="avatar-info"><a class="nickname" href="/user/info/89941"
+                                                <div class="avatar-info"><a class="nickname" href="/index"
                                                                             title="dbwjd9632">dbwjd9632</a>
                                                     <div class="activity"><span class="fa fa-flash"></span> 30</div>
                                                     <div class="date-created"><span class="timeago"
