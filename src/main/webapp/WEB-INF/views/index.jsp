@@ -211,19 +211,19 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${best}">
-                            	<c:if test="${list.replycount > 0 }">
+                            	<c:if test="${list.board.replycount > 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/columnm/detail?seq=${list.seq}">${list.title}</a>
+                                            <a href="/columnm/detail?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.member.userid }'
                                                                                                 class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/ab4c2d1dead2e8b4383f40a0b6222b25?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
-                                                                                title="${list.id}">${list.id}</a>
+                                                        src='/resources/user/${list.member.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.member.userid }"
+                                                                                title="${list.member.nickname}">${list.member.nickname}</a>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-04 20:08:31.0">${list.regdate }</span>
+                                                                                        title="2020-07-04 20:08:31.0">${list.board.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,19 +232,20 @@
                                     </div>
                                 </li>
                                 </c:if>
-                                                            	<c:if test="${list.replycount == 0 }">
+                                                            	<c:if test="${list.board.replycount == 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/columnm/detail?seq=${list.seq}">${list.title}</a>
+                                            <a href="/columnm/detail?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.member.userid }'
                                                                                                 class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/ab4c2d1dead2e8b4383f40a0b6222b25?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.id }"
-                                                                                title="${list.id}">${list.id}</a>
+                                                        src='/resources/user/${list.member.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.member.userid }"
+                                                                                title="${list.member.nickname }">${list.member.nickname }</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span>${list.member.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-04 20:08:31.0">${list.regdate }</span>
+                                                                                        title="2020-07-04 20:08:31.0">${list.board.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -332,20 +333,20 @@
 
                         <ul class="list-group">
                             <c:forEach var="list" items="${communitylist}">
-                            	<c:if test="${list.replycount > 0 }">
+                            	<c:if test="${list.board.replycount > 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/comunity/get?seq=${list.seq}">${list.title}</a>
+                                            <a href="/comunity/get?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.member.userid }'
                                                                                                 class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/0007d053068c17303825e04128234c3c?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.id }"
-                                                                                title="${list.id}">${list.id}</a>
-                                                        <div class="activity"><span class="fa fa-flash"></span> 338</div>
+                                                        src='/resources/user/${list.member.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.member.userid }"
+                                                                                title="${list.member.nickname}">${list.member.nickname}</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span> ${list.member.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-09 17:08:53.0">2020-07-09 17:08:53</span>
+                                                                                        title="2020-07-09 17:08:53.0">${list.board.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -354,20 +355,20 @@
                                     </div>
                                 </li>
                                 </c:if>
-                                <c:if test="${list.replycount == 0 }">
+                                <c:if test="${list.board.replycount == 0 }">
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/comunity/get?seq=${list.seq}">${list.title}</a>
+                                            <a href="/comunity/get?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.id }'
+                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info=userid${list.member.userid }'
                                                                                                 class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/0007d053068c17303825e04128234c3c?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.id }"
-                                                                                title="${list.id}">${list.id}</a>
-                                                        <div class="activity"><span class="fa fa-flash"></span> 338</div>
+                                                        src='/resources/user/${list.member.image }'/></a>
+                                                    <div class="avatar-info"><a class="nickname" href="/member/info=userid${list.member.userid }"
+                                                                                title="${list.member.nickname}">${list.member.nickname}</a>
+                                                        <div class="activity"><span class="fa fa-flash"></span> ${list.member.apoint }</div>
                                                         <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-09 17:08:53.0">2020-07-09 17:08:53</span>
+                                                                                        title="2020-07-09 17:08:53.0">${list.board.regdate }</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -402,76 +403,31 @@
                             class="fa fa-ellipsis-h"></i></a></h4>
 
                     <div class="panel panel-default">
+                    	
                         <div class="panel-body">
-
-                            <div class="article-middle-block clearfix">
+                        	<c:forEach var="list" items="${techlist }">
+                    		<div class="article-middle-block clearfix">
                                 <div class="list-tag clearfix" style="">
-                                    <a href="/articles/news" class="list-group-item-text item-tag label label-info"><i
-                                            class="fa fa-code"></i> IT News & 정보</a>
+                                    <a href="/tech/list" class="list-group-item-text item-tag label label-info"><i
+                                            class="fa fa-code"></i> ${list.board.category }</a>
 
                                 </div>
-                                <h5><a href="/article/738029">지겨운 언어 순위...</a></h5>
+                                <h5><a href="/tech/list?seq=${list.board.seq }">${list.board.title }</a></h5>
                                 <div class="list-group-item-author clearfix">
-                                    <div class='avatar avatar-x-small clearfix pull-right'><a href='/user/info/4005'
+                                    <div class='avatar avatar-x-small clearfix pull-right'><a href='/member/info?userid=${list.member.userid }'
                                                                                               class='avatar-photo'><img
-                                            src='//www.gravatar.com/avatar/ccbae27311370eb08d0833cd074b8054?d=identicon&s=10'/></a>
-                                        <div class="avatar-info"><a class="nickname" href="/user/info/4005"
-                                                                    title="lloydkwon">lloydkwon</a>
-                                            <div class="activity"><span class="fa fa-flash"></span> 2k</div>
+                                            src='resources/user/${list.member.image }'/></a>
+                                        <div class="avatar-info"><a class="nickname" href="/member/info?userid=${list.member.userid }"
+                                                                    title="${list.member.nickname }">${list.member.nickname }</a>
+                                            <div class="activity"><span class="fa fa-flash"></span> ${list.member.apoint }</div>
                                             <div class="date-created"><span class="timeago"
-                                                                            title="2020-07-09 15:50:17.0">2020-07-09 15:50:17</span>
+                                                                            title="2020-07-09 15:50:17.0">${list.board.regdate }</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="article-middle-block clearfix">
-                                <div class="list-tag clearfix" style="">
-                                    <a href="/articles/tips" class="list-group-item-text item-tag label label-info"><i
-                                            class="fa fa-code"></i> Tips & 강좌</a>
-                                    <a href="/articles/tagged/vuejs"
-                                       class="list-group-item-text item-tag label label-gray">vuejs</a> <a
-                                        href="/articles/tagged/expressjs"
-                                        class="list-group-item-text item-tag label label-gray">expressjs</a>
-                                </div>
-                                <h5><a href="/article/737558">Vuejs, Expressjs 회원가입</a></h5>
-                                <div class="list-group-item-author clearfix">
-                                    <div class='avatar avatar-x-small clearfix pull-right'><a href='/user/info/96159'
-                                                                                              class='avatar-photo'><img
-                                            src='//www.gravatar.com/avatar/78b414eebf6acacff1c1cf33aa05a1c5?d=identicon&s=10'/></a>
-                                        <div class="avatar-info"><a class="nickname" href="/user/info/96159"
-                                                                    title="코지 코더">코지 코더</a>
-                                            <div class="activity"><span class="fa fa-flash"></span> 193</div>
-                                            <div class="date-created"><span class="timeago"
-                                                                            title="2020-07-08 21:21:15.0">2020-07-08 21:21:15</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="article-middle-block clearfix">
-                                <div class="list-tag clearfix" style="">
-                                    <a href="/articles/tips" class="list-group-item-text item-tag label label-info"><i
-                                            class="fa fa-code"></i> Tips & 강좌</a>
-
-                                </div>
-                                <h5><a href="/article/737542">복습하기좋은 공부방법 공유</a></h5>
-                                <div class="list-group-item-author clearfix">
-                                    <div class='avatar avatar-x-small clearfix pull-right'><a href='/user/info/73717'
-                                                                                              class='avatar-photo'><img
-                                            src='//www.gravatar.com/avatar/64fcbef7e8e40c2dbe3b3557605bf198?d=identicon&s=10'/></a>
-                                        <div class="avatar-info"><a class="nickname" href="/user/info/73717"
-                                                                    title="Frudy">Frudy</a>
-                                            <div class="activity"><span class="fa fa-flash"></span> 4k</div>
-                                            <div class="date-created"><span class="timeago"
-                                                                            title="2020-07-08 20:14:13.0">2020-07-08 20:14:13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    	</c:forEach>	
 
                         </div>
                     </div>
