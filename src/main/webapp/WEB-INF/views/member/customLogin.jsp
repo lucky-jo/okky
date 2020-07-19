@@ -156,20 +156,6 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-6 main-block-right">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5 class="panel-header">SNS 로그인</h5>
-                    </div>
-                    <div class="panel-body panel-margin sns-buttons">
-                        <a href="/oauth/facebook/authenticate?redirectUrl=" provider="facebook"
-                           class="btn btn-facebook btn-block"><i class="fa fa-facebook fa-fw"></i> Facebook 으로 로그인</a>
-
-                        <a href="/oauth/google/authenticate?redirectUrl=" provider="google"
-                           class="btn btn-google btn-block"><i class="fa fa-google fa-fw"></i> Google 로 로그인</a>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
