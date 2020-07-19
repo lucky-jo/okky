@@ -3,8 +3,7 @@
 okky web-site_Clone / <https://okky.kr/>
 
 ## 프로젝트 목표
- * Spring MVC 이해
- * Spring MVC로 구현
+ * Spring MVC 이해 및 구현
  * 요구사항 분석 및 설계, 구현
  * 요구사항 기능 검증 및 확인
  * CRUD 학습 및 복습
@@ -81,9 +80,5 @@ okky web-site_Clone / <https://okky.kr/>
     * 검색기능
     * 댓글 CRUD
     * 애플리케이션 Tester
-    
-### Todo List
- * 회원 가입시 이메일 인증
- * 아이디 / 비밀번호 분실시 찾는 기능
 
        
