@@ -88,7 +88,7 @@ function del() {
      <div id="article" class="content" role="main">   
      
      <div class="nav" role="navigation">
-		<a href="/jobs/insertForm" 
+		<a href="/jobs/register" 
 		class="create btn btn-success btn-wide pull-right"><i 
 		class="fa fa-pencil"></i> 새 글 쓰기</a>
 
@@ -101,12 +101,12 @@ function del() {
 				<a href='/user/info/77218' class='avatar-photo'><img 
 					src='//www.gravatar.com/avatar/d8bb3e40bda6895a753049fb0698cc5f?d=identicon&s=40'/></a> 
 				<div class="avatar-info">
-					<a class="nickname" href="/user/info/77218"  title="${get.title}">${get.id}</a> 
+					<a class="nickname" href="/user/info/77218" title="${get.title}">${get.id}</a> 
 					<div class="activity">
-						<span class="fa fa-flash"></span> 113
+						<span class="fa fa-flash"></span>113
 					</div>
 					<div class="date-created">
-						<span class="timeago" title="2020-07-02 11:47:20.0">2020-07-02 11:47:20</span> 
+						<span class="timeago" title="${get.regdate}">${get.regdate}</span> 
 					</div> 
 				</div>
 			</div>
@@ -132,8 +132,7 @@ function del() {
 				<article class="content-text" itemprop="articleBody">
 
 
-					${get.content}
-
+					   ${get.content} 
 
 				</article>
 
@@ -150,7 +149,8 @@ function del() {
 									data-eval="true" data-id="2010634" ><i
 									id="note-evaluate-assent-2010634"
 									class="fa fa-angle-up note-evaluate-assent-unvote "
-									data-placement="left" data-toggle="tooltip" title="추천" onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
+									data-placement="left" data-toggle="tooltip" title="추천" 
+									onclick="return confirm(&#39;추천을 취소하시겠습니까?&#39;)"></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
 								<a href="javascript://" class="note-vote-btn" role="button"
 								   data-type="dissent" data-eval="true" data-id="2010634"><i
@@ -159,14 +159,14 @@ function del() {
 									data-placement="left" data-toggle="tooltip" title="반대"></i></a>
 							</c:when>
 							<%--<i id="note-evaluate-assent-2010634" class="fa fa-angle-up note-evaluate-assent-assent" data-placement="left" data-toggle="tooltip" title="추천">--%>
-							<c:when test="${liketype == 0 }">
+							<c:when test="${liketype == 0}">
 								<a href="/like/like?seq=${get.seq}&board=${get.board}&liketype=1" 
 									class="note-vote-btn" role="button"
 								   data-type="assent" data-eval="true" data-id="2013409"><i
 										id="note-evaluate-assent-2013409"
 										class="fa fa-angle-up note-evaluate-assent-assent"
 										data-placement="left" data-toggle="tooltip" title="추천"></i></a>
-								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount }</div>
+								<div id="content-vote-count-2013409" class="content-eval-count">${get.likecount}</div>
 								<a href="/like/like?seq=${get.seq}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
 								   data-type="dissent" data-eval="true" data-id="2013409"><i
 										id="note-evaluate-dissent-2013409"
@@ -181,7 +181,8 @@ function del() {
 										data-placement="left" data-toggle="tooltip" title="추천" ></i></a>
 								<div id="content-vote-count-2010634" class="content-eval-count">${get.likecount}</div>
 								<a href="/like/delete?seq=${get.seq}&board=${get.board}&liketype=-1" class="note-vote-btn" role="button"
-								   data-type="dissent" data-eval="true" data-id="2010634" onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
+								   data-type="dissent" data-eval="true" data-id="2010634"
+								   onclick="return confirm(&#39;비추천를 취소하시겠습니까?&#39;)"><i
 										id="note-evaluate-dissent-2010634"
 										class="fa fa-angle-down note-evaluate-dissent-unvote"
 										data-placement="left" data-toggle="tooltip" title="반대"></i></a>
@@ -398,7 +399,7 @@ function del() {
 			<li class="list-group-item note-form clearfix"><sec:authorize
 					access="isAuthenticated()">
 				<div class="panel-body">
-					<form action="/comreply/register" method="post"
+					<form action="/jobsreply/register" method="post"
 						class="note-create-form">
 
 						<div class="content-body panel-body pull-left">
