@@ -130,5 +130,13 @@
 	<select id="authKeyCheck" resultType="int">
 		select count(*) from authkey where email = #{email} and authkey = #{authkey}
 	</select>
+	
+	<select id="sendFindId" resultType="com.ncs.vo.MemberVO">
+		select * from member where email = #{email}
+	</select>
+	
+	<select id="sendFindPassword" resultType="com.ncs.vo.MemberVO">
+		select * from member where email = #{email} and userid = #{userid}
+	</select>
 </mapper>
   
