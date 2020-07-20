@@ -79,7 +79,7 @@
 
 		<div class="nav" role="navigation">
 
-			<a href="/jobs/insertForm"
+			<a href="/jobs/register"
 				class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
