@@ -196,33 +196,36 @@
 					},
 					success : function(data) {
 						if (data.message == '200') {
+							console.log("ㅇㅇ");
 							$('#emailCheck2').attr("style", "display: none");
 							em = 1;
+							$.ajax({
+								type : 'Get',
+								url : "/member/sendauthkey",
+								data : {
+									email : document.getElementById("email").value
+								},
+								success : function(data) {
+									if (data.message == '200') {
+										$('#authkeybox').attr("style", "");
+										oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
+										return true;
+									} else if (data.message == 'fail') {
+										$('#authkeybox').attr("style", "display: none");
+										return false;
+									}
+								}
+							}); // ajax
 							return true;
-						} else if (data.message == 'fail') {
+						} else if(data.message == 'fail'){
+							console.log("ㄴㄴ");
 							$('#emailCheck2').attr("style", "");
 							return false;
 						}
 					}
 				});
-			}
-			$.ajax({
-				type : 'Get',
-				url : "/member/sendauthkey",
-				data : {
-					email : document.getElementById("email").value
-				},
-				success : function(data) {
-					if (data.message == '200') {
-						$('#authkeybox').attr("style", "");
-						oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
-						return true;
-					} else if (data.message == 'fail') {
-						$('#authkeybox').attr("style", "display: none");
-						return false;
-					}
-				}
-			}); // ajax
+			} 
+			
 		}
 	};
 
