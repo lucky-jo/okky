@@ -77,26 +77,26 @@
 	<ul class="nav">
 		<li><a href="/jobs/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" />
-					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq null ? 'nav-selected':''}" />
+					<c:out value="${get.category eq '' ? 'nav-selected':''}" />'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/jobs/list?category=좋은회사/나쁜회사&sorted="
 			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span>
 			<span
-					class='nav-indicator <c:out value="${pageMaker.cri.category eq '좋은회사/나쁜회사' ? 'nav-selected':''}" />'><span
+					class='nav-indicator <c:out value="${get.category eq '좋은회사/나쁜회사' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/jobs/list?category=구인&sorted="
 			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구인
 					</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '구인' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq '구인' ? 'nav-selected':''}" />'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/jobs/list?category=구직&sorted="
 			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">구직
 					</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '구직' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq '구직' ? 'nav-selected':''}" />'><span
 				class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
@@ -109,7 +109,10 @@
 		   class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		<h4>사는얘기</h4>
+		<c:if test="${get.category eq null}"><h4>jobs</h4></c:if>
+        <c:if test="${get.category eq '좋은회사/나쁜회사'}"><h4>좋은회사/나쁜회사</h4></c:if>
+        <c:if test="${get.category eq '구인'}"><h4>구인</h4></c:if>
+        <c:if test="${get.category eq '구직'}"><h4>구직</h4></c:if>
 	</div>
 
 	<div class="panel panel-default clearfix fa-">
@@ -140,7 +143,7 @@
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/jobs/list"
+						href="/jobs/list?seq=${get.seq }&board=${get.board}&id=${get.id}&category=${get.category}"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>

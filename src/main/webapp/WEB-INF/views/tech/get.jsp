@@ -77,20 +77,20 @@
 	<ul class="nav">
 		<li><a href="/tech/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" />
-					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq null ? 'nav-selected':''}" />
+					<c:out value="${get.category eq '' ? 'nav-selected':''}" />'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/tech/list?category=IT%20News%20%26%20정보&sorted="
 			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">IT News & 정보</span>
 			<span
-					class='nav-indicator <c:out value="${pageMaker.cri.category eq 'IT News & 정보' ? 'nav-selected':''}" />'><span
+					class='nav-indicator <c:out value="${get.category eq 'IT News & 정보' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/tech/list?category=Tips%20%26%20강좌&sorted="
 			   class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Tips & 강좌</span>
 			<span
-					class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Tips & 강좌' ? 'nav-selected':''}" />'><span
+					class='nav-indicator <c:out value="${get.category eq 'Tips & 강좌' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
@@ -103,7 +103,9 @@
 		   class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		<h4>사는얘기</h4>
+		<c:if test="${get.category eq null}"><h4>Tech</h4></c:if>
+		<c:if test="${get.category eq 'IT News & 정보'}"><h4>IT News & 정보</h4></c:if>
+		<c:if test="${get.category eq 'Tips & 강좌'}"><h4>Tips & 강좌</h4></c:if>
 	</div>
 
 	<div class="panel panel-default clearfix fa-">
@@ -134,7 +136,7 @@
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/tech/list"
+						href="/tech/list?seq=${get.seq }&board=${get.board}&id=${get.id}&category=${get.category}"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>
