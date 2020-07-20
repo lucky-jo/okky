@@ -8,26 +8,34 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ncs.service.JobsReplyService;
 import com.ncs.vo.JobsReplyVO;
-import com.ncs.vo.ReplyVO;
+;
 
-@RequestMapping("/jobs")
+@RequestMapping("/jobsreply")
 @Controller
 public class JobsReplyController {
 
 	@Autowired
 	JobsReplyService jservice;
 	
-	@RequestMapping(value = "/rinsert", method = RequestMethod.POST)//댓글 입력
-	public ModelAndView rinsert(ModelAndView mv,JobsReplyVO rvo) {
-		if(jservice.rinsert(rvo)>0);
+	@RequestMapping(value = "/register", method = RequestMethod.POST)//댓글 입력
+	public ModelAndView register(ModelAndView mv,JobsReplyVO rvo) {
+		if(jservice.register(rvo)>0);
 		mv.addObject("get", "댓글달기완료");  
 		mv.setViewName("redirect:/jobs/get?seq="+rvo.getSeq());
 		return mv;
 	}
 	
-	@RequestMapping(value = "/jdelete")//댓글 삭제
-	public ModelAndView jdelete(ModelAndView mv,JobsReplyVO rvo) {
-		jservice.jdelete(rvo);
+	@RequestMapping(value = "/update", method = RequestMethod.POST)//댓글 입력
+	public ModelAndView update(ModelAndView mv,JobsReplyVO rvo) {
+		if(jservice.update(rvo)>0);
+		mv.addObject("get", "댓글달기완료");  
+		mv.setViewName("redirect:/jobs/get?seq="+rvo.getSeq());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/delete")//댓글 삭제
+	public ModelAndView delete(ModelAndView mv,JobsReplyVO rvo) {
+		jservice.delete(rvo);
 		mv.addObject("get", "댓글삭제완료");
 		mv.setViewName("redirect:/jobs/get?seq="+rvo.getSeq());
 		return mv;
