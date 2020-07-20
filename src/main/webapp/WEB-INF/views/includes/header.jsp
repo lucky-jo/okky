@@ -65,15 +65,67 @@
                 </div>
             </form>
 
-            <div class="nav-user nav-sidebar">
+            <%--로그인 시 출력 화면--%>
+            <sec:authorize access="isAuthenticated()">
+                <sec:authentication var="user" property="principal"/>
+                <div class="nav-user nav-sidebar">
+                    <div class='avatar avatar-medium clearfix '><a href='/member/info?userid=${user.member.userid }' class='avatar-photo'><img
+                            src='/resources/user/${user.member.image }'/></a>
+                    </div>
+                    <div class="nav-user-action">
+                        <div class="nav-user-func">
+                            <a href="javascript://" id="user-func" data-toggle="popover" data-trigger="click"
+                               tabindex="0">
+                                <i id="user-func-icon" class="fa fa-cog"></i>
+                            </a>
+                        </div>
+                        <div class="nav-user-func">
+                            <a href="javascript://" id="user-notification" data-toggle="popover" data-trigger="click"
+                               tabindex="0">
+                                <i id="user-notification-icon" class="fa fa-bell"></i>
+                                <span id="user-notification-count" class="badge notification"
+                                      style="display:none;">0</span>
+                            </a>
+                        </div>
+                    </div>
+                    <form action="/logout/index" method="post" style="display:none;"><input type="submit"
+                                                                                            name="logoutButton"
+                                                                                            value="logoutButton"
+                                                                                            id="logoutButton"/></form>
+                    <script id="setting-template" type="text/template">
+                        <div class="popover popover-fixed" role="tooltip">
+                            <div class="arrow"></div>
+                            <h3 class="popover-title"></h3>
+                            <div class="popover-footer clearfix" id="user-func-popover">
+                                <a href="/member/customLogout" class="popover-btn"><i class="fa fa-sign-out"></i>
+                                    로그아웃</a>
+                                <a href="/member/edit?userid=${user.member.userid}" class="popover-btn"><i class="fa fa-user"></i> 정보수정</a>
+                            </div>
+                        </div>
+                    </script>
 
-                <ul class="nav nav-sidebar">
-                    <li data-toggle="tooltip" data-container="body" title="로그인"><a href="/login/auth?redirectUrl=%2Farticles%2Fquestions" class="link"><i class="fa fa-sign-in"></i> <span class="nav-sidebar-label">로그인</span></a></li>
-                    <li data-toggle="tooltip" data-container="body" title="회원가입"><a href="/user/register" class="link"><i class="fa fa-user"></i> <span class="nav-sidebar-label">회원가입</span></a></li>
-                </ul>
+                    <script id="notification-template" type="text/template">
+                        <div class="popover popover-fixed" role="tooltip">
+                            <div class="arrow"></div>
+                            <h3 class="popover-title"></h3>
+                            <div class="popover-content" id="notification-popover"></div>
+                        </div>
+                    </script>
+                </div>
+            </sec:authorize>
+            <%--비로그인시 보여지는 화면--%>
+            <sec:authorize access="isAnonymous()">
+                <div class="nav-user nav-sidebar">
 
-            </div>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/member/customLogin" class="link"><i class="fa fa-sign-in"></i> <span
+                                class="nav-sidebar-label">로그인</span></a></li>
+                        <li><a href="/member/register" class="link"><i class="fa fa-user"></i> <span
+                                class="nav-sidebar-label">회원가입</span></a></li>
+                    </ul>
 
+                </div>
+            </sec:authorize>
 
 
 
