@@ -127,7 +127,7 @@
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${merge.board.seq}</span>
-									<a href="#"
+									<a href="/columnm/list?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}"
 									   class="list-group-item-text item-tag label label-info"><i
 											class="fa fa-comments"></i> ${merge.board.category}</a>
 								</div>
@@ -182,7 +182,7 @@
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${merge.board.seq}</span>
-									<a href="#"
+									<a href="/columnm/list?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}"
 									   class="list-group-item-text item-tag label label-info"><i
 											class="fa fa-comments"></i> ${merge.board.category}</a>
 								</div>
@@ -214,10 +214,10 @@
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 											src='/resources/user/${merge.member.image }' /></a>
 									<div class="avatar-info">
-										<a class="nickname" href="#" title="${merge.member.userid}">${merge.member.nickname}</a>
+										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="${merge.member.userid}">${merge.member.nickname}</a>
 										<div class="activity">
 											<span class="fa fa-flash"></span>${merge.member.apoint}
 										</div>

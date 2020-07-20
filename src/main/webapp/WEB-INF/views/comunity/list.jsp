@@ -160,7 +160,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
+											href="/comunity/get?category=${merge.board.category}&seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
@@ -215,7 +215,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
+											href="/comunity/get?category=${merge.board.category}&seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
