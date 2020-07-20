@@ -13,16 +13,21 @@
 	 from qnareply where seq=#{seq}
   </select> -->
   
-  <insert id="rinsert">
+  <insert id="register">
   <selectKey keyProperty="rseq" order="BEFORE" resultType="int">
         select IFNULL(MAX(rseq),0)+1 as rseq from jobsreply
      </selectKey>
   	insert into jobsreply(rseq,rid,rcontent,seq) values(#{rseq},#{rid},#{rcontent},#{seq})
   </insert>
   
-  <update id="jdelete">
+  <update id="update">
   	update jobsreply set rexist = 0 where rseq = #{rseq}
   </update>
+  
+  <!-- jobsDelete() -->
+   <delete id="delete">
+   delete from jobsreply where seq=#{seq}
+   </delete>
   
    
   
