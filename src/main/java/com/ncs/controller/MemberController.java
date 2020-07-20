@@ -200,4 +200,10 @@ public class MemberController {
     	return mv;
     }
     
+    @RequestMapping(value = "/find")
+    public ModelAndView find(ModelAndView mv, MemberVO vo) {
+    	
+    	return mv;
+    }
+    
 }
