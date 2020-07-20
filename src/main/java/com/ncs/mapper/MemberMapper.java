@@ -46,4 +46,8 @@ public interface MemberMapper {
 
 	int authKeyCheck(AuthKeyDTO authdto);
 
+	MemberVO sendFindId(MemberVO membervo);
+
+	MemberVO sendFindPassword(MemberVO membervo);
+
 }

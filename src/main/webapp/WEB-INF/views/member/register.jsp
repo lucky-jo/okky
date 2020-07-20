@@ -40,7 +40,17 @@
 <!--    <script src="/resources/jqLib/joinCheck.js"></script>-->
 <script>
 	var oneclick = 1; // 요총 한번만 할 수 있는 스위치(1=on, 0=off)
+	var authclick = 1;
+	var ii = 0;
+	var pp = 0;
+	var nn = 0;
+	var nc = 0;
+	var em = 0;
+
 	var idCheck = function() {
+		if (idCheck) {
+
+		}
 		var userid = $('#username').val();
 		if (userid.length < 4) {
 			$('#idCheck1').attr("style", "");
@@ -61,8 +71,11 @@
 				success : function(data) {
 					if (data.message == '200') {
 						$('#idCheck3').attr("style", "display: none");
+						ii = 1;
+						return true;
 					} else if (data.message == 'fail') {
 						$('#idCheck3').attr("style", "");
+						return false;
 					}
 				}
 			});
@@ -87,6 +100,7 @@
 			$('#pwCheck1').attr("style", "display: none");
 			$('#pwCheck2').attr("style", "display: none");
 			$('#pwCheck3').attr("style", "display: none");
+			pp = 1;
 			return true;
 		}
 	}; // pwCheck()
@@ -130,6 +144,7 @@
 		} else {
 			$('#nameCheck1').attr("style", "display: none");
 			$('#nameCheck2').attr("style", "display: none");
+			nn = 1;
 			return true;
 		}
 	}; // nmCheck()
@@ -150,12 +165,14 @@
 				success : function(data) {
 					if (data.message == '200') {
 						$('#nickCheck1').attr("style", "display: none");
+						nc = 1;
+						return true;
 					} else if (data.message == 'fail') {
 						$('#nickCheck1').attr("style", "");
+						return false;
 					}
 				}
 			});
-
 		}
 	}; // nickCheck()
 
@@ -163,7 +180,7 @@
 		if (oneclick == 0) {
 			return false;
 		} else {
-			console.log(oneclick); 
+			console.log(oneclick);
 			var email = $('#email').val();
 			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 			if (exptext.test(email) == false) {
@@ -179,52 +196,91 @@
 					},
 					success : function(data) {
 						if (data.message == '200') {
+							console.log("ㅇㅇ");
 							$('#emailCheck2').attr("style", "display: none");
-						} else if (data.message == 'fail') {
+							em = 1;
+							$.ajax({
+								type : 'Get',
+								url : "/member/sendauthkey",
+								data : {
+									email : document.getElementById("email").value
+								},
+								success : function(data) {
+									if (data.message == '200') {
+										$('#authkeybox').attr("style", "");
+										oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
+										return true;
+									} else if (data.message == 'fail') {
+										$('#authkeybox').attr("style", "display: none");
+										return false;
+									}
+								}
+							}); // ajax
+							return true;
+						} else if(data.message == 'fail'){
+							console.log("ㄴㄴ");
 							$('#emailCheck2').attr("style", "");
 							return false;
 						}
 					}
 				});
-			}
-			$.ajax({
-				type : 'Get',
-				url : "/member/sendauthkey",
-				data : {
-					email : document.getElementById("email").value
-				},
-				success : function(data) {
-					if (data.message == '200') {
-						$('#authkey').attr("style", "");
-						oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
-					} else if (data.message == 'fail') {
-						$('#authkey').attr("style", "");
-					}
-				}
-			}); // ajax
-
+			} 
+			
 		}
-	}
+	};
 
 	var authkeycheck = function() {
-		$.ajax({
-			type : 'Get',
-			url : "/member/authkeycheck",
-			data : {
-				email : document.getElementById("email").value,
-				authkey : document.getElementById("inputauthkey").value
-			},
-			success : function(data) {
-				if (data.message == '200') {
-					$('#authkey').attr("style", "");
-				} else if (data.message == 'fail') {
-					$('#authkey').attr("style", "");
-				}
+		if (authclick == 0) {
+			console.log(authclick);
+			return false;
+		} else {
+			console.log(authclick);
+			var authk = $('#inputauthkey').val();
+			if (authk.length < 4) {
+				$('#authCheck1').attr("style", "");
+				return false;
+			} else if (authk.replace(/[0-9]/gi, '').length > 0) {
+				$('#authCheck2').attr("style", "");
+				return false;
+			} else {
+				$.ajax({
+					type : 'Get',
+					url : "/member/authkeycheck",
+					data : {
+						email : document.getElementById("email").value,
+						authkey : document.getElementById("inputauthkey").value
+					},
+					success : function(data) {
+						if (data.message == '200') {
+							$('#authkeysuccess').attr("style", "");
+							$('#email').attr("readonly", "readonly");
+							$('#inputauthkey').attr("readonly", "readonly");
+							$('#authkeybox').remove();
+							$('#emailbox').remove();
+							document.getElementById('join').disabled = "";
+							authclick = 0;
+							return true;
+						} else if (data.message == 'fail') {
+							$('#authkeybox').attr("style", "");
+							return false;
+						}
+					}
+				}); // ajax
 			}
-		}); // ajax
-	}
+		}
+	};
+
+	var duplicationCheck = function() {
+		console.log('ㅇㅇ');
+		if (ii == 1 && pp == 1 && nn == 1 && nc == 1 && em == 1) {
+			document.getElementById("loginForm").submit();
+			return true;
+		} else {
+			$('#finalCheck').attr("style", "");
+			return false;
+		}
+	};
 </script>
-<![endif]-->
 
 <meta name="layout" content="main">
 
@@ -346,17 +402,22 @@
 										아닙니다.</li>
 									<li style="display: none" id="emailCheck2">[이메일] : 이미 중복된
 										값이 존재합니다.</li>
-									<li style="display: none" id="authCheck">[인증키] : 인증키가 맞지
-										않습니다.</li>
+									<li style="display: none" id="authCheck1">[인증키] : 숫자 4개를
+										입력하세요.</li>
+									<li style="display: none" id="authCheck2">[인증키] : 숫자로만
+										입력하세요.</li>
+									<li style="display: none" id="authkeysuccess">[인증키] :
+										인증성공.</li>
+									<li style="display: none" id="finalCheck">[입력오류] : 확인하지 않은
+										항목이 있습니다. 확인 후 전송하세요.</li>
 
 								</ul>
 							</div>
 							<div class="alert " role="alert" style="display: none"
-								id="authkey">
+								id="authkeybox">
 								<input type="text" class="form-control input-sm" name="authkey"
-									placeholder="인증번호 7자리" id="inputauthkey">
-								<button class="btn btn-primary btn-block"
-									onclick="authkeycheck()">인증확인</button>
+									placeholder="인증번호 4자리" id="inputauthkey" maxlength="4">
+								<div class="btn btn-primary btn-block" onclick="authkeycheck()">인증확인</div>
 							</div>
 
 							<div>
@@ -369,15 +430,14 @@
 									type="text" name="email" class="form-control input-sm"
 									placeholder="이메일" required="" value="" id="email" />
 								<div>
-									<div class="btn btn-primary btn-block" onclick="mailauth()">이메일
-										인증</div>
+									<div class="btn btn-primary btn-block" id="emailbox"
+										onclick="mailauth()">이메일 인증</div>
 								</div>
 								<input type="text" name="username" class="form-control input-sm"
 									placeholder="이름" required="" value="" id="fullName"
 									onfocusout="nmCheck()" /> <input type="text" name="nickname"
 									class="form-control input-sm" placeholder="닉네임" required=""
 									value="" id="nickname" onfocusout="nickCheck()" />
-
 								<div class="checkbox">
 									<label> <input type="checkbox" name="allowed"
 										value="true" checked="checked"> 이메일 수신 동의
@@ -411,17 +471,18 @@
                             </noscript>
 
                         </div>--%>
-
-							<button class="btn btn-primary btn-block"
-								onclick="duplicationCheck()">아래 약관을 동의하며 회원 가입</button>
-
-							<div class="signup-block">
-								<a href="/user/agreement" data-toggle="modal"
-									data-target="#userAgreement">회원가입약관</a> <span
-									class="inline-saperator">/</span> <a href="/user/privacy"
-									data-toggle="modal" data-target="#userPrivacy">개인정보취급방침</a>
-							</div>
 						</form>
+						<button class="btn btn-primary btn-block"
+							onclick="return duplicationCheck()" id="join" disabled>아래
+							약관을 동의하며 회원 가입</button>
+
+						<div class="signup-block">
+							<a href="/user/agreement" data-toggle="modal"
+								data-target="#userAgreement">회원가입약관</a> <span
+								class="inline-saperator">/</span> <a href="/user/privacy"
+								data-toggle="modal" data-target="#userPrivacy">개인정보취급방침</a>
+						</div>
+
 					</div>
 				</div>
 				<%--<div class="col-md-6 main-block-right">

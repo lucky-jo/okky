@@ -200,4 +200,38 @@ public class MemberController {
     	return mv;
     }
     
+    @RequestMapping(value = "/find")
+    public ModelAndView find(ModelAndView mv, MemberVO vo) {
+    	if(memberService.sendFindId(vo) > 0) {
+    		mv.addObject("email",vo.getEmail());
+    		mv.addObject("message", "200");
+    	}else {
+    		mv.addObject("massage","fail");
+    	}
+    	mv.setViewName("jsonView");
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/findForm")
+    public ModelAndView findForm(ModelAndView mv) {
+    	mv.setViewName("member/find");
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/pwfind")
+    public ModelAndView pwfind(ModelAndView mv, MemberVO vo) {
+    	if(memberService.sendFindPassword(vo)>0) {
+     		mv.addObject("message", "200");
+    	}else {
+    		mv.addObject("massage","fail");
+    	}
+    	mv.setViewName("jsonView");
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/pwFindForm")
+    public ModelAndView pwfindForm(ModelAndView mv) {
+    	mv.setViewName("member/pwFind");
+    	return mv;
+    }
 }

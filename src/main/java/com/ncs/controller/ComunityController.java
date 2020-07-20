@@ -110,6 +110,7 @@ public class ComunityController {
 			mv.addObject("mergeReplylist",mergelist);
 			mv.addObject("get",vo);
 			mv.addObject("writer",memberService.get(vo.getId()));
+			
 			mv.setViewName("comunity/get");
 		return mv;
 	}

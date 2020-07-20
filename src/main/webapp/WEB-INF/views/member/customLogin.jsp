@@ -136,7 +136,7 @@
 
                         <button class="btn btn-primary btn-block" type="submit">로그인</button>
 
-                        <%--<div id="divUserLogin">
+             <!--            <div id="divUserLogin">
                             <button class="btn btn-primary btn-block" type="submit" id="btnUserLogin">로그인</button>
                         </div>
                         <div id="divOTPLogin">
@@ -144,15 +144,15 @@
                             <div class="btn btn-primary btn-block APW-login-cancel" id="btnOTPCancel">
                                 <a href="#;">취소</a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="signup-block">
-                            <a href="/find/user/index">계정 찾기</a>
-                            <span class="inline-saperator">/</span>--%>
+                            <a href="/member/findForm">계정 찾기</a>
+                            <span class="inline-saperator">/</span>
                         <!-- AutoPassword 추가 -->
-                        <%--<a href="/autoPassword/reset">AutoPassword™ 재설정</a>
+                        <a href="/member/pwFindForm">Password 찾기</a>
                         <span class="inline-saperator">/</span>
-                        <a href="/user/register">회원 가입</a>
-                    </div>--%>
+                        <a href="/member/register">회원 가입</a>
+                    </div>
                     </form>
                 </div>
             </div>
