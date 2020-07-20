@@ -79,15 +79,15 @@ function del() {
 		<ul class="nav">
 		<li><a href="/qna/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" /> '><span
+				class='nav-indicator <c:out value="${get.category eq null ? 'nav-selected':''}" /> '><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/qna/list?category=Tech%20Q%26A&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Tech Q&A</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Tech Q&A' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq 'Tech Q&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/qna/list?category=Blockchain%20Q%26A&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">Blockchain Q&A</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'Blockchain Q&A' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq 'Blockchain Q&A' ? 'nav-selected':''}" />'><span
 					class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
@@ -100,7 +100,9 @@ function del() {
 			class="create btn btn-success btn-wide pull-right"><i
 			class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-		S
+	<c:if test="${get.category eq null}"><h4>Q&A</h4></c:if>
+	<c:if test="${get.category eq 'Tech Q&A'}"><h4>Tech Q&A</h4></c:if>
+	<c:if test="${get.category eq 'Blockchain Q&A'}"><h4>Blockchain Q&A</h4></c:if>
 	</div>
 
 	<div class="panel panel-default clearfix fa-">
@@ -131,7 +133,7 @@ function del() {
 			<div id="content-body" class="panel-body content-body pull-left">
 				<div class="content-tags">
 					<span class="list-group-item-text article-id">#${get.seq}</span> <a
-						href="/qna/list"
+						href="/qna/list?seq=${get.seq }&board=${get.board}&id=${get.id}&category=${get.category}"
 						class="list-group-item-text item-tag label label-info"><i
 						class="fa fa-comments"></i> ${get.category}</a>
 				</div>

@@ -85,7 +85,7 @@
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
 						<div class="input-group input-group-sm">
-							<input type="hidden" name="categoty"
+							<input type="hidden" name="category"
 								value="${pageMaker.cri.category }"> <input type="hidden"
 								name="searchType" value="tcw"> <input type="search"
 								name="keyword" id="search-field" class="form-control"
@@ -140,7 +140,7 @@
 							<div class="list-title-wrapper clearfix">
 								<div class="list-tag clearfix">
 									<span class="list-group-item-text article-id">${list.seq}</span>
-									<a href="#"
+									<a href="/qna/list?seq=${list.seq }&board=${list.board}&id=${list.id}&category=${list.category}"
 										class="list-group-item-text item-tag label label-info"><i
 										class="fa fa-comments"></i> ${list.category}</a>
 								</div>
@@ -173,7 +173,7 @@
 
 							<div class="list-group-item-author clearfix">
 								<div class='avatar avatar-list clearfix '>
-									<a href='#' class='avatar-photo'><img
+									<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 										src='/resources/user/${list.image }' /></a>
 									<div class="avatar-info">
 										<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="${list.userid}">${list.nickname}</a>
@@ -195,7 +195,7 @@
 						<div class="list-title-wrapper clearfix">
 							<div class="list-tag clearfix">
 								<span class="list-group-item-text article-id">${list.seq}</span>
-								<a href="#"
+								<a href="/qna/list?seq=${list.seq }&board=${list.board}&id=${list.id}&category=${list.category}"
 									class="list-group-item-text item-tag label label-info"><i
 									class="fa fa-comments"></i> ${list.category}</a>
 							</div>
@@ -227,7 +227,7 @@
 
 						<div class="list-group-item-author clearfix">
 							<div class='avatar avatar-list clearfix '>
-								<a href='#' class='avatar-photo'><img
+								<a href='/member/info?userid=${merge.member.userid}' class='avatar-photo'><img
 									src='/resources/user/${list.image }' /></a>
 								<div class="avatar-info">
 									<a class="nickname" href="/member/info?userid=${merge.member.userid}" title="${list.userid}">${list.nickname}</a>

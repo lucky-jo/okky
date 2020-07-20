@@ -70,14 +70,14 @@
 			target="_blank"><i class="fa fa-github"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Github	Issues</span></a></li>
 </ul>
-
+</div>
 <div class="sidebar-category-nav">
 	<h3 class="sub-title">칼럼</h3>
 	<ul class="nav">
 		<li><a href="/columnm/list?sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}" />
-					<c:out value="${pageMaker.cri.category eq '' ? 'nav-selected':''}" />'><span
+				class='nav-indicator <c:out value="${get.category eq null ? 'nav-selected':''}" />
+					<c:out value="${get.category eq '' ? 'nav-selected':''}" />'><span
 				class="nav-selected-dot"></span></span></a></li>
 
 	</ul>

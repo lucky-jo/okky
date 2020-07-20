@@ -98,7 +98,7 @@
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
 						<div class="input-group input-group-sm">
-								<input type="hidden" name="categoty"
+								<input type="hidden" name="category"
 								value="${pageMaker.cri.category }"> <input type="hidden"
 								name="searchType" value="tcw"> <input type="search"
 								name="keyword" id="search-field" class="form-control"
@@ -160,7 +160,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
+											href="/comunity/get?category=${merge.board.category}&seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
@@ -215,7 +215,7 @@
 
 								<h5 class="list-group-item-heading list-group-item-evaluate">
 									<a
-											href="/comunity/get?seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}&category=${merge.board.category}">
+											href="/comunity/get?category=${merge.board.category}&seq=${merge.board.seq }&board=${merge.board.board}&id=${merge.board.id}">
 											${merge.board.title} </a>
 								</h5>
 							</div>
