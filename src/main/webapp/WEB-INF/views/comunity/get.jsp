@@ -18,7 +18,7 @@ function del() {
 
 <ul class="nav nav-sidebar nav-main">
 
-	<li class="active" data-toggle="tooltip" data-placement="right"
+	<li data-toggle="tooltip" data-placement="right"
 		data-container="body" title="Q&A"><a href="/qna/list"
 		class="link"><i class="nav-icon fa fa-database"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Q&A</span></a></li>
@@ -28,7 +28,7 @@ function del() {
 			class="nav-icon fa fa-code"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">Tech</span></a></li>
 
-	<li data-toggle="tooltip" data-placement="right" data-container="body"
+	<li class="active" data-toggle="tooltip" data-placement="right" data-container="body"
 		title="커뮤니티"><a href="/comunity/list" class="link"><i
 			class="nav-icon fa fa-comments"></i> <span
 			class="nav-sidebar-label nav-sidebar-category-label">커뮤니티</span></a></li>
