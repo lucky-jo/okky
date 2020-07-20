@@ -44,7 +44,7 @@ function inCheck() {
 </ul>
 </div>
 <div class="sidebar-category-nav">
-            <h3 class="sub-title">커뮤니티</h3>
+            <h3 class="sub-title">Jobs</h3>
             <ul class="nav">
                 <li><a href="/jobs/list" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span><span class='nav-indicator <c:out value="${maker.cri.category eq null ? 'nav-selected':''}"/> '><span class="nav-selected-dot"></span></span></a></li>
                 <li><a href="/jobs/list?category=a" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">좋은회사/나쁜회사</span> <span class='nav-indicator <c:out value="${maker.cri.category eq 'a' ? 'nav-selected':''}"/>'><span class="nav-selected-dot"></span></span></a></li>
@@ -78,7 +78,7 @@ function inCheck() {
 
 		</div>
 		<div class="panel-body">
-			<form action="/comunity/register" method="post"
+			<form action="/jobs/register" method="post"
 				id="article-form" class="article-form" role="form"
 				onsubmit="return postForm()">
 				<input type="hidden" name="SYNCHRONIZER_TOKEN"
@@ -122,7 +122,7 @@ function inCheck() {
 					
 					<div class="nav" role="navigation">
                                 <fieldset class="buttons">
-                                    <a href="/jobs/list" class="btn btn-default btn-wide" onclick="return confirm(&#39;정말로 취소하시겠습니까?&#39;)">취소</a>
+                                    <a href="/jobs/list" class="btn btn-default btn-wide" onclick="return confirm()">취소</a>
                                     <input type="submit" name="create" class="create btn btn-success btn-wide pull-right" value="등록" id="create" />
                                     <input type="hidden" name="id" value="Lee">
                                 </fieldset>
