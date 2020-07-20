@@ -146,12 +146,12 @@
                             </div>
                         </div> -->
                         <div class="signup-block">
-                            <a href="/member/find">계정 찾기</a>
+                            <a href="/member/findForm">계정 찾기</a>
                             <span class="inline-saperator">/</span>
                         <!-- AutoPassword 추가 -->
-                        <a href="/autoPassword/reset">AutoPassword™ 재설정</a>
+                        <a href="/member/pwFindForm">Password 찾기</a>
                         <span class="inline-saperator">/</span>
-                        <a href="/user/register">회원 가입</a>
+                        <a href="/member/register">회원 가입</a>
                     </div>
                     </form>
                 </div>
