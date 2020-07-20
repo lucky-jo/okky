@@ -90,50 +90,51 @@
 	<ul class="nav">
 		<li><a href="/comunity/list" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">All</span><span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq null ? 'nav-selected':''}"/> '><span
+				class='nav-indicator <c:out value="${get.category eq null ? 'nav-selected':''}"/> '><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=공지사항&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">공지사항</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '공지사항' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq '공지사항' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=사는얘기&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">사는얘기</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '사는얘기' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq '사는얘기' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=포럼&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">포럼</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '포럼' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq '포럼' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=IT행사&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">IT행사</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq 'IT행사' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq 'IT행사' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=정기모임%2F스터디&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">정기모임/스터디</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '정기모임/스터디' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq '정기모임/스터디' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 		<li><a href="/comunity/list?category=학원%2F홍보&sorted=" class="link"><span
 				class="nav-sidebar-label nav-sidebar-category-label">학원/홍보</span> <span
-				class='nav-indicator <c:out value="${pageMaker.cri.category eq '학원/홍보' ? 'nav-selected':''}"/>'><span
+				class='nav-indicator <c:out value="${get.category eq '학원/홍보' ? 'nav-selected':''}"/>'><span
 				class="nav-selected-dot"></span></span></a></li>
 	</ul>
 	<div class="special-nav"></div>
 </div>
 
 <div id="article" class="content" role="main">
-
+	<div id="article" class="content" role="main">
 	<div class="nav" role="navigation">
 		<a href="/comunity/register"
 		   class="create btn btn-success btn-wide pull-right"><i
 				class="fa fa-pencil"></i> 새 글 쓰기</a>
 
-			<c:if test="${pageMaker.cri.category eq null}"><h4>커뮤니티</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '공지사항'}"><h4>공지사항</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '사는얘기'}"><h4>사는얘기</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '포럼'}"><h4>포럼</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq 'IT행사'}"><h4>IT행사</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '정기모임/스터디'}"><h4>정기모임/스터디</h4></c:if>
-        	<c:if test="${pageMaker.cri.category eq '학원/홍보'}"><h4>학원/홍보</h4></c:if>
+			<c:if test="${get.category eq null}"><h4>커뮤니티</h4></c:if>
+        	<c:if test="${get.category eq '공지사항'}"><h4>공지사항</h4></c:if>
+        	<c:if test="${get.category eq '사는얘기'}"><h4>사는얘기</h4></c:if>
+        	<c:if test="${get.category eq '포럼'}"><h4>포럼</h4></c:if>
+        	<c:if test="${get.category eq 'IT행사'}"><h4>IT행사</h4></c:if>
+        	<c:if test="${get.category eq '정기모임/스터디'}"><h4>정기모임/스터디</h4></c:if>
+        	<c:if test="${get.category eq '학원/홍보'}"><h4>학원/홍보</h4></c:if>
+        	
 	</div>
 
 	<div class="panel panel-default clearfix fa-">
@@ -260,8 +261,8 @@
 							data-placement="left" title="페이스북 공유"></i></a>
 
 				</div>
-				<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal" var="pinfo"/>
+				 <sec:authorize access="isAuthenticated()"> 
+			 		<sec:authentication property="principal" var="pinfo"/> 
 					<c:if test="${pinfo.username eq get.id }">
 						<div class="dropdown">
 							<form method="post" name="article-delete-form"
@@ -285,7 +286,7 @@
 							</form>
 						</div>
 					</c:if>
-				</sec:authorize>
+				 </sec:authorize> 
 			</div>
 		</div>
 	</div>
@@ -505,6 +506,6 @@
 			</li>
 		</ul>
 	</div>
-
+	</div>
 </div>
 <%@include file="../includes/footer.jsp"%>
