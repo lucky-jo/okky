@@ -72,7 +72,7 @@
 				<div class="category-filter-wrapper">
 					<div class="category-filter-query pull-right">
 						<div class="input-group input-group-sm">
-							<input type="hidden" name="categoty"
+							<input type="hidden" name="category"
 								value="${pageMaker.cri.category }"> <input type="hidden"
 								name="searchType" value="tcw"> <input type="search"
 								name="keyword" id="search-field" class="form-control"
