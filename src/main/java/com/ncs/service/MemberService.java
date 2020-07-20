@@ -39,4 +39,8 @@ public interface MemberService {
     
     int authKeyCheck(AuthKeyDTO authdto);
     
+    int sendFindId(MemberVO membervo);
+    
+    int sendFindPassword(MemberVO memnervo);
+    
 }
