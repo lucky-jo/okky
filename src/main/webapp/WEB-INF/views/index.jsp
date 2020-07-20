@@ -172,30 +172,88 @@
                         <!-- Table -->
 
                         <ul class="list-group">
-                            <c:forEach var="list" items="${best}">
+                            <%-- <c:forEach var="list" items="${best}"> --%>
                            
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
-                                    <div class="list-title-wrapper">
-                                        <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/article/735343">&#39;악덕 보도방&#39; 구분법.</a>
-                                            <div class="list-group-item-author pull-right clearfix">
-                                                <div class='avatar avatar-x-small clearfix '><a href='/member/info/'
-                                                                                                class='avatar-photo'><img
-                                                        src='//www.gravatar.com/avatar/f50ed624226bd860725f788e4dcdbb47?d=identicon&s=10'/></a>
-                                                    <div class="avatar-info"><a class="nickname" href="/user/info/21016"
-                                                                                title="sbroh">sbroh</a>
-                                                        <div class="activity"><span class="fa fa-flash"></span> 9k</div>
-                                                        <div class="date-created"><span class="timeago"
-                                                                                        title="2020-07-04 21:26:59.0">2020-07-04 21:26:59</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </h5>
-                                    </div>
-                                </li>
+                    <div class="list-title-wrapper">
+                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                            <a href="/index">OKKY x 제이펍 [ 객체지향 사고 프로세스(제5판) ] 리뷰 이벤트 결과 발표</a>
+                            <div class="list-group-item-author pull-right clearfix">
+                                <div class='avatar avatar-x-small clearfix '><a href='/index' class='avatar-photo'><img src='//www.gravatar.com/avatar/b66da5ef6099211f5db8f5f7a3b4c36b?d=identicon&s=10'/></a> <div class="avatar-info"><a class="nickname" href="/index"  title="OKKY">OKKY</a> <div class="activity"><span class="fa fa-flash"></span> 1k</div><div class="date-created"><span class="timeago" title="2020-07-10 09:46:27.0">2020-07-10 09:46:27</span> </div> </div></div>
+                            </div>
+                        </h5>
+                    </div>
+                </li>
+            
+                
+
+                
+                    
+                
+
+                <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                    <div class="list-title-wrapper">
+                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                            <a href="/index">&#39;악덕 보도방&#39; 구분법.</a>
+                            <div class="list-group-item-author pull-right clearfix">
+                                <div class='avatar avatar-x-small clearfix '><a href='/index' class='avatar-photo'><img src='//www.gravatar.com/avatar/f50ed624226bd860725f788e4dcdbb47?d=identicon&s=10'/></a> <div class="avatar-info"><a class="nickname" href="/index"  title="sbroh">sbroh</a> <div class="activity"><span class="fa fa-flash"></span> 9k</div><div class="date-created"><span class="timeago" title="2020-07-04 21:26:59.0">2020-07-04 21:26:59</span> </div> </div></div>
+                            </div>
+                        </h5>
+                    </div>
+                </li>
+            
+                
+
+                
+                    
+                
+
+                <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                    <div class="list-title-wrapper">
+                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                            <a href="/index">과기정통부, SW프리랜서 대상 표준계약서 제도 시행</a>
+                            <div class="list-group-item-author pull-right clearfix">
+                                <div class='avatar avatar-x-small clearfix '><a href='/index' class='avatar-photo'><img src='//www.gravatar.com/avatar/f50ed624226bd860725f788e4dcdbb47?d=identicon&s=10'/></a> <div class="avatar-info"><a class="nickname" href="/index"  title="sbroh">sbroh</a> <div class="activity"><span class="fa fa-flash"></span> 9k</div><div class="date-created"><span class="timeago" title="2020-02-06 16:18:40.0">2020-02-06 16:18:40</span> </div> </div></div>
+                            </div>
+                        </h5>
+                    </div>
+                </li>
+            
+                
+
+                
+                    
+                
+
+                <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                    <div class="list-title-wrapper">
+                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                            <a href="/index">개발자라면 반드시 알아야하는 기본기</a>
+                            <div class="list-group-item-author pull-right clearfix">
+                                <div class='avatar avatar-x-small clearfix '><a href='/index' class='avatar-photo'><img src='//www.gravatar.com/avatar/307d31079ac2364a12f843e2634b23ef?d=identicon&s=10'/></a> <div class="avatar-info"><a class="nickname" href="/index"  title="fender">fender</a> <div class="activity"><span class="fa fa-flash"></span> 17k</div><div class="date-created"><span class="timeago" title="2020-01-30 11:57:42.0">2020-01-30 11:57:42</span> </div> </div></div>
+                            </div>
+                        </h5>
+                    </div>
+                </li>
+            
+                
+
+                
+                    
+                
+
+                <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
+                    <div class="list-title-wrapper">
+                        <h5 class="list-group-item-heading list-group-item-evaluate">
+                            <a href="/index">[SI업계 고발 기획기사] 사람 잡는 금융권 차세대 프로젝트</a>
+                            <div class="list-group-item-author pull-right clearfix">
+                                <div class='avatar avatar-x-small clearfix '><a href='/index' class='avatar-photo'><img src='//www.gravatar.com/avatar/f50ed624226bd860725f788e4dcdbb47?d=identicon&s=10'/></a> <div class="avatar-info"><a class="nickname" href="/index"  title="sbroh">sbroh</a> <div class="activity"><span class="fa fa-flash"></span> 9k</div><div class="date-created"><span class="timeago" title="2019-04-25 08:38:16.0">2019-04-25 08:38:16</span> </div> </div></div>
+                            </div>
+                        </h5>
+                    </div>
+                </li>
                            
-                            </c:forEach>
+                           <%--  </c:forEach> --%>
                         </ul>
                     </div>
 
