@@ -147,6 +147,7 @@ public class MemberServiceImpl implements MemberService {
 	public int sendFindId(MemberVO membervo) {
 		membervo = memberMapper.sendFindId(membervo);
 		if (membervo != null) {
+			membervo.setUserid(membervo.getUserid());
 			String to = membervo.getEmail();
 			String subject = "문의하신 계정 정보입니다";
 			String body = System.getProperty("line.separator") + // 한줄씩 줄간격을 두기위해 작성
@@ -174,10 +175,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int sendFindPassword(MemberVO membervo) {
 		Random r = new Random();
-		String dice = Integer.toString(r.nextInt(8990) + 1001); // 이메일로 받는 인증코드 부분 (난수)
+		String dice = Integer.toString(r.nextInt(8990) + 1001)+("!"); // 이메일로 받는 인증코드 부분 (난수)
 		membervo.setUserpw(dice);
 		membervo = memberMapper.sendFindPassword(membervo);
 		if(membervo != null) {
+			membervo.setUserid(membervo.getUserid());
+			membervo.setUserpw(dice);
 			String to = membervo.getEmail();
 			String subject = "문의하신 계정 정보입니다";
 			String body = System.getProperty("line.separator") + // 한줄씩 줄간격을 두기위해 작성
@@ -193,6 +196,7 @@ public class MemberServiceImpl implements MemberService {
 					"임시 비밀번호 : " + dice;
 			try {
 				mailService.authSendMail(to, subject, body);
+				memberMapper.passwordChange(membervo);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
