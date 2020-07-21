@@ -75,7 +75,19 @@
             </span>
                 </div>
             </form>
+            <%--비로그인시 보여지는 화면--%>
+            <sec:authorize access="isAnonymous()">
+                <div class="nav-user nav-sidebar">
 
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/member/customLogin" class="link"><i class="fa fa-sign-in"></i> <span
+                                class="nav-sidebar-label">로그인</span></a></li>
+                        <li><a href="/member/register" class="link"><i class="fa fa-user"></i> <span
+                                class="nav-sidebar-label">회원가입</span></a></li>
+                    </ul>
+
+                </div>
+            </sec:authorize>
             <ul class="nav nav-sidebar nav-main">
 
                 <li><a href="/qna/list" class="link"><i class="nav-icon fa fa-database"></i> <span
