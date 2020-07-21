@@ -8,12 +8,13 @@ import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ncs.mapper.MemberMapper;
 import com.ncs.util.SearchCriteria;
-import com.ncs.util.TempKey;
 import com.ncs.vo.AuthKeyDTO;
 import com.ncs.vo.MemberVO;
 import com.ncs.vo.QnaVO;
@@ -29,6 +30,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public MemberVO read(String userid) {
@@ -171,16 +175,19 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 
 	}
-	
+	@Transactional
 	@Override
 	public int sendFindPassword(MemberVO membervo) {
 		Random r = new Random();
 		String dice = Integer.toString(r.nextInt(8990) + 1001)+("!"); // 이메일로 받는 인증코드 부분 (난수)
-		membervo.setUserpw(dice);
 		membervo = memberMapper.sendFindPassword(membervo);
 		if(membervo != null) {
-			membervo.setUserid(membervo.getUserid());
-			membervo.setUserpw(dice);
+			String encodedPassword = bCryptPasswordEncoder.encode(dice);
+			if(bCryptPasswordEncoder.matches(dice, encodedPassword)) {
+				membervo.setUserid(membervo.getUserid());
+				membervo.setUserpw(bCryptPasswordEncoder.encode(dice));
+			}
+			
 			String to = membervo.getEmail();
 			String subject = "문의하신 계정 정보입니다";
 			String body = System.getProperty("line.separator") + // 한줄씩 줄간격을 두기위해 작성
@@ -200,6 +207,8 @@ public class MemberServiceImpl implements MemberService {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
+			
+
 			return 1;
 		}
 		return 0;
