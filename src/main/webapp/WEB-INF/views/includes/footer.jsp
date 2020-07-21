@@ -9,16 +9,14 @@
          pageEncoding="UTF-8"
          isELIgnored="false"%>
 
-
-</div>
-<div class="right-banner-wrapper">
+ <div class="right-banner-wrapper">
 
     <div class="right-banner">
         <a href="/banner/stats/290" target="_K"><img src="//file.okky.kr/banner/1592890052184.jpg" style="width:160px;"/></a>
     </div>
     <div class="google-ad">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- okjspad_160x500 -->
+        okjspad_160x500
         <ins class="adsbygoogle"
              style="display:inline-block;width:160px;height:500px"
              data-ad-client="ca-pub-8103607814406874"
@@ -28,7 +26,7 @@
         </script>
     </div>
 
-</div>
+</div> 
 <div id="footer" class="footer" role="contentinfo">
     <div class="row">
         <div class="col-sm-9">

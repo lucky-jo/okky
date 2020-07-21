@@ -269,8 +269,8 @@
 								  id="article-delete-form">
 								<input type="hidden" name="_method" value="DELETE" id="_method" />
 								<div class="dropdown">
-									<a href="javascript://" data-toggle="dropdown"><i
-											class="fa fa-cog" data-toggle="tooltip" data-placement="left"
+									<a href="javascript://" data-toggle="dropdown">
+									<i class="fa fa-cog" data-toggle="tooltip" data-placement="left"
 											title="게시물 설정"></i></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="/comunity/update?seq=${get.seq}&id=${get.id}" class="edit"><i
