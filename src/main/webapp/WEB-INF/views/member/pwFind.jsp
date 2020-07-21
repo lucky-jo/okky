@@ -46,30 +46,36 @@
 	
 	var sendPassword = function(){
 		if(oneclick == 0){
-			console.log("1");
 			return false;
 		}else{
-			console.log("2");
-			var inputemail = $('#email').val();
-			var inputid = $('#userId').val();
-			if(inputid == null){
-				console.log("3");
+			console.log("2222");
+			var email = $('#email').val();
+			var userid = $('#userId').val();
+			console.log("3333"+userid);
+			if(userid.length < 4){
+				console.log(userid);
 				return false;
-			}else if (inputemail == null){
-				console.log("4");
+			}else if (email == null){
+				console.log(pfemail);
 				return false;
 			}else{
+				console.log("4444"+email);
 			$.ajax({
 				type : 'Get',
 				url : '/member/pwfind',
 				data : {
 					email : document.getElementById("email").value,
-					id : document.getElementById("userId").value
+					userid : document.getElementById("userId").value
 				},
 				success : function(data){
 					if(data.message == '200'){
 						console.log("성공");
+						$('#pfwritebox').remove();
+						$('#pfsendsuccess').attr("style","");
 						oneclick = 0;
+						inputemail = 1;
+						inputid = 1;
+						document.getElementById('getemail').innerHTML = data.email;
 						return true;
 					}else if (data.message == 'fail') {
 						console.log("실패");
@@ -79,7 +85,7 @@
 			});
 			}
 		}
-	}
+	};
 </script>
 <meta name="layout" content="main">
 
@@ -179,7 +185,7 @@
 					</div>
 					<div class="col-sm-8 col-sm-offset-2">
 						<div class="panel panel-default panel-margin-10">
-							<div class="panel-body panel-body-content text-center" id="writebox">
+							<div class="panel-body panel-body-content text-center" id="pfwritebox">
 								<p class="lead">이메일 주소와 아이디를 입력해 주세요.</p>
 								<p>
 									회원 가입시 입력하신 이메일 주소와 아이디를 입력하시면,<br /> 해당 이메일로 임시 비밀번호를
@@ -199,10 +205,10 @@
 								<a href="/" class="btn btn-default">취소</a>
 							</div>
 							
-							<div class="panel-body panel-body-content text-center" style="display: none" id="sendsuccess">
-								<span id="getemail"></span><p class="lead"> 로 요청하신 계정정보를 보냈습니다.</p>
+							<div class="panel-body panel-body-content text-center" style="display: none" id="pfsendsuccess">
+								<span id="getemail"></span><p class="lead"> 로 요청하신 임시 비밀번호를 보냈습니다.</p>
 								<p>
-									해당 이메일을 확인 하시고, 비밀번호 변경이 필요하신 경우 해당 이메일을 통해 변경 가능합니다..<br />
+									해당 이메일을 확인 하시고, 로그인 후에 비밀번호를 꼭 변경 하세요.<br />
 
 									※ 서비스에 따라 스팸으로 분류 되있을 수도 있습니다. 스팸함도 꼭 확인해 주시기 바랍니다.
 								</p>
