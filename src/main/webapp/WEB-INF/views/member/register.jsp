@@ -175,7 +175,7 @@
 			});
 		}
 	}; // nickCheck()
-
+	// 이메일 유효성 검사
 	var mailauth = function(e) {
 		if (oneclick == 0) {
 			return false;
@@ -228,7 +228,7 @@
 			
 		}
 	};
-
+	// 인증키 유효성 검사
 	var authkeycheck = function() {
 		if (authclick == 0) {
 			console.log(authclick);
@@ -240,9 +240,11 @@
 				$('#authCheck1').attr("style", "");
 				return false;
 			} else if (authk.replace(/[0-9]/gi, '').length > 0) {
+				$('#authCheck1').attr("style", "display: none");
 				$('#authCheck2').attr("style", "");
 				return false;
 			} else {
+				$('#authCheck2').attr("style", "display: none");
 				$.ajax({
 					type : 'Get',
 					url : "/member/authkeycheck",
@@ -261,6 +263,7 @@
 							authclick = 0;
 							return true;
 						} else if (data.message == 'fail') {
+							$('#authCheck2').attr("style", "");
 							$('#authkeybox').attr("style", "");
 							return false;
 						}
@@ -269,7 +272,7 @@
 			}
 		}
 	};
-
+	// 전체 유효성 검사 통과 후 회원가입
 	var duplicationCheck = function() {
 		console.log('ㅇㅇ');
 		if (ii == 1 && pp == 1 && nn == 1 && nc == 1 && em == 1) {
@@ -404,8 +407,8 @@
 										값이 존재합니다.</li>
 									<li style="display: none" id="authCheck1">[인증키] : 숫자 4개를
 										입력하세요.</li>
-									<li style="display: none" id="authCheck2">[인증키] : 숫자로만
-										입력하세요.</li>
+									<li style="display: none" id="authCheck2">[인증키] : 인증번호가 맞지 않습니다.
+										</li>
 									<li style="display: none" id="authkeysuccess">[인증키] :
 										인증성공.</li>
 									<li style="display: none" id="finalCheck">[입력오류] : 확인하지 않은
