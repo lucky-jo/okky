@@ -77,6 +77,7 @@ okky web-site_Clone / <https://okky.kr/>
     * 회원가입시 이메일 인증 기능 구현
     * 아이디 및 비밀번호 분실시 찾는 기능 구현
     * 애플리케이션 Tester
+    * 네이버 로그인 추가
  * 엄만성
     * Column 게시판 CRUD
     * 게시판 페이징
