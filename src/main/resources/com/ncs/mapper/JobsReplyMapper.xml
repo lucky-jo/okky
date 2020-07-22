@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.ncs.mapper.JobsReplyMapper">
-  	<select id="selectlist" resultType="com.ncs.vo.JobsReplyVO">
+  	<select id="selectlist" resultType="com.ncs.vo.ReplyVO">
   	select * from jobsreply where seq = #{seq} order by rseq desc
   </select>
   

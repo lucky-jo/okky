@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ncs.mapper.JobsMapper;
 import com.ncs.mapper.JobsReplyMapper;
 import com.ncs.vo.JobsReplyVO;
+import com.ncs.vo.JobsVO;
+import com.ncs.vo.ReplyVO;
 
 
 
@@ -16,9 +19,11 @@ public class JobsReplyServiceImpl implements JobsReplyService {
 	@Autowired
 	JobsReplyMapper rmapper;
 	
+	@Autowired
+	JobsMapper mapper;
 	
 	@Override
-	public List<JobsReplyVO>selectlist(int seq){
+	public List<ReplyVO>selectlist(int seq){
 		return rmapper.selectlist(seq);
 	}
 	@Override 
@@ -31,10 +36,13 @@ public class JobsReplyServiceImpl implements JobsReplyService {
     }
 	@Override
 	public int register(JobsReplyVO rvo) {
-		return rmapper.rinsert(rvo);
+		mapper.replycountUp(rvo.getSeq());
+		return rmapper.register(rvo);
 	}
-	
-	
+	@Override
+	public int replyCount() {
+		return rmapper.replyCount();
+	}
 	
 	
 	

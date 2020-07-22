@@ -444,7 +444,7 @@ function del() {
 			<sec:authorize access="isAnonymous()">
 				<div class="panel-body">
 					<h5 class="text-center">
-						<a href="/login/auth?redirectUrl=%2Farticle%2F734930" 
+						<a href="/member/customLogin/auth?redirectUrl=%2Farticle%2F734930" 
 						class="link">로그인</a>을 하시면 답변을 등록할 수 있습니다.
 					</h5>
 				</div>
