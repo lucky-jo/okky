@@ -208,7 +208,7 @@ function del() {
 						data-placement="left" title="페이스북 공유"></i></a>
 
 				</div>
-				<sec:authorize access="isAuthenticated()">
+				<%-- <sec:authorize access="isAuthenticated()">
 				<sec:authentication property="principal" var="pinfo"/>
 				<c:if test="${pinfo.username eq get.id }">
 				<div class="dropdown">
@@ -233,7 +233,7 @@ function del() {
 					</form>
 				</div>
 				</c:if>
-				</sec:authorize>
+				</sec:authorize> --%>
 			</div>
 		</div>
 	</div>
