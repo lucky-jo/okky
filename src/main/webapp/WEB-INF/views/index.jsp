@@ -273,7 +273,7 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-has-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/columnm/detail?seq=${list.board.seq}">${list.board.title}</a>
+                                            <a href="/columnm/get?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.member.userid }'
                                                                                                 class='avatar-photo'><img
@@ -294,7 +294,7 @@
                                 <li class="list-group-item list-group-item-small list-group-item-question list-group-no-note clearfix">
                                     <div class="list-title-wrapper">
                                         <h5 class="list-group-item-heading list-group-item-evaluate">
-                                            <a href="/columnm/detail?seq=${list.board.seq}">${list.board.title}</a>
+                                            <a href="/columnm/get?seq=${list.board.seq}">${list.board.title}</a>
                                             <div class="list-group-item-author pull-right clearfix">
                                                 <div class='avatar avatar-x-small clearfix '><a href='/member/info?userid=${list.member.userid }'
                                                                                                 class='avatar-photo'><img
