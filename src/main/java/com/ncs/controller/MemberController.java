@@ -5,12 +5,16 @@ import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +22,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.ncs.security.CustomUserDetailsService;
 import com.ncs.service.MemberService;
+import com.ncs.snslog.NaverLoginBO;
 import com.ncs.util.SearchCriteria;
 import com.ncs.vo.AuthKeyDTO;
-import com.ncs.vo.AuthVO;
 import com.ncs.vo.MemberVO;
 
 @RequestMapping(value = "/member")
@@ -38,19 +42,73 @@ public class MemberController {
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
+    
+    // NaverLoginBO
+    private NaverLoginBO naverLoginBO;
+    private String apiResult = null;
 
+    @Autowired
+    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+    }
+    
+    
     @RequestMapping(value = "/customLogin",method = RequestMethod.GET)
     public void getLogin() {
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String postLogin(MemberVO vo) {
-//        memberService.read(vo.getUserid());
-//
-//
-//        return "redirect:/index";
-//    }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String postLogin(MemberVO vo) {
+        memberService.read(vo.getUserid());
 
+
+        return "redirect:/index";
+    }
+    
+    // 로그인 첫화면 요청 메소드
+    @RequestMapping(value = "naverLogin", method = {RequestMethod.GET, RequestMethod.POST})
+    public String naverLogin(Model model, HttpSession session) {
+    	// 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
+    	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+    	System.out.println("네이버:"+naverAuthUrl);
+    	model.addAttribute("url", naverAuthUrl);
+    	
+    	return "naverLogin";
+    }
+    // 로그인 성공시 callback 호출 메소드
+    @RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
+    public String callback(Model model, @RequestParam String code, @RequestParam String state,HttpSession session)
+    		throws IOException, ParseException {
+    	System.out.println("callback");
+    	OAuth2AccessToken oauthToken;
+    	oauthToken = naverLoginBO.getAccessToken(session, code, state);
+    	// 1. 로그인 사용자 정보 읽어오기
+    	apiResult = naverLoginBO.getUserProfile(oauthToken); //String 형식의 json 데이터
+    	// 2. String 형식인 apiResult를 json 형태로 바꿈
+    	JSONParser parser = new JSONParser();
+    	Object obj = parser.parse(apiResult);
+		JSONObject jsonObj = (JSONObject) obj;
+		// 3. 데이터 파싱
+		//Top레벨 단계 _response 파싱
+				JSONObject response_obj = (JSONObject) jsonObj.get("response");
+		//response의 nickname값 파싱
+				String nickname = (String) response_obj.get("nickname");
+				System.out.println(nickname);
+		//4.파싱 닉네임 세션으로 저장
+				session.setAttribute("sessionId", nickname); // 세션 생성
+				model.addAttribute("result", apiResult);
+		
+		return "/naverLogin";
+    }
+    
+    //로그아웃
+  	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+  	public String logout(HttpSession session) throws IOException {
+  		System.out.println("여기는 logout");
+  		session.invalidate();
+  		return "redirect:index.jsp";
+  	}
+  	
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public void getRegister(){
     }
