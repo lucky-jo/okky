@@ -142,7 +142,6 @@
 						<div class="panel-heading">
 							<h5 class="panel-header">아이디 로그인</h5>
 						</div>
-
 						<form action='/login'
 							class="form-signin form-user panel-body panel-margin"
 							method='POST' id='loginForm' autocomplete='off'>
@@ -190,18 +189,38 @@
 						</form>
 					</div>
 				</div>
-						<div class="col-md-6 main-block-right">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h5 class="panel-header">SNS 로그인</h5>
-								</div>
-								<div id="naver_id_login" style="text-align: center">
-									<a href="${url}"> <img width="223"
-										src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
-								</div>
-							</div>
+				<%-- <div class="col-md-6 main-block-right">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h5 class="panel-header">SNS 로그인</h5>
 						</div>
-			</div>
+						<div id="naver_id_login" style="text-align: center">
+							<a href="${url}"> <img width="223"
+								src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+						</div>
+					</div>
+				</div>
+
+			</div> --%>
+			
+			<c:choose>
+			<c:when test="${sessionId != null}">
+				<h2>네이버 아이디 로그인 성공하셨습니다!!</h2>
+				<h3>'${sessionId}' 님 환영합니다!</h3>
+				<h3>
+					<a href="logout">로그아웃</a>
+				</h3>
+			</c:when>
+			<c:otherwise>
+				<br>
+				<!-- 네이버 로그인 창으로 이동 -->
+				<div id="naver_id_login" style="text-align: center">
+					<a href="${url}"> <img width="223"
+						src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+				</div>
+				<br>
+			</c:otherwise>
+		</c:choose>
 			<div class="right-banner-wrapper"></div>
 			<div id="footer" class="footer" role="contentinfo">
 				<div class="row">
