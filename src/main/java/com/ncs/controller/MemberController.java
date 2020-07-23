@@ -53,9 +53,10 @@ public class MemberController {
     }
     
     
-    @RequestMapping(value = "/customLogin",method = RequestMethod.GET)
-    public void getLogin() {
-    }
+	/*
+	 * @RequestMapping(value = "/customLogin",method = RequestMethod.GET) public
+	 * void getLogin() { }
+	 */
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String postLogin(MemberVO vo) {
@@ -66,18 +67,20 @@ public class MemberController {
     }
     
     // 로그인 첫화면 요청 메소드
-    @RequestMapping(value = "naverLogin", method = {RequestMethod.GET, RequestMethod.POST})
-    public String naverLogin(Model model, HttpSession session) {
+    @RequestMapping(value = "/customLogin", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView naverLogin(ModelAndView mv, HttpSession session) {
     	// 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출
     	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
     	System.out.println("네이버:"+naverAuthUrl);
-    	model.addAttribute("url", naverAuthUrl);
+    	mv.setViewName("member/customLogin");
+    	mv.addObject("url", naverAuthUrl);
     	
-    	return "naverLogin";
+    	return mv;
     }
+    
     // 로그인 성공시 callback 호출 메소드
-    @RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
-    public String callback(Model model, @RequestParam String code, @RequestParam String state,HttpSession session)
+    @RequestMapping(value = "/callback", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView callback(ModelAndView mv, @RequestParam String code, @RequestParam String state,HttpSession session)
     		throws IOException, ParseException {
     	System.out.println("callback");
     	OAuth2AccessToken oauthToken;
@@ -96,9 +99,10 @@ public class MemberController {
 				System.out.println(nickname);
 		//4.파싱 닉네임 세션으로 저장
 				session.setAttribute("sessionId", nickname); // 세션 생성
-				model.addAttribute("result", apiResult);
+				mv.addObject("result", apiResult);
+				mv.setViewName("member/customLogin");
 		
-		return "/naverLogin";
+		return mv;
     }
     
     //로그아웃
