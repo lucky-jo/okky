@@ -188,44 +188,51 @@
 				return false;
 			} else {
 				$('#emailCheck1').attr("style", "display: none");
-				$.ajax({
-					type : 'Get',
-					url : '/member/emailDuplicate',
-					data : {
-						email : email
-					},
-					success : function(data) {
-						if (data.message == '200') {
-							console.log("ㅇㅇ");
-							$('#emailCheck2').attr("style", "display: none");
-							em = 1;
-							$.ajax({
-								type : 'Get',
-								url : "/member/sendauthkey",
-								data : {
-									email : document.getElementById("email").value
-								},
-								success : function(data) {
-									if (data.message == '200') {
-										$('#authkeybox').attr("style", "");
-										oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
-										return true;
-									} else if (data.message == 'fail') {
-										$('#authkeybox').attr("style", "display: none");
-										return false;
-									}
+				$
+						.ajax({
+							type : 'Get',
+							url : '/member/emailDuplicate',
+							data : {
+								email : email
+							},
+							success : function(data) {
+								if (data.message == '200') {
+									console.log("ㅇㅇ");
+									$('#emailCheck2').attr("style",
+											"display: none");
+									em = 1;
+									$
+											.ajax({
+												type : 'Get',
+												url : "/member/sendauthkey",
+												data : {
+													email : document
+															.getElementById("email").value
+												},
+												success : function(data) {
+													if (data.message == '200') {
+														$('#authkeybox').attr(
+																"style", "");
+														oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
+														return true;
+													} else if (data.message == 'fail') {
+														$('#authkeybox')
+																.attr("style",
+																		"display: none");
+														return false;
+													}
+												}
+											}); // ajax
+									return true;
+								} else if (data.message == 'fail') {
+									console.log("ㄴㄴ");
+									$('#emailCheck2').attr("style", "");
+									return false;
 								}
-							}); // ajax
-							return true;
-						} else if(data.message == 'fail'){
-							console.log("ㄴㄴ");
-							$('#emailCheck2').attr("style", "");
-							return false;
-						}
-					}
-				});
-			} 
-			
+							}
+						});
+			}
+
 		}
 	};
 	// 인증키 유효성 검사
@@ -407,8 +414,8 @@
 										값이 존재합니다.</li>
 									<li style="display: none" id="authCheck1">[인증키] : 숫자 4개를
 										입력하세요.</li>
-									<li style="display: none" id="authCheck2">[인증키] : 인증번호가 맞지 않습니다.
-										</li>
+									<li style="display: none" id="authCheck2">[인증키] : 인증번호가 맞지
+										않습니다.</li>
 									<li style="display: none" id="authkeysuccess">[인증키] :
 										인증성공.</li>
 									<li style="display: none" id="finalCheck">[입력오류] : 확인하지 않은
@@ -488,20 +495,18 @@
 
 					</div>
 				</div>
-				<%--<div class="col-md-6 main-block-right">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5 class="panel-header">SNS로 가입하기</h5>
-                    </div>
-                    <div class="panel-body panel-margin sns-buttons">
-                        <a href="/oauth/facebook/authenticate?redirectUrl=" provider="facebook"
-                           class="btn btn-facebook btn-block"><i class="fa fa-facebook fa-fw"></i> Facebook 으로 가입하기</a>
-
-                        <a href="/oauth/google/authenticate?redirectUrl=" provider="google"
-                           class="btn btn-google btn-block"><i class="fa fa-google fa-fw"></i> Google 로 가입하기</a>
-                    </div>
-                </div>
-            </div>--%>
+				<div class="col-md-6 main-block-right">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h5 class="panel-header">SNS로 가입하기</h5>
+						</div>
+						<!-- 네이버 로그인 창으로 이동 -->
+						<div id="naver_id_login" style="text-align: center">
+							<a href="${url}"><img width="223"
+								src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+						</div>
+					</div>
+				</div>
 
 			</div>
 
