@@ -97,7 +97,7 @@ public class MemberController {
 		//response의 nickname값 파싱
 				String nickname = (String) response_obj.get("nickname");
 				System.out.println(nickname);
-				System.out.println(oauthToken);
+				System.out.println(apiResult);
 		//4.파싱 닉네임 세션으로 저장
 				session.setAttribute("sessionId", nickname); // 세션 생성
 				mv.addObject("result", apiResult);
