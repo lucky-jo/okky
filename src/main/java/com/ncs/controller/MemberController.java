@@ -96,13 +96,23 @@ public class MemberController {
 				JSONObject response_obj = (JSONObject) jsonObj.get("response");
 		//response의 nickname값 파싱
 				String nickname = (String) response_obj.get("nickname");
+				String email = (String) response_obj.get("email");
+				
 				System.out.println(nickname);
 				System.out.println(apiResult);
 		//4.파싱 닉네임 세션으로 저장
-				session.setAttribute("sessionId", nickname); // 세션 생성
-				mv.addObject("result", apiResult);
-				mv.setViewName("member/customLogin");
-		
+				MemberVO memberVO = new MemberVO();
+				memberVO.setEmail((String)response_obj.get("email")); // 네이버 이메일을 중복확인 하기 위한 set
+				if(memberService.emailDuplicate(memberVO) > 0) { // 네이버에 등록된 이메일을 담아서 중복 확인
+					session.setAttribute("sessionId", nickname); // 세션 생성
+					mv.addObject("result", apiResult);
+					mv.setViewName("member/customLogin");
+				}else {
+					mv.addObject("callBackEmail", email);
+					mv.addObject("oneclick", "1");
+					mv.setViewName("member/register");
+				}
+				
 		return mv;
     }
     
