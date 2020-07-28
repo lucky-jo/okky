@@ -176,6 +176,10 @@
 		}
 	}; // nickCheck()
 	// 이메일 유효성 검사
+/* 	var oneclick = ${oneclick}
+	if() */
+	var OneClick = "<c:out value="${oneclick}" />";
+		
 	var mailauth = function(e) {
 		if (oneclick == 0) {
 			return false;
@@ -438,7 +442,8 @@
 									class="form-control input-sm" placeholder="비밀번호" required=""
 									value="" id="password" onfocusout="pwCheck()" /> <input
 									type="text" name="email" class="form-control input-sm"
-									placeholder="이메일" required="" value="" id="email" />
+									placeholder="이메일" required="" value="${callBackEmail}" id="email" />
+									
 								<div>
 									<div class="btn btn-primary btn-block" id="emailbox"
 										onclick="mailauth()">이메일 인증</div>
