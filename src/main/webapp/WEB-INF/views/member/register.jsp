@@ -47,15 +47,15 @@
 	var nc = 0;
 	var em = 0;
 	
-	var callBackEmail = "<c:out value="${callBackEmail}" />";
 	// callBackEmail을 받아서 회원가입시 유효성 체크 통과
 	$(function(){
-		var callBackEmail = $('#callBackEmail').val();
-		var CBemail = $('#email').val(callBackEmail);
-		if(CBemail != null){
+		var callBackEmail = "<c:out value="${callBackEmail}" />";
+		console.log(callBackEmail);
+		if(callBackEmail != ''){
 			em = 1;
 			$('#email').attr("readonly", "readonly");
 			$('#emailbox').remove();
+			document.getElementById('join').disabled = "";
 			return true;
 		}else{
 			em = 0;
@@ -450,7 +450,8 @@
 									required="" placeholder="아이디" value="" id="username"
 									onfocusout="idCheck()" /> <input type="password" name="userpw"
 									class="form-control input-sm" placeholder="비밀번호" required=""
-									value="" id="password" onfocusout="pwCheck()" /> <input
+									value="" id="password" onfocusout="pwCheck()" /> 
+									<input
 									type="text" name="email" class="form-control input-sm"
 									placeholder="이메일" required="" value="${callBackEmail}" id="email" />
 									
