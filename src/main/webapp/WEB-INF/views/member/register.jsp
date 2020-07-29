@@ -46,7 +46,24 @@
 	var nn = 0;
 	var nc = 0;
 	var em = 0;
-
+	
+	var callBackEmail = "<c:out value="${callBackEmail}" />";
+	// callBackEmail을 받아서 회원가입시 유효성 체크 통과
+	$(function(){
+		var callBackEmail = $('#callBackEmail').val();
+		var CBemail = $('#email').val(callBackEmail);
+		if(CBemail != null){
+			em = 1;
+			$('#email').attr("readonly", "readonly");
+			$('#emailbox').remove();
+			return true;
+		}else{
+			em = 0;
+			$('#email').attr("style", "");
+			$('#emailbox').attr("style" ,"");
+			return false;
+		}
+	});
 	var idCheck = function() {
 		if (idCheck) {
 
@@ -178,7 +195,7 @@
 	// 이메일 유효성 검사
 /* 	var oneclick = ${oneclick}
 	if() */
-	var OneClick = "<c:out value="${oneclick}" />";
+	
 		
 	var mailauth = function(e) {
 		if (oneclick == 0) {
@@ -192,37 +209,30 @@
 				return false;
 			} else {
 				$('#emailCheck1').attr("style", "display: none");
-				$
-						.ajax({
-							type : 'Get',
-							url : '/member/emailDuplicate',
-							data : {
-								email : email
-							},
-							success : function(data) {
-								if (data.message == '200') {
-									console.log("ㅇㅇ");
-									$('#emailCheck2').attr("style",
-											"display: none");
-									em = 1;
-									$
-											.ajax({
-												type : 'Get',
-												url : "/member/sendauthkey",
-												data : {
-													email : document
-															.getElementById("email").value
-												},
-												success : function(data) {
+				$.ajax({
+					type : 'Get',
+					url : '/member/emailDuplicate',
+					data : {
+						email : email
+					},
+					success : function(data) {
+						if (data.message == '200') {
+							console.log("ㅇㅇ");
+							$('#emailCheck2').attr("style",	"display: none");
+								em = 1;
+								$.ajax({
+									type : 'Get',
+									url : "/member/sendauthkey",
+									data : {
+										email : document.getElementById("email").value
+										},
+										success : function(data) {
 													if (data.message == '200') {
-														$('#authkeybox').attr(
-																"style", "");
+														$('#authkeybox').attr("style", "");
 														oneclick = 0; // 최종 성공시에 0을 줘서 리턴false
 														return true;
 													} else if (data.message == 'fail') {
-														$('#authkeybox')
-																.attr("style",
-																		"display: none");
+														$('#authkeybox').attr("style","display: none");
 														return false;
 													}
 												}
@@ -445,7 +455,7 @@
 									placeholder="이메일" required="" value="${callBackEmail}" id="email" />
 									
 								<div>
-									<div class="btn btn-primary btn-block" id="emailbox"
+									<div class="btn btn-primary btn-block" style="display: none" id="emailbox"
 										onclick="mailauth()">이메일 인증</div>
 								</div>
 								<input type="text" name="username" class="form-control input-sm"
