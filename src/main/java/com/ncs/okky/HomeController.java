@@ -81,5 +81,11 @@ public class HomeController {
 		mv.setViewName("index");
 		return mv;
 	}
+	// ** ChatWebSocket Test **
+	@RequestMapping(value = "/chat")
+	public ModelAndView chat(ModelAndView mv) {
+		mv.setViewName("includes/chat-ws");
+		return mv;
+	}
 	
 }

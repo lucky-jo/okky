@@ -158,6 +158,8 @@
                 <li><a href="https://github.com/ildang100/okky" class="link" target="_blank"><i
                         class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github</span></a>
                 </li>
+                <li><a href="/chat" class="link"><i class="fa fa-user"></i> <span
+                                class="nav-sidebar-label">1:1실시간 상담</span></a></li>
             </ul>
         </div>
 
