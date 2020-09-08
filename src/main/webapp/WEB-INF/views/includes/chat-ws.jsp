@@ -13,7 +13,7 @@
 	// 서버연결
 	function connect() {
 		wsocket = new WebSocket(
-				"ws://192.168.0.39:8080/chat-ws");
+				"ws://172.30.1.57:8080/chat-ws");
 		wsocket.onopen = onOpen; // 연결시 콜백 함수
 		wsocket.onmessage = onMessage; // 서버로부터 메시지 도착시 콜백 함수
 		wsocket.onclose = onClose; // 종료시 콜백 함수
@@ -80,21 +80,25 @@
 </head>
 <body>
 <div id=wrap>
-<h2>** WebSocket Chatting **</h2>
+<h2>1:1 채팅 상담</h2>
 
-이름:<input type="text" id="nickname">
-	<input type="button" id="enterBtn" value="입장">
-	<input type="button" id="exitBtn" value="나가기">
-    
-<h3 style="color: gray;">~~~~~~ Chatting Area ~~~~~~</h3>
+<div class="container m-4">
+	<div class="form group">
+	<label>이름</label>
+		<input type="text" id="nickname">
+		<input type="button" id="enterBtn" value="입장">
+		<input type="button" id="exitBtn" value="나가기">
+	</div>
+</div>
+<h3 style="color: gray;">무엇을 도와 드릴까요?</h3>
 <div id="chatArea">
 	<div id="chatMessageArea"></div>
 </div>
 <br/>
 <input type="text" id="message" size="33">
 <input type="button" id="sendBtn" value="전송">
-<br><br><hr>
-<a href="home" class="textLink">[Home]</a><br>
+<br><br>
+<a href="index" class="textLink">[Home]</a><br>
 </div>
 </body>
 </html>

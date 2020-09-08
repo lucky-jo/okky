@@ -364,8 +364,8 @@ function del() {
 								</div>
 							</div>
 							<!-- 로그인 및 아이디 확인 후 출력 -->
-							<sec:authentication property="principal" var="pinfo"/>
 							<sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal" var="pinfo"/>
 							<c:if test="${pinfo.username eq merge.board.rid }">
 							<div id="content-function-cog-${merge.board.rseq}"
 								class="content-function-cog">

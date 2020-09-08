@@ -293,11 +293,10 @@ public class MemberController {
     
     @RequestMapping(value = "/pwfind")
     public ModelAndView pwfind(ModelAndView mv, MemberVO vo) {
-    	System.out.println("ddd"+vo);
     	if(memberService.sendFindPassword(vo)>0) {
+    		mv.addObject("email",vo.getEmail());
      		mv.addObject("message", "200");
      		System.out.println("200");
-     		System.out.println(vo);
     	}else {
     		mv.addObject("massage","fail");
     		System.out.println("fail");
