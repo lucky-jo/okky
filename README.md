@@ -3,7 +3,6 @@
 okky web-site_Clone / <https://okky.kr/>
 
 ## 프로젝트 배포
- http://ildang100.site/
 
 ## 프로젝트 목표
  * Spring MVC 이해 및 구현
